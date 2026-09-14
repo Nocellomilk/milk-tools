@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>適性簡易検査｜非公式・本丸個体解釈ツール</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#eaf0ef;--paper:#fbfdfc;--paper2:#f2f7f5;--ink:#2f3d40;--muted:#728184;
+  --line:#b9c7c5;--line2:#d7e1df;--teal:#537e79;--teal2:#77a09a;--mint:#e2efeb;
+  --pink:#a17f8d;--pink2:#f3e8ec;--cream:#faf7f0;
+}
+body{margin:0;background:linear-gradient(180deg,#e4ecea 0%,#f3f6f4 44%,#e8efed 100%);color:var(--ink);font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
+.wrap{width:min(920px,94%);margin:38px auto 70px}
+.back{display:inline-block;margin-bottom:14px;padding:8px 13px;border:1px solid #aabbb8;background:#f9fbfa;color:#4e756f;text-decoration:none;font-size:12px;font-weight:bold}
+.header{position:relative;text-align:center;padding:36px 24px 32px;margin-bottom:22px;background:rgba(252,254,253,.97);border:1px solid var(--line);border-top:5px solid var(--teal);box-shadow:0 8px 26px #30423e16;overflow:hidden}
+.header:before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:#f3e8ec73;right:-64px;top:-72px}
+.header .pink-dot{position:absolute;width:8px;height:8px;border-radius:50%;background:#d9bcc7;opacity:.75}
+.header .pink-dot.p1{left:34px;top:30px}.header .pink-dot.p2{right:58px;bottom:32px;width:5px;height:5px}
+.intro-panel{padding:0;overflow:hidden}.intro-head{padding:27px 30px 21px;border-bottom:1px solid var(--line2);background:linear-gradient(90deg,#f8fbfa,#fbf4f7 72%,#f7fbfa)}
+.intro-body{padding:25px 30px 29px}.intro-block{padding:14px 16px;margin:0 0 12px;border-left:3px solid #cba8b6;background:#fcf8fa}
+.intro-block:nth-child(even){border-left-color:#8eaaa5;background:#f5f9f8}.intro-block strong{display:block;font-size:13px;color:#4d625e;margin-bottom:5px}.intro-block p{margin:0;font-size:11px;line-height:1.9;color:#6f7d7a}
+.param-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.param-mini div{padding:9px 10px;border:1px solid #d6dfdd;background:#fff;font-size:10px;line-height:1.55;color:#687874}.param-mini b{color:#4f6964}
+.role-box{grid-column:1/-1;margin-top:5px;padding:14px;border:1px solid #d7c5cc;background:linear-gradient(90deg,#fff,#fbf3f6)}
+.role-title{font-size:12px;font-weight:bold;color:#67535b;margin-bottom:9px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}.role-title small{font-size:10px;font-weight:normal;color:#927985;letter-spacing:.03em}.role-options{display:flex;gap:18px;flex-wrap:wrap}.role-check{display:flex;align-items:center;gap:7px;font-size:12px;color:#526461;cursor:pointer}.role-check input{accent-color:#8f6d7b}
+.question-block .section-code,.input-panel>.section-code{display:inline-block;padding-bottom:3px;border-bottom:2px solid #d8b9c5}
+.question-title:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#d3aebb;margin-right:7px;vertical-align:2px}
+.choice-option input:checked+span{border-color:var(--teal);background:linear-gradient(135deg,var(--mint),#f9eef2);color:#2f5550;box-shadow:inset 0 0 0 1px #537e7930;font-weight:bold}
+.stat-card:nth-child(2n){background:linear-gradient(180deg,#fffdfd,#f6f1f3)}.stat-card:nth-child(2n) .bar{background:#eee2e7}.stat-card:nth-child(2n) .fill{background:linear-gradient(90deg,#d1aeba,#9f7b89)}
+.pink-rule{height:1px;background:linear-gradient(90deg,transparent,#d3aebb 25%,#d3aebb 75%,transparent);margin:16px 0 0}
+
+.kicker{font-size:12px;letter-spacing:.25em;color:#7f9691}
+h1{font-size:28px;letter-spacing:.12em;margin:8px 0 10px}
+.sub{max-width:720px;margin:auto;font-size:13px;color:var(--muted);line-height:2}
+.unofficial{display:inline-block;margin-top:15px;padding:5px 11px;border:1px solid #aab8b5;color:#6e7e7b;background:#f3f7f6;font:10px/1.5 Arial,sans-serif;letter-spacing:.14em}
+.panel{background:rgba(252,254,253,.98);border:1px solid var(--line);box-shadow:0 7px 22px #33433f12;margin-bottom:22px}
+.input-panel{padding:28px 32px}
+.section-code{font:11px/1.4 Arial,sans-serif;letter-spacing:.18em;color:var(--teal);margin-bottom:7px}
+h2{font-size:18px;letter-spacing:.08em;margin:0 0 8px}.lead{font-size:13px;color:var(--muted);line-height:1.9;margin:0 0 22px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:bold;color:#50615f;margin-bottom:7px}.field input{width:100%;padding:12px;border:1px solid #bdc9c7;background:#fff;color:var(--ink);font:inherit;outline:none}.field input:focus{border-color:var(--teal2);box-shadow:0 0 0 2px #77a09a18}.field-note{font-size:10px;color:#81908d;line-height:1.7;margin-top:5px}.required-chip{display:inline-block;margin-left:7px;padding:1px 6px;border:1px solid #c8aeb8;background:#fbf3f6;color:#8a6674;font-size:9px;vertical-align:1px}.observation-link-note{margin:-12px 0 19px;font-size:11px;line-height:1.8;color:#7b8986}.observation-link-note a{color:#6f5661;font-weight:bold;text-decoration:none;border-bottom:1px solid #cdb2bd;padding-bottom:1px}.observation-link-note a:hover{color:#4e756f;border-color:#7fa09a}
+.region-chip{grid-column:1/-1;margin-top:4px;padding:11px 13px;border:1px solid #c9d5d2;background:var(--paper2);font-size:11px;color:#667a76;line-height:1.8}.region-chip strong{color:#456761}
+.question-block{margin-top:26px;padding-top:24px;border-top:1px solid var(--line2)}.question{margin-top:20px}.question:first-child{margin-top:0}.question-title{font-size:14px;font-weight:bold;color:#435653;margin-bottom:9px}.question-sub{font-size:10px;color:#879490;font-weight:normal;margin-left:5px}
+.choice-options{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.choice-option{position:relative}.choice-option input{position:absolute;opacity:0;pointer-events:none}.choice-option span{display:flex;min-height:48px;align-items:center;justify-content:center;padding:9px 7px;border:1px solid #c1cdca;background:#fbfdfc;color:#526461;font-size:12px;text-align:center;cursor:pointer;transition:.15s;line-height:1.45}.choice-option span:hover{border-color:#789b95;background:#f2f7f5}.choice-option input:checked+span{border-color:var(--teal);background:var(--mint);color:#2f5550;box-shadow:inset 0 0 0 1px #537e7930;font-weight:bold}
+.actions{text-align:center}.actions button{margin-top:25px;padding:13px 38px;border:1px solid #3b625c;background:var(--teal);color:#fff;font-family:inherit;letter-spacing:.14em;cursor:pointer;box-shadow:0 3px 8px #0001}.actions button:hover{filter:brightness(1.06)}#error{min-height:18px;margin-top:10px;text-align:center;color:#92545d;font-size:12px}
+#result{display:none;scroll-margin-top:18px}.result-head{text-align:center;padding:27px 24px 24px;background:linear-gradient(180deg,#edf5f2,#fbfdfc);border-bottom:1px solid var(--line2)}.result-head:before{content:"簡易検査記録";display:block;font:10px/1.4 Arial,sans-serif;letter-spacing:.22em;color:var(--teal);margin-bottom:8px}.subject{font-size:12px;color:#758581}.subject strong{font-size:18px;color:#334744}.result-title{font-size:25px;font-weight:bold;letter-spacing:.12em;color:#2e4c47;margin:10px 0 5px}.result-note{font-size:13px;line-height:1.9;color:#697b77}
+.content{padding:26px 30px 31px}.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat-card{position:relative;padding:18px;border:1px solid #c0ceca;background:linear-gradient(180deg,#fbfdfc,#f1f6f4);overflow:hidden}.stat-card:after{content:attr(data-code);position:absolute;right:9px;bottom:7px;font:9px/1 Arial,sans-serif;letter-spacing:.13em;color:#a0aeab}.stat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.stat-name{font-size:16px;font-weight:bold;letter-spacing:.07em;color:#455c57}.stat-value{font-size:34px;font-weight:bold;line-height:1;color:#315d56}.stat-value small{font-size:10px;color:#82908d;margin-left:2px}.bar{height:10px;border:1px solid #b7c5c1;background:#e3ebe9;margin-top:12px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#9bbdb6,#537e79);transition:width .45s ease}.stat-band{margin-top:9px;font-size:12px;font-weight:bold;color:#5d756f;letter-spacing:.04em}.stat-desc{font-size:12.5px;line-height:1.85;color:#697c78;margin-top:5px}.social-note{margin-top:8px;padding:9px 11px;border-left:3px solid var(--pink);background:var(--pink2);font-size:11.5px;line-height:1.8;color:#725f67}
+.summary-box{margin-top:16px;padding:16px 17px;border:1px solid #c6d1ce;background:var(--cream);font-size:11px;line-height:1.9;color:#667571}.summary-box strong{color:#485d58}.meta{margin-top:14px;padding:11px 13px;background:#edf4f2;border:1px solid #d0dcda;font-size:10px;line-height:1.8;color:#72827e}.disclaimer{padding:18px 21px;font-size:11px;color:#71807d;background:#f8fbfa;border:1px solid var(--line);line-height:1.9}.disclaimer strong{color:#4b605c}.footer{text-align:center;color:#8b9895;font-size:9px;letter-spacing:.12em;margin-top:17px}
+
+.precheck-card{padding:20px 24px;border-left:4px solid var(--pink);background:linear-gradient(90deg,#fff,#fbf5f7)}
+.precheck-label{font-size:13px;font-weight:bold;color:#5a6664;margin-bottom:7px}
+.precheck-text{font-size:11px;line-height:1.8;color:#74817e}
+.precheck-link{display:inline-block;margin-top:10px;color:#6f5661;text-decoration:none;font-size:12px;font-weight:bold;border-bottom:1px solid #cdb2bd;padding-bottom:2px}
+.precheck-link:hover{color:#4e756f;border-color:#7fa09a}
+
+
+.petal-mark{position:absolute;right:22px;top:14px;width:132px;height:78px;pointer-events:none}
+.petal{position:absolute;width:17px;height:10px;border-radius:100% 0 100% 0;background:#d8b6c3;opacity:.62}
+.petal.p1{right:8px;top:5px;transform:rotate(34deg)}
+.petal.p2{right:39px;top:19px;width:13px;height:8px;transform:rotate(-20deg);opacity:.48}
+.petal.p3{right:72px;top:5px;width:10px;height:7px;transform:rotate(67deg);opacity:.38}
+.petal-label{position:absolute;right:0;bottom:0;font:8px/1.4 Arial,sans-serif;letter-spacing:.15em;color:#a1848f;white-space:nowrap}
+
+
+.result-actions{display:none;margin-top:20px;padding:18px 16px;border:1px solid #d1c2c8;background:linear-gradient(135deg,#f4f8f6,#fbf3f6);text-align:center}
+.result-actions-title{font-size:12px;font-weight:bold;color:#536863;letter-spacing:.08em;margin-bottom:10px}
+.result-action-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:9px}
+.result-action-buttons button{margin:0;padding:11px 16px;border:1px solid #4f7771;background:#537e79;color:#fff;font-family:inherit;font-size:11px;letter-spacing:.05em;cursor:pointer}
+.result-action-buttons .secondary{background:#fff;color:#765d67;border-color:#b99aa6}
+.result-action-note{font-size:10px;color:#73817e;line-height:1.85;margin-top:12px}
+.result-action-note strong{color:#765d67}
+.export-modal{display:none;position:fixed;inset:0;z-index:1000;background:#2d45408f;padding:22px;overflow:auto}
+.export-modal.open{display:flex;align-items:center;justify-content:center}
+.export-dialog{width:min(760px,96vw);max-height:94vh;overflow:auto;background:#fcfefd;border:1px solid #aabbb7;border-top:5px solid #537e79;box-shadow:0 18px 60px #233c3640;padding:20px}
+.export-dialog h3{margin:0 0 8px;font-size:17px;color:#415b56}
+.export-dialog p{margin:0 0 13px;font-size:12px;line-height:1.85;color:#71807d}
+.export-preview{display:block;max-width:100%;max-height:62vh;margin:0 auto 14px;border:1px solid #d1c5ca;background:#fff}
+.export-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.export-buttons button,.export-buttons a{display:inline-flex;align-items:center;justify-content:center;min-width:148px;padding:10px 14px;border:1px solid #537e79;background:#537e79;color:#fff;text-decoration:none;font:11px/1.2 inherit;cursor:pointer}
+.export-buttons .secondary{background:#fff;color:#765d67;border-color:#b99aa6}
+.export-help{margin-top:12px;padding:10px 12px;border-left:3px solid #c29eac;background:#fbf3f6;font-size:11px;line-height:1.8;color:#6d6065}
+.export-close{float:right;border:0!important;background:transparent!important;color:#647b76!important;font-size:20px!important;padding:0 2px!important}
+
+
+.mission-findings{margin-top:18px;padding-top:20px;border-top:1px solid var(--line2)}
+.mission-findings-head{margin-bottom:12px}.mission-findings-head .section-code{margin-bottom:4px}.mission-findings-head h3{margin:0;font-size:20px;letter-spacing:.08em;color:#3f5953}
+.finding-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.finding-card{padding:17px 18px;border:1px solid #c8d3d0;background:#f7fbf9;position:relative}.finding-card:nth-child(2){background:#fbf5f7;border-color:#d9c8ce}.finding-card.advice{grid-column:1/-1;background:#faf7f0;border-color:#ddd3c4;padding:21px 22px}.finding-label{font:11px/1.45 Arial,sans-serif;letter-spacing:.14em;color:#82928e;margin-bottom:5px}.finding-title{font-size:18px;font-weight:bold;color:#405a54;margin-bottom:9px}.finding-card:nth-child(2) .finding-title{color:#725d66}.finding-text{font-size:13px;line-height:1.95;color:#657570}.finding-direction{margin-top:11px;padding-top:9px;border-top:1px dashed #d4dedb;font-size:11.5px;line-height:1.75;color:#778783}.finding-direction strong{color:#586e68}.finding-card.rare:before{content:"SPECIAL FINDING";position:absolute;right:12px;top:10px;font:8px/1 Arial,sans-serif;letter-spacing:.13em;color:#b18b99}.advice-part+.advice-part{margin-top:10px}.finding-card.advice .finding-title{font-size:20px;margin-bottom:12px}.finding-card.advice .finding-text{font-size:14px;line-height:2}.advice-part strong{color:#536963}
+@media(max-width:720px){.finding-grid{grid-template-columns:1fr}.finding-card.advice{grid-column:1}}
+
+@media(max-width:720px){.wrap{margin:18px auto 56px}.header{padding:30px 16px}h1{font-size:22px}.input-panel,.content,.intro-body,.intro-head{padding:20px 16px}.field-grid,.stat-grid,.param-mini{grid-template-columns:1fr}.choice-options{grid-template-columns:repeat(2,1fr)}.choice-option:last-child:nth-child(odd){grid-column:1/-1}.result-title{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="https://milk-tools.com/">← みるくの診断・ツール置き場へ</a>
+  <header class="header">
+    <i class="pink-dot p1"></i><i class="pink-dot p2"></i>
+    <div class="petal-mark"><i class="petal p1"></i><i class="petal p2"></i><i class="petal p3"></i><span class="petal-label">INFILTRATION SIDE FILE</span></div>
+    <div class="kicker">非公式・本丸個体解釈ツール</div>
+    <h1>適性簡易検査</h1>
+    <p class="sub">対象個体が人間社会へ潜入・滞在する際の適性を、政府基準で検査します。</p>
+    <span class="unofficial">UNOFFICIAL FAN-MADE / ver.1.0</span>
+  </header>
+
+
+  <section class="panel precheck-card">
+    <div class="precheck-label">検査を始める前に、必ずお読みください</div>
+    <div class="precheck-text">本検査は、人間社会への潜入・滞在任務における適性を政府基準で判定します。回答方法と結果の見方をご確認のうえ、ご利用ください。</div>
+    <a class="precheck-link" href="touken_infiltration_before_check_v6.html">「検査の前に」を確認する →</a>
+  </section>
+
+  <section class="panel input-panel" id="inspection">
+    <div class="section-code">SIDE FILE 01 / OBSERVATION DATA</div>
+    <h2>個体観測記録</h2>
+    <p class="lead">「刀剣男士個体観測」の結果を参照して入力してください。</p>
+    <div class="observation-link-note">→まだ個体観測を行っていない場合：<a href="https://milk-tools.com/">個体観測へ</a></div>
+    <div class="field-grid">
+      <div class="field full"><label for="swordName">刀剣名</label><input id="swordName" type="text" maxlength="40" placeholder="例：和泉守兼定" required><div class="field-note">診断結果・保存画像・シェア文に表示する名前です。</div></div>
+      <div class="field"><label for="emotion">情緒</label><input id="emotion" type="number" min="0" max="100" inputmode="numeric" placeholder="0～100"></div>
+      <div class="field"><label for="divinity">神性</label><input id="divinity" type="number" min="0" max="100" inputmode="numeric" placeholder="0～100"></div>
+      <div class="field"><label for="fluctuation">存在の揺らぎ</label><input id="fluctuation" type="number" min="0" max="100" inputmode="numeric" placeholder="0～100"></div>
+      <div class="field-note" id="regionChip">情緒・神性を入力すると、観測領域を自動判定します。</div>
+      <div class="role-box">
+        <div class="role-title">本丸での位置づけ <small>該当するものをすべて</small></div>
+        <div class="role-options">
+          <label class="role-check"><input type="checkbox" id="isStarter"> 初期刀である</label>
+          <label class="role-check"><input type="checkbox" id="isAttendant"> 現在の近侍である</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="section-code">SIDE FILE 02 / QUICK QUESTIONS</div>
+      <h2>質問項目</h2>
+      <p class="lead">対象の刀剣男士が直接操作するか、本人に聞き取り、最も近いものを1つずつ選んでください。</p>
+
+      <div class="question">
+        <div class="question-title">本を読むのは好き？ <span class="question-sub">1つ選択</span></div>
+        <div class="choice-options">
+          <label class="choice-option"><input type="radio" name="q1" value="battle"><span>戦よりも好きかも</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="love"><span>大好き</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="like"><span>好き</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="good"><span>得意</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="normal"><span>普通</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="weak"><span>苦手</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="hate"><span>嫌い</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="indifferent"><span>興味がない</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="selective"><span>関心のある分野のみ</span></label>
+          <label class="choice-option"><input type="radio" name="q1" value="write"><span>自分で執筆もする</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">身だしなみを整えるのは好き？ <span class="question-sub">1つ選択</span></div>
+        <div class="choice-options">
+          <label class="choice-option"><input type="radio" name="q2" value="love"><span>大好き</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="like"><span>好き</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="beauty"><span>美しい自分を見るのは好き</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="help"><span>手伝うのも好き</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="good"><span>得意</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="normal"><span>普通</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="weak"><span>苦手</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="hate"><span>嫌い</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="helpbetter"><span>手伝うほうが得意</span></label>
+          <label class="choice-option"><input type="radio" name="q2" value="indifferent"><span>興味がない</span></label>
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="question-title">旅行は好き？ <span class="question-sub">1つ選択</span></div>
+        <div class="choice-options">
+          <label class="choice-option"><input type="radio" name="q3" value="love"><span>大好き</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="like"><span>好き</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="solo"><span>一人旅が好き</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="close"><span>親しい相手と一緒なら好き</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="good"><span>得意</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="normal"><span>普通</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="weak"><span>苦手</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="hate"><span>嫌い</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="indifferent"><span>興味がない</span></label>
+          <label class="choice-option"><input type="radio" name="q3" value="never"><span>行ったことがない</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions"><button type="button" onclick="diagnose()">簡易検査を開始する</button></div>
+    <div id="error"></div>
+  </section>
+
+  <section id="result" class="panel">
+    <div class="result-head">
+      <div class="subject">検査対象：<strong id="resultName">対象個体</strong></div>
+      <div class="result-title">潜入適性パラメータ</div>
+      <div class="result-note">各値は、人間社会への潜入・滞在任務における政府基準上の適性評価です。</div>
+    </div>
+    <div class="content">
+      <div class="stat-grid" id="statGrid"></div>
+      <div class="mission-findings" id="missionFindings">
+        <div class="mission-findings-head"><div class="section-code">SIDE FILE 03 / SUPPLEMENTARY NOTES</div><h3>補足事項</h3></div>
+        <div class="finding-grid">
+          <article class="finding-card" id="outfitFinding"><div class="finding-label">RECOMMENDED ATTIRE / 推奨される服装</div><div class="finding-title" id="outfitTitle"></div><div class="finding-text" id="outfitText"></div><div class="finding-direction" id="outfitDirection"></div></article>
+          <article class="finding-card" id="destinationFinding"><div class="finding-label">RECOMMENDED DESTINATION / 適性のある任務先</div><div class="finding-title" id="destinationTitle"></div><div class="finding-text" id="destinationText"></div><div class="finding-direction" id="destinationDirection"></div></article>
+          <article class="finding-card advice" id="adviceFinding"><div class="finding-label">MISSION ADVICE / 任務上の助言</div><div class="finding-title">政府所見</div><div class="finding-text" id="adviceText"></div></article>
+        </div>
+      </div>
+      <div class="meta" id="meta"></div>
+      <div class="result-actions" id="resultActions">
+        <div class="result-actions-title">検査記録を保存・共有</div>
+        <div class="result-action-buttons">
+          <button type="button" onclick="saveResultImage()">結果画像を保存</button>
+          <button type="button" class="secondary" onclick="saveDetailedRecord()">詳細記録を保存</button>
+          <button type="button" class="secondary" onclick="shareResult()">Xで結果をシェア</button>
+        </div>
+        <div class="result-action-note">投稿用の結果画像・シェア文には「刀剣名」を使用します。詳細記録には入力した観測情報をすべて保存します。<br><strong>詳細記録には、対象となる刀剣男士および本丸内の詳細な情報が含まれます。公開・共有の際は、取り扱いにご注意ください。</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="disclaimer"><strong>ご利用にあたって</strong><br>この診断は『刀剣乱舞ONLINE』を題材にした非公式のファンメイド・二次創作補助ツールです。公式の設定・見解とは一切関係ありません。表示される数値は、人間社会への潜入・滞在任務を想定した創作上の評価です。刀剣男士そのものの強さや価値、優劣を示すものではありません。得意な分野だけでなく、その個体らしい苦手分野も含めてお楽しみください。</section>
+  <div class="footer">INFILTRATION APTITUDE / ver.1.0</div>
+</div>
+<script>
+let lastResult=null;
+const PARAMS=[
+  {name:'外見適応',code:'APPEARANCE',desc:'潜入先の服装・髪型・身だしなみ・持ち物へ自然に合わせる適性。'},
+  {name:'情報収集',code:'INFORMATION',desc:'会話・観察・資料などから必要な情報を拾い、任務へ活用する適性。'},
+  {name:'時代適応',code:'ERA ADAPTATION',desc:'時代ごとの生活様式・習慣・常識へ馴染み、安定して行動する適性。'},
+  {name:'現代文化',code:'MODERN CULTURE',desc:'デジタル機器、SNS、流行、娯楽など現代特有の文化へ馴染む適性。'},
+  {name:'政府基準における社会性',code:'SOCIAL ADAPTATION',desc:'潜入先の人間社会で、政府の想定範囲に収まる振る舞いを維持する適性。',social:true},
+  {name:'神秘の隠蔽',code:'MYSTERY CONCEALMENT',desc:'人ならざる存在であることを、人間社会の中で秘匿する適性。'}
+];
+const Q1={
+ battle:{up:[2,3,4],down:[1,5,6]},love:{up:[1,2,5],down:[3,4,6]},like:{up:[3,5,6],down:[1,2,4]},good:{up:[2,3,4],down:[1,5,6]},normal:{up:[1,5,6],down:[2,3,4]},weak:{up:[1,3,5],down:[2,4,6]},hate:{up:[1,4,6],down:[2,3,5]},indifferent:{up:[2,4,5],down:[1,3,6]},selective:{up:[1,2,6],down:[3,4,5]},write:{up:[3,4,6],down:[1,2,5]}
+};
+const Q2={
+ love:{up:[1,2,4],down:[3,5,6]},like:{up:[1,4,6],down:[2,3,5]},beauty:{up:[3,4,6],down:[1,2,5]},help:{up:[1,2,6],down:[3,4,5]},good:{up:[1,5,6],down:[2,3,4]},normal:{up:[2,3,5],down:[1,4,6]},weak:{up:[3,4,5],down:[1,2,6]},hate:{up:[1,3,5],down:[2,4,6]},helpbetter:{up:[2,5,6],down:[1,3,4]},indifferent:{up:[2,3,4],down:[1,5,6]}
+};
+const Q3={
+ love:{up:[2,4,6],down:[1,3,5]},like:{up:[1,3,5],down:[2,4,6]},solo:{up:[3,4,6],down:[1,2,5]},close:{up:[2,3,6],down:[1,4,5]},good:{up:[4,5,6],down:[1,2,3]},normal:{up:[1,2,5],down:[3,4,6]},weak:{up:[2,4,5],down:[1,3,6]},hate:{up:[1,5,6],down:[2,3,4]},indifferent:{up:[1,3,4],down:[2,5,6]},never:{up:[1,2,3],down:[4,5,6]}
+};
+function clamp(v){return Math.max(0,Math.min(100,v))}
+function getNum(id){const raw=document.getElementById(id).value;if(raw==='')return null;const n=Number(raw);return Number.isFinite(n)?n:null}
+function getRegion(e,d){return e<50?(d<50?'Ⅰ':'Ⅲ'):(d<50?'Ⅱ':'Ⅳ')}
+function updateRegion(){const e=getNum('emotion'),d=getNum('divinity'),chip=document.getElementById('regionChip');if(e===null||d===null||e<0||e>100||d<0||d>100){chip.textContent='情緒・神性を入力すると、観測領域を自動判定します。';return}chip.textContent=`観測領域：${getRegion(e,d)}（情緒 ${e} / 神性 ${d}）`}
+document.getElementById('emotion').addEventListener('input',updateRegion);document.getElementById('divinity').addEventListener('input',updateRegion);
+function applyQuestion(scores,map,value){const m=map[value];m.up.forEach(i=>scores[i-1]+=10);m.down.forEach(i=>scores[i-1]-=10)}
+function range(v,a,b,c,d){if(v<=25)return a;if(v<=50)return b;if(v<=75)return c;return d}
+function observationAdjust(scores,e,d,f,region){
+  // ① 外見適応
+  scores[0]+= (e>=26&&e<=75)?6:-4;
+  scores[0]+=({Ⅰ:3,Ⅱ:5,Ⅲ:-3,Ⅳ:0}[region]);
+  if(d===0)scores[0]+=8; else if(d===100)scores[0]-=8;
+  // ② 情報収集
+  scores[1]+=range(e,6,5,-3,-4);
+  scores[1]+=range(d,-4,-3,5,6);
+  if(f>=76)scores[1]+=8; else if(f>=51)scores[1]+=6;
+  // ③ 時代適応
+  scores[2]+=range(d,6,5,-3,-4);
+  scores[2]+=range(e,-4,-3,5,6);
+  if(f<=25)scores[2]+=8; else if(f<=50)scores[2]+=6;
+  // ④ 現代文化
+  scores[3]+=({Ⅰ:8,Ⅱ:6,Ⅲ:-6,Ⅳ:-8}[region]);
+  if(e===0)scores[3]-=8; else if(e===100)scores[3]+=8;
+  // ⑤ 政府基準における社会性
+  scores[4]+=range(e,8,6,-4,-6);
+  if(f<=25||f>=76)scores[4]+=7;
+  // ⑥ 神秘の隠蔽
+  scores[5]+=range(d,8,6,-4,-6);
+  if(f<=5||f>=96)scores[5]+=7; else if((f>=6&&f<=25)||(f>=76&&f<=95))scores[5]+=3;
+}
+function applyUniqueExtreme(scores,indexes,highDelta,lowDelta){
+  const values=indexes.map(i=>scores[i]);
+  const max=Math.max(...values),min=Math.min(...values);
+  const maxIndexes=indexes.filter(i=>scores[i]===max);
+  const minIndexes=indexes.filter(i=>scores[i]===min);
+  if(maxIndexes.length===1)scores[maxIndexes[0]]+=highDelta;
+  if(minIndexes.length===1)scores[minIndexes[0]]+=lowDelta;
+}
+function applyPairSpread(scores,a,b,delta){
+  if(scores[a]>scores[b]){scores[a]+=delta;scores[b]-=delta}
+  else if(scores[b]>scores[a]){scores[b]+=delta;scores[a]-=delta}
+}
+function applyStarterAdjust(scores){
+  applyPairSpread(scores,0,3,8);
+  applyUniqueExtreme(scores,[1,2,4,5],8,-8);
+}
+function applyAttendantAdjust(scores){
+  applyPairSpread(scores,0,3,5);
+  applyUniqueExtreme(scores,[1,2,4,5],3,-3);
+}
+function band(v){if(v>=85)return '非常に高い';if(v>=70)return '高い';if(v>=55)return 'やや高い';if(v>=45)return '標準域';if(v>=30)return 'やや低い';return '低い'}
+
+const OUTFIT_FINDINGS={"vh_vh_h":{"title":"本人による現地調達","text":"服装について、政府側から特別な指定を行う必要はありません。到着後に周囲の服装や環境を確認し、対象個体自身に必要な衣類を選定させてください。潜入先に応じた装いを自力で判断し、自然に調整できるでしょう。","direction":"服装選定を本人へ全面委任"},"vh_vh_l":{"title":"スポーツウェア","text":"ジャージやスポーツブランドのウェアなど、用途の分かりやすい服装が向いています。細かな流行や時代ごとの装いを判断させるより、動きやすさと機能性を基準に選定するとよいでしょう。運動施設や公園などでは、多少活動的な装備でも自然に馴染むことができます。","direction":"用途を明確にして時代判断を補助"},"vh_h_h":{"title":"スーツスタイル","text":"スーツなど、一定の形式が確立された装いを任せることができます。潜入先の立場や目的に応じて適切に着こなす能力が見込まれるため、細かな調整は対象個体自身に任せてもよいでしょう。必要に応じ、シャツや小物で現地の雰囲気へ合わせてください。","direction":"定型を高度に着こなす"},"vh_h_l":{"title":"和洋折衷","text":"現代的な洋装を基本としつつ、和柄や羽織風のアイテムなど、対象個体に馴染みのある要素を一点程度取り入れるとよいでしょう。無理にすべてを現代風へ変更する必要はありません。慣れた要素を残すことで、本人らしさを保ちながら自然な装いにまとめやすくなります。","direction":"本人らしさを残した現代化"},"vh_l_h":{"title":"モード系","text":"色数を抑えた、デザイン性の高い服装が向いています。対象個体が持つ独特の雰囲気を無理に消すのではなく、現代的なファッション上の個性として馴染ませるとよいでしょう。装い全体の完成度を高めることで、多少の異質さも意図された印象として受け取られやすくなります。","direction":"異質さをファッションへ変換"},"vh_l_l":{"title":"季節イベント・流行作品の仮装／コスプレ","text":"季節行事や催事など、仮装や特徴的な衣装が許容される環境を利用するとよいでしょう。周囲から目立つことそのものを避けるのではなく、目立つ理由を服装によって明確にすることで、対象個体の異質さから注意を逸らすことができます。衣装の選定は政府または同行者による補助を推奨します。","direction":"目立つ理由そのものを偽装"},"vh_vl_h":{"title":"ハイブランド・デザイナーズ系","text":"仕立てや素材、デザインに特徴のある、存在感の強い服装が向いています。対象個体そのものが持つ異質な雰囲気を抑えるより、「非常に洗練された、ただ者ではない人間」という印象へ誘導するとよいでしょう。現代において成立する範囲の選定は、本人に任せることができます。","direction":"異質さに見合う格を与える"},"vh_vl_l":{"title":"御曹司・異国の貴族風","text":"一般的な人間へ無理に馴染ませるよりも、育った環境や立場が特殊な人物として認識される装いを利用するとよいでしょう。上質で格式を感じさせる服装を用意し、対象個体の古風さや独特の雰囲気を「一般とは異なる環境で育った人間」という印象へ誘導してください。","direction":"一般人ではない設定による偽装"},"h_vh_h":{"title":"ストリートカジュアル","text":"オーバーサイズのトップス、キャップ、スニーカーなど、現代的なストリートカジュアルを取り入れることができます。流行や着崩しを含めて自然に扱えると見込まれるため、潜入先や本人の好みに応じた選定を任せてもよいでしょう。","direction":"現代的な流行を積極的に利用"},"h_vh_l":{"title":"アウトドアスタイル〈機能性重視〉","text":"マウンテンパーカー、機能性パンツ、トレッキングシューズ、バックパックなど、用途の明確な装備を中心に選定するとよいでしょう。細かな流行よりも機能性を基準とすることで、時代ごとの装いを本人に判断させる負担を減らせます。多少特殊な装備も、アウトドアを好む人物として自然に処理できます。","direction":"機能性を基準に服装を成立させる"},"h_h_h":{"title":"アウトドアスタイル〈タウンユース〉","text":"アウトドアブランドのジャケットやパンツ、スニーカーなどを取り入れた、街中でも着用できるカジュアルスタイルが向いています。実用性を残しつつ、本人の好みや現地の傾向に合わせて組み合わせを調整するとよいでしょう。","direction":"実用性と現代ファッションの両立"},"h_h_l":{"title":"小物だけ政府指定","text":"衣服そのものは対象個体の選定に任せ、スマートフォン・財布・鞄・腕時計など、時代差が表れやすい所持品のみ政府側で指定するとよいでしょう。服装には十分な適応が見込まれるため、細部の時代考証を補助する程度で問題ありません。","direction":"服は任せて細部だけ政府管理"},"h_l_h":{"title":"装飾品を減らす","text":"基本的な服装は本人の選定を尊重しつつ、潜入先で目を引きやすい装飾品は整理するとよいでしょう。対象個体らしさを完全に失わせる必要はありません。本人の象徴となるものを数点残し、それ以外を一時的に減らす程度の調整が適しています。","direction":"個体性を残した引き算"},"h_l_l":{"title":"きれいめ私服","text":"シャツ、スラックス、シンプルな靴など、年代や職業を限定しすぎない端正な私服をあらかじめ用意するとよいでしょう。流行を強く反映した装いを避け、街中で広く見られる組み合わせを提示することで、安定した潜入が見込まれます。","direction":"無難で整った見本を提示"},"h_vl_h":{"title":"服装より所作の事前確認を優先","text":"服装について、特別な指定は必要ありません。対象個体自身による選定で十分な適応が見込まれます。それよりも、潜入前には現地での話し方・距離感・反応など、人間社会での所作を確認してください。","direction":"服は大丈夫なので人間のふりをしてください"},"h_vl_l":{"title":"オフィスカジュアル","text":"ジャケットとシャツなど、立場や用途を推測しやすいオフィスカジュアルを用意するとよいでしょう。本人に細かな時代ごとの装いを判断させるより、現代社会で役割の分かりやすい服装を提示するほうが安定します。多少堅い振る舞いも、職業上の特徴として受け取られやすくなるでしょう。","direction":"服装から社会的な役割を付与"},"l_vh_h":{"title":"無地中心のベーシック〈シック〉","text":"色数を抑えたシャツやニット、落ち着いたパンツ、シンプルな靴など、装飾の少ない端正な服装が向いています。対象個体自身の振る舞いには十分な隠蔽能力が見込まれるため、服装では余計な要素を増やさず、大人びた落ち着きのある印象にまとめるとよいでしょう。","direction":"本人の隠蔽能力を邪魔しない服"},"l_vh_l":{"title":"無地中心のベーシック〈定番〉","text":"パーカー、カットソー、デニム、スニーカーなど、年代や立場を限定しにくい定番の服装を政府側で提示するとよいでしょう。流行性よりも一般性と入手しやすさを優先し、幅広い年代で見られる組み合わせを選定してください。","direction":"どこにでもある服をそのまま着せる"},"l_h_h":{"title":"現代和装","text":"着物や作務衣など、現代でも着用されている和装を利用できます。無理に洋装へ合わせるよりも、対象個体が自然に扱える装いを選び、現代でも不自然にならない場所や役割と組み合わせるとよいでしょう。服装だけでなく、潜入先との組み合わせによって自然さを確保してください。","direction":"服を変えるより潜入環境を合わせる"},"l_h_l":{"title":"学生風スタイル","text":"若く見える個体であれば、カーディガン、シャツ、パーカー、リュックなどを組み合わせた学生風の私服が向いています。制服そのものを再現する必要はありません。年齢や立場をある程度推測しやすい装いを用意することで、本人に細かな時代判断を求めずに済むでしょう。","direction":"服装から分かりやすい立場を作る"},"l_l_h":{"title":"和洋折衷","text":"洋装のみへ大きく変更するよりも、現代的な服装へ和柄や羽織風の要素を一部残すとよいでしょう。対象個体にとって馴染みのある要素を利用することで、無理のない装いを作りやすくなります。装飾を増やしすぎず、現代の服装として成立する範囲に留めてください。","direction":"本人を服装へ馴染ませるための折衷"},"l_l_l":{"title":"同行者による選定〈服選び補助〉","text":"潜入時の服装は、現代の装いに詳しい刀剣男士や審神者など、適性のある同行者に選定を任せることを推奨します。対象個体のみで決定するよりも、潜入先に応じた見本を提示しながら準備するとよいでしょう。","direction":"誰か服を選んであげてください"},"l_vl_h":{"title":"同行者による選定〈隠蔽補助〉","text":"服装そのものは対象個体の判断でも一定の適応が見込まれますが、潜入準備には他の刀剣男士や審神者を同席させるとよいでしょう。衣服だけでなく、対象個体が周囲へ与える印象まで第三者が確認し、人間社会で違和感が生じにくい状態へ調整してください。","direction":"本人は大丈夫と言っていますが最終確認してください"},"l_vl_l":{"title":"本人の印象から大きく離れた服装","text":"対象個体本来の印象から大きく離れた服装を選定してください。かわいらしい服装や装飾性の高いスタイルなど、普段の対象個体から連想されにくい装いを利用し、正体について異なる印象を与えることを優先します。本人が希望する場合は、審神者や同行者と揃えた服装も利用できます。対象個体が拒まない場合、通常とは異なる性別表現を含む装いも選択肢に含まれます。","direction":"本人らしくなければないほどよい"},"vl_vh_h":{"title":"政府による一式支給〈本人に馴染むもの〉","text":"潜入時の服装は、政府側で一式を選定・支給します。対象個体自身による服装選びには不安が残りますが、人間社会での振る舞いには非常に高い適性が見込まれます。容姿や雰囲気を考慮し、潜入先で自然に見える範囲から、本人にも馴染みやすい装いを選定してください。","direction":"服だけ政府が何とかします"},"vl_vh_l":{"title":"古着・ヴィンテージ〈上質・クラシック〉","text":"上質な古着やヴィンテージアイテムを取り入れた、クラシックな装いが向いています。対象個体の時代感覚に多少のずれがあっても、質のよい年代物を意図的に選んだ服装として成立させやすいでしょう。本人の古風さを隠すのではなく、現代に存在する趣味の一つとして見せる運用が適しています。","direction":"古風さを上質な趣味として偽装"},"vl_h_h":{"title":"古着・ヴィンテージ〈味・使用感〉","text":"デニム、古着のシャツやジャケットなど、使用感そのものを魅力として取り入れるヴィンテージスタイルが向いています。新品らしい整い方を求めず、年代や由来の異なる衣服を組み合わせることで、対象個体独自の感覚も服装上の個性として馴染ませることができます。","direction":"独特な感覚を古着好きへ変換"},"vl_h_l":{"title":"視線誘導を目的とした端正なスタイル","text":"対象個体の容姿や雰囲気を活かし、あえて完成度の高い端正な装いに整えることを推奨します。周囲へ親しみやすさを与えることよりも、声をかけることをためらわせる程度の距離感を形成してください。対人接触そのものを減らすことで、服装や振る舞いの細部を観察される機会を抑えることができます。","direction":"近寄りがたくして観察させない"},"vl_l_h":{"title":"柔らかく親しみやすいスタイル","text":"柔らかな素材や穏やかな印象の色合いなど、周囲へ親しみやすさを与える服装が向いています。対象個体から人ならざるものの気配を完全に隠すことが難しい場合は、異質さそのものを消そうとするよりも、危険な存在ではないと受け取られる印象づくりを優先するとよいでしょう。","direction":"隠せないなら少なくとも怖く見せない"},"vl_l_l":{"title":"個性的なファッションをあえて許可","text":"対象個体の好みを過度に抑えず、個性的な服装として成立させることを検討してください。一般的な現代人へ無理に寄せるよりも、「独特な服装を好む人間」として認識させることで、人ならざる存在である可能性から注意を逸らすことができます。","direction":"変わった人だと思われるぶんには構いません"},"vl_vl_h":{"title":"役割を明示する制服・衣装","text":"服装そのものから役割を推測できる、制服・衣装類を利用するとよいでしょう。日常的な私服として周囲へ馴染ませることが難しい場合は、給仕・接客・催事など明確な役割を設定し、それに対応した装いを用意してください。対象個体が拒まない場合、メイド服など装飾性の高い制服類も選択肢に含まれます。","direction":"服が不自然なら不自然でない役割を与える"},"vl_vl_l":{"title":"政府による一式支給〈神秘性から離れたもの〉","text":"潜入時の服装は、政府側で一式を選定・支給します。対象個体自身による選定や、本人の雰囲気を活かした調整は行わず、可能な限り神秘的・古風な印象から離れた装いを優先してください。必要に応じ、本人が通常選ばない色・形・系統の服装も使用します。","direction":"本人には選ばせません"}};
+const DESTINATION_FINDINGS={"vh_vh_h":{"title":"ライブ・イベント会場","text":"ライブ・イベント会場など、大規模な催事での潜入任務に高い適性が見込まれます。現代特有の文化や人の流れにも柔軟に対応でき、混雑した環境での情報収集にも問題はないでしょう。参加者として自然に行動しながら、会場内の観察や調査を行う任務に適しています。","direction":"高難度環境での実戦投入"},"vh_vh_l":{"title":"ゲームセンター","text":"ゲームセンターなど、現代の娯楽施設での滞在任務が向いています。現代文化への理解と人間社会への適応には十分な余裕があるため、一般利用者として自然に行動できるでしょう。積極的な調査よりも、施設内に滞在しながら現代の娯楽文化に紛れる形式の任務が適しています。","direction":"現代文化へ自然に紛れる"},"vh_h_h":{"title":"オフィス街","text":"オフィス街など、現代的な生活様式や社会規範が強く表れる地域での調査任務に適しています。周囲の振る舞いに合わせながら必要な情報を収集する能力が見込まれます。通勤時間帯や昼休みなど、人の往来が多い環境でも柔軟な活動が可能でしょう。","direction":"正統派の現代潜入"},"vh_h_l":{"title":"審神者同行の街歩き","text":"審神者を同行させた市街地での滞在任務が向いています。現代文化への理解は非常に高く、一般的な市街地での行動に大きな支障はないでしょう。審神者が必要に応じて対人対応や任務判断を補助することで、買い物や飲食を含む幅広い現代環境で活動できます。","direction":"審神者同行による活動範囲の拡張"},"vh_l_h":{"title":"大学・研究施設周辺","text":"大学・研究施設周辺など、資料や専門情報へ接触しやすい環境では、情報収集能力を活かした任務が可能でしょう。不特定多数との交流を主目的とせず、掲示物・資料・周囲の観察などを中心とした調査が適しています。現代的な設備や専門文化にも十分対応できると見込まれます。","direction":"対人交流を抑えた専門調査"},"vh_l_l":{"title":"家電量販店","text":"家電量販店など、現代の機器や生活用品を多く扱う店舗では、必要物品の確認・選定・調達を任せることができます。最新の機器や商品についても高い理解が見込まれるため、店員への聞き取りを前提とせず、対象個体のみで完結できる任務を担当させるとよいでしょう。","direction":"現代知識を活かした調達任務"},"vh_vl_h":{"title":"大型展示会・即売会","text":"大型展示会・即売会など、参加目的や行動様式が明確な催事では、情報収集能力を活かせる可能性があります。一般的な人間社会での対人行動には注意が必要ですが、独自の文化や規則が形成された環境には高い理解が見込まれます。調査対象を明確にし、必要以上の交流を避けた運用が適しています。","direction":"特殊環境を利用した調査"},"vh_vl_l":{"title":"ホテル","text":"ホテルなど、滞在環境と対人手続きが比較的明確な施設を、長期任務の拠点として利用するとよいでしょう。現代的な設備の利用には高い適性が見込まれます。対人接触を必要最低限に抑え、個室を拠点として行動できる任務に向いています。","direction":"対人接触を抑えた長期滞在"},"h_vh_h":{"title":"繁華街","text":"繁華街など、人の往来と情報量の多い地域での調査任務に適しています。現代の生活環境へ自然に馴染みながら、多数の人間が行き交う場所でも安定した行動が期待できます。周囲の会話や店舗、人の流れなどから情報を集める市街地調査で能力を活かせるでしょう。","direction":"市街地での情報収集"},"h_vh_l":{"title":"移動が必要となる任務","text":"公共交通機関などを利用し、複数地点を移動する必要のある任務に適しています。現代の交通機関や移動上の規則を理解し、人の多い環境でも安定して行動できると見込まれます。指定された場所への移動・物品の受け渡し・複数地点の巡回など、機動力を必要とする任務で適性を活かせるでしょう。","direction":"現世での機動要員"},"h_h_h":{"title":"お祭り・地域イベント","text":"お祭り・地域イベントなど、現代の生活と伝統文化が混在する催事での調査任務が向いています。多くの人間が集まる環境にも自然に馴染み、催事の習慣や周囲の様子を確認しながら必要な情報を収集できるでしょう。現地住民との交流を含む任務にも対応が見込まれます。","direction":"交流を伴う地域調査"},"h_h_l":{"title":"動物園","text":"動物園など、多くの一般利用者が訪れる屋外施設での滞在任務が向いています。家族連れや団体客を含む人の流れにも比較的馴染みやすく、一般利用者として自然に施設内を巡ることができるでしょう。積極的な調査を求めず、現代の余暇環境で行動する経験を重ねる用途にも適しています。","direction":"人の多い余暇施設での自然な滞在"},"h_l_h":{"title":"水族館","text":"水族館など、比較的落ち着いた環境で観察を行える施設では、情報収集能力を活かした任務が可能でしょう。不特定多数との積極的な交流を避けながら、館内展示や解説、周囲の様子から必要な情報を得ることができます。現代的な施設設備にも大きな支障なく対応できると見込まれます。","direction":"静かな環境での観察・調査"},"h_l_l":{"title":"喫茶店・カフェ","text":"喫茶店・カフェなど、限られた範囲で現代の日常生活を経験できる場所で、現世任務に慣れるとよいでしょう。注文・支払い・着席・退店といった一連の行動を通じ、無理なく滞在経験を重ねることができます。長時間の対人交流や調査を必要としない、短時間の任務から始めることを推奨します。","direction":"小規模な現代生活の実地経験"},"h_vl_h":{"title":"書店","text":"他の刀剣男士を同行させた、書店などでの調査任務が向いています。資料や周囲の観察から情報を得る能力は十分に見込まれるため、対人対応を補助できる個体と二振りで行動するとよいでしょう。対象個体には必要な資料の探索・確認を担当させることで、得意分野を活かせます。","direction":"他個体との相互補助"},"h_vl_l":{"title":"駅・ターミナル","text":"駅・ターミナルなど、現代の交通設備を利用する短時間の実地任務から経験を重ねるとよいでしょう。案内表示や自動改札など、現代特有の設備には十分対応できると見込まれます。現地での聞き取りや複雑な対人対応を避けるため、経路と目的地を事前に指定した運用が適しています。","direction":"交通機関を利用する実地訓練"},"l_vh_h":{"title":"空港","text":"空港など、高度に現代化された環境での実地任務にも挑戦できるでしょう。現代特有の設備や手続きには事前確認が必要ですが、人の多い環境での行動と現地での情報収集には非常に高い適性が見込まれます。必要な知識を補ったうえで、複雑な施設内を自力で行動する任務を経験させることを推奨します。","direction":"弱点だけを補って挑む上級任務"},"l_vh_l":{"title":"ショッピングモール","text":"ショッピングモールなど、現代の日常生活を一か所で経験できる施設で、現世任務に慣れることを推奨します。多くの人間が行き交う環境でも安定した行動が見込まれるため、買い物・飲食・各種サービスの利用を実際に経験するとよいでしょう。複雑な調査を伴わない任務から始めるのが適しています。","direction":"人間社会の中で現代生活を学ぶ"},"l_h_h":{"title":"地方の観光地・温泉街","text":"地方の観光地や温泉街など、歴史的な景観と現代の生活文化が共存する地域での調査任務が向いています。現代特有の文化に不慣れな場合でも、比較的馴染みやすい環境で人間との交流や情報収集を行えるでしょう。現地住民や観光客への聞き取りを含む地域調査にも適しています。","direction":"歴史文化を足掛かりにした現代潜入"},"l_h_l":{"title":"コンビニ","text":"コンビニエンスストアなど、現代の日常生活に必要な仕組みが集約された場所で、基本的な現世任務を経験するとよいでしょう。店員とのやり取りには十分対応できると見込まれます。まずは指定された物品を選び、支払いを済ませて帰投する程度の短時間任務から始めることを推奨します。","direction":"現代生活の基礎訓練"},"l_l_h":{"title":"博物館","text":"博物館など、展示物や資料を中心に情報を得られる施設では、情報収集能力を活かした調査任務が可能でしょう。不特定多数との積極的な交流を必要とせず、展示・解説・館内資料を利用して調査を進めることができます。現代的な設備について事前確認を行い、調査対象を明確にしたうえでの派遣が適しています。","direction":"資料中心の専門調査"},"l_l_l":{"title":"大型公園","text":"大型公園など、行動の自由度が高く、人との接触を調整しやすい環境から現世任務に慣れるとよいでしょう。まずは周囲の様子を見ながら一定時間を過ごし、現代社会の空気や人々の行動に触れる程度で構いません。複雑な設備の利用や積極的な対人行動を必要としない環境が適しています。","direction":"負荷を抑えた現世研修"},"l_vl_h":{"title":"図書館","text":"図書館など、人との接触を抑えながら資料を扱える施設では、情報収集能力を活かした任務が可能でしょう。対人対応を必要最低限に留め、書籍や資料を中心とした調査を担当させるとよいでしょう。検索端末など現代特有の設備については、任務前に基本的な利用方法を確認しておくことを推奨します。","direction":"対人接触を抑えた資料調査"},"l_vl_l":{"title":"寺社・史跡","text":"寺社・史跡など、歴史的な文化や景観が残る場所から現世での活動経験を重ねるとよいでしょう。現代特有の文化や人間社会への適応を急ぐよりも、対象個体にとって理解しやすい環境から段階的に慣れることを推奨します。まずは現地を巡り、現代に残る文化や人々の生活を観察する程度の任務が適しています。","direction":"馴染みのある文化を入口にした現世研修"},"vl_vh_h":{"title":"昔ながらの商店街","text":"昔ながらの商店街など、人との交流を通じて情報を得られる地域での調査任務に適しています。現代特有の文化や設備には不慣れでも、対人行動と情報収集には高い適性が見込まれます。古くからの店舗や文化が残る環境で、現地の人々との会話を中心とした聞き取りを担当させるとよいでしょう。","direction":"対人能力で現代知識を補う聞き取り調査"},"vl_vh_l":{"title":"フリーマーケット・蚤の市","text":"フリーマーケットや蚤の市など、古物を介して人間と自然に交流できる催事での滞在が向いています。現代文化への深い理解を求められず、出店者や来場者とのやり取りを通じて、人間社会での活動経験を重ねることができます。調査を主目的とせず、品物を見たり売買を経験したりする形式が適しているでしょう。","direction":"古物を介した人間社会との交流"},"vl_h_h":{"title":"観光地","text":"観光地など、外部からの来訪者が多い地域での調査任務が向いています。現代特有の習慣に不慣れな様子があっても、観光客として行動することで周囲に馴染みやすいでしょう。現地の人間への聞き取りや案内の利用にも対応できるため、地域を巡りながら情報を集める任務で能力を活かせます。","direction":"「観光客」という立場を利用した潜入"},"vl_h_l":{"title":"美術館","text":"美術館など、行動の流れが比較的明確な文化施設で現世での滞在経験を重ねるとよいでしょう。現代文化に不慣れな場合でも、鑑賞を目的として滞在することで自然に行動しやすい環境です。積極的な調査を求めず、一般の来館者として展示を巡る程度から始めることを推奨します。","direction":"文化鑑賞を通じた現世研修"},"vl_l_h":{"title":"地方都市","text":"地方都市など、現代文化の密度と人との接触を調整しやすい地域では、観察を中心とした調査任務が可能でしょう。都市部ほど最新の文化や設備への対応を求められず、必要以上の対人交流を避けながら行動できます。周囲の観察や資料を利用して情報を集め、現代社会での活動経験を重ねるとよいでしょう。","direction":"負荷を抑えた単独調査"},"vl_l_l":{"title":"ファッションの街","text":"ファッションの街など、多様な服装や個性が受け入れられやすい地域を、短時間の滞在先として利用するとよいでしょう。現代文化への理解や積極的な対人交流を求めるよりも、さまざまな外見・振る舞いの人間が行き交う環境を利用し、周囲との違いを目立たせず行動することを優先してください。","direction":"現代側の多様性を利用した潜入"},"vl_vl_h":{"title":"庭園・植物園","text":"庭園・植物園など、人との接触を抑えながら観察できる環境では、情報収集能力を活かした任務が可能でしょう。現代社会への高度な適応や積極的な対人行動を必要とせず、自分のペースで活動できます。必要な調査対象をあらかじめ指定し、観察を中心とした任務を担当させるとよいでしょう。","direction":"静かな環境での観察任務"},"vl_vl_l":{"title":"住宅街","text":"まずは住宅街などを実際に歩き、人々の日常生活や現代の街並みに触れることから始めてください。特別な調査や積極的な対人行動を課す必要はありません。短時間の滞在を重ねながら、現世そのものに慣れていくことを推奨します。","direction":"とりあえず現世を歩いてみよう"}};
+const RARE_OUTFITS=[{"id":"emotion100","title":"審神者と選んだ服","text":"服装について、政府側から指定する必要はありません。対象個体自身による選定でも十分な適応が見込まれますが、可能であれば審神者とともに選ぶのもよいでしょう。任務に支障のない範囲であれば、同じ色や意匠を取り入れるなど、揃いの装いも認められます。","direction":"審神者との関係を尊重した装い"},{"id":"divinity100","title":"対象個体の希望を優先","text":"服装について、政府側から指定する事項はありません。潜入先に適した範囲であれば、対象個体の希望を優先してください。装いの選定・調整ともに本人へ一任して問題ありません。なお、人間社会で活動する際は、一般の人間に対して穏当な対応を心がけてください。","direction":"服装は自由。人間には優しく"},{"id":"divinity0","title":"対象個体らしい装い","text":"対象個体については、服装による積極的な偽装を行う必要はありません。現世の人間が対象個体に目を留めることはあるでしょう。しかし、その違和感のみから対象個体の正体のすべてを見通すことは、極めて困難であると判断されます。人間になりきる必要も、神なるものとして振る舞う必要もありません。対象個体らしい装いのまま、審神者に寄り添ってください。","direction":"人にも神にも寄せず、その個体らしく"},{"id":"emotion0","title":"同行者と共通する意匠","text":"審神者または同行する刀剣男士と、共通する意匠を持つ服装を推奨します。同一の制服や、色違いの同一デザインなど、離れた場所からでも同行者であることを確認できる装いを選定してください。対象個体自身に潜入先へ適した服装の判断を委ねるより、同行者との視覚的な共通点を明確にしておくことで、現地での行動確認や合流が容易になります。","direction":"識別・行動確認・再合流を優先"}];
+const RARE_DESTINATIONS=[{"id":"divinity100","title":"広範な現世任務","text":"対象個体は、現世における潜入・滞在任務について非常に高い適性を有しています。幅広い任務を安心して任せることができるでしょう。ただし、任務計画にあたっては同行する審神者の負担を十分に考慮してください。対象個体にとって問題のない環境が、審神者にとっても同様であるとは限りません。審神者を、帰還の保証できない場所へ決して同行させないでください。","direction":"高適性個体。審神者の帰還可能性を最優先"},{"id":"emotion100","title":"審神者と相談して決定","text":"現世任務において、対象個体と審神者は非常に優れた組み合わせとなるでしょう。潜入先についても、政府側で細かく指定するより、対象個体と審神者の双方で相談して決定することを推奨します。それぞれの知識や経験を活かし、柔軟に任務を遂行してください。なお、他の刀剣男士が同行する場合は、行動中の人数確認を忘れないようにしてください。","direction":"審神者との共同判断。同行個体の人数確認を忘れずに"},{"id":"emotion0","title":"花屋","text":"対象個体は、現世任務に特別高い適性を有しているとは言えません。それでも審神者があなたをこの任務へ指名したのであれば、きっと信頼されているのでしょう。あなたはまだ、その信頼をどのように受け取り、どのように返せばよいのか、よく知らないのかもしれません。まずは花屋へ行き、審神者へ贈る花をひとつ選んでみてはいかがでしょうか。それを、最初の現世任務としても構いません。","direction":"審神者へ贈る花を選ぶ、小さな現世任務"},{"id":"divinity0","title":"任務前の喫茶店","text":"率直に言えば、対象個体は現世任務において頼もしい刀剣男士とは言い難いでしょう。現代文化への理解や、現地で必要な情報を収集する能力には不安が残ります。それでも審神者が対象個体を現世任務へ指名したのであれば、その判断には本検査だけでは測れない理由があるのかもしれません。本格的な任務へ移る前に、まずは審神者と喫茶店にでも入り、なぜ自分が選ばれたのか、話をしてみてはいかがでしょうか。","direction":"任務の前に、審神者と理由を確かめる"}];
+const ADVICE_OVERALL=[
+  {min:58,text:'総合的な潜入適性は非常に高い水準にあります。人間社会への潜入・滞在を伴う任務について、幅広い運用が可能でしょう。'},
+  {min:55,text:'総合的な潜入適性は良好です。一般的な潜入・滞在任務であれば、大きな問題なく対応できるでしょう。'},
+  {min:51,text:'総合的な潜入適性は標準的な範囲にあります。任務内容と対象個体の得意分野を照らし合わせた運用を推奨します。'},
+  {min:49,text:'潜入・滞在任務にあたっては、事前準備を十分に行うことを推奨します。対象個体の得意分野を活かした任務選定が有効でしょう。'},
+  {min:-Infinity,text:'人間社会への長期・単独での潜入任務には、慎重な判断が必要です。必要に応じ、適性の異なる個体との同行を検討してください。'}
+];
+const ADVICE_HIGH=[
+ '特に外見適応について高い適性が認められます。潜入先に応じた装いや身だしなみの調整は、対象個体の判断に任せてもよいでしょう。',
+ '情報収集を得意としています。現地で得られる会話や資料、周囲の様子から必要な情報を拾い上げる役割に適しています。',
+ '時代適応について高い適性が認められます。未知の生活様式や習慣に対しても、比較的柔軟な対応が期待できます。',
+ '現代文化への適応を得意としています。現代特有の機器や文化を利用する任務でも、対象個体の裁量を広く取ってよいでしょう。',
+ '人間社会での振る舞いについて高い安定性が認められます。現地住民との接触を伴う任務でも、柔軟な運用が可能でしょう。',
+ '人ならざる存在であることの隠蔽を得意としています。一般の人間との接触が多い環境でも、正体の秘匿について大きな懸念はないでしょう。'
+];
+const ADVICE_LOW=[
+ '潜入先での装いについては、本人の判断のみに任せないことを推奨します。事前に服装・身だしなみ・所持品の見本を提示するとよいでしょう。',
+ '現地での情報収集には補助があると安心です。必要な情報や確認事項を事前に整理し、可能であれば明確な調査目標を設定してください。',
+ '潜入先の習慣や生活様式について、任務前の確認を推奨します。特に長期滞在の場合は、現地での常識や日常的な振る舞いを事前に共有してください。',
+ '現代特有の文化・機器については、任務前に簡単な確認の時間を設けることを推奨します。必要な機器は、基本的な操作を確認したうえで持たせてください。',
+ '不特定多数との継続的な接触を伴う任務では、対象個体の負担や振る舞いに注意してください。必要に応じ、対人対応を補助できる個体との同行を推奨します。',
+ '一般の人間と長時間接触する場合は、対象個体の言動や振る舞いに注意が必要です。正体に関する不用意な発言を避けるよう、任務前に確認してください。'
+];
+function findingBand4(v){if(v<=25)return 'vl';if(v<=50)return 'l';if(v<=75)return 'h';return 'vh'}
+function findingBand2(v){return v<=50?'l':'h'}
+function normalOutfit(scores){return OUTFIT_FINDINGS[`${findingBand4(scores[0])}_${findingBand4(scores[5])}_${findingBand2(scores[2])}`]}
+function normalDestination(scores){return DESTINATION_FINDINGS[`${findingBand4(scores[3])}_${findingBand4(scores[4])}_${findingBand2(scores[1])}`]}
+function pickOutfitFinding(scores,e,d){
+  // より条件の厳しい特殊所見を先に判定。
+  if(e===100&&scores[0]>=76&&scores[5]>=76&&scores[2]>=51)return {...RARE_OUTFITS[0],rare:true};
+  if(d===100&&scores[0]>=76&&scores[2]>=51)return {...RARE_OUTFITS[1],rare:true};
+  if(d===0&&scores[0]<=25&&scores[5]<=25&&scores[2]<=50)return {...RARE_OUTFITS[2],rare:true};
+  if(e===0&&scores[0]<=25&&scores[2]<=50)return {...RARE_OUTFITS[3],rare:true};
+  return {...normalOutfit(scores),rare:false};
+}
+function pickDestinationFinding(scores,e,d){
+  if(d===100&&scores[3]>=76&&scores[4]>=76&&scores[1]>=51)return {...RARE_DESTINATIONS[0],rare:true};
+  if(e===100&&scores[3]>=76&&scores[1]>=51)return {...RARE_DESTINATIONS[1],rare:true};
+  if(e===0&&scores[3]<=25&&scores[4]<=50&&scores[1]<=50)return {...RARE_DESTINATIONS[2],rare:true};
+  if(d===0&&scores[3]<=25&&scores[1]<=50)return {...RARE_DESTINATIONS[3],rare:true};
+  return {...normalDestination(scores),rare:false};
+}
+function pickPriorityExtreme(scores,wantMax){
+  const target=wantMax?Math.max(...scores):Math.min(...scores);
+  const priority=[2,1,4,5,0,3];
+  return priority.find(i=>scores[i]===target);
+}
+function buildMissionAdvice(scores){
+  const avg=scores.reduce((a,b)=>a+b,0)/scores.length;
+  const overall=ADVICE_OVERALL.find(x=>avg>=x.min).text;
+  const hi=pickPriorityExtreme(scores,true),lo=pickPriorityExtreme(scores,false);
+  const highText={0:ADVICE_HIGH[0],1:ADVICE_HIGH[1],2:ADVICE_HIGH[2],3:ADVICE_HIGH[3],4:ADVICE_HIGH[4],5:ADVICE_HIGH[5]}[hi];
+  const lowText={0:ADVICE_LOW[0],1:ADVICE_LOW[1],2:ADVICE_LOW[2],3:ADVICE_LOW[3],4:ADVICE_LOW[4],5:ADVICE_LOW[5]}[lo];
+  return {average:avg,highIndex:hi,lowIndex:lo,overall,high:highText,low:lowText,text:`${overall} ${highText} ${lowText}`};
+}
+function renderMissionFindings(outfit,destination,advice){
+  const set=(prefix,item)=>{
+    document.getElementById(prefix+'Title').textContent=item.title;
+    document.getElementById(prefix+'Text').textContent=item.text;
+    document.getElementById(prefix+'Direction').innerHTML=`<strong>方向性：</strong>${item.direction}`;
+    document.getElementById(prefix==='outfit'?'outfitFinding':'destinationFinding').classList.toggle('rare',!!item.rare);
+  };
+  set('outfit',outfit);set('destination',destination);
+  document.getElementById('adviceText').innerHTML=`<div class="advice-part">${advice.overall}</div><div class="advice-part"><strong>得意分野：</strong>${advice.high}</div><div class="advice-part"><strong>注意事項：</strong>${advice.low}</div>`;
+}
+
+function diagnose(){
+ const e=getNum('emotion'),d=getNum('divinity'),f=getNum('fluctuation');const error=document.getElementById('error');error.textContent='';
+ if([e,d,f].some(v=>v===null||v<0||v>100)){error.textContent='情緒・神性・存在の揺らぎを0～100で入力してください。';return}
+ const nameInput=document.getElementById('swordName');const enteredName=nameInput.value.trim();
+ if(!enteredName){error.textContent='刀剣名を入力してください。';nameInput.focus();return}
+ const q1=document.querySelector('input[name="q1"]:checked'),q2=document.querySelector('input[name="q2"]:checked'),q3=document.querySelector('input[name="q3"]:checked');
+ if(!q1||!q2||!q3){error.textContent='3つの質問すべてに回答してください。';return}
+ const scores=[50,50,50,50,50,50];applyQuestion(scores,Q1,q1.value);applyQuestion(scores,Q2,q2.value);applyQuestion(scores,Q3,q3.value);
+ const region=getRegion(e,d);observationAdjust(scores,e,d,f,region);
+ const isStarter=document.getElementById('isStarter').checked,isAttendant=document.getElementById('isAttendant').checked;
+ if(isStarter)applyStarterAdjust(scores);
+ if(isAttendant)applyAttendantAdjust(scores);
+ for(let i=0;i<scores.length;i++)scores[i]=clamp(scores[i]);
+ const name=enteredName;document.getElementById('resultName').textContent=name;
+ const grid=document.getElementById('statGrid');grid.innerHTML='';
+ PARAMS.forEach((p,i)=>{const card=document.createElement('div');card.className='stat-card';card.dataset.code=p.code;card.innerHTML=`<div class="stat-head"><div class="stat-name">${p.name}</div><div class="stat-value">${scores[i]}<small>/100</small></div></div><div class="bar"><div class="fill" style="width:${scores[i]}%"></div></div><div class="stat-band">${band(scores[i])}</div><div class="stat-desc">${p.desc}</div>${p.social?'<div class="social-note">※ここでの「社会性」は政府が潜入任務用に定めた独自基準です。</div>':''}`;grid.appendChild(card)});
+ const roles=[isStarter?'初期刀':'',isAttendant?'近侍':''].filter(Boolean).join('・')||'該当なし';document.getElementById('meta').textContent=`参照記録：情緒 ${e} / 神性 ${d} / 存在の揺らぎ ${f} / 観測領域 ${region} / 本丸での位置づけ ${roles}`;
+ const labelOf=n=>document.querySelector(`input[name="${n}"]:checked`)?.closest('label')?.innerText.trim()||'';
+ const outfit=pickOutfitFinding(scores,e,d),destination=pickDestinationFinding(scores,e,d),advice=buildMissionAdvice(scores);
+ renderMissionFindings(outfit,destination,advice);
+ lastResult={name,e,d,f,region,isStarter,isAttendant,roles,scores:[...scores],bands:scores.map(band),answers:{q1:labelOf('q1'),q2:labelOf('q2'),q3:labelOf('q3')},outfit,destination,advice};
+ document.getElementById('resultActions').style.display='block';
+ const result=document.getElementById('result');result.style.display='block';setTimeout(()=>result.scrollIntoView({behavior:'smooth',block:'start'}),60);
+}
+
+function safeFileName(text){return (text||'touken').replace(/[\\/:*?"<>|\s]+/g,'_').slice(0,40)||'touken';}
+function canvasFont(size,weight='normal'){return `${weight} ${size}px "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif`;}
+function drawWrappedText(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){
+  const chars=[...String(text)];let line='',lines=[];
+  for(const ch of chars){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch}else line=test}
+  if(line)lines.push(line);
+  if(lines.length>maxLines){lines=lines.slice(0,maxLines);lines[maxLines-1]=lines[maxLines-1].replace(/.$/,'…')}
+  lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return y+lines.length*lineHeight;
+}
+function drawFitText(ctx,text,x,y,maxWidth,startSize,minSize=18,weight='bold',align='left'){
+  let size=startSize;ctx.textAlign=align;
+  while(size>minSize){ctx.font=canvasFont(size,weight);if(ctx.measureText(String(text)).width<=maxWidth)break;size-=2}
+  ctx.fillText(String(text),x,y);return size;
+}
+let activeExportUrl='';
+function isTouchDevice(){return (navigator.maxTouchPoints||0)>0 || (window.matchMedia&&window.matchMedia('(pointer:coarse)').matches)}
+function closeExportModal(){const modal=document.getElementById('exportModal');if(modal)modal.classList.remove('open');if(activeExportUrl){URL.revokeObjectURL(activeExportUrl);activeExportUrl=''}}
+function showExportModal(blob,filename){
+  const modal=document.getElementById('exportModal'),img=document.getElementById('exportPreview'),link=document.getElementById('exportDownloadLink'),shareBtn=document.getElementById('exportShareBtn');
+  if(!modal||!img||!link)return;
+  if(activeExportUrl)URL.revokeObjectURL(activeExportUrl);
+  activeExportUrl=URL.createObjectURL(blob);img.src=activeExportUrl;link.href=activeExportUrl;link.download=filename;
+  const file=new File([blob],filename,{type:'image/png'});
+  const canFileShare=!!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}));
+  shareBtn.style.display=canFileShare?'inline-flex':'none';
+  shareBtn.onclick=async()=>{try{await navigator.share({files:[file],title:'刀剣男士 適性簡易検査'});}catch(e){if(e&&e.name!=='AbortError')console.warn(e)}};
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+}
+function exportCanvas(canvas,filename){
+  canvas.toBlob(blob=>{
+    if(!blob)return;
+    if(isTouchDevice()){showExportModal(blob,filename);return}
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+  },'image/png');
+}
+function drawPetals(ctx,x,y,scale=1){
+  ctx.save();
+  const petal=(cx,cy,rot,sc=1,alpha=.78)=>{
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(rot);ctx.scale(sc*scale,sc*scale);ctx.globalAlpha=alpha;
+    ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(-13,-8,-17,-23,0,-31);ctx.bezierCurveTo(17,-23,13,-8,0,0);ctx.closePath();
+    ctx.fillStyle='#d9b7c4';ctx.fill();ctx.restore();
+  };
+  // 小さな五弁の桜花
+  ctx.save();ctx.translate(x+18*scale,y+17*scale);
+  for(let i=0;i<5;i++)petal(0,0,-Math.PI/2+i*Math.PI*2/5,.55,.72);
+  ctx.globalAlpha=.7;ctx.fillStyle='#b98799';ctx.beginPath();ctx.arc(0,0,3.5*scale,0,Math.PI*2);ctx.fill();ctx.restore();
+  // 風に流れる花弁
+  petal(x+55*scale,y+5*scale,.55,.42,.62);
+  petal(x+82*scale,y+24*scale,-.55,.33,.48);
+  ctx.restore();
+}
+function drawTag(ctx,text,x,y){
+  const w=ctx.measureText(text).width+30;ctx.fillStyle='#faf3f6';ctx.fillRect(x,y,w,30);ctx.strokeStyle='#c8abb6';ctx.strokeRect(x,y,w,30);ctx.fillStyle='#765d67';ctx.fillText(text,x+15,y+21);return w;
+}
+function saveResultImage(){
+  if(!lastResult)return;
+  const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=1660;const ctx=c.getContext('2d');
+  ctx.fillStyle='#e9f0ee';ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle='#fffdfd';ctx.fillRect(58,55,1084,1550);ctx.strokeStyle='#afc1bd';ctx.lineWidth=2;ctx.strokeRect(58,55,1084,1550);
+  ctx.fillStyle='#537e79';ctx.fillRect(58,55,1084,12);drawPetals(ctx,985,88,1.05);
+  ctx.fillStyle='#75908b';ctx.font='18px Arial';ctx.textAlign='left';ctx.fillText('INFILTRATION APTITUDE / SIDE FILE',100,112);
+  ctx.fillStyle='#314943';ctx.font=canvasFont(40,'bold');ctx.fillText('刀剣男士 適性簡易検査',100,170);
+  ctx.textAlign='right';ctx.fillStyle='#7a8986';ctx.font=canvasFont(16,'bold');ctx.fillText('検査対象',1100,114);
+  ctx.fillStyle='#3c5650';drawFitText(ctx,r.name,1100,170,420,33,19,'bold','right');ctx.textAlign='left';
+  const tags=[];if(r.isStarter)tags.push('初期刀');if(r.isAttendant)tags.push('近侍');
+  if(tags.length){ctx.font=canvasFont(13,'bold');let tagRight=1100;for(const t of [...tags].reverse()){const tw=ctx.measureText(t).width+28,tx=tagRight-tw;ctx.fillStyle='#faf3f6';ctx.fillRect(tx,194,tw,28);ctx.strokeStyle='#c8abb6';ctx.strokeRect(tx,194,tw,28);ctx.fillStyle='#765d67';ctx.textAlign='center';ctx.fillText(t,tx+tw/2,214);tagRight=tx-8}ctx.textAlign='left'}
+  ctx.strokeStyle='#d7e1de';ctx.beginPath();ctx.moveTo(100,240);ctx.lineTo(1100,240);ctx.stroke();
+  const cardW=480,cardH=202,gapX=40,startX=100,startY=266,gapY=18;
+  for(let i=0;i<6;i++){
+    const col=i%2,row=Math.floor(i/2),x=startX+col*(cardW+gapX),y=startY+row*(cardH+gapY),pink=i%2===1;
+    ctx.fillStyle=pink?'#fcf5f7':'#f2f8f6';ctx.fillRect(x,y,cardW,cardH);ctx.strokeStyle=pink?'#d5bbc5':'#b9cfca';ctx.lineWidth=2;ctx.strokeRect(x,y,cardW,cardH);
+    ctx.fillStyle=pink?'#806572':'#496961';ctx.font=canvasFont(20,'bold');ctx.fillText(PARAMS[i].name,x+22,y+36);
+    ctx.textAlign='right';ctx.fillStyle=pink?'#8f6d7b':'#315d56';ctx.font=canvasFont(48,'bold');ctx.fillText(String(r.scores[i]),x+448,y+58);ctx.textAlign='left';
+    ctx.fillStyle=pink?'#9a7885':'#5a7770';ctx.font=canvasFont(16,'bold');ctx.fillText(r.bands[i],x+22,y+70);
+    ctx.fillStyle=pink?'#eadde2':'#dce9e6';ctx.fillRect(x+22,y+88,434,12);ctx.fillStyle=pink?'#a98291':'#6d9b93';ctx.fillRect(x+22,y+88,434*r.scores[i]/100,12);
+    ctx.fillStyle='#687874';ctx.font=canvasFont(13);drawWrappedText(ctx,PARAMS[i].desc,x+22,y+126,434,20,3);
+  }
+  const findingTop=944;
+  ctx.fillStyle='#48655e';ctx.font=canvasFont(20,'bold');ctx.fillText('補足事項',100,findingTop);
+  const drawFinding=(item,label,x,y,w,h,pink=false)=>{
+    ctx.fillStyle=pink?'#fbf5f7':'#f5faf8';ctx.fillRect(x,y,w,h);ctx.strokeStyle=pink?'#d9c8ce':'#c7d4d0';ctx.strokeRect(x,y,w,h);
+    ctx.fillStyle='#81918d';ctx.font='10px Arial';ctx.fillText(label,x+18,y+24);
+    ctx.fillStyle=pink?'#715d65':'#405a54';ctx.font=canvasFont(16,'bold');drawWrappedText(ctx,item.title,x+18,y+50,w-36,21,2);
+    ctx.fillStyle='#667671';ctx.font=canvasFont(11);drawWrappedText(ctx,item.text,x+18,y+88,w-36,18,6);
+    ctx.fillStyle='#74847f';ctx.font=canvasFont(10,'bold');drawWrappedText(ctx,'方向性：'+item.direction,x+18,y+h-28,w-36,15,2);
+    if(item.rare){ctx.textAlign='right';ctx.fillStyle='#a17f8d';ctx.font='9px Arial';ctx.fillText('SPECIAL FINDING',x+w-16,y+24);ctx.textAlign='left'}
+  };
+  drawFinding(r.outfit,'RECOMMENDED ATTIRE / 推奨される服装',100,966,480,238,false);
+  drawFinding(r.destination,'RECOMMENDED DESTINATION / 適性のある任務先',620,966,480,238,true);
+  const adviceY=1224,adviceH=290;
+  ctx.fillStyle='#faf7f0';ctx.fillRect(100,adviceY,1000,adviceH);ctx.strokeStyle='#ddd3c4';ctx.strokeRect(100,adviceY,1000,adviceH);
+  ctx.fillStyle='#81918d';ctx.font='10px Arial';ctx.fillText('MISSION ADVICE / 任務上の助言',122,adviceY+25);
+  ctx.fillStyle='#526963';ctx.font=canvasFont(18,'bold');ctx.fillText('政府所見',122,adviceY+53);
+  ctx.fillStyle='#667671';ctx.font=canvasFont(12);let ay=adviceY+80;ay=drawWrappedText(ctx,r.advice.overall,122,ay,930,19,4)+9;
+  ctx.fillStyle='#536963';ctx.font=canvasFont(12,'bold');ctx.fillText('得意分野',122,ay);ctx.fillStyle='#667671';ctx.font=canvasFont(12);ay=drawWrappedText(ctx,r.advice.high,205,ay,845,19,4)+9;
+  ctx.fillStyle='#536963';ctx.font=canvasFont(12,'bold');ctx.fillText('注意事項',122,ay);ctx.fillStyle='#667671';ctx.font=canvasFont(12);drawWrappedText(ctx,r.advice.low,205,ay,845,19,4);
+  ctx.fillStyle='#9b8790';ctx.font='13px Arial';ctx.fillText('UNOFFICIAL FAN-MADE / ver.1.0',100,1572);ctx.textAlign='right';ctx.fillText('INFILTRATION APTITUDE RECORD',1100,1572);
+  exportCanvas(c,`touken_infiltration_result_${safeFileName(r.name)}.png`);
+}
+function saveDetailedRecord(){
+  if(!lastResult)return;
+  const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=2050;const ctx=c.getContext('2d');
+  ctx.fillStyle='#e9f0ee';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#fffdfd';ctx.fillRect(58,50,1084,1935);ctx.strokeStyle='#afc1bd';ctx.lineWidth=2;ctx.strokeRect(58,50,1084,1935);ctx.fillStyle='#537e79';ctx.fillRect(58,50,1084,12);
+  drawPetals(ctx,985,86,1.15);ctx.fillStyle='#75908b';ctx.font='20px Arial';ctx.fillText('INFILTRATION APTITUDE / DETAILED SIDE FILE',100,112);ctx.fillStyle='#314943';ctx.font=canvasFont(41,'bold');ctx.fillText('刀剣男士 適性簡易検査 詳細記録',100,174);
+  ctx.textAlign='right';ctx.fillStyle='#7a8986';ctx.font=canvasFont(17,'bold');ctx.fillText('検査対象',1100,116);ctx.fillStyle='#3c5650';drawFitText(ctx,r.name,1100,174,420,34,20,'bold','right');ctx.textAlign='left';ctx.strokeStyle='#d7e1de';ctx.beginPath();ctx.moveTo(100,226);ctx.lineTo(1100,226);ctx.stroke();
+  const section=(title,y,pink=false)=>{ctx.fillStyle=pink?'#f8edf1':'#eaf3f0';ctx.fillRect(100,y,1000,42);ctx.fillStyle=pink?'#7d626d':'#45665e';ctx.font=canvasFont(18,'bold');ctx.fillText(title,122,y+28);return y+62};
+  const row=(label,value,y)=>{ctx.fillStyle='#73837f';ctx.font=canvasFont(14,'bold');ctx.fillText(label,125,y);ctx.fillStyle='#314a44';ctx.font=canvasFont(15);drawWrappedText(ctx,String(value),410,y,660,20,2);ctx.strokeStyle='#e3e8e6';ctx.beginPath();ctx.moveTo(125,y+16);ctx.lineTo(1075,y+16);ctx.stroke();return y+36};
+  let y=255;y=section('参照した個体観測記録',y);y+=12;y=row('情緒',`${r.e} / 100`,y);y=row('神性',`${r.d} / 100`,y);y=row('存在の揺らぎ',`${r.f} / 100`,y);y=row('観測領域',r.region,y);y=row('初期刀',r.isStarter?'該当':'非該当',y);y=row('現在の近侍',r.isAttendant?'該当':'非該当',y);
+  y+=4;y=section('回答記録',y);y+=12;y=row('本を読むのは好き？',r.answers.q1,y);y=row('身だしなみを整えるのは好き？',r.answers.q2,y);y=row('旅行は好き？',r.answers.q3,y);
+  y+=4;y=section('検査結果',y);y+=12;for(let i=0;i<6;i++)y=row(PARAMS[i].name,`${r.scores[i]} / 100　${r.bands[i]}`,y);
+  y+=8;y=section('補足事項',y,true);
+  const boxY=y, boxH=250, gap=20, boxW=490;
+  const detailFinding=(label,item,x,pink=false)=>{ctx.fillStyle=pink?'#fbf5f7':'#f5faf8';ctx.fillRect(x,boxY,boxW,boxH);ctx.strokeStyle=pink?'#d9c8ce':'#c7d4d0';ctx.strokeRect(x,boxY,boxW,boxH);ctx.fillStyle='#81918d';ctx.font='11px Arial';ctx.fillText(label,x+18,boxY+25);ctx.fillStyle=pink?'#715d65':'#405a54';ctx.font=canvasFont(17,'bold');drawWrappedText(ctx,item.title,x+18,boxY+52,boxW-36,22,2);ctx.fillStyle='#667671';ctx.font=canvasFont(12);drawWrappedText(ctx,item.text,x+18,boxY+92,boxW-36,18,6);ctx.fillStyle='#74847f';ctx.font=canvasFont(11,'bold');drawWrappedText(ctx,'方向性：'+item.direction,x+18,boxY+218,boxW-36,17,2);};
+  detailFinding('RECOMMENDED ATTIRE / 推奨される服装',r.outfit,100,false);detailFinding('RECOMMENDED DESTINATION / 適性のある任務先',r.destination,100+boxW+gap,true);y=boxY+boxH+18;
+  ctx.fillStyle='#faf7f0';ctx.fillRect(100,y,1000,210);ctx.strokeStyle='#ddd3c4';ctx.strokeRect(100,y,1000,210);ctx.fillStyle='#81918d';ctx.font='11px Arial';ctx.fillText('MISSION ADVICE / 任務上の助言',122,y+25);ctx.fillStyle='#526963';ctx.font=canvasFont(18,'bold');ctx.fillText('政府所見',122,y+53);ctx.fillStyle='#667671';ctx.font=canvasFont(12);let ay=y+82;ay=drawWrappedText(ctx,r.advice.overall,122,ay,930,18,3)+7;ctx.fillStyle='#536963';ctx.font=canvasFont(12,'bold');ctx.fillText('得意分野',122,ay);ctx.fillStyle='#667671';ctx.font=canvasFont(12);ay=drawWrappedText(ctx,r.advice.high,205,ay,845,18,3)+7;ctx.fillStyle='#536963';ctx.font=canvasFont(12,'bold');ctx.fillText('注意事項',122,ay);ctx.fillStyle='#667671';ctx.font=canvasFont(12);drawWrappedText(ctx,r.advice.low,205,ay,845,18,3);y+=228;
+  ctx.fillStyle='#fbf5f7';ctx.fillRect(100,y,1000,92);ctx.strokeStyle='#d7bdc7';ctx.strokeRect(100,y,1000,92);ctx.fillStyle='#755f68';ctx.font=canvasFont(14,'bold');ctx.fillText('記録上の注意',124,y+30);ctx.fillStyle='#6c7774';ctx.font=canvasFont(12);drawWrappedText(ctx,'本記録には、対象となる刀剣男士および本丸内の個体情報が含まれます。公開・共有の際は、取り扱いにご注意ください。',124,y+55,930,20,2);
+  ctx.fillStyle='#7c8c88';ctx.font=canvasFont(12);drawWrappedText(ctx,'本検査は、人間社会への潜入・滞在任務における政府基準上の適性評価です。刀剣男士そのものの強さや価値を示すものではありません。',100,1890,1000,20,2);ctx.fillStyle='#9b8790';ctx.font='14px Arial';ctx.fillText('UNOFFICIAL FAN-MADE / ver.1.0',100,1960);ctx.textAlign='right';ctx.fillText('DETAILED INFILTRATION APTITUDE RECORD',1100,1960);
+  exportCanvas(c,`touken_infiltration_detailed_${safeFileName(r.name)}.png`);
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('exportClose')?.addEventListener('click',closeExportModal);
+  document.getElementById('exportCloseBtn')?.addEventListener('click',closeExportModal);
+  document.getElementById('exportModal')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeExportModal()});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeExportModal()});
+function shareResult(){
+  if(!lastResult)return;const r=lastResult;
+  const text=`【刀剣乱舞・非公式ファンメイド】適性簡易検査を行いました。\n対象個体：${r.name}\n推奨される服装：${r.outfit.title}\n適性のある任務先：${r.destination.title}\n\n#非公式刀剣男士適性検査`;
+  const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];
+  const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');
+  window.open(url,'_blank','noopener,noreferrer');
+}
+
+</script>
+
+<div class="export-modal" id="exportModal" aria-hidden="true">
+  <div class="export-dialog" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+    <button type="button" class="export-close" id="exportClose" aria-label="閉じる">×</button>
+    <h3 id="exportTitle">画像を保存・共有</h3>
+    <p>生成した画像です。端末やブラウザに合う方法で保存してください。</p>
+    <img id="exportPreview" class="export-preview" alt="生成した適性簡易検査記録画像">
+    <div class="export-buttons">
+      <button type="button" id="exportShareBtn">画像を共有</button>
+      <a id="exportDownloadLink" class="secondary" href="#" download>画像をダウンロード</a>
+      <button type="button" class="secondary" id="exportCloseBtn">閉じる</button>
+    </div>
+    <div class="export-help">スマートフォンで直接保存できない場合は、上の画像を長押しして保存してください。対応している端末では「画像を共有」から保存先やアプリを選べます。</div>
+  </div>
+</div>
+</body>
+</html>
