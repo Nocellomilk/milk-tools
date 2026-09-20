@@ -1,1 +1,224 @@
-temporary
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本丸環境観測｜非公式ファンメイド</title>
+<style>
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+:root{
+ --bg:#eef1e7;--paper:#fffdf7;--paper2:#f7f5e9;--ink:#30362f;--muted:#6d7668;
+ --line:#c8cfb8;--green:#617357;--green2:#87977b;--sage:#dfe6d4;--gold:#aa9465;--rose:#9b6f6d;
+}
+body{margin:0;background:linear-gradient(180deg,#e8ede1 0%,#f2f2e8 48%,#e9eee2 100%);color:var(--ink);font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
+.wrap{width:min(980px,94%);margin:38px auto 72px}.back{display:inline-block;margin:0 0 14px;padding:9px 14px;border:1px solid #aab69e;background:#fffdf8;color:#52634c;text-decoration:none;font-size:12px;font-weight:bold}
+.header{position:relative;text-align:center;padding:38px 26px 34px;margin-bottom:22px;background:rgba(255,253,247,.97);border:1px solid var(--line);border-top:5px solid var(--green);box-shadow:0 8px 26px #33402d14;overflow:hidden}
+.header:before,.header:after{content:"";position:absolute;width:120px;height:120px;border:1px solid #b9c7ad55;border-radius:50%;pointer-events:none}.header:before{left:-48px;top:-48px}.header:after{right:-55px;bottom:-55px}
+.mark{display:inline-flex;width:60px;height:60px;border:1px solid var(--green2);border-radius:50%;align-items:center;justify-content:center;color:var(--green);font-weight:bold;font-size:11px;line-height:1.35;letter-spacing:.08em;margin-bottom:12px;background:#fbfcf6}
+.kicker{font:11px/1.4 Arial,sans-serif;letter-spacing:.22em;color:#84907b}.header h1{font-size:30px;letter-spacing:.15em;margin:8px 0 9px}.sub{max-width:790px;margin:auto;font-size:13px;color:var(--muted);line-height:1.95}.unofficial{display:block;width:max-content;margin:14px auto 0;padding:5px 10px;border:1px solid #b7c1ac;color:#6e7968;background:#f4f6ef;font:10px/1.5 Arial,sans-serif;letter-spacing:.12em}
+.panel{background:rgba(255,253,247,.97);border:1px solid var(--line);box-shadow:0 7px 22px #33402d10;margin-bottom:22px}.about-card{display:block;margin:-6px 0 22px;padding:17px 20px;border:1px solid #c8cfb8;background:linear-gradient(90deg,#fffdf7,#f3f6ec);color:#465a40;text-decoration:none;box-shadow:0 5px 16px #33402d0a}.about-card:hover{border-color:#95a58a;background:#f8faf3}.about-card strong{display:block;font-size:17px;letter-spacing:.05em}.about-card span{display:block;margin-top:4px;font-size:12px;line-height:1.7;color:#707b6b}.input-panel{padding:28px 32px}.section{padding:22px 0;border-top:1px solid #d9dece}.section:first-child{padding-top:0;border-top:0}.section-code{font:10px/1.4 Arial,sans-serif;letter-spacing:.18em;color:var(--green2);margin-bottom:6px}.section h2{font-size:18px;letter-spacing:.08em;margin:0 0 7px}.lead{font-size:12px;line-height:1.9;color:var(--muted);margin:0 0 18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}.field.full{grid-column:1/-1}.field label{display:block;font-size:13px;font-weight:bold;color:#485244;margin-bottom:7px}.field input,.field select{width:100%;padding:11px 12px;border:1px solid #bec7b3;background:#fffefa;color:var(--ink);font:inherit;font-size:14px;outline:none}.field input:focus,.field select:focus{border-color:var(--green2);box-shadow:0 0 0 2px #87977b20}.field-note{font-size:11px;line-height:1.75;color:#667260;margin-top:7px}.field-note a{color:#526b49;font-weight:bold;text-underline-offset:3px}
+.date-parts{display:grid;grid-template-columns:1.5fr .8fr .8fr;gap:8px}.date-part{display:flex;align-items:center;gap:5px}.date-unit{font-size:11px;color:#7a8375}
+.question{margin-top:18px}.question:first-child{margin-top:0}.question-title{font-size:13px;font-weight:bold;color:#465140;line-height:1.7;margin-bottom:9px}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice span{display:flex;align-items:center;min-height:45px;padding:9px 11px;border:1px solid #c4ccb9;background:#fffefa;color:#566050;font-size:12px;line-height:1.5;cursor:pointer;transition:.15s}.choice span:hover{border-color:#93a187;background:#f8faf4}.choice input:checked+span{border-color:var(--green);background:var(--sage);color:#374332;box-shadow:inset 0 0 0 1px #61735722;font-weight:bold}
+.actions{text-align:center}.main-btn{margin-top:20px;padding:13px 36px;border:1px solid #4d6047;background:var(--green);color:white;font-family:inherit;letter-spacing:.14em;cursor:pointer;box-shadow:0 3px 8px #0001}.main-btn:hover{filter:brightness(1.06)}#error{min-height:18px;margin-top:10px;color:#945b5b;font-size:12px;text-align:center}.note{text-align:center;font-size:10px;line-height:1.8;color:#7a8375;margin-top:10px}
+#result{display:none;scroll-margin-top:18px}.result-head{padding:29px 28px 26px;text-align:center;background:linear-gradient(180deg,#edf2e7,#faf9f2);border-bottom:1px solid #d4dac9}.result-head:before{content:"本丸環境観測記録";display:block;font:10px/1.4 Arial,sans-serif;letter-spacing:.2em;color:#7d8e73;margin-bottom:9px}.subject{font-size:12px;color:#707b6b}.subject strong{font-size:18px;color:#354033}.result-title{font-size:28px;font-weight:bold;letter-spacing:.12em;margin:10px 0 5px;color:#3f503b}.result-sub{font-size:12px;color:#6d7768;line-height:1.8}.content{padding:27px 32px 34px}
+.axis-title,.result-section-title{margin:4px 0 12px;font-size:13px;color:#52634c;letter-spacing:.12em;border-left:3px solid var(--green2);padding-left:9px}.axis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.axis{position:relative;padding:22px 13px 22px;border:1px solid #c9d0bf;background:#fffefa;text-align:center;overflow:hidden}.axis.grade-s{border-top:3px solid #829679}.axis.grade-a{border-top:2px solid #c1b18c}.axis.grade-b{border-bottom:3px solid #aaa087}.axis-name{font-size:12px;color:#697365}.axis-grade{font-size:36px;font-weight:bold;line-height:1.15;margin:5px 0;color:#40513c}.axis-desc{font-size:11px;color:#5f6b5b;line-height:1.75}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.result-card{position:relative;border:1px solid #c8d0be;background:#fffefa;padding:17px 17px 18px;min-height:154px}.result-card:after{content:"OBSERVED";position:absolute;right:9px;bottom:6px;font:8px/1 Arial,sans-serif;letter-spacing:.12em;color:#a1aa9a}.result-label{font-size:11px;letter-spacing:.1em;color:#66775f;margin-bottom:8px;font-weight:bold}.result-value{font-size:25px;font-weight:bold;color:#33432f;letter-spacing:.05em}.result-desc{font-size:13px;line-height:1.95;color:#465342;margin-top:10px}.bond-card{border-top:3px solid var(--gold)}.blessing-card{border-top:3px solid #8da18d}.battle-card{border-top:3px solid #788d7c}
+.recommend{margin-top:22px;padding:20px;border:1px solid #c9d1bd;background:linear-gradient(135deg,#f7f7ec,#eef3e7)}.recommend-label{font-size:10px;letter-spacing:.14em;color:#7a8873}.recommend-category{font-size:13px;color:#566550;margin-top:6px}.recommend-value{font-size:26px;font-weight:bold;color:#40523b;margin-top:5px;line-height:1.5}.recommend-note{font-size:11px;line-height:1.85;color:#64705f;margin-top:8px}.advice-pending{margin-top:12px;padding:11px 13px;border-left:3px solid #b3a77f;background:#faf7ed;color:#80765f;font-size:10px;line-height:1.75}
+.sab-note{margin:11px 2px 0;font-size:11px;line-height:1.8;color:#667260}.meta{margin-top:20px;padding:11px 13px;background:#f2f4ec;border:1px solid #d2d8c8;color:#747e6f;font-size:10px;line-height:1.8}.result-actions{display:none;text-align:center;margin-top:16px;padding:16px;border:1px solid #cbd2c1;background:#f6f7f1}.result-actions button{margin:4px;padding:10px 15px;border:1px solid #66775e;background:#66775e;color:#fff;font-family:inherit;font-size:11px;cursor:pointer}.result-actions .secondary{background:#fffefa;color:#53634e}.guide-link{display:inline-block;margin:12px 4px 0;padding:9px 14px;border:1px solid #aeb9a4;background:#fffefa;color:#52634c;text-decoration:none;font-size:11px;font-weight:bold}.guide-link:hover{background:#f2f5ed}.disclaimer{padding:19px 22px;font-size:11px;line-height:1.9;color:#6e7869;background:#fafbf6;border:1px solid var(--line)}.footer{text-align:center;color:#7d8777;font-size:10px;letter-spacing:.1em;margin-top:16px}
+@media(max-width:760px){.wrap{margin:17px auto 55px}.header{padding:30px 17px}.header h1{font-size:24px}.input-panel,.content{padding:21px 16px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.choices{grid-template-columns:1fr}.axis-grid{grid-template-columns:repeat(2,1fr)}.result-grid{grid-template-columns:1fr}.date-parts{grid-template-columns:1.4fr .8fr .8fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="https://milk-tools.com/">← みるくの診断・ツール置き場へ</a>
+<header class="header">
+ <div class="mark">本丸<br>観測</div>
+ <div class="kicker">UNOFFICIAL FAN-MADE / HONMARU ENVIRONMENT OBSERVATION</div>
+ <h1>本丸環境観測</h1>
+ <p class="sub">審神者と刀剣男士たちが日々を重ねてきた「本丸」という環境を、ひとつの個性としてゆるやかに観測します。良し悪しを決める監査ではありません。同席する一振りと一緒に、本丸の今を覗いてみてください。</p>
+ <span class="unofficial">刀剣乱舞 二次創作・非公式ファンメイド</span>
+</header>
+
+<a class="about-card" href="honmaru_environment_observation_guide.html"><strong>本丸環境観測って？ →</strong><span>先に観測についての説明を読む場合はこちら。</span></a>
+
+<section class="panel input-panel">
+ <div class="section">
+  <div class="section-code">BASIC RECORD / HONMARU</div><h2>本丸の基本記録</h2>
+  <p class="lead">これまでの診断結果と、本丸の運用開始日を入力してください。</p>
+  <div class="form-grid">
+   <div class="field"><label>審神者適性診断：本丸運用</label><select id="operation"><option value="">選択してください</option></select><div class="field-note">→ まだ診断を行っていない場合：<a href="https://milk-tools.com/diagnosis/saniwa/">審神者適性診断へ</a></div></div>
+   <div class="field full"><label>本丸の運用開始年月日</label><div class="date-parts"><div class="date-part"><input id="startYear" type="number" min="1" max="9999" placeholder="2015"><span class="date-unit">年</span></div><div class="date-part"><input id="startMonth" type="number" min="1" max="12" placeholder="1"><span class="date-unit">月</span></div><div class="date-part"><input id="startDay" type="number" min="1" max="31" placeholder="14"><span class="date-unit">日</span></div></div><div class="field-note">ゲームを始めた日（就任日）でも、創作上の本丸開始日でも構いません。</div></div>
+  </div>
+ </div>
+ <div class="section">
+  <div class="section-code">COMPANION RECORD / TOUKEN</div><h2>同席する刀剣男士</h2>
+  <p class="lead">初期刀・現在の近侍を推奨していますが、あなたの本丸にとって大切な一振りなら、どの刀剣男士でも構いません。</p>
+  <div class="form-grid">
+   <div class="field"><label>刀剣名</label><input id="swordName" type="text" maxlength="40" placeholder="例：和泉守兼定"></div>
+   <div class="field"><label>本丸での位置づけ</label><select id="position"><option value="">選択してください</option><option value="starter">初期刀</option><option value="attendant">現在の近侍</option><option value="both">初期刀かつ現在の近侍</option><option value="other">いずれも当てはまらない</option></select></div>
+   <div class="field full"><label>刀剣男士個体観測：対刀傾向</label><select id="swordTendency"><option value="">選択してください</option></select><div class="field-note">→ まだ診断を行っていない場合：<a href="https://milk-tools.com/diagnosis/touken/">刀剣男士個体観測へ</a></div></div>
+  </div>
+ </div>
+ <div class="section">
+  <div class="section-code">QUESTION 01–02 / SANIWA</div><h2>審神者への質問</h2>
+  <div class="question"><div class="question-title">Q1. 仕事が落ち着いているとき、本丸ではどのように過ごすことが多いですか？</div><div class="choices" id="sq1"></div></div>
+  <div class="question"><div class="question-title">Q2. 自身が審神者であることについてどう思いますか？</div><div class="choices" id="sq2"></div></div>
+ </div>
+ <div class="section">
+  <div class="section-code">QUESTION 03–04 / TOUKEN</div><h2>刀剣男士への質問</h2>
+  <div class="question"><div class="question-title">Q1. あなたにとって、この本丸とはどのような場所ですか？</div><div class="choices" id="tq1"></div></div>
+  <div class="question"><div class="question-title">Q2. 最近、本丸で印象的だったことを教えてください。</div><div class="choices" id="tq2"></div></div>
+ </div>
+ <div class="actions"><button class="main-btn" onclick="diagnose()">本丸を観測する</button><div id="error"></div></div>
+</section>
+
+<section id="result" class="panel">
+ <div class="result-head"><div class="subject">同席刀剣男士：<strong id="resultSword">—</strong></div><div class="result-title">本丸環境観測結果</div><div class="result-sub">この本丸で積み重ねられてきた日々から、現在の傾向を記録しました。</div></div>
+ <div class="content">
+  <div class="axis-title">本丸環境・四項目観測</div><div class="axis-grid" id="axisGrid"></div><div class="sab-note">※S/A/Bは優劣ではなく、その特徴がどの程度強く表れているかを示します。</div>
+  <div class="result-grid">
+   <div class="result-card battle-card"><div class="result-label">戦いの傾向</div><div class="result-value" id="battleValue">—</div><div class="result-desc" id="battleDesc"></div></div>
+   <div class="result-card blessing-card"><div class="result-label">本丸にはたらく霊的な加護</div><div class="result-value" id="blessingValue">—</div><div class="result-desc" id="blessingDesc"></div></div>
+   <div class="result-card bond-card"><div class="result-label">観測された縁のかたち</div><div class="result-value" id="bondValue">—</div><div class="result-desc" id="bondDesc"></div></div>
+  </div>
+  <div class="recommend"><div class="recommend-label">HONMARU LIFE SUGGESTION</div><div class="recommend-category" id="recommendCategory">この本丸におすすめ</div><div class="recommend-value" id="recommendValue">—</div><div class="recommend-note">本丸での暮らしを少しだけ変えてみる、気軽な提案です。採用するかどうかは本丸のみなさんでご相談ください。</div><div class="advice-pending"><strong>一言アドバイス</strong><br><span id="adviceText">—</span></div></div>
+ </div>
+</section>
+<div id="resultActions" class="result-actions"><button onclick="saveResultImage()">結果画像を保存</button><button class="secondary" onclick="saveDetailedImage()">詳細記録を保存</button><button class="secondary" onclick="shareResult()">Xで結果をシェア</button><br><a class="guide-link" href="guide.html">観測結果の見方を見る →</a></div>
+<div class="disclaimer">※この診断は非公式のファンメイドコンテンツです。『刀剣乱舞ONLINE』および公式のゲーム設定・運営・関係各社とは一切関係ありません。診断結果は本丸や刀剣男士のあり方を限定するものではありません。あなたの思う本丸や刀剣男士の解釈を大切にして、あくまで二次創作や想像を広げるきっかけのひとつとしてお楽しみください。</div>
+<div class="footer">HONMARU ENVIRONMENT OBSERVATION / ver.1.0</div>
+</div>
+<script>
+const OPERATIONS=['分析型','機動型','育成型','管理型','探索型','指揮型','継承型','調整型','守備型','開拓型','儀礼型','実務型'];
+const SWORD_TENDENCIES=['親交型','協奏型','助力型','懇意型','融和型','研鑽型','観察型','自主型','奔放型','結束型'];
+const SQ1=['刀剣男士の皆と賑やかに過ごす','気の合う数振りと楽しく過ごす','特別な一振りと一緒に過ごす','一人で静かに過ごす','雑務に追われていることが多い','本丸内を散歩・散策する','趣味や芸事を楽しむ','皆の様子を見て回る','本丸のことは刀剣男士たちに任せることが多い','当てはまるものはない'];
+const SQ2=['誇りに思っている','当然のことだと思う','審神者でいられることを嬉しく思う','責任ある役目だと思う','達成感ややりがいを感じる','自分は審神者に向いていると思う','実は審神者に向いていないと思う','ときに重荷に感じることもある','この本丸の審神者は自分しかいない','当てはまるものはない'];
+const TQ1=['守るべき場所','帰りたいと思える場所','仲間たちと過ごす場所','自分の居場所','主がいる場所','安心できる場所','様々な縁が結ばれた場所','興味深い・面白い場所','今まで意識したことがなかった','当てはまるものはない'];
+const TQ2=['主とのこと','親しい刀とのこと','兄弟や同じ刀派の刀とのこと','先輩や古参の刀とのこと','新しく加わった刀とのこと','内番中のできごと','畑仕事中のできごと','季節の行事でのできごと','自分の趣味に関すること','その他のこと'];
+function fillSelect(id,arr){const el=document.getElementById(id);arr.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
+function fillChoices(id,name,arr){document.getElementById(id).innerHTML=arr.map((v,i)=>`<label class="choice"><input type="radio" name="${name}" value="${i+1}"><span>${i+1}. ${v}</span></label>`).join('')}
+fillSelect('operation',OPERATIONS);fillSelect('swordTendency',SWORD_TENDENCIES);fillChoices('sq1','sq1',SQ1);fillChoices('sq2','sq2',SQ2);fillChoices('tq1','tq1',TQ1);fillChoices('tq2','tq2',TQ2);
+
+const AX=['安定感','規律','独自性','風雅'];
+const add=(s,obj)=>Object.entries(obj).forEach(([k,v])=>s[k]+=v);
+const SQ1_SCORE={1:{'規律':2,'安定感':-2},2:{'安定感':2,'風雅':-2},3:{'独自性':2,'安定感':-2},4:{'風雅':1,'規律':1,'独自性':-1,'安定感':-1},5:{'規律':2,'風雅':-2},6:{'風雅':2,'独自性':-2},7:{'風雅':2,'規律':-2},8:{'安定感':2,'独自性':-2},9:{'独自性':2,'規律':-2},10:{'独自性':1,'安定感':1,'風雅':-1,'規律':-1}};
+const SQ2_SCORE={1:{'安定感':2},2:{'安定感':2},3:{'風雅':2},4:{'規律':2},5:{'独自性':2},6:{'風雅':2},7:{},8:{'規律':2},9:{'独自性':2},10:{}};
+const TQ1_SCORE={1:{},2:{},3:{},4:{'安定感':2},5:{},6:{},7:{'風雅':2},8:{'独自性':2},9:{'規律':2},10:{}};
+const TQ2_SCORE={1:{'安定感':2,'独自性':-2},2:{'独自性':2,'風雅':-2},3:{'安定感':2,'規律':-2},4:{'規律':2,'安定感':-2},5:{'独自性':2,'風雅':-2},6:{'規律':2,'独自性':-2},7:{'安定感':1,'規律':1,'風雅':-1,'独自性':-1},8:{'風雅':2,'規律':-2},9:{'風雅':2,'安定感':-2},10:{'独自性':1,'風雅':1,'規律':-1,'安定感':-1}};
+const OP_AXIS={'分析':'規律','機動':'独自性','育成':'風雅','管理':'規律','探索':'独自性','指揮':'規律','継承':'風雅','調整':'安定感','守備':'安定感','開拓':'独自性','儀礼':'風雅','実務':'安定感'};
+const OP_PRIORITY={
+ '分析':['規律','風雅','独自性','安定感'],'機動':['独自性','安定感','規律','風雅'],'育成':['風雅','独自性','安定感','規律'],'管理':['規律','風雅','独自性','安定感'],
+ '探索':['独自性','安定感','規律','風雅'],'指揮':['規律','風雅','独自性','安定感'],'継承':['風雅','独自性','安定感','規律'],'調整':['安定感','規律','風雅','独自性'],
+ '守備':['安定感','規律','風雅','独自性'],'開拓':['独自性','安定感','規律','風雅'],'儀礼':['風雅','独自性','安定感','規律'],'実務':['安定感','規律','風雅','独自性']};
+const AXIS_DESC={'安定感':{S:'落ち着いた日常や居場所としてのまとまりが強く根づいています。',A:'落ち着きと変化の両方を持つ本丸です。',B:'動きや変化が多く、活発に姿を変えていく本丸です。'},'規律':{S:'役割や秩序がはっきりし、運用の筋道が通っています。',A:'必要な秩序と自由さがほどよく共存しています。',B:'細かな型より、それぞれの判断や自由を尊重する傾向があります。'},'独自性':{S:'この本丸ならではの習慣や運用が強く育っています。',A:'標準的な運用の中にも独自の色が見えます。',B:'政府の標準的な本丸像に近い、馴染みやすい運用です。'},'風雅':{S:'季節・文化・芸事を楽しむ習慣が日常に根づいています。',A:'折々に文化や季節を楽しむ余白があります。',B:'伝統文化より、現代的な娯楽や別の楽しみ方が中心です。'}};
+function axisResult(scores,op){const pri=OP_PRIORITY[op];const top=[...AX].sort((a,b)=>(scores[b]-scores[a]) || pri.indexOf(a)-pri.indexOf(b))[0];const low=[...AX].sort((a,b)=>(scores[a]-scores[b]) || pri.indexOf(b)-pri.indexOf(a))[0];const grades={};AX.forEach(a=>grades[a]=scores[a]<=-1?'B':scores[a]<=3?'A':'S');grades[top]='S';grades[low]='B';return {scores,grades,top,low}}
+
+const SWORD_BATTLE={'親交型':'盤石型','協奏型':'経験型','助力型':'作戦型','懇意型':'突破型','融和型':'柔軟型','研鑽型':'技巧型','観察型':'堅実型','自主型':'自律型','奔放型':'異彩型','結束型':'連携型'};
+const GROUP_A=new Set(['機動','育成','探索','指揮','開拓','実務']);
+const BATTLE_DESC={'作戦型':'状況を読み、役割や判断を積み重ねる力が戦いに表れやすい本丸です。','連携型':'一振りごとの力をつなぎ、仲間同士の呼吸を戦力へ変えやすい本丸です。','柔軟型':'相手や状況に応じて形を変え、対応の幅を強みにしやすい本丸です。','堅実型':'派手さより確かな積み重ねを重視し、安定した力を育てやすい本丸です。','突破型':'迷いなく前へ出る力や勢いが、戦いの強みとして育ちやすい本丸です。','技巧型':'工夫や技術の磨き込みが、戦いの強みとして表れやすい本丸です。','経験型':'積み重ねた経験や古参の知見が、戦いを支える力になりやすい本丸です。','異彩型':'定石に収まりきらない個性や発想が、思わぬ強みになりやすい本丸です。','自律型':'一振りごとの判断力や自立性が、戦力として活きやすい本丸です。','盤石型':'日頃の関係や土台の強さが、崩れにくい戦力へつながりやすい本丸です。'};
+const TOPWORST={
+ '安定感|風雅':['自律型','作戦型'],'安定感|規律':['連携型','盤石型'],'安定感|独自性':['異彩型','経験型'],
+ '風雅|安定感':['SPECIAL_B','SPECIAL_A'],'風雅|規律':['技巧型','柔軟型'],'風雅|独自性':['異彩型','堅実型'],
+ '規律|安定感':['突破型','作戦型'],'規律|風雅':['自律型','堅実型'],'規律|独自性':['技巧型','盤石型'],
+ '独自性|安定感':['突破型','柔軟型'],'独自性|風雅':['連携型','経験型'],'独自性|規律':['SPECIAL_B','SPECIAL_A']};
+function battleResult(op,swordT,ar){const a=GROUP_A.has(op);const broad=a?['突破型','技巧型','自律型','異彩型','連携型']:['盤石型','経験型','作戦型','柔軟型','堅実型'];const target=SWORD_BATTLE[swordT];if(broad.includes(target))return target;let pick=TOPWORST[ar.top+'|'+ar.low][a?0:1];if(pick==='SPECIAL_A')pick=target;if(pick==='SPECIAL_B')pick=target;return pick}
+
+const BLESSING_PAIRS=[['勝利','言祝'],['導き','常緑'],['暦','豊穣'],['境界','祓い'],['記憶','閃き'],['幸運','和み'],['勇気','眠り'],['癒し','鎮め'],['縁','灯火'],['息災','帰路']];
+const BLESS_DESC={'勝利':'前へ進む力を強め、ここぞという場面で勢いをもたらす加護。','言祝':'言葉による祝いの気配が、よい流れを呼び込みやすくする加護。','導き':'迷ったとき、次に進む方向を見つけやすくする加護。','常緑':'変化の中でも、本丸の営みを絶やさず保つ加護。','暦':'季節や時の巡りと、本丸の日々を穏やかにつなぐ加護。','豊穣':'育てること、実ること、満ちていくことを支える加護。','境界':'本丸とその外を分け、守るべき線を保つ加護。','祓い':'淀みを払い、空気や気持ちを整えやすくする加護。','記憶':'本丸の力として、積み重ねた出来事や思い出を残していく加護。','閃き':'ふとした発想や気づきを呼び込み、新しい道を開く加護。','幸運':'偶然の巡り合わせが、少しだけ味方をしやすくなる加護。','和み':'張りつめた空気をほどき、互いに息をつける余白を生む加護。','勇気':'一歩を踏み出すための気持ちを支える加護。','眠り':'静かな休息を守り、心身をゆるやかに整える加護。','癒し':'傷ついたものが回復し、落ち着いていくまでを支える加護。','鎮め':'高ぶりや乱れを静かに収め、本来の調子へ戻す加護。','縁':'人と人、刀と刀、本丸に集ったもの同士のつながりを支える加護。','灯火':'暗いときにも消えない小さな明かりとして、進む道を照らす加護。','息災':'大きく崩れることなく、日々を無事に重ねていけるよう支える加護。','帰路':'離れても戻れる場所と、帰り着く道を守る加護。'};
+function blessing(q2,pos){const pair=BLESSING_PAIRS[q2-1];return (pos==='starter'||pos==='both')?pair[0]:pair[1]}
+
+const BOND_PAIRS=[['礎','織物'],['糸','根'],['橋','星座'],['芽','港'],['灯','花束'],['樹','泉'],['輪','結び目'],['翼','窓'],['鈴','道'],['鍵','鏡']];
+const BOND_DESC={'礎':'積み重ねた時間を、見えないところで本丸を支える力に変える縁です。','織物':'異なる色や性質が重なり、ひとつの全体を形づくる縁です。','糸':'距離や形が変わっても、細く長くつながり続ける縁です。','根':'表からは見えなくても、深いところで互いを支える縁です。','橋':'異なる人やものの間をつなぎ、新しい交わりを生み出す縁です。','星座':'離れた点と点が結ばれることで、ひとつの物語をつくる縁です。','芽':'共に過ごす時間の中から、新しいものが次々と育っていく縁です。','港':'出ていくことも戻ることも受け止める、帰着点のような縁です。','灯':'迷ったとき、互いの存在が小さな目印になる縁です。','花束':'それぞれが自分の色や形を保ちながら、集まることでひとつの彩りをつくる縁です。','樹':'ひとつのつながりから枝が伸び、さらに多くの縁へ広がっていく縁です。','泉':'思いや活力が湧き、巡りながら周囲を潤していく縁です。','輪':'互いの働きかけが循環し、途切れず続いていく縁です。','結び目':'いくつもの出来事や関係が、一点でしっかりと結ばれた縁です。','翼':'互いの存在が対となり、世界や可能性が広がっていく縁です。','窓':'これまで知らなかった景色や考え方を見せ合う縁です。','鈴':'小さな行動や気づきが響き、周囲へ新しい変化を伝えていく縁です。','道':'共に進んできた過程そのものが、大切なつながりになる縁です。','鍵':'互いの存在が、まだ知らなかった一面や可能性を開く縁です。','鏡':'互いの在り方を映し合い、重なる姿も異なる姿も受け入れて向き合う縁です。'};
+function bond(q1,year){return BOND_PAIRS[q1-1][year%2===0?0:1]}
+
+const RECOMMEND={
+1:{label:'この本丸の庭におすすめの木',items:['梅','柿','白木蓮','藤','南天','桐','山茶花','寒椿','金木犀','松']},
+2:{label:'この本丸におすすめの室内装飾',items:['大きなぬいぐるみ','小さなぬいぐるみ','オルゴール','万華鏡','ふわふわクッション','プリザーブドフラワー','絵画','アロマキャンドル','ガラス細工','木彫りの置物']},
+3:{label:'この本丸におすすめの一冊',items:['少女漫画','推理小説','ホラー小説','SF小説','ファンタジー小説','恋愛小説','ライトノベル','絵本','図鑑','少年漫画']},
+4:{label:'この本丸におすすめの遊び',items:['家庭用ゲーム機','TRPG','花札','将棋','オセロ','チェス','ジェンガ','人狼ゲーム','人生ゲーム','ボードゲーム']},
+5:{label:'この本丸におすすめのお菓子',items:['マシュマロ','キャラメル','クッキー','お団子','ようかん','わらびもち','どら焼き','ケーキ','チョコレート','キャンディ']},
+6:{label:'この本丸におすすめの飲み物',items:['コーラ','ジンジャーエール','珈琲','紅茶','緑茶','麦茶','烏龍茶','ジャスミンティー','ハーブティー','玉露']},
+7:{label:'この本丸の献立におすすめ',items:['肉じゃが','天ぷら','とんかつ','すき焼き','ちらし寿司','たこ焼き','お好み焼き','唐揚げ','おでん','生姜焼き']},
+8:{label:'この本丸の庭におすすめの花',items:['雛芥子','水仙','立葵','冬牡丹','彼岸花','花菖蒲','木瓜','朝顔','藤袴','蓮']},
+9:{label:'この本丸の庭におすすめの花',items:['竜胆','百合','菜の花','秋桜','菊','向日葵','紫陽花','薔薇','桔梗','鈴蘭']},
+10:{label:'この本丸におすすめの鉢植え',items:['多肉植物','アイビー','金のなる木','幸福の木','カランコエ','アザレア','サボテン','ガジュマル','シクラメン','ゼラニウム']},
+11:{label:'この本丸におすすめの大きな計画',items:['本丸全体のリフォーム','本丸の部屋増築','花壇を増やす','露天風呂を作る','果樹を増やす','畑を広くする','離れを建てる','茶室を作る','滝を作る','薔薇園を作る']},
+12:{label:'この本丸におすすめの家具',items:['本棚の追加または新調','洋服箪笥の追加または新調','食器棚の追加または新調','テレビの追加または新調','マッサージチェアの追加または新調','ベッドまたは布団の新調：洋風なデザイン','ベッドまたは布団の新調：和風なデザイン','ベッドまたは布団の新調：かわいいデザイン','ベッドまたは布団の新調：おしゃれなデザイン','ベッドまたは布団の新調：かっこいいデザイン']}
+};
+const ADVICE_NUMEROLOGY={
+ 1:'いつもと少し違うことを始めてみてはいかがでしょう。',
+ 2:'ゆっくりお茶を楽しむ時間を作ってみてはいかがでしょう。',
+ 3:'気になっていた遊びをひとつ楽しんでみてはいかがでしょう。',
+ 4:'いつもは作らない料理に挑戦してみてはいかがでしょう。',
+ 5:'いつもは行かない場所まで足を延ばしてみてはいかがでしょう。',
+ 6:'季節のものをひとつ、暮らしに取り入れてみてはいかがでしょう。',
+ 7:'気になっていた本を開いてみてはいかがでしょう。',
+ 8:'少しだけ贅沢な休憩を楽しんでみてはいかがでしょう。',
+ 9:'これまでの出来事を、ひとつ思い返してみてはいかがでしょう。',
+ 11:'思い出の場所に立ち寄ってみてはいかがでしょう。何か良いことがあるかもしれません。',
+ 22:'いつもと違って見える場所を探してみてはいかがでしょう。まだ気づいていない何かが隠れているかもしれません。',
+ 33:'秘密の「あの場所」へ、行ってみてはいかがでしょう。何かが待っているかもしれません。'
+};
+function numerologyFromDate(y,m,d){
+ const digits=String(y)+String(m)+String(d);
+ let n=[...digits].reduce((sum,ch)=>sum+Number(ch),0);
+ while(n>9 && ![11,22,33].includes(n)) n=[...String(n)].reduce((sum,ch)=>sum+Number(ch),0);
+ return n;
+}
+function advicePrefix(day,name){
+ if(day>=1&&day<=8)return `今日は、${name}と一緒に、`;
+ if(day>=10&&day<=18)return '今日は、本丸のみんなと一緒に、';
+ if(day>=20&&day<=28)return '今日は、普段あまり話さない刀剣男士と、';
+ return `今日は、${name}とふたりきりで、`;
+}
+function adviceResult(y,m,d,name){const n=numerologyFromDate(y,m,d);return {number:n,text:advicePrefix(d,name)+ADVICE_NUMEROLOGY[n]};}
+
+let lastResult=null;
+function selected(name){const e=document.querySelector(`input[name="${name}"]:checked`);return e?Number(e.value):null}
+function diagnose(){const opDisplay=document.getElementById('operation').value,op=opDisplay.replace(/型$/,''),st=document.getElementById('swordTendency').value,name=document.getElementById('swordName').value.trim(),pos=document.getElementById('position').value;const y=Number(document.getElementById('startYear').value),m=Number(document.getElementById('startMonth').value),d=Number(document.getElementById('startDay').value);const q1=selected('sq1'),q2=selected('sq2'),t1=selected('tq1'),t2=selected('tq2');const err=document.getElementById('error');err.textContent='';if(!op||!st||!name||!pos||!y||m<1||m>12||d<1||d>31||!q1||!q2||!t1||!t2){err.textContent='未入力の項目があります。すべて入力・選択してください。';return}const maxDay=new Date(y,m,0).getDate();if(d>maxDay){err.textContent='運用開始日の日付が正しくありません。';return}
+ const scores={'安定感':0,'規律':0,'独自性':0,'風雅':0};add(scores,SQ1_SCORE[q1]);add(scores,SQ2_SCORE[q2]);add(scores,TQ1_SCORE[t1]);add(scores,TQ2_SCORE[t2]);scores[OP_AXIS[op]]+=2;const ar=axisResult(scores,op);const battle=battleResult(op,st,ar),bless=blessing(q2,pos),bd=bond(t1,y),rec=RECOMMEND[m],recIndex=(y%2===0?10-t1:t1-1),recVal=rec.items[recIndex],advice=adviceResult(y,m,d,name);
+ document.getElementById('resultSword').textContent=name;document.getElementById('axisGrid').innerHTML=AX.map(a=>`<div class="axis grade-${ar.grades[a].toLowerCase()}"><div class="axis-name">${a}</div><div class="axis-grade">${ar.grades[a]}</div><div class="axis-desc">${AXIS_DESC[a][ar.grades[a]]}</div></div>`).join('');document.getElementById('battleValue').textContent=battle;document.getElementById('battleDesc').textContent=BATTLE_DESC[battle];document.getElementById('blessingValue').textContent=bless;document.getElementById('blessingDesc').textContent=`この本丸には「${bless}」の加護が働いています。${BLESS_DESC[bless].replace(/加護。$/,'力です。')}`;document.getElementById('bondValue').textContent=bd;document.getElementById('bondDesc').textContent=`あなたと${name}、そしてこの本丸のあいだには、「${bd}」の縁が結ばれています。${BOND_DESC[bd]}`;document.getElementById('recommendCategory').textContent=rec.label;document.getElementById('recommendValue').textContent=recVal;document.getElementById('adviceText').textContent=advice.text;document.getElementById('result').style.display='block';document.getElementById('resultActions').style.display='block';lastResult={name,ar,battle,bless,bd,recLabel:rec.label,recVal,advice:advice.text,adviceNumber:advice.number,opDisplay,st,date:`${y}.${m}.${d}`,positionLabel:document.getElementById('position').selectedOptions[0].textContent,answers:{sq1:SQ1[q1-1],sq2:SQ2[q2-1],tq1:TQ1[t1-1],tq2:TQ2[t2-1]}};document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function canvasFont(size,weight='normal'){return `${weight} ${size}px "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif`;}
+function canvasLines(ctx,text,maxWidth){const chars=[...String(text)];let line='',lines=[];for(const ch of chars){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch}else line=test}if(line)lines.push(line);return lines}function wrapCanvasText(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){const lines=canvasLines(ctx,text,maxWidth).slice(0,maxLines);lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return y+lines.length*lineHeight;}
+function roundRectPath(ctx,x,y,w,h,r=18){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
+function drawLeaf(ctx,x,y,angle,scale=1,color='#829679'){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.scale(scale,scale);ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(13,-16,30,-12,35,0);ctx.bezierCurveTo(22,9,8,10,0,0);ctx.fill();ctx.restore();}
+function drawSprig(ctx,x,y,flip=1,color='#829679'){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(x+42*flip,y-18,x+82*flip,y-48);ctx.stroke();drawLeaf(ctx,x+25*flip,y-13,flip>0?-0.65:Math.PI+0.65,.55,color);drawLeaf(ctx,x+48*flip,y-27,flip>0?0.22:Math.PI-0.22,.5,color);drawLeaf(ctx,x+68*flip,y-40,flip>0?-0.55:Math.PI+0.55,.42,color);ctx.restore();}
+function drawFlower(ctx,x,y,r=5,color='#b8a87c'){ctx.save();ctx.fillStyle=color;for(let i=0;i<5;i++){const a=i*Math.PI*2/5;ctx.beginPath();ctx.arc(x+Math.cos(a)*r,y+Math.sin(a)*r,r*.7,0,Math.PI*2);ctx.fill()}ctx.fillStyle='#fff8e9';ctx.beginPath();ctx.arc(x,y,r*.45,0,Math.PI*2);ctx.fill();ctx.restore();}
+function drawAxisOrnament(ctx,x,y,w,grade){ctx.save();const color=grade==='S'?'#829679':grade==='A'?'#b7a77f':'#918b75',flip=grade==='B'?-1:1,cx=x+w/2;ctx.strokeStyle=color;ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(cx-38,y);ctx.quadraticCurveTo(cx,y-8*flip,cx+38,y);ctx.stroke();drawLeaf(ctx,cx-23,y-4*flip,-0.55*flip,.34,color);drawLeaf(ctx,cx-7,y+1*flip,Math.PI+0.48*flip,.32,color);drawLeaf(ctx,cx+15,y-5*flip,-0.48*flip,.34,color);drawLeaf(ctx,cx+30,y,Math.PI+0.55*flip,.29,color);if(grade==='S')drawFlower(ctx,cx+1,y-5*flip,4.5,'#b6a06d');ctx.restore();}
+function saveResultImage(){if(!lastResult)return;const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=1660;const ctx=c.getContext('2d');
+ // paper + double botanical frame
+ ctx.fillStyle='#fbfaf3';ctx.fillRect(0,0,c.width,c.height);ctx.strokeStyle='#7d9274';ctx.lineWidth=3;ctx.strokeRect(42,42,1116,1576);ctx.strokeStyle='#d8d3bd';ctx.lineWidth=1;ctx.strokeRect(55,55,1090,1550);drawSprig(ctx,76,126,1,'#7f9575');drawSprig(ctx,1124,126,-1,'#7f9575');drawSprig(ctx,76,1550,1,'#a99d7e');drawSprig(ctx,1124,1550,-1,'#a99d7e');drawFlower(ctx,600,70,7,'#b5a16f');
+ ctx.textAlign='center';ctx.fillStyle='#7b8974';ctx.font='15px Georgia, serif';ctx.letterSpacing='3px';ctx.fillText('HONMARU ENVIRONMENT OBSERVATION',600,112);ctx.fillStyle='#35452f';ctx.font=canvasFont(46,'bold');ctx.fillText('本丸環境観測結果',600,170);ctx.fillStyle='#596653';ctx.font=canvasFont(21);ctx.fillText(`同席刀剣男士　${r.name}`,600,224);ctx.textAlign='left';
+ // axes — four evaluation cards are the visual focus, so give them room
+ const axY=300,axH=275,boxW=235,gap=20;AX.forEach((a,i)=>{const x=92+i*(boxW+gap),g=r.ar.grades[a];roundRectPath(ctx,x,axY,boxW,axH,15);ctx.fillStyle=g==='S'?'#f2f6ed':g==='A'?'#f8f5ec':'#f5f2e9';ctx.fill();ctx.strokeStyle=g==='S'?'#9aab91':g==='A'?'#c9bc9b':'#b9b19a';ctx.lineWidth=2;ctx.stroke();drawAxisOrnament(ctx,x+18,g==='B'?axY+axH-25:axY+25,boxW-36,g);ctx.textAlign='center';ctx.fillStyle='#596853';ctx.font=canvasFont(21,'bold');ctx.fillText(a,x+boxW/2,axY+68);ctx.fillStyle='#33432f';ctx.font=canvasFont(66,'bold');ctx.fillText(g,x+boxW/2,axY+137);ctx.fillStyle='#52604e';ctx.font=canvasFont(15);wrapCanvasText(ctx,AXIS_DESC[a][g],x+boxW/2,axY+177,boxW-40,26,4);ctx.textAlign='left'});
+ // section helper — size each card from its actual text instead of fixed empty space
+ function resultCard(y,label,val,desc,accent){ctx.font=canvasFont(18);const lines=canvasLines(ctx,desc,925),h=Math.max(145,116+lines.length*27);roundRectPath(ctx,92,y,1016,h,18);ctx.fillStyle='#fffefa';ctx.fill();ctx.strokeStyle='#d2d3c5';ctx.lineWidth=1.5;ctx.stroke();ctx.fillStyle=accent;ctx.fillRect(92,y,8,h);ctx.fillStyle='#71806a';ctx.font=canvasFont(17,'bold');ctx.fillText(label,130,y+32);ctx.fillStyle='#34442f';ctx.font=canvasFont(36,'bold');ctx.fillText(val,130,y+70);ctx.fillStyle='#465342';ctx.font=canvasFont(18);wrapCanvasText(ctx,desc,130,y+105,925,27);drawSprig(ctx,1065,y+52,-1,accent);return h}
+ const cards=[['戦いの傾向',r.battle,BATTLE_DESC[r.battle],'#788d7c'],['本丸にはたらく霊的な加護',r.bless,`この本丸には「${r.bless}」の加護が働いています。${BLESS_DESC[r.bless].replace(/加護。$/,'力です。')}`,'#91a68c'],['観測された縁のかたち',r.bd,`あなたと${r.name}、そしてこの本丸のあいだには、「${r.bd}」の縁が結ばれています。${BOND_DESC[r.bd]}`,'#b19c6c']];
+ let y=axY+axH+30;cards.forEach(card=>{y+=resultCard(y,...card)+16});
+ // suggestion + one-line advice card
+ ctx.font=canvasFont(17);const adviceLines=canvasLines(ctx,r.advice,900);const suggestionH=285+Math.max(0,adviceLines.length-3)*25;
+ roundRectPath(ctx,92,y,1016,suggestionH,22);ctx.fillStyle='#edf3e7';ctx.fill();ctx.strokeStyle='#b9c6ad';ctx.lineWidth=2;ctx.stroke();drawSprig(ctx,1070,y+58,-1,'#839a78');ctx.fillStyle='#788970';ctx.font='14px Georgia, serif';ctx.fillText('HONMARU LIFE SUGGESTION',130,y+38);ctx.fillStyle='#5e6d58';ctx.font=canvasFont(17,'bold');ctx.fillText(r.recLabel,130,y+73);ctx.fillStyle='#354a30';ctx.font=canvasFont(34,'bold');wrapCanvasText(ctx,r.recVal,130,y+119,810,42,2);
+ ctx.strokeStyle='#cbd4c2';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(130,y+155);ctx.lineTo(1060,y+155);ctx.stroke();ctx.fillStyle='#71806a';ctx.font=canvasFont(15,'bold');ctx.fillText('一言アドバイス',130,y+184);ctx.fillStyle='#52604e';ctx.font=canvasFont(17);wrapCanvasText(ctx,r.advice,130,y+213,900,25,4);y+=suggestionH+24;
+ // footer — detailed input metadata is intentionally omitted from the share image
+ ctx.textAlign='center';ctx.fillStyle='#9a9d90';ctx.font='13px Georgia, serif';ctx.fillText('UNOFFICIAL FAN-MADE RECORD',600,1538);ctx.fillStyle='#8a9084';ctx.font=canvasFont(13);ctx.fillText('刀剣乱舞 二次創作・非公式ファンメイド',600,1565);ctx.textAlign='left';
+ c.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='本丸環境観測結果.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png');}
+function saveDetailedImage(){if(!lastResult)return;const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=2050;const ctx=c.getContext('2d');
+ // paper and botanical government-record frame
+ ctx.fillStyle='#fbfaf3';ctx.fillRect(0,0,1200,2050);ctx.strokeStyle='#7d9274';ctx.lineWidth=3;ctx.strokeRect(42,42,1116,1966);ctx.strokeStyle='#d8d3bd';ctx.lineWidth=1;ctx.strokeRect(55,55,1090,1940);drawSprig(ctx,76,126,1,'#7f9575');drawSprig(ctx,1124,126,-1,'#7f9575');drawSprig(ctx,76,1940,1,'#a99d7e');drawSprig(ctx,1124,1940,-1,'#a99d7e');drawFlower(ctx,600,70,7,'#b5a16f');
+ ctx.textAlign='center';ctx.fillStyle='#7b8974';ctx.font='15px Georgia, serif';ctx.fillText('HONMARU ENVIRONMENT OBSERVATION',600,112);ctx.fillStyle='#35452f';ctx.font=canvasFont(44,'bold');ctx.fillText('本丸環境観測 詳細記録',600,170);ctx.fillStyle='#596653';ctx.font=canvasFont(19);ctx.fillText(`同席刀剣男士　${r.name}`,600,216);ctx.textAlign='left';
+ function sectionTitle(y,jp,en){ctx.fillStyle='#e7eee0';ctx.fillRect(92,y,1016,48);ctx.fillStyle='#51624b';ctx.font=canvasFont(19,'bold');ctx.fillText(jp,116,y+31);ctx.textAlign='right';ctx.fillStyle='#84907d';ctx.font='11px Georgia, serif';ctx.fillText(en,1080,y+30);ctx.textAlign='left';return y+48}
+ function row(y,label,value,h=54){ctx.fillStyle='#fffefa';ctx.fillRect(92,y,1016,h);ctx.strokeStyle='#d5d8cb';ctx.lineWidth=1;ctx.strokeRect(92,y,1016,h);ctx.fillStyle='#f1f3eb';ctx.fillRect(92,y,260,h);ctx.fillStyle='#667260';ctx.font=canvasFont(15,'bold');ctx.textBaseline='middle';ctx.fillText(label,112,y+h/2);ctx.fillStyle='#3f4d3b';ctx.font=canvasFont(16);const valueLines=canvasLines(ctx,value,700).slice(0,3);const lineH=24,startY=y+h/2-((valueLines.length-1)*lineH)/2;valueLines.forEach((line,i)=>ctx.fillText(line,376,startY+i*lineH));ctx.textBaseline='alphabetic';return y+h}
+ function resultRow(y,label,value,desc,accent){ctx.font=canvasFont(16);const lines=canvasLines(ctx,desc,690),h=Math.max(104,72+lines.length*24);ctx.fillStyle='#fffefa';ctx.fillRect(92,y,1016,h);ctx.strokeStyle='#d5d8cb';ctx.strokeRect(92,y,1016,h);ctx.fillStyle=accent;ctx.fillRect(92,y,7,h);ctx.fillStyle='#667260';ctx.font=canvasFont(15,'bold');ctx.fillText(label,116,y+36);ctx.fillStyle='#34442f';ctx.font=canvasFont(25,'bold');ctx.fillText(value,310,y+38);ctx.fillStyle='#4e5b49';ctx.font=canvasFont(16);wrapCanvasText(ctx,desc,310,y+65,760,23,4);return y+h}
+ let y=260;y=sectionTitle(y,'観測情報','BASIC RECORD');y=row(y,'本丸運用開始日',r.date);y=row(y,'本丸運用',r.opDisplay);y=row(y,'同席刀剣男士',r.name);y=row(y,'本丸での位置づけ',r.positionLabel);y=row(y,'対刀傾向',r.st);y+=18;
+ y=sectionTitle(y,'回答記録','ANSWER RECORD');y=row(y,'審神者 Q1',r.answers.sq1,62);y=row(y,'審神者 Q2',r.answers.sq2,62);y=row(y,'刀剣男士 Q1',r.answers.tq1,62);y=row(y,'刀剣男士 Q2',r.answers.tq2,62);y+=18;
+ y=sectionTitle(y,'本丸環境・四項目観測','HONMARU ENVIRONMENT');
+ const cellW=254,axisH=174;AX.forEach((a,i)=>{const x=92+i*cellW,g=r.ar.grades[a];ctx.fillStyle=g==='S'?'#f2f6ed':g==='A'?'#f8f5ec':'#f5f2e9';ctx.fillRect(x,y,cellW,axisH);ctx.strokeStyle='#d1d5c8';ctx.strokeRect(x,y,cellW,axisH);ctx.textAlign='center';ctx.fillStyle='#5d6b57';ctx.font=canvasFont(17,'bold');ctx.fillText(a,x+cellW/2,y+31);ctx.fillStyle='#34442f';ctx.font=canvasFont(44,'bold');ctx.fillText(g,x+cellW/2,y+82);ctx.fillStyle='#6b7567';ctx.font=canvasFont(13);const descLines=canvasLines(ctx,AXIS_DESC[a][g],cellW-34).slice(0,4),descLineH=20,descStart=y+116;descLines.forEach((line,j)=>ctx.fillText(line,x+cellW/2,descStart+j*descLineH));ctx.textAlign='left'});y+=axisH+18;
+ y=sectionTitle(y,'観測結果','OBSERVATION RESULT');y=resultRow(y,'戦いの傾向',r.battle,BATTLE_DESC[r.battle],'#788d7c');y=resultRow(y,'霊的な加護',r.bless,`この本丸には「${r.bless}」の加護が働いています。${BLESS_DESC[r.bless].replace(/加護。$/,'力です。')}`,'#91a68c');y=resultRow(y,'縁のかたち',r.bd,`あなたと${r.name}、そしてこの本丸のあいだには、「${r.bd}」の縁が結ばれています。${BOND_DESC[r.bd]}`,'#b19c6c');y+=18;
+ y=sectionTitle(y,'本丸生活提案','HONMARU LIFE SUGGESTION');y=row(y,r.recLabel,r.recVal,62);y=row(y,'一言アドバイス',r.advice,88);
+ ctx.textAlign='center';ctx.fillStyle='#9a9d90';ctx.font='13px Georgia, serif';ctx.fillText('UNOFFICIAL FAN-MADE RECORD',600,1922);ctx.fillStyle='#8a9084';ctx.font=canvasFont(13);ctx.fillText('刀剣乱舞 二次創作・非公式ファンメイド',600,1949);ctx.textAlign='left';
+ c.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='本丸環境観測_詳細記録.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png');}
+function shareResult(){if(!lastResult)return;const r=lastResult;const axes=AX.map(a=>`${a}：${r.ar.grades[a]}`).join('\n');const text=`本丸環境観測を行いました。\n\n${axes}\n戦いの傾向：${r.battle}\n霊的な加護：${r.bless}\n縁のかたち：${r.bd}\n\n#非公式本丸環境観測`;const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');window.open(url,'_blank','noopener,noreferrer')}
+</script>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生活環境部｜歴防本部</title>
+<style>
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+:root{--ink:#262829;--muted:#676b6d;--green:#4e6257;--green2:#65756c;--pale:#f0f1ef;--line:#c9ccca;--soft:#f7f7f6;--paper:#fff;--nav:#f1f2f1;--accent:#747b77}
+body{margin:0;background:#f3f3f2;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.8}
+a{color:#315f4a;text-decoration:none} a:hover{text-decoration:underline}
+.govbar{background:#242728;color:#fff;border-bottom:4px solid #52645a}.govbar-inner{width:min(1180px,94%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:15px 0}.brand small{display:block;font-size:12px;letter-spacing:.16em;opacity:.75}.brand strong{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:27px;letter-spacing:.1em;font-weight:600}.utility{margin-left:auto;text-align:right}.utility-top{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:7px}.utility-top a{color:#fff;font-size:13px;padding:3px 8px;border-bottom:1px solid #ffffff66}.audience{display:flex;justify-content:flex-end;gap:6px;flex-wrap:wrap}.audience a{color:#fff;font-size:13px;padding:5px 9px;border:1px solid #ffffff55;background:#ffffff0b}.audience a:hover,.utility-top a:hover{background:#ffffff16;text-decoration:none}.unofficial{font-size:12px;border:1px solid #ffffff55;padding:7px 10px;letter-spacing:.08em;white-space:nowrap}
+.mainnav{background:#fff;border-bottom:1px solid #cbd3cd}.mainnav-inner{width:min(1180px,94%);margin:auto;display:flex;align-items:stretch}.mainnav a{display:flex;align-items:center;transform:translateY(1px);padding:14px 21px;color:#34443c;font-size:15px;border-right:1px solid #e1e5e1}.mainnav a:first-child{border-left:1px solid #e1e5e1}.mainnav a.current{background:#eeeeec;font-weight:700;border-bottom:3px solid #52645a}
+.breadcrumb{width:min(1180px,94%);margin:16px auto 0;font-size:13px;color:#748078}.breadcrumb span{margin:0 7px;color:#a2aaa5}
+.layout{width:min(1180px,94%);margin:14px auto 54px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;align-items:start}
+.side{background:#fff;border:1px solid var(--line)}.side-title{padding:15px 17px;background:#303334;color:#fff;font-weight:700;font-size:18px}.side-sub{padding:10px 15px;background:#eeeeec;color:#505657;font-size:13px;font-weight:700;border-bottom:1px solid var(--line)}.side a,.side .dead{display:block;padding:12px 15px;border-bottom:1px solid #e5e9e6;font-size:14px;color:#34473d}.side a:hover{background:#f1f2f1;text-decoration:none}.side .current{background:#ecefed;border-left:4px solid #53665b;padding-left:11px;font-weight:700}.side .dead{color:#59655e}.side .institution{margin-top:9px}.side-note{padding:13px 14px;font-size:11px;line-height:1.7;color:#7a847e;background:#fafbf9}
+.content{background:#fff;border:1px solid var(--line);padding:34px 38px 40px}.dept-head{border-top:5px solid var(--green);padding-top:19px;margin-bottom:25px}.eyebrow{font-size:12px;letter-spacing:.18em;color:#75837b;margin-bottom:3px}.dept-head h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:36px;letter-spacing:.07em;margin:0 0 8px;font-weight:600}.updated{text-align:right;font-size:12px;color:#89928d}.lead{padding:18px 20px;background:#f4f4f2;border-left:4px solid #707a74;color:#526158;font-size:15px;margin:20px 0 28px}
+.section{margin-top:31px}.section h2{font-size:21px;margin:0 0 14px;padding:8px 11px;border-left:5px solid #4d5d54;background:#efefed}.section p{font-size:14px;color:#56635c;margin:0 0 12px}.notice-list{border-top:1px solid var(--line)}.notice{display:grid;grid-template-columns:105px 78px 1fr;gap:10px;align-items:start;padding:14px 8px;border-bottom:1px solid #e0e5e1;font-size:14px}.date{color:#737f78;font-variant-numeric:tabular-nums}.tag{font-size:11px;text-align:center;padding:2px 5px;border:1px solid #b4b8b5;background:#f4f4f2;color:#555d59}.notice .dummy{color:#3d604d}.notice .dummy:after{content:""}.more{text-align:right;margin-top:10px;font-size:13px}
+.quicklinks{display:grid;grid-template-columns:1fr 1fr;gap:12px}.quick{display:block;border:1px solid #c9ccca;background:#f8f8f7;padding:15px 17px;color:#34473d}.quick:hover{background:#efefed;text-decoration:none}.quick strong{display:block;font-size:16px;margin-bottom:3px}.quick span{display:block;font-size:12px;line-height:1.65;color:#6e7972}.quick.dead{cursor:default}.quick.dead:hover{background:#f8faf7}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{border:1px solid #cfd7d1;padding:16px 17px;background:#fff}.card.live{border-top:3px solid #53665b}.card h3{font-size:17px;margin:0 0 6px}.card p{font-size:13px;line-height:1.75;margin:0;color:#69736d}.card .status{display:inline-block;margin-top:10px;font-size:11px;letter-spacing:.06em;color:#7e8882}.card.live .status{color:#52705d}.org-note{margin-top:12px;font-size:11px;color:#7a847e}
+.related{display:flex;gap:10px;flex-wrap:wrap}.related a{display:inline-block;border:1px solid #aebcaf;background:#f7f9f6;padding:11px 15px;font-size:13px}.footer{background:#e7e8e7;border-top:1px solid #c7c9c8;padding:22px 0 26px}.footer-inner{width:min(1180px,94%);margin:auto;display:flex;justify-content:space-between;gap:20px;color:#68746d;font-size:12px}.footer strong{display:block;color:#435249;font-size:14px;margin-bottom:4px}
+@media(max-width:900px){.govbar-inner{flex-wrap:wrap}.utility{order:3;width:100%;text-align:left}.utility-top,.audience{justify-content:flex-start}}
+@media(max-width:780px){.quicklinks{grid-template-columns:1fr}.mainnav{overflow-x:auto}.mainnav-inner{width:max-content;min-width:100%}.layout{grid-template-columns:1fr}.side{order:2}.content{padding:24px 18px}.notice{grid-template-columns:90px 68px 1fr}.cards{grid-template-columns:1fr}.dept-head h1{font-size:30px}.govbar-inner{align-items:flex-start}.footer-inner{display:block}.footer-inner>div+div{margin-top:12px}}
+@media(max-width:520px){.notice{grid-template-columns:1fr 68px}.notice .dummy{grid-column:1/-1}.updated{text-align:left}.unofficial{font-size:10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="govbar"><div class="govbar-inner">
+    <div class="brand"><small>HISTORY DEFENSE HEADQUARTERS</small><strong>歴防本部</strong></div>
+    <div class="utility">
+      <div class="utility-top"><a href="#">お問い合わせ</a></div>
+      <div class="audience" aria-label="利用者別メニュー"><a href="#">審神者の方</a><a href="#">一般の方</a><a href="#">公的機関の方</a><a href="#">研究機関の方</a></div>
+    </div>
+    <div class="unofficial">二次創作・非公式ファンメイド</div>
+  </div></div>
+  <nav class="mainnav" aria-label="主要メニュー"><div class="mainnav-inner">
+    <a href="#">歴防本部について</a><a href="#" class="current">組織・部署</a><a href="#">各種手続き</a><a href="#">お知らせ</a><a href="#">資料・統計</a>
+  </div></nav>
+</header>
+<div class="breadcrumb"><a href="#">ホーム</a><span>›</span><a href="#">組織・部署</a><span>›</span>生活環境部</div>
+
+<div class="layout">
+  <aside class="side" aria-label="生活環境部 所属一覧">
+    <div class="side-title">生活環境部</div>
+    <div class="side-sub">所属課</div>
+    <span class="dead">生活環境課</span>
+    <a href="honmaru_environment_department.html">本丸環境課</a>
+    <a href="honmaru_management_department.html">本丸管理課</a>
+    <span class="dead">本丸安全課</span>
+    <span class="dead">廃棄物対策課</span>
+    <span class="dead">施設整備課</span>
+    <span class="dead">環境エネルギー課</span>
+    <span class="dead">霊域管理課</span>
+    <div class="side-sub institution">所属機関</div>
+    <span class="dead">環境技術センター</span>
+    <span class="dead">霊域観測センター</span>
+    <div class="side-note">※試作のため、本丸管理課・本丸環境課以外の個別ページは未作成です。</div>
+  </aside>
+
+  <main class="content">
+    <div class="dept-head">
+      <div class="eyebrow">LIFE &amp; ENVIRONMENT DEPARTMENT</div>
+      <h1>生活環境部</h1>
+      <div class="updated">更新日：XXXX年XX月XX日</div>
+    </div>
+
+    <div class="lead">生活環境部では、本丸をはじめとする生活環境の整備・保全、施設、廃棄物、エネルギーおよび霊域に関する業務を行っています。</div>
+
+    <section class="section">
+      <h2>新着情報</h2>
+      <div class="notice-list">
+        <div class="notice"><span class="date">XXXX.XX.XX</span><span class="tag">環境</span><a href="honmaru_environment_department.html">本丸環境観測へのご協力について</a></div>
+        <div class="notice"><span class="date">XXXX.XX.XX</span><span class="tag">廃棄物</span><span class="dummy">使用済み護符・御札等の適正な分別および処理について</span></div>
+        <div class="notice"><span class="date">XXXX.XX.XX</span><span class="tag">安全</span><span class="dummy">本丸における防災設備・避難経路の定期確認について</span></div>
+        <div class="notice"><span class="date">XXXX.XX.XX</span><span class="tag">エネルギー</span><span class="dummy">環境エネルギー利用に関する年度報告を公開しました</span></div>
+        <div class="notice"><span class="date">XXXX.XX.XX</span><span class="tag">霊域</span><span class="dummy">霊域観測情報を更新しました</span></div>
+      </div>
+      <div class="more"><a href="#">新着情報一覧を見る →</a></div>
+    </section>
+
+    <section class="section">
+      <h2>よく利用される情報</h2>
+      <div class="quicklinks">
+        <span class="quick dead"><strong>本丸の新規登録・変更手続き</strong><span>登録、移転、管理状態の変更など、本丸に関する主な手続きを案内します。</span></span>
+        <span class="quick dead"><strong>本丸の安全に関する情報</strong><span>防災、避難、日常の安全確認に関する情報を案内します。</span></span>
+        <span class="quick dead"><strong>廃棄物の分別・処理</strong><span>一般廃棄物および霊的性質を有する廃棄物の処理方法を案内します。</span></span>
+        <a class="quick" href="honmaru_environment_department.html"><strong>本丸環境観測</strong><span>本丸環境課が実施する、本丸環境観測について案内します。 →</span></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>生活環境部について</h2>
+      <p>生活環境部は、本丸をはじめとする生活環境の整備・保全、施設、廃棄物、エネルギーおよび霊域に関する業務を所管しています。</p>
+      <p>各業務については、内容に応じて所属課・所属機関および関係部署が連携して対応します。</p>
+    </section>
+
+    <section class="section">
+      <h2>所属課・機関</h2>
+      <div class="cards">
+        <article class="card"><h3>生活環境課</h3><p>生活環境全般に関する施策や、関係課にまたがる環境行政の調整等を担当します。</p><span class="status">DEPARTMENT INFORMATION</span></article>
+        <article class="card live"><h3><a href="honmaru_environment_department.html">本丸環境課</a></h3><p>本丸の環境観測や、日々の生活環境に関する情報提供・支援を行います。</p><span class="status">個別ページあり →</span></article>
+        <article class="card live" id="management"><h3><a href="honmaru_management_department.html">本丸管理課</a></h3><p>本丸の登録、移転、管理状態の変更など、本丸に関する基本的な行政管理を担当します。</p><span class="status">個別ページあり →</span></article>
+        <article class="card"><h3>本丸安全課</h3><p>本丸への襲撃、事故その他の危険に備え、安全対策や避難体制に関する業務を行います。</p><span class="status">DEPARTMENT INFORMATION</span></article>
+        <article class="card"><h3>廃棄物対策課</h3><p>一般廃棄物および霊的性質を有する特殊な廃棄物の適正処理に関する業務を行います。</p><span class="status">DEPARTMENT INFORMATION</span></article>
+        <article class="card"><h3>施設整備課</h3><p>本丸その他の所管施設における建築物・設備の整備、改修等に関する業務を行います。</p><span class="status">DEPARTMENT INFORMATION</span></article>
+        <article class="card"><h3>環境エネルギー課</h3><p>生活・施設・霊域等におけるエネルギーの利用、供給および環境との調整に関する施策を担当します。</p><span class="status">DEPARTMENT INFORMATION</span></article>
+        <article class="card"><h3>霊域管理課</h3><p>政府が管理する霊域の利用・管理、および関係区域に関する調整業務を行います。</p><span class="status">DEPARTMENT INFORMATION</span></article>
+        <article class="card"><h3>環境技術センター</h3><p>生活環境に関する測定・処理・維持・改善等について、技術的な支援を行う所属機関です。</p><span class="status">AFFILIATED INSTITUTION</span></article>
+        <article class="card"><h3>霊域観測センター</h3><p>霊域の継続的な観測、観測情報の収集・解析等を行う所属機関です。</p><span class="status">AFFILIATED INSTITUTION</span></article>
+      </div>
+      <div class="org-note">※各課・機関の業務内容は試作用の仮文言です。</div>
+    </section>
+
+    <section class="section">
+      <h2>関連する案内</h2>
+      <div class="related"><a href="honmaru_environment_department.html">本丸環境観測について</a><a href="honmaru_management_department.html">本丸の管理と安全について</a></div>
+    </section>
+  </main>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+  <div><strong>歴防本部　生活環境部</strong>本ページは非公式ファンメイド作品内の架空ページです。</div>
+  <div>UNOFFICIAL FAN-MADE<br>刀剣乱舞 二次創作・非公式ファンメイド</div>
+</div></footer>
+</body>
+</html>
