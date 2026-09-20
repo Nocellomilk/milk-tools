@@ -27,6 +27,19 @@ body{margin:0;background:linear-gradient(180deg,#e8ede1 0%,#f2f2e8 48%,#e9eee2 1
 .recommend{margin-top:22px;padding:20px;border:1px solid #c9d1bd;background:linear-gradient(135deg,#f7f7ec,#eef3e7)}.recommend-label{font-size:10px;letter-spacing:.14em;color:#7a8873}.recommend-category{font-size:13px;color:#566550;margin-top:6px}.recommend-value{font-size:26px;font-weight:bold;color:#40523b;margin-top:5px;line-height:1.5}.recommend-note{font-size:11px;line-height:1.85;color:#64705f;margin-top:8px}.advice-pending{margin-top:12px;padding:11px 13px;border-left:3px solid #b3a77f;background:#faf7ed;color:#80765f;font-size:10px;line-height:1.75}
 .sab-note{margin:11px 2px 0;font-size:11px;line-height:1.8;color:#667260}.meta{margin-top:20px;padding:11px 13px;background:#f2f4ec;border:1px solid #d2d8c8;color:#747e6f;font-size:10px;line-height:1.8}.result-actions{display:none;text-align:center;margin-top:16px;padding:16px;border:1px solid #cbd2c1;background:#f6f7f1}.result-actions button{margin:4px;padding:10px 15px;border:1px solid #66775e;background:#66775e;color:#fff;font-family:inherit;font-size:11px;cursor:pointer}.result-actions .secondary{background:#fffefa;color:#53634e}.guide-link{display:inline-block;margin:12px 4px 0;padding:9px 14px;border:1px solid #aeb9a4;background:#fffefa;color:#52634c;text-decoration:none;font-size:11px;font-weight:bold}.guide-link:hover{background:#f2f5ed}.disclaimer{padding:19px 22px;font-size:11px;line-height:1.9;color:#6e7869;background:#fafbf6;border:1px solid var(--line)}.footer{text-align:center;color:#7d8777;font-size:10px;letter-spacing:.1em;margin-top:16px}
 @media(max-width:760px){.wrap{margin:17px auto 55px}.header{padding:30px 17px}.header h1{font-size:24px}.input-panel,.content{padding:21px 16px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.choices{grid-template-columns:1fr}.axis-grid{grid-template-columns:repeat(2,1fr)}.result-grid{grid-template-columns:1fr}.date-parts{grid-template-columns:1.4fr .8fr .8fr}}
+
+.export-modal{display:none;position:fixed;inset:0;z-index:1000;background:#2d382f8f;padding:22px;overflow:auto}
+.export-modal.open{display:flex;align-items:center;justify-content:center}
+.export-dialog{width:min(760px,96vw);max-height:94vh;overflow:auto;background:#fffefa;border:1px solid #aeb9a6;border-top:5px solid #7d9274;box-shadow:0 18px 60px #26302440;padding:20px}
+.export-dialog h3{margin:0 0 8px;font-size:17px;color:#465541}
+.export-dialog p{margin:0 0 13px;font-size:12px;line-height:1.85;color:#6e7969}
+.export-preview{display:block;max-width:100%;max-height:62vh;margin:0 auto 14px;border:1px solid #d6d5c8;background:#fff}
+.export-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.export-buttons button,.export-buttons a{display:inline-flex;align-items:center;justify-content:center;min-width:148px;padding:10px 14px;border:1px solid #718369;background:#718369;color:#fff;text-decoration:none;font:11px/1.2 inherit;cursor:pointer}
+.export-buttons .secondary{background:#fff;color:#5d6958;border-color:#aeb9a6}
+.export-help{margin-top:12px;padding:10px 12px;border-left:3px solid #a99d7e;background:#f7f4e9;font-size:11px;line-height:1.8;color:#656b60}
+.export-close{float:right;border:0!important;background:transparent!important;color:#64705f!important;font-size:20px!important;padding:0 2px!important}
+
 </style>
 </head>
 <body>
@@ -175,6 +188,41 @@ function advicePrefix(day,name){
 function adviceResult(y,m,d,name){const n=numerologyFromDate(y,m,d);return {number:n,text:advicePrefix(d,name)+ADVICE_NUMEROLOGY[n]};}
 
 let lastResult=null;
+
+let activeExportUrl='';
+function isTouchDevice(){return (navigator.maxTouchPoints||0)>0 || (window.matchMedia&&window.matchMedia('(pointer:coarse)').matches)}
+function closeExportModal(){
+  const modal=document.getElementById('exportModal');
+  if(modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}
+  if(activeExportUrl){URL.revokeObjectURL(activeExportUrl);activeExportUrl=''}
+}
+function showExportModal(blob,filename){
+  const modal=document.getElementById('exportModal'),img=document.getElementById('exportPreview'),link=document.getElementById('exportDownloadLink'),shareBtn=document.getElementById('exportShareBtn');
+  if(!modal||!img||!link)return;
+  if(activeExportUrl)URL.revokeObjectURL(activeExportUrl);
+  activeExportUrl=URL.createObjectURL(blob);
+  img.src=activeExportUrl;link.href=activeExportUrl;link.download=filename;
+  let file=null,canFileShare=false;
+  try{
+    file=new File([blob],filename,{type:'image/png'});
+    canFileShare=!!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}));
+  }catch(e){}
+  if(shareBtn){
+    shareBtn.style.display=canFileShare?'inline-flex':'none';
+    shareBtn.onclick=async()=>{try{await navigator.share({files:[file],title:'本丸環境観測'});}catch(e){if(e&&e.name!=='AbortError')console.warn(e)}};
+  }
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+}
+function exportCanvas(canvas,filename){
+  canvas.toBlob(blob=>{
+    if(!blob)return;
+    if(isTouchDevice()){showExportModal(blob,filename);return}
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+  },'image/png');
+}
+
 function selected(name){const e=document.querySelector(`input[name="${name}"]:checked`);return e?Number(e.value):null}
 function diagnose(){const opDisplay=document.getElementById('operation').value,op=opDisplay.replace(/型$/,''),st=document.getElementById('swordTendency').value,name=document.getElementById('swordName').value.trim(),pos=document.getElementById('position').value;const y=Number(document.getElementById('startYear').value),m=Number(document.getElementById('startMonth').value),d=Number(document.getElementById('startDay').value);const q1=selected('sq1'),q2=selected('sq2'),t1=selected('tq1'),t2=selected('tq2');const err=document.getElementById('error');err.textContent='';if(!op||!st||!name||!pos||!y||m<1||m>12||d<1||d>31||!q1||!q2||!t1||!t2){err.textContent='未入力の項目があります。すべて入力・選択してください。';return}const maxDay=new Date(y,m,0).getDate();if(d>maxDay){err.textContent='運用開始日の日付が正しくありません。';return}
  const scores={'安定感':0,'規律':0,'独自性':0,'風雅':0};add(scores,SQ1_SCORE[q1]);add(scores,SQ2_SCORE[q2]);add(scores,TQ1_SCORE[t1]);add(scores,TQ2_SCORE[t2]);scores[OP_AXIS[op]]+=2;const ar=axisResult(scores,op);const battle=battleResult(op,st,ar),bless=blessing(q2,pos),bd=bond(t1,y),rec=RECOMMEND[m],recIndex=(y%2===0?10-t1:t1-1),recVal=rec.items[recIndex],advice=adviceResult(y,m,d,name);
@@ -203,7 +251,7 @@ function saveResultImage(){if(!lastResult)return;const r=lastResult,c=document.c
  ctx.strokeStyle='#cbd4c2';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(130,y+155);ctx.lineTo(1060,y+155);ctx.stroke();ctx.fillStyle='#71806a';ctx.font=canvasFont(15,'bold');ctx.fillText('一言アドバイス',130,y+184);ctx.fillStyle='#52604e';ctx.font=canvasFont(17);wrapCanvasText(ctx,r.advice,130,y+213,900,25,4);y+=suggestionH+24;
  // footer — detailed input metadata is intentionally omitted from the share image
  ctx.textAlign='center';ctx.fillStyle='#9a9d90';ctx.font='13px Georgia, serif';ctx.fillText('UNOFFICIAL FAN-MADE RECORD',600,1538);ctx.fillStyle='#8a9084';ctx.font=canvasFont(13);ctx.fillText('刀剣乱舞 二次創作・非公式ファンメイド',600,1565);ctx.textAlign='left';
- c.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='本丸環境観測結果.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png');}
+ exportCanvas(c,'本丸環境観測結果.png');}
 function saveDetailedImage(){if(!lastResult)return;const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=2050;const ctx=c.getContext('2d');
  // paper and botanical government-record frame
  ctx.fillStyle='#fbfaf3';ctx.fillRect(0,0,1200,2050);ctx.strokeStyle='#7d9274';ctx.lineWidth=3;ctx.strokeRect(42,42,1116,1966);ctx.strokeStyle='#d8d3bd';ctx.lineWidth=1;ctx.strokeRect(55,55,1090,1940);drawSprig(ctx,76,126,1,'#7f9575');drawSprig(ctx,1124,126,-1,'#7f9575');drawSprig(ctx,76,1940,1,'#a99d7e');drawSprig(ctx,1124,1940,-1,'#a99d7e');drawFlower(ctx,600,70,7,'#b5a16f');
@@ -218,7 +266,31 @@ function saveDetailedImage(){if(!lastResult)return;const r=lastResult,c=document
  y=sectionTitle(y,'観測結果','OBSERVATION RESULT');y=resultRow(y,'戦いの傾向',r.battle,BATTLE_DESC[r.battle],'#788d7c');y=resultRow(y,'霊的な加護',r.bless,`この本丸には「${r.bless}」の加護が働いています。${BLESS_DESC[r.bless].replace(/加護。$/,'力です。')}`,'#91a68c');y=resultRow(y,'縁のかたち',r.bd,`あなたと${r.name}、そしてこの本丸のあいだには、「${r.bd}」の縁が結ばれています。${BOND_DESC[r.bd]}`,'#b19c6c');y+=18;
  y=sectionTitle(y,'本丸生活提案','HONMARU LIFE SUGGESTION');y=row(y,r.recLabel,r.recVal,62);y=row(y,'一言アドバイス',r.advice,88);
  ctx.textAlign='center';ctx.fillStyle='#9a9d90';ctx.font='13px Georgia, serif';ctx.fillText('UNOFFICIAL FAN-MADE RECORD',600,1922);ctx.fillStyle='#8a9084';ctx.font=canvasFont(13);ctx.fillText('刀剣乱舞 二次創作・非公式ファンメイド',600,1949);ctx.textAlign='left';
- c.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='本丸環境観測_詳細記録.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png');}
-function shareResult(){if(!lastResult)return;const r=lastResult;const axes=AX.map(a=>`${a}：${r.ar.grades[a]}`).join('\n');const text=`本丸環境観測を行いました。\n\n${axes}\n戦いの傾向：${r.battle}\n霊的な加護：${r.bless}\n縁のかたち：${r.bd}\n\n#非公式本丸環境観測`;const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');window.open(url,'_blank','noopener,noreferrer')}
+ exportCanvas(c,'本丸環境観測_詳細記録.png');}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('exportClose')?.addEventListener('click',closeExportModal);
+  document.getElementById('exportCloseBtn')?.addEventListener('click',closeExportModal);
+  document.getElementById('exportModal')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeExportModal()});
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeExportModal()});
+
+function shareResult(){if(!lastResult)return;const r=lastResult;const axes=AX.map(a=>`${a}：${r.ar.grades[a]}`).join('\n');const text=`【刀剣乱舞・非公式ファンメイド】\n本丸環境観測を行いました。\n\n${axes}\n戦いの傾向：${r.battle}\n霊的な加護：${r.bless}\n縁のかたち：${r.bd}\n\n#非公式本丸環境観測`;const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');window.open(url,'_blank','noopener,noreferrer')}
 </script>
+
+<div class="export-modal" id="exportModal" aria-hidden="true">
+  <div class="export-dialog" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+    <button type="button" class="export-close" id="exportClose" aria-label="閉じる">×</button>
+    <h3 id="exportTitle">画像を保存・共有</h3>
+    <p>生成した画像です。端末やブラウザに合う方法で保存してください。</p>
+    <img id="exportPreview" class="export-preview" alt="生成した本丸環境観測記録画像">
+    <div class="export-buttons">
+      <button type="button" id="exportShareBtn">画像を共有</button>
+      <a id="exportDownloadLink" class="secondary" href="#" download>画像をダウンロード</a>
+      <button type="button" class="secondary" id="exportCloseBtn">閉じる</button>
+    </div>
+    <div class="export-help">スマートフォンで直接保存できない場合は、上の画像を長押しして保存してください。対応している端末では「画像を共有」から保存先やアプリを選べます。</div>
+  </div>
+</div>
+
 </body></html>
