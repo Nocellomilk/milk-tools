@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeExportModal()});
 
-function shareResult(){if(!lastResult)return;const r=lastResult;const axes=AX.map(a=>`${a}：${r.ar.grades[a]}`).join('\n');const text=`【刀剣乱舞・非公式ファンメイド】\n本丸環境観測を行いました。\n\n${axes}\n戦いの傾向：${r.battle}\n霊的な加護：${r.bless}\n縁のかたち：${r.bd}\n\n#非公式本丸環境観測`;const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');window.open(url,'_blank','noopener,noreferrer')}
+function shareResult(){if(!lastResult)return;const r=lastResult;const axes=AX.map(a=>`${a}：${r.ar.grades[a]}`).join('\n');const text=`【刀剣乱舞・非公式ファンメイド】本丸環境観測を行いました。\n\n${axes}\n戦いの傾向：${r.battle}\n霊的な加護：${r.bless}\n縁のかたち：${r.bd}\n\n#非公式本丸環境観測`;const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');window.open(url,'_blank','noopener,noreferrer')}
 </script>
 
 <div class="export-modal" id="exportModal" aria-hidden="true">
