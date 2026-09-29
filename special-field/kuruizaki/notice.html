@@ -162,7 +162,7 @@ button.dream:hover{background:#fff}
 <div class="field"><label>同行刀剣・神性</label><input id="divinity" type="text" inputmode="numeric" value="50" placeholder="0～100／測定不能"></div>
 <div class="field"><label>同行刀剣・情緒</label><input id="emotion" type="text" inputmode="numeric" value="50" placeholder="0～100／測定不能"></div>
 </div>
-<div class="btnrow"><a class="button-link ghost-link" href="https://milk-tools.com/special-field/kuruizaki/notice">事前確認へ戻る</a><button class="primary" onclick="go(2)">調査申請へ</button></div>
+<div class="btnrow"><a class="button-link ghost-link" href="https://milk-tools.com/special-field/kuruizaki/">事前確認へ戻る</a><button class="primary" onclick="go(2)">調査申請へ</button></div>
 </section>
 
 <section class="screen" id="s2">
@@ -413,7 +413,7 @@ function shareResult(){
  const p=endingParts();
  if(!p.num)return;
  const text='【刀剣乱舞・非公式ファンメイド】特殊環境下現地調査\n《狂い咲きの本丸》を調査しました。\n\n調査結果：END '+p.num+'\n\n#特殊環境下現地調査\n#狂い咲きの本丸';
- const pageUrl=location.protocol==='file:'?'':location.href.split('#')[0];
+ const pageUrl='https://milk-tools.com/special-field/kuruizaki/';
  const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');
  window.open(url,'_blank','noopener,noreferrer');
 }
