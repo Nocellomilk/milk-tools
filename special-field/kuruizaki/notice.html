@@ -3,136 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>特殊環境下現地調査｜本丸管理課｜歴防本部</title>
+<title>特殊環境下現地調査｜事前確認｜歴防本部</title>
 <style>
 *{box-sizing:border-box}
-:root{
- --bg:#141617;--panel:#2d3031;--panel2:#373a3b;--paper:#e7e7e2;--ink:#f1f2ef;
- --muted:#c0c5c1;--line:#555b58;--line2:#6b716d;--accent:#c3c6c1;--dim:#303435;
- --warn:#b8a99a;--black:#090a0b;
-}
+:root{--ink:#f1f2ef;--muted:#c0c5c1;--line:#555b58}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 50% -10%,#282b2c 0,#151718 42%,#0d0f10 100%);color:var(--ink);
-font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.85;min-height:100vh}
-button,input,select{font:inherit}
-.govbar{background:#090a0b;border-bottom:1px solid #343839;color:#eee}
-.govbar-inner{width:min(1120px,94%);margin:auto;padding:15px 0;display:flex;align-items:center;gap:20px}
-.brand small{display:block;font-size:10px;letter-spacing:.18em;color:#858b88}
-.brand strong{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;letter-spacing:.12em;font-weight:500}
-.dept{margin-left:auto;font-size:12px;color:#a8adaa;border:1px solid #3c4140;padding:6px 10px;letter-spacing:.08em}
-.unofficial{font-size:11px;color:#949997}
-.shell{width:min(980px,94%);margin:28px auto 60px}
-.topline{font-size:11px;letter-spacing:.16em;color:#737a77;border-bottom:1px solid #343837;padding-bottom:9px;margin-bottom:20px}
-.card{background:linear-gradient(180deg,#323536,#292c2d);border:1px solid var(--line);box-shadow:0 16px 50px #0008;margin-bottom:18px}
-.hero{padding:34px 36px 30px;border-top:4px solid #5c615e;position:relative;overflow:hidden}
-
-.kicker{font-size:10px;letter-spacing:.22em;color:#7f8682;margin-bottom:5px}
-h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:500}
-h1{font-size:32px;letter-spacing:.1em;margin:0 0 8px;color:#eceeea}
-.hero p{margin:0;color:#c1c6c2;font-size:13px;max-width:720px}
-.notice{margin-top:22px;border:1px solid #3b403e;background:#292c2d;padding:14px 16px;color:#d0d4d0;font-size:12px}
-.screen{display:none;padding:30px 34px 34px}
-.screen.active{display:block}
-.section-title{display:flex;align-items:center;gap:12px;margin:0 0 20px;padding-bottom:11px;border-bottom:1px solid var(--line)}
-.section-title .num{font-size:10px;border:1px solid #555b58;padding:3px 7px;color:#a8aeaa;letter-spacing:.1em}
-.section-title h2{font-size:22px;letter-spacing:.07em;margin:0;color:#e1e3df}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{margin-bottom:15px}
-label{display:block;font-size:12px;color:#a9afab;margin-bottom:6px}
-input,select{width:100%;background:#1c1f20;color:#f0f1ee;border:1px solid #555b58;padding:11px 12px;outline:none}
-input:focus,select:focus{border-color:#737a76}
-.help{font-size:11px;color:#747b77;margin-top:5px}
-.btnrow{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
-button{border:1px solid #555b58;background:#24282a;color:#e5e7e3;padding:10px 17px;cursor:pointer}
-button:hover{background:#303537}
-button.primary{background:#d8dad5;color:#161819;border-color:#d8dad5;font-weight:700}
-button.primary:hover{background:#f0f1ed}
-button.ghost{background:transparent}
-.button-link{appearance:none;border:1px solid #555b58;background:#24282a;color:#e5e7e3;padding:10px 16px;font:inherit;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.button-link:hover{background:#303537}.ghost-link{background:transparent}
-.center-actions{justify-content:center}
-button.dream{background:#e7e9e5;color:#17191a;border-color:#e7e9e5;font-weight:700;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 18px rgba(231,233,229,.10)}
-button.dream:hover{background:#fff}
-.dreamtext{max-width:760px;margin:0 auto}
-.casehead{border:1px solid #444947;background:#292c2d;padding:17px 19px;margin-bottom:17px}
-.casehead small{display:block;color:#7f8682;letter-spacing:.16em;font-size:9px}
-.casehead strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;letter-spacing:.09em;margin:3px 0;color:#e7e9e5}
-.casehead span{font-size:11px;color:#8d9490}
-.record{border-left:2px solid #555b58;padding:2px 0 2px 18px;margin:20px 0}
-.record h3{font-size:16px;margin:0 0 5px;color:#d7dad6}
-.record p{font-size:13px;color:#c7cbc7;margin:0 0 8px}
-.record ul{margin:7px 0 0;padding-left:20px;color:#bec3bf;font-size:13px}
-.warning{border:1px solid #514943;background:#191613;padding:15px 17px;color:#b7aca3;font-size:12px;margin:18px 0}.warning h3{margin:0 0 10px;color:#d2c8bf;font-size:13px;letter-spacing:.08em}.warning p{margin:0;line-height:1.9}.warning p+p{margin-top:8px}
-.locations{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
-.loc{border:1px solid #3d4240;background:#2d3031;padding:17px;cursor:pointer;min-height:150px;transition:.15s}
-.loc:hover{border-color:#707672;background:#181b1c}
-.loc.done{opacity:.48;pointer-events:none;cursor:default;filter:saturate(.45)}.loc.done:after{content:'調査済';display:block;margin-top:12px;font-size:10px;letter-spacing:.14em;color:#9da39f}
-.loc .code{font-size:9px;letter-spacing:.18em;color:#717874}
-.loc strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;margin:5px 0 7px}
-.loc p{font-size:11.5px;color:#afb5b1;margin:0}
-.loc-slot{min-height:150px;border:1px solid rgba(90,96,92,.22);background:rgba(45,48,49,.12)}
-.event{display:none;margin-top:18px;border:1px solid #444a47;background:#303334;padding:22px}
-.event.active{display:block}
-.event h3{margin:0 0 12px;font-size:20px}
-.event p{font-size:13px;color:#d0d4d0}
-.choice{display:grid;gap:8px;margin-top:15px}
-.choice button{text-align:left}
-.observation{margin-top:14px;padding:13px 15px;border:1px dashed #4c524f;color:#d5d9d5;font-size:12.5px;background:#3a3e3d}
-.keyword{display:inline-block;border:1px solid #626864;background:#3a3f3d;padding:4px 9px;margin:4px 5px 0 0;font-size:11px;color:#d5d8d4}
-.special{border-color:#625b55;background:#171513}
-.special .section-title{border-color:#49423d}
-.specialflag{display:none;margin:12px 0;padding:12px;border:1px solid #615950;color:#c0b3a7;font-size:12px}
-.specialflag.on{display:block}
-.resultbox{border:1px solid #454a48;background:#2d3031;padding:20px}
-.resultbox dl{display:grid;grid-template-columns:150px 1fr;margin:0;font-size:12px}
-.resultbox dt,.resultbox dd{padding:8px 0;border-bottom:1px solid #282c2b;margin:0}
-.resultbox dt{color:#7f8682}.resultbox dd{color:#e1e4e0}
-.lookup{display:flex;gap:8px;margin-top:12px}
-.lookup input{flex:1}
-.lookupout{margin-top:12px;padding:14px;border:1px solid #373c3a;background:#303334;color:#e0e3df;font-size:12px;min-height:48px}
-.trail{margin-top:18px;border-top:1px solid #4b514e}.trail-item{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:14px 4px;border-bottom:1px solid #414644}.trail-no{font-size:10px;color:#8d9490;letter-spacing:.12em}.trail-item strong{display:block;font-size:13px;color:#eceeeb}.trail-item span{display:block;font-size:11.5px;color:#b8bdb9;margin-top:3px}.savecards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.savecard{border:1px solid #555b58;background:#292c2d;padding:18px}.savecard strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;margin-bottom:6px}.savecard p{font-size:11.5px;color:#b6bbb7;margin:0 0 12px}.spoiler{font-size:10.5px;color:#c9bdb2;border-left:2px solid #756b63;padding-left:9px;margin:10px 0}.preview{margin-top:10px;padding:14px;border:1px dashed #606662;background:#363a39;font-size:11px;color:#d4d8d4;white-space:pre-line}.savecard button{width:100%}.save-image{display:block;width:100%;height:auto;margin-top:12px;border:1px solid #555b58;background:#e7e7e2}.download-link{display:block;text-align:center;margin-top:8px;border:1px solid #555b58;padding:9px 12px;color:#e5e7e3;text-decoration:none;background:#24282a}.download-link:hover{background:#303537}@media(max-width:720px){.savecards{grid-template-columns:1fr}}.footer{width:min(980px,94%);margin:0 auto 35px;color:#626966;font-size:10px;display:flex;justify-content:space-between;gap:20px}
-.debug{color:#6e7571;font-size:10px;margin-top:20px}
-.prose{font-size:13px;color:#d0d4d0}.prose p{margin:0 0 1em}.prose .break{height:1px;background:#444a47;margin:24px 0}.endtitle{margin:24px 0 10px;padding:18px;border:1px solid #555b58;background:#232627;text-align:center}.endtitle small{display:block;font-size:10px;letter-spacing:.18em;color:#8e9591}.endtitle strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;letter-spacing:.08em;margin-top:4px}.disposition{text-align:center;font-size:11px;color:#9da39f}.locked{opacity:.35;pointer-events:none}.subtle{font-size:11px;color:#8e9591}.finalchoices{display:grid;gap:9px;margin-top:16px}.finalchoices button{padding:13px 15px}.hidden{display:none!important}
-@media(max-width:720px){.hero,.screen{padding-left:20px;padding-right:20px}.grid,.locations{grid-template-columns:1fr}.resultbox dl{grid-template-columns:1fr}.resultbox dt{border-bottom:0;padding-bottom:0}.lookup{display:block}.lookup button{margin-top:8px;width:100%}.govbar-inner{flex-wrap:wrap}.dept{margin-left:0}.hero:after{display:none}}
-/* v0.4.1 readability pass: narrative/readable content enlarged; bureaucratic chrome stays compact */
-.record h3{font-size:19px;line-height:1.55}
-.record p,.record ul{font-size:16.5px;line-height:1.9}
-.loc strong{font-size:20px}.loc p{font-size:15.5px;line-height:1.75}
-.event h3{font-size:22px;line-height:1.5}.event p{font-size:17px;line-height:1.9}
-.observation{font-size:16px;line-height:1.85}
-.keyword{font-size:13px}
-.specialflag{font-size:15px;line-height:1.75}
-.lookupout{font-size:16px;line-height:1.85}
-.resultbox dl{font-size:15.5px;line-height:1.7}
-.trail-item strong{font-size:16px;line-height:1.55}.trail-item span{font-size:14.5px;line-height:1.65}
-.savecard strong{font-size:20px}.savecard p{font-size:15.5px;line-height:1.75}
-.spoiler{font-size:13.5px;line-height:1.65}
-.preview{font-size:16px;line-height:1.75;padding:18px}
-.prose{font-size:17.5px;line-height:1.95}.prose p{margin:0 0 1.15em}
-.endtitle small{font-size:11px}.endtitle strong{font-size:27px}.disposition{font-size:14px;line-height:1.6}
-.finalchoices button,.choice button{font-size:15.5px;line-height:1.55}
-@media(max-width:720px){
- .record p,.record ul{font-size:17px;line-height:1.9}
- .loc p{font-size:16px}.event p{font-size:17px}
- .observation,.lookupout{font-size:16.5px}
- .resultbox dl{font-size:16px}
- .prose{font-size:18px;line-height:1.95}
- .preview{font-size:16.5px;line-height:1.8}
- .savecard p{font-size:16px}
-}
-
-/* スマートフォン向け画像保存・共有 */
-.export-modal{display:none;position:fixed;inset:0;z-index:1000;background:#151817d9;padding:22px;overflow:auto}
-.export-modal.open{display:flex;align-items:center;justify-content:center}
-.export-dialog{width:min(760px,96vw);max-height:94vh;overflow:auto;background:#e7e7e2;border:1px solid #555b58;border-top:5px solid #343936;box-shadow:0 18px 60px #0008;padding:20px;color:#202422}
-.export-dialog h3{margin:0 0 8px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;color:#202422}
-.export-dialog p{margin:0 0 13px;font-size:12px;line-height:1.85;color:#5f6662}
-.export-preview{display:block;max-width:100%;max-height:62vh;margin:0 auto 14px;border:1px solid #aeb3af;background:#fff}
-.export-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.export-buttons button,.export-buttons a{display:inline-flex;align-items:center;justify-content:center;min-width:148px;padding:10px 14px;border:1px solid #343936;background:#343936;color:#f1f2ef;text-decoration:none;font:11px/1.2 inherit;cursor:pointer}
-.export-buttons .secondary{background:#f4f4ef;color:#343936;border-color:#858b87}
-.export-help{margin-top:12px;padding:10px 12px;border-left:3px solid #69706c;background:#d9dad5;font-size:11px;line-height:1.8;color:#4b514e}
-.export-close{float:right;border:0!important;background:transparent!important;color:#5f6662!important;font-size:20px!important;padding:0 2px!important;min-width:0!important}
-
+body{margin:0;background:radial-gradient(circle at 50% -10%,#282b2c 0,#151718 42%,#0d0f10 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.85;min-height:100vh}
+.govbar{background:#090a0b;border-bottom:1px solid #343839;color:#eee}.govbar-inner{width:min(1120px,94%);margin:auto;padding:15px 0;display:flex;align-items:center;gap:20px}.brand small{display:block;font-size:10px;letter-spacing:.18em;color:#858b88}.brand strong{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;letter-spacing:.12em;font-weight:500}.dept{margin-left:auto;font-size:12px;color:#a8adaa;border:1px solid #3c4140;padding:6px 10px;letter-spacing:.08em}.unofficial{font-size:11px;color:#949997}
+.shell{width:min(880px,94%);margin:28px auto 60px}.topline{font-size:11px;letter-spacing:.12em;color:#737a77;border-bottom:1px solid #343837;padding-bottom:9px;margin-bottom:20px}.card{background:linear-gradient(180deg,#323536,#292c2d);border:1px solid var(--line);box-shadow:0 16px 50px #0008;margin-bottom:18px}.hero{padding:34px 36px 30px;border-top:4px solid #5c615e}.kicker{font-size:10px;letter-spacing:.22em;color:#7f8682;margin-bottom:5px}h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:500}h1{font-size:32px;letter-spacing:.1em;margin:0 0 8px;color:#eceeea}.hero p{margin:0;color:#c1c6c2;font-size:13px}.content{padding:32px 36px 36px}.section-title{display:flex;align-items:center;gap:12px;margin:0 0 22px;padding-bottom:11px;border-bottom:1px solid var(--line)}.section-title .num{font-size:10px;border:1px solid #555b58;padding:3px 7px;color:#a8aeaa;letter-spacing:.1em}.section-title h2{font-size:22px;letter-spacing:.07em;margin:0;color:#e1e3df}.prose{font-size:17px;line-height:1.95;color:#d0d4d0}.prose p{margin:0 0 1.2em}.important{color:#f0f1ed;font-weight:700}
+details{margin:26px 0 0;border:1px solid #4a504d;background:#252829}summary{padding:14px 17px;cursor:pointer;color:#dfe2de;font-size:14px;letter-spacing:.04em;list-style:none}summary::-webkit-details-marker{display:none}summary:after{content:'＋';float:right;color:#969d99}details[open] summary:after{content:'－'}details[open] summary{border-bottom:1px solid #454a48}.details-body{padding:20px 22px 22px}.warning-group+ .warning-group{margin-top:22px}.warning-group h3{font-size:16px;margin:0 0 9px;color:#e3e5e1}.warning-group ul{margin:0;padding-left:1.4em;color:#c9ceca;font-size:15px;line-height:1.9}.note{margin-top:20px;font-size:12px;color:#8f9692}.data-note{margin-top:26px;padding:20px 22px;border:1px solid #4a504d;background:#252829}.data-note h2{font-size:17px;margin:0 0 9px;color:#e3e5e1;letter-spacing:.04em}.data-note p{margin:0 0 14px;color:#c9ceca;font-size:14px;line-height:1.9}.data-note a.button{padding:9px 15px}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:30px}a.button{display:inline-flex;align-items:center;justify-content:center;padding:11px 19px;border:1px solid #555b58;background:#24282a;color:#e5e7e3;text-decoration:none;font-size:14px}a.button:hover{background:#303537}a.button.primary{background:#d8dad5;color:#161819;border-color:#d8dad5;font-weight:700}a.button.primary:hover{background:#f0f1ed}.footer{width:min(880px,94%);margin:0 auto 35px;color:#626966;font-size:10px;display:flex;justify-content:space-between;gap:20px}
+@media(max-width:720px){.govbar-inner{flex-wrap:wrap}.dept{margin-left:0}.hero,.content{padding-left:20px;padding-right:20px}h1{font-size:27px}.prose{font-size:17px}.actions{display:grid}.actions a{width:100%}}
 </style>
 </head>
 <body>
@@ -141,298 +22,48 @@ button.dream:hover{background:#fff}
 <div class="dept">生活環境部　本丸管理課</div>
 <div class="unofficial">二次創作・非公式ファンメイド</div>
 </div></header>
-
-<div class="shell">
-<div class="topline">本丸管理課 ＞ 特殊環境下における現地調査 ＞ 調査協力者用端末</div>
-<div class="card hero">
+<main class="shell">
+<div class="topline">本丸管理課 ＞ 特殊環境下における現地調査 ＞ 事前確認</div>
+<section class="card hero">
 <div class="kicker">SPECIAL FIELD INVESTIGATION</div>
 <h1>特殊環境下 現地調査</h1>
-<p>通常の管理手続きでは状態の把握が困難な旧本丸等について、保護術式を使用した現地確認を行います。調査対象・観測内容は登録情報及び現地状況により異なります。</p>
-
+<p>調査開始前に、以下の内容をご確認ください。</p>
+</section>
+<section class="card content">
+<div class="section-title"><span class="num">NOTICE</span><h2>事前確認</h2></div>
+<div class="prose">
+<p>本コンテンツには、<strong>ホラー表現・怪異や怪奇現象などの表現</strong>が含まれます。</p>
+<p>音声・画像・映像による突然の脅かし表現はありません。<br>文章を中心に進行する、読み物形式のコンテンツです。</p>
+<p>また、調査中には審神者や同行する刀剣男士の言動が描写されます。<br>できる限り選択肢や条件分岐によって幅を持たせていますが、ご自身の審神者・刀剣男士の解釈とは異なる描写が含まれる可能性があります。</p>
+<p class="important">以上をご了承いただける方のみ、お進みください。</p>
 </div>
-
-<div class="card">
-<section class="screen active" id="s1">
-<div class="section-title"><span class="num">01</span><h2>調査員情報</h2></div>
-<div class="grid">
-<div class="field"><label>審神者名</label><input id="masterName" placeholder="例：審神者"><div class="help">保存画像に表示する名前です。調査には影響しません。</div></div>
-<div class="field"><label>同行刀剣名</label><input id="swordName" placeholder="例：和泉守兼定"></div>
-<div class="field"><label>感応力</label><input id="sense" type="text" inputmode="numeric" value="50" placeholder="0～100／測定不能"></div>
-<div class="field"><label>神霊親和性</label><input id="affinity" type="text" inputmode="numeric" value="50" placeholder="0～100／測定不能"></div>
-<div class="field"><label>同行刀剣・神性</label><input id="divinity" type="text" inputmode="numeric" value="50" placeholder="0～100／測定不能"></div>
-<div class="field"><label>同行刀剣・情緒</label><input id="emotion" type="text" inputmode="numeric" value="50" placeholder="0～100／測定不能"></div>
+<details>
+<summary>含まれる表現について確認する</summary>
+<div class="details-body">
+<div class="warning-group"><h3>含まれる表現</h3><ul>
+<li>プレイヤーではない審神者の死亡に関する表現</li>
+<li>刀剣破壊そのものではありませんが、それに類する・連想させる表現</li>
+<li>怪異・失踪などのホラー表現</li>
+<li>不穏な言動や展開</li>
+</ul></div>
+<div class="warning-group"><h3>含まれない表現</h3><ul>
+<li>グロテスクな描写</li>
+<li>暴力的な描写</li>
+<li>性的な描写</li>
+<li>音声・画像・映像による突然の脅かし</li>
+</ul></div>
 </div>
-<div class="btnrow"><a class="button-link ghost-link" href="https://milk-tools.com/special-field/kuruizaki/">事前確認へ戻る</a><button class="primary" onclick="go(2)">調査申請へ</button></div>
-</section>
-
-<section class="screen" id="s2">
-<div class="section-title"><span class="num">02</span><h2>特殊調査申請</h2></div>
-<div class="grid">
-<div class="field"><label>調査年月日</label><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><input id="dateYear" type="text" inputmode="numeric" placeholder="2205" style="width:7em"><span>年</span><input id="dateMonth" type="text" inputmode="numeric" placeholder="4" style="width:4em"><span>月</span><input id="dateDay" type="text" inputmode="numeric" placeholder="1" style="width:4em"><span>日</span></div></div>
-
+</details>
+<div class="data-note">
+<h2>調査に使用するデータ</h2>
+<p>本調査では、<strong>「審神者適性診断」および「刀剣男士個体観測」</strong>の結果を使用します。<br>まだ診断・観測を行っていない場合は、先に結果をご用意ください。</p>
+<a class="button" href="https://milk-tools.com/">診断がまだの方はこちら</a>
 </div>
-
-<div class="warning"><h3>保護術式について</h3><p>特殊環境下現地調査では、調査を行う審神者一名と、同行する刀剣男士一振りを一組として保護術式の対象に指定します。</p><p>保護術式は、対象者の生命に関わる危険を検知した場合、審神者と同行刀剣を現地から緊急帰還させます。そのため、本調査への同行は一振りに限られます。</p><p>ただし、本術式が保証するのは対象者の生命および緊急帰還のみです。調査中に生じた負傷・記憶・精神的影響、その他の影響が残らないことを保証するものではありません。</p></div>
-<div class="btnrow"><button class="ghost" onclick="go(1)">戻る</button><button class="primary" onclick="prepareCase()">対象案件を確認</button></div>
-</section>
-
-<section class="screen" id="s3">
-<div class="section-title"><span class="num">03</span><h2>派遣前資料</h2></div>
-<div class="casehead"><small>TRANSFERRED CASE / HONMARU ENVIRONMENT DIVISION</small><strong>狂い咲きの本丸</strong><span>案件主管：本丸管理課　／　現地資料提供：本丸環境課</span></div>
-<div class="record"><h3>案件概要</h3><p>審神者及び所属刀剣男士全振りが一斉に行方不明となった旧本丸。捜索開始時から、本丸内では当時設定されていた景趣には存在しない満開の桜が多数確認されていた。その後、再利用に向けた整備工程において景趣の変更を行ったものの桜は消失せず、季節の変化にもかかわらず満開の状態を維持していることが確認された。</p></div>
-<div class="record"><h3>確認済み事項</h3><ul><li>元審神者及び所属刀剣男士全振りは一年以上所在不明。</li><li>季節や景趣が変化しても、庭の桜だけは満開の状態を維持する。</li><li>これまでの調査・整備人員に、異常現象による明確な人的被害は確認されていない。</li></ul></div>
-<div class="record"><h3>調査目的</h3><p>景趣設定と実際の風景が一致しない原因を調査し、本丸の再利用可否に関する判断材料を収集する。異常の解消は必須とせず、安全を優先する。</p></div>
-
-<div class="btnrow"><button class="ghost" onclick="go(2)">申請内容を修正</button><button class="primary" onclick="startField()">現地調査を開始</button></div>
-</section>
-
-<section class="screen" id="s4">
-<div class="section-title"><span class="num">04</span><h2>現地調査</h2></div>
-<p class="subtle">調査地点を選択してください。A～Cは任意の順番で確認できます。条件を満たすと、追加調査地点が開示されます。</p>
-<div class="locations">
-<div class="loc" id="locA" onclick="openLoc('A')"><span class="code">POINT A</span><strong>満開の桜</strong><p>現在の景趣には含まれない桜が、庭一面に満開となっている。</p></div>
-<div class="loc" id="locB" onclick="openLoc('B')"><span class="code">POINT B</span><strong>元審神者の居室</strong><p>療養中の元審神者が、失踪直前まで長く過ごしていた部屋。</p></div>
-<div class="loc" id="locC" onclick="openLoc('C')"><span class="code">POINT C</span><strong>刀剣男士たちの私室</strong><p>主要関与者候補を含む、旧所属刀剣男士たちの私室。</p></div>
-<div class="loc-slot" id="locDSlot" aria-hidden="true"></div><div class="loc hidden" id="locD" onclick="openLoc('D')"><span class="code">POINT D</span><strong>ある桜の木の根元</strong><p>追加記録の照合後に確認された、過去の捜索記録と重なる地点。</p></div>
+<div class="actions">
+<a class="button primary" href="https://milk-tools.com/special-field/kuruizaki/investigation">内容を確認し、調査へ進む</a>
+<a class="button" href="../">診断・ツール一覧へ戻る</a>
 </div>
-<div id="eventA" class="event"><h3>地点A　満開の桜</h3><div class="prose"><p>現在設定されている景趣には、これほど多くの桜は存在しない。それでも庭には、季節を無視して満開の桜が並んでいる。</p><p>同行刀は枝々を見上げ、何かを警戒するようにあなたの前へ出た。</p></div><div class="choice"><button onclick="aChoice('near')">桜へ近づいて観察する</button><button onclick="aChoice('follow')">同行刀の判断に従い、距離を取る</button></div><div id="aOut"></div></div>
-<div id="eventB" class="event"><h3>地点B　元審神者の居室</h3><div class="prose"><p>長く放置された痕跡はあるが、部屋は荒らされていない。元審神者は療養のため、最後の数か月をこの部屋で過ごすことが多かったという。</p></div><div class="choice"><button onclick="bChoice('desk')">机や棚を確認する</button><button onclick="bChoice('bed')">寝台の周辺を確認する</button></div><div id="bOut"></div></div>
-<div id="eventC" class="event"><h3>地点C　刀剣男士たちの私室</h3><div class="prose"><p>多くの部屋は、長く戻らないことを知っていたかのように不自然なほど整っている。ただし、主要関与者候補の一振り――泛塵の部屋だけは、生活が途中で途切れたような状態だった。</p></div><div class="choice"><button onclick="cChoice('fear')">少し怖いと思う</button><button onclick="cChoice('nofear')">怖いとは思わない</button></div><div id="cOut"></div></div>
-<div id="eventD" class="event"><h3>地点D　ある桜の木の根元</h3><div class="prose"><p>過去の捜索では、この桜の根元も調べられている。土中を含め、元審神者や刀剣男士の所在を示すものは見つからなかった。今回も同じだった。</p><p>調査を終えようとしたとき、桜吹雪の向こうに小さな人影がいくつか見えた。顔までは分からない。短刀の刀剣男士ほどの背丈に見える。</p><p>「この本丸、気に入ってくれた？」</p><p>「桜は好きですか？」</p><p>同行刀が、答えないようあなたを制した。</p></div><div class="choice"><button onclick="dChoice('answer')">好きだと答える</button><button onclick="dChoice('silent')">答えない</button></div><div id="dOut"></div></div>
-<div class="record"><h3>追加調査記録照会</h3><p>取得した語句を入力してください。条件を満たすと、追加調査地点が開示されます。</p><div class="lookup"><input id="lookupInput" placeholder="キーワードを入力"><button onclick="lookup()">照会</button></div><div id="lookupOut" class="lookupout">照会待機中</div></div>
-<div id="unlockNotice" class="specialflag">追加調査地点を確認しました。地点Dを調査できます。</div>
-
-<div class="btnrow"><button class="primary" onclick="finishField()">調査記録をまとめる</button></div>
 </section>
-
-<section class="screen" id="s5">
-<div class="section-title"><span class="num">05</span><h2>調査記録</h2></div>
-<div class="resultbox"><dl><dt>案件</dt><dd>狂い咲きの本丸</dd><dt>調査員</dt><dd id="rMaster">―</dd><dt>同行刀剣</dt><dd id="rSword">―</dd><dt>確認地点</dt><dd id="rLocs">―</dd><dt>取得キーワード</dt><dd id="rKeys">―</dd><dt>条件観測</dt><dd id="rObservations">なし</dd><dt>特殊観測</dt><dd id="rSpecial">なし</dd><dt>暫定処理</dt><dd id="rDisposition">調査継続</dd></dl></div>
-<div class="record"><h3>現地調査経路</h3><div id="trail" class="trail"></div></div>
-<div id="nextAction" class="record"><h3>追加調査</h3><p id="nextText">必要な記録を確認してください。</p><div id="nextButtons" class="choice"></div></div>
-</section>
-
-<section class="screen" id="s6">
-<div class="section-title"><span class="num">06</span><h2>庭の奥</h2></div>
-<div id="deepContent" class="prose"></div>
-<div id="deepButtons" class="choice"></div>
-</section>
-
-<section class="screen" id="s7">
-<div class="section-title"><span class="num">07</span><h2>最終記録</h2></div>
-<div id="endingContent" class="prose"></div>
-<div class="savecards"><div class="savecard"><strong>調査記録を保存</strong><p>案件名、審神者名、同行刀剣、条件観測、到達ENDを記載する、ネタバレを抑えた記念・シェア向け記録です。</p><button onclick="showSimplePreview()">保存画像を作成</button><div id="simplePreview" class="preview" style="display:none"></div></div><div class="savecard"><strong>詳細記録を保存</strong><p>調査順、選択、条件観測、取得情報など、今回の調査の軌跡を記載します。</p><div class="spoiler">詳細記録には案件のネタバレを含みます。SNS等へ掲載する場合は、未調査の方への配慮をおすすめします。</div><button onclick="showDetailPreview()">詳細画像を作成</button><div id="detailPreview" class="preview" style="display:none"></div></div></div>
-<div class="btnrow"><button class="ghost" onclick="shareResult()">Xで結果をシェア</button></div>
-<div class="btnrow" id="endingActions"><button class="primary" onclick="resetProto()">最初から調査する</button></div>
-</section>
-
-<section class="screen" id="s8">
-<div class="section-title"><span class="num">08</span><h2>夢から覚める</h2></div>
-<div class="prose dreamtext"><p>はっ、と目を覚ます。</p><p>仕事続きで疲れていたのか、ついうとうとしてしまっていたらしい。</p><p>それにしても、なんだか不思議な夢を見た気がする。</p><p>たしか、刀剣男士が出てきたような――。</p><p>そう思ってその姿を探せば、すぐに見つけることができた。</p><p>ふと端末へ視線を戻す。<br>画面には、ちょうど応募しようと思っていた調査任務の案内が表示されている。</p><p>この任務は、刀剣男士一振りに同行してもらうことになるらしい。</p><p>ちょうどよかった。彼に頼んでみようか？</p><p>とはいえ、事前審査とやらもあるそうだから、本当にそうするかどうかは、そのあとにでも決めればいいだろう。</p></div>
-<div class="btnrow center-actions"><button class="primary" onclick="resetProto()">調査を終える</button></div>
-</section>
-</div>
-</div>
-
-<footer class="footer"><div><strong>歴防本部　生活環境部　本丸管理課</strong><br>特殊環境下現地調査端末</div><div>UNOFFICIAL FAN-MADE<br>刀剣乱舞 二次創作・非公式ファンメイド</div></footer>
-
-<script>
-const state={visited:new Set(),keys:new Set(),april:false,trail:[],choices:{},observations:[],lookups:[],afterTalks:{},bad:false,called:'',ending:'',special:false,extraFlag:false};
-function go(n){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById('s'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
-function val(id){return document.getElementById(id)?.value||''}
-function score(id){const raw=val(id).trim();if(raw==='測定不能')return 100;const n=Number(raw);return Number.isFinite(n)?Math.max(0,Math.min(100,n)):0}
-function high(id){return score(id)>=75}
-function swordHigh(id){return score(id)>=80}
-function swordLow(id){return score(id)<=20}
-function addObservation(code,point){if(!state.observations.some(o=>o.code===code))state.observations.push({code,point})}
-function inputMonth(){const m=Number(val('dateMonth').trim());return Number.isInteger(m)&&m>=1&&m<=12?m:null}
-function prepareCase(){state.april=inputMonth()===4;go(3)}
-function startField(){go(4)}
-function openLoc(x){document.querySelectorAll('.event').forEach(e=>e.classList.remove('active'));document.getElementById('event'+x).classList.add('active');document.getElementById('event'+x).scrollIntoView({behavior:'smooth',block:'start'})}
-function aprilExtra(x){if(!state.april)return '';if(x==='A')return '<p><strong>【特殊観測】</strong>先ほど通った場所にあったはずの桜が一本だけ見当たらない。切株も、掘り返された跡もなかった。</p>';if(x==='B')return '<p><strong>【特殊観測】</strong>居室を出たところで、部屋を見つめる人影に気づいた。泛塵に似ている。同行刀も同時に反応したが、花びらが視界を遮った次の瞬間には消えていた。</p>';return '<p><strong>【特殊観測】</strong>私室を出たあと、遠くの桜の下に人影を見た。同行刀と追ったが、そこには誰もいなかった。</p>'}
-function aChoice(type){
-state.choices.A=type;
-let txt=type==='near'?'<p>桜へ近づき、幹へ触れる。感触は普通の木と変わらない。けれど花びらが手元へ集まり、同行刀があなたとの間へ入った。</p>':'<p>同行刀の判断に従い距離を取る。しばらく観察していた同行刀は、木のある場所に一瞬だけ刀剣男士が立っているように感じる、と所感を示した。</p>';
-if(high('affinity')){
- addObservation('神霊親和Ⅰ','地点A');
- txt+='<p><strong>【条件観測：神霊親和Ⅰ】</strong>満開の桜を眺めているうちに、あなたは庭のあちこちから向けられる複数の気配に気づいた。それぞれの気配はわずかに異なっている。</p><p>こちらを警戒しているもの、興味を示しているもの、ただ静かに様子をうかがっているもの。</p><p>ひとつの大きな何かが庭を覆っているというより、いくつもの異なる存在が、それぞれにこちらを見ているように感じられた。</p>';
-}else{
- addObservation('神霊親和Ⅱ','地点A');
- txt+='<p><strong>【条件観測：神霊親和Ⅱ】</strong>調査を必要とする本丸だと聞いていたものの、目の前に広がる景色から、あなたは不思議なほど危険な印象を受けなかった。</p><p>満開の桜は美しい。けれど、人を誘い込むための罠のようにも、何かを隠しているようにも見えない。ただ穏やかに、そこに咲いている。</p><p>もしここで何かが起こるとすれば、この本丸の側から襲ってくるというより――後から勝手に入り込んだ自分たちが、先に何かをした場合なのではないか。なんとなく、そんな印象を受けた。</p>';
-}
-txt+='<p>同行刀がごく小さく霊力を放つと、理由もなくその周囲へ花びらが集まった。出陣で活躍した刀剣男士の周囲に現れる桜を思わせる。</p>'+aprilExtra('A')+'<p>取得記録：<span class="keyword">誉の桜</span></p>';
-document.getElementById('aOut').innerHTML='<div class="observation">'+txt+'</div><button onclick="finishLoc(\'A\',\'誉の桜\')">記録する</button>'}
-function bChoice(type){
-state.choices.B=type;
-let txt=type==='desk'?'<p>机や棚には私物や本、写真が残されている。一枚の写真には、寝台の元審神者と周囲に集まった刀剣男士、小さなケーキが写っていた。撮影は失踪前年の四月。元審神者の誕生月でもある。</p>':'<p>寝台のそばには療養中に使われた品が残る。卓上の予定表には四月の「花見」の書き込みがあり、元審神者はその日を迎える前に連絡が途絶えている。</p>';
-txt+='<p>記録を照合すると、この本丸では毎年春の花見を楽しみにしていたらしい。失踪前年は外へ出られない元審神者のため、刀剣男士たちがこの部屋へ集まっていた。</p>';
-if(swordHigh('divinity')){
- addObservation('神性Ⅰ','地点B');
- txt+='<p><strong>【条件観測：神性Ⅰ】</strong>刀の付喪神であるとされ、時の政府内でもいまだ一律の定義には至っていない存在、刀剣男士。彼らを神と呼ぶ者もいれば、妖のようなものだと考える者もいる。</p><p>どちらにせよ、人とは異なる存在である刀剣男士が、人である審神者をどこかへ連れ去ったのだとすれば。それを「神隠し」と呼ぶことについて、どう思うか。</p><p>そんな話を、あなたと同行刀はしばらく交わした。結論を出す必要のある話ではない。</p>';
-}else{
- addObservation('神性Ⅱ','地点B');
- txt+='<p><strong>【条件観測：神性Ⅱ】</strong>元審神者が長く療養していた部屋を調べながら、あなたと同行刀は、人間の病について少し話をした。</p><p>刀剣男士とは異なり、人間は病に倒れることがある。そして、たとえ大きな病を得ることがなかったとしても、その生にはいつか終わりが訪れる。人間である審神者の病や寿命を、刀剣男士はどのように思うのか。</p><p>そんな話を、あなたと同行刀はしばらく交わした。結論を出す必要のある話ではない。</p>';
-}
-txt+=aprilExtra('B')+'<p>取得記録：<span class="keyword">春を待つ</span></p>';
-document.getElementById('bOut').innerHTML='<div class="observation">'+txt+'</div><button onclick="finishLoc(\'B\',\'春を待つ\')">記録する</button>'}
-function cChoice(type){
-state.choices.C=type;
-let txt='';
-if(type==='fear'){
- txt='<p>その整い方を、あなたは少し怖いと思った。直後、どこからともなく大量の花びらが室内へ吹き込む。</p>';
- if(high('sense')){
-  addObservation('感応Ⅰ','地点C');
-  txt+='<p><strong>【条件観測：感応Ⅰ】</strong>室内へ吹き込んだ花びらから、あなたは明確な反応を感じ取った。敵意や怒りとは少し違う。それでも、偶然吹き込んできただけの花びらだとは思えない。</p><p>こちらの言葉を聞き、それに対して何かを返された――そう考えるほうが自然に思えるほどだった。</p>';
- }else{
-  addObservation('感応Ⅱ','地点C');
-  txt+='<p><strong>【条件観測：感応Ⅱ】</strong>突然吹き込んできた大量の花びらには驚いたものの、不思議と恐ろしさは感じなかった。</p><p>「怖い」と口にした途端にこの有様では、まるで桜に抗議されているようだ。そんなことを同行刀と話しながら、しばらく舞い込む花びらを眺めた。</p><p>もちろん、本当に桜がこちらの言葉を理解しているなんておかしな話だ。それでも少しだけ、微笑ましい光景に思えた。</p>';
- }
-}else{
- txt='<p>少なくとも、この記録だけで彼らを怖いとは思わなかった。ひらりと一枚だけ花びらが舞い込み、あなたの髪に留まる。</p>';
- if(swordHigh('emotion')){
-  addObservation('情緒Ⅰ','地点C');
-  txt+='<p><strong>【条件観測：情緒Ⅰ】</strong>同行刀はあなたの髪に留まった花びらを取り払うと、しばらくそれを見つめていた。誰かが不用意に、自分の主へ触れたような気がした――そんなことを告げたあと、なぜかあなたから顔をそらされる。それ以上、このことについて話すつもりはないらしい。</p>';
- }else if(swordLow('emotion')){
-  addObservation('情緒Ⅱ','地点C');
-  txt+='<p><strong>【条件観測：情緒Ⅱ】</strong>同行刀はあなたの髪から花びらを取り、しばらく観察していた。少なくとも、今のところ危険なものではなさそうだ。そう判断したらしい。</p><p>そもそも危険があると判断していたなら、あなたに触れる前に斬っていた――という旨のことも付け加えられた。頼もしい同行刀である。</p>';
- }else{
-  addObservation('情緒Ⅲ','地点C');
-  txt+='<p><strong>【条件観測：情緒Ⅲ】</strong>同行刀はあなたの髪から花びらを取り、それを眺めた。どうやら、この花びらもあなたのことを気に入ったのではないか。そんなことを言われる。</p><p>――「花びら“も”」とは、どういう意味なのか。そこを同行刀に尋ねたかどうかは、あなた次第だろう。</p>';
- }
-}
-txt+='<p>回収記録では、泛塵が元審神者から贈られ、大切にしていた品だけが見つかっていない。他の私物は残されており、本人が持ち出した可能性が高い。</p>'+aprilExtra('C')+'<p>取得記録：<span class="keyword">たからもの</span></p>';
-document.getElementById('cOut').innerHTML='<div class="observation">'+txt+'</div><button onclick="finishLoc(\'C\',\'たからもの\')">記録する</button>'}
-function dChoice(type){state.choices.D=type;if(type==='answer'){state.bad=true;document.getElementById('dOut').innerHTML='<div class="observation"><p>「うれしいな」</p><p>「主君も、桜がお好きでした」</p><p>「僕たちは、この景色を守り続けてるんです」</p><p>「……あなたも桜になったら、きっと綺麗ですよ」</p><p>「そうしたら、あなたも……もっと、気に入ると思います」</p><p>悪意のある声には聞こえない。ただ、本当にそれが良いことだと信じているようだった。</p></div><button onclick="showBad()">調査を続ける</button>';return}let txt='<p>あなたは答えなかった。小さな人影たちは少し残念そうにしたが、怒った様子はない。</p><p>そのまま彼らは、彼らの主について、この本丸について、ぽつりぽつりと語る。</p><p>彼らの主は桜が好きで、春を楽しみにしていた。しかし、その春を見ることはできなかったという。</p><p>「あるじさんは、いなくなったんじゃないよ」</p><p>「ここで、亡くなられたんです」</p><p>政府には知らせなかった。主が以前「ずっとここにいたいな」と言ったことを覚えていたから、自分たちもここに残ることにした――断片的な言葉から、そう読み取れた。</p><p>人影の一つが、庭のさらに奥を指した。</p><p>「主君のことが知りたいなら、最後まで一緒にいたみんなに聞くのがいいかもしれません」</p>';if(state.april)txt+='<p><strong>【特殊観測】</strong></p><p>人影の輪郭が、次第にはっきりしていく。</p><p>それは桜吹雪の中に立つ、刀剣男士そのものにも見えた。</p>';document.getElementById('dOut').innerHTML='<div class="observation">'+txt+'</div><button onclick="finishLoc(\'D\')">記録する</button>'}
-function finishLoc(x,key){if(state.visited.has(x))return;state.visited.add(x);if(key)state.keys.add(key);const names={A:'満開の桜',B:'元審神者の居室',C:'刀剣男士たちの私室',D:'ある桜の木の根元'};const ct={A:state.choices.A==='near'?'桜へ近づいて観察':'同行刀の判断に従い距離を取った',B:state.choices.B==='desk'?'机や棚を確認':'寝台の周辺を確認',C:state.choices.C==='fear'?'少し怖いと思った':'怖いとは思わなかった',D:'問いかけには答えなかった'};state.trail.push({point:x,name:names[x],choice:ct[x]||'通常観測',key});document.getElementById('loc'+x).classList.add('done');document.getElementById('event'+x).classList.remove('active');if(state.april&&['A','B','C'].every(k=>state.visited.has(k)))state.special=true}
-const records={
-'誉の桜':'<strong>追加記録《誉の桜》</strong><br>刀剣男士が一定の条件を満たした際、その周囲に桜の花びらが現れる現象が確認されている。実際の開花時期や周囲の桜の有無には左右されず、刀剣男士の霊力や状態に強く影響を受けると考えられている。旧本丸の桜も同行刀の霊力へ反応しており、通常の植物とは異なる。ただし、同一の現象と断定するには情報が足りない。',
-'春を待つ':'<strong>追加記録《春を待つ》</strong><br>元審神者は療養中も季節に連動して景趣が変わる設定を使用しており、失踪当時、「春の庭」は設定されていない。それにもかかわらず、政府が最初に現地へ入った時点で庭には満開の桜があった。最後の直接連絡では、刀剣男士たちと次の春を迎えることを楽しみにしていた記録が残る。その後も数日間、刀剣男士を介した連絡だけは続いていた。',
-'たからもの':'<strong>追加記録《たからもの》</strong><br>泛塵はこの本丸で最も遅く顕現した刀剣男士だった。元審神者から贈られた品を大切にしていたことが複数の記録から確認できるが、その品だけは失踪後の回収物に含まれていない。元審神者は別の記録で、所属する刀剣男士たちを「自分の大切な宝物」と記している。'
-};
-function unlockD(){
- const required=['誉の桜','春を待つ','たからもの'];
- if(!required.every(k=>state.lookups.includes(k)))return false;
- const slot=document.getElementById('locDSlot');
- const locD=document.getElementById('locD');
- if(slot)slot.classList.add('hidden');
- if(locD)locD.classList.remove('hidden');
- document.getElementById('unlockNotice').classList.add('on');
- return true;
-}
-const afterTalkChoices={
-'誉の桜':[
- ['桜について','あの本丸の桜と「誉の桜」は同じものなのだろうかとあなたが話題にすると、同行刀は少し考えてから、似ているもののまだ断定はできないという考えを示した。<br>ただ、刀剣男士の霊力に反応したのなら、無関係とも思えないとも付け加えた。<br>もし「誉の桜」と関係のある現象なら、審神者や刀剣男士にとって害のあるものではないのかもしれない。ただし、それだけで警戒を解くべきではないだろう。'],
- ['刀剣男士について','あの桜は刀剣男士と何らかの関係があるのではないかとあなたが話題にすると、同行刀もその可能性は高いだろうという考えを示した。<br>正体まではわからないものの、刀剣男士の周囲で起こる現象と似ていることが分かった以上、少なくとも刀剣男士に近しい何かではあるのだろう。つまり、刀剣男士に似て非なる存在なのかもしれない――と、二人の意見は一致した。']
-],
-'春を待つ':[
- ['春について','春が好きだと答えると、同行刀は、あの本丸の審神者も同じ季節を楽しみにしていたのだろうと資料を振り返った。<br>同じ春でも、待つ人や場所によって、その意味はずいぶん違うのかもしれない。'],
- ['夏について','夏が好きだと答えると、同行刀は、春を待っていたあの本丸にも、かつては同じように夏が巡ってきていたのだろうと話した。<br>今もあの桜が咲き続けている庭に夏が訪れたなら、どんな景色になるのだろうかと、しばらく二人で想像した。'],
- ['秋について','秋が好きだと答えると、同行刀は、季節に合わせて景趣を変えていたという記録に目を留めた。<br>あの本丸にも紅葉を眺めた秋があったのだろうかと、二人で春とはまた違った彩りを纏う庭を想像した。'],
- ['冬について','冬が好きだと答えると、同行刀は、この本丸の元審神者にも、あなたのように冬の良いところを語る誰かがいたなら、春を待つ間ももっと楽しく過ごせたのかもしれないと話した。<br>とはいえ、元審神者が実際にどのような気持ちで冬を過ごしていたのかは分からない。もしかすると、楽しみにしている春が少しずつ近づいてくる冬もまた、心躍る季節だったのかもしれない。']
-],
-'たからもの':[
- ['泛塵が持ち出した品について','泛塵が持ち出したと考えられている品について話題にすると、同行刀は、他のものを残してそれだけを持っていったのであれば、本人にとって特別なものだったのだろうという考えを示した。<br>自分もなんらかの理由で本丸を長く離れることになったなら、特別に大事なものだけは持っていくかもしれない、とも付け加えた。<br>それほどの特別なものとはなんだろうと考えていると、彼と目が合った。'],
- ['「たからもの」という言葉について','元審神者が刀剣男士たちを「たからもの」と記していたことについて話題にすると、同行刀はしばらく資料に目を落とした。<br>泛塵が持ち出した品と、元審神者にとっての刀剣男士たち。同じ言葉で表せるものでも、その形はひとつではないのだろうと二人で話した。'],
- ['同行刀の大切なものについて','ふと、同行刀自身にも大切なものがあるのかと尋ねてみた。<br>そんなことを聞かれるとは思っていなかったようで、答えるまでに少し間があった。真剣に考え込んでいたのか、少し照れくさそうにしていたのかは、同行刀によるだろう。<br>それから、彼なりの大切なものについて少しだけ話をしてくれた。']
-]};
-function afterTalk(q,i){const item=afterTalkChoices[q][i];state.afterTalks[q]=item[0];const area=document.getElementById('afterTalkArea');if(area)area.innerHTML='<div class="observation"><p>'+item[1]+'</p></div>';}
-function lookup(){
- const raw=val('lookupInput').trim();
- const q=raw.replace(/^[《「]/,'').replace(/[》」]$/,'').trim();
- const found=records[q];
- const out=document.getElementById('lookupOut');
- if(!found){out.innerHTML='該当する追加記録は確認できませんでした。';return}
- if(!state.lookups.includes(q))state.lookups.push(q);
- const choices=afterTalkChoices[q].map((c,i)=>'<button onclick="afterTalk('+JSON.stringify(q).replace(/"/g,'&quot;')+','+i+')">'+c[0]+'</button>').join('');
- const previous=state.afterTalks[q];
- out.innerHTML=found+'<div class="break"></div><strong>会話</strong><p>記録を確認したあと、同行刀と少し話をした。</p><div class="choice">'+choices+'</div><div id="afterTalkArea">'+(previous?'<div class="observation"><p>記録済：'+previous+'</p></div>':'')+'</div>';
- unlockD();
-}
-function finishField(){document.getElementById('lookupOut').innerHTML='照会待機中';document.getElementById('lookupInput').value='';document.getElementById('rMaster').textContent=val('masterName')||'［未入力］';document.getElementById('rSword').textContent=val('swordName')||'［未入力］';document.getElementById('rLocs').textContent=[...state.visited].map(x=>'地点'+x).join('／')||'なし';document.getElementById('rKeys').innerHTML=[...state.keys].length?[...state.keys].map(k=>'<span class="keyword">'+k+'</span>').join(''):'なし';document.getElementById('rObservations').textContent=state.observations.length?state.observations.map(o=>o.code).join('／'):'なし';document.getElementById('rSpecial').textContent=state.special?'あり':'なし';document.getElementById('trail').innerHTML=state.trail.length?state.trail.map((t,i)=>'<div class="trail-item"><div class="trail-no">'+String(i+1).padStart(2,'0')+'</div><div><strong>'+t.name+'</strong><span>'+t.choice+(t.key?' ／ 取得：'+t.key:'')+'</span></div></div>').join(''):'<div class="observation">調査地点の記録がありません。</div>';const nb=document.getElementById('nextButtons'),nt=document.getElementById('nextText');if(state.bad){nt.textContent='地点Dで同行刀に異常な反応が確認されています。';nb.innerHTML='<button onclick="showBad()">帰還記録を確認する</button>'}else if(state.visited.has('D')){nt.textContent='小さな人影が示した庭の奥を確認できます。';nb.innerHTML='<button onclick="openDeep()">庭の奥へ進む</button>'}else{nt.textContent='必要な条件を満たすと、追加調査地点が開示されます。';nb.innerHTML='<button onclick="go(4)">現地調査へ戻る</button>'}go(5)}
-function openDeep(){const c=document.getElementById('deepContent'),b=document.getElementById('deepButtons');if(state.april){state.called='泛塵';c.innerHTML='<p>庭の奥には、一人の刀剣男士らしき人影が待っていた。</p><p>「……来たのか」</p><p>姿は泛塵によく似ている。彼の姿を目で追うと、ひとつの品に視線が止まる。</p><p>「この塵か。これは、“たからもの”だ」</p><p>その言葉で、追加記録《たからもの》の記述を思い出す。</p><p>姿や記憶だけなら、別の存在が模倣した可能性を否定できない。しかし、この品まで同時に存在することは強い連続性を示している。</p><p>彼は桜へ目を向ける。</p><p>「移ろわぬ景色。たまゆらの花が、ここでは散ることもなくなった」</p><p>この本丸はずっと四月なのかと尋ねると、彼は頷き、「待っていた……春、だからな」とだけ答えた。</p><p>元審神者が今どこにいるのか。それには答えなかった。</p><p>現地から戻った後、政府は一時的に所在不明となっていた桜が、元の位置へ戻っていることを確認した。</p><p>複数の人影の目撃記録と合わせ、桜の姿をしている存在の一部が、四月には一時的に人型に近い姿へ変化する可能性があるとした。</p>';b.innerHTML='<button onclick="aprilGift()">調査結果を整理する</button>'}else{c.innerHTML='<p>庭の奥へ進むと、桜吹雪の向こうに一人の人影が現れた。</p><p>誰へ呼びかけるか。政府が主要関与者候補として記録した四振りの名が頭に浮かぶ。</p>';b.innerHTML='<button onclick="callSword(\'一期一振\')">一期一振</button><button onclick="callSword(\'石切丸\')">石切丸</button><button onclick="callSword(\'薬研藤四郎\')">薬研藤四郎</button><button onclick="callSword(\'泛塵\')">泛塵</button>'}go(6)}
-function callSword(name){state.called=name;const c=document.getElementById('deepContent'),b=document.getElementById('deepButtons');const texts={
-'一期一振':'<p>呼びかけに応じた人影は、一期一振によく似ていた。</p><p>「……弟たちから、何か聞かれましたか」</p><p>元審神者が亡くなったあとも、政府との連絡を数日間続けていたことを認める。政府が来れば、自分たちが決めたことを止められると思ったからだという。</p><p>「誰かに命じられたことではありません。弟たちも、他の皆も、それぞれに決めたことです」</p><p>彼自身は最後まで政府との連絡を担い、他の刀剣男士たちを見送ったあと、同じ選択をしたらしい。</p>',
-'石切丸':'<p>呼びかけに応じた人影は、石切丸によく似ていた。</p><p>この本丸で起きていたことに気づかなかったのかと尋ねると、静かに首を振る。</p><p>「気づいていなかったわけではないよ」</p><p>「祓うべきものだとは、思わなかったからね」</p><p>外から持ち込まれた呪いや、誰かに強制されたものではない。刀剣男士たち自身の意思と、元審神者との縁から生じたものだという。</p><p>ただし、元審神者の魂が今もここにあるかどうかについては、「私から答えることはできないな」とした。</p>',
-'薬研藤四郎':'<p>呼びかけに応じた人影は、薬研藤四郎によく似ていた。</p><p>「……あいつら、喋ったのか」</p><p>元審神者は、刀剣男士たちが姿を消す前にこの本丸で亡くなった。薬研はそれを知っており、政府へ報告しなかったという。</p><p>以前、元審神者が何気なく「ずっとここにいたいな」と口にしたことがあった。</p><p>「大将が、そこまでの意味で言ったのかはわからん」</p><p>それでも刀剣男士たちはその言葉を覚えていて、主をこの本丸へ残し、自分たちも残ることを選んだ。</p>',
-'泛塵':'<p>呼びかけに応じた人影は、泛塵によく似ていた。</p><p>彼の姿を目で追うと、ひとつの品に視線が止まる。</p><p>「この塵か。これは、“たからもの”だ」</p><p>その言葉で、追加記録《たからもの》の記述を思い出す。元審神者から泛塵へ贈られ、失踪後も見つからなかった品があった。</p><p>姿や記憶だけなら模倣の可能性を残す。しかし、所在不明だった実物まで持っていることは、目の前の存在と旧所属泛塵との強い連続性を示している。</p><p>庭の桜との関係を尋ねると、泛塵は一本の木へ触れた。周囲の桜がわずかに揺れる。</p><p>「移ろわぬ景色。たまゆらの花が、ここでは散ることもなくなった」</p><p>自分も同じ状態を選んだのかと尋ねると、彼は静かに頷いた。</p>'};c.innerHTML=texts[name];if(name==='泛塵')b.innerHTML='<button onclick="trueDecision()">最終判断へ</button>';else b.innerHTML='<button onclick="normalInterview()">帰還記録へ</button>'}
-function aprilGift(){const c=document.getElementById('deepContent'),b=document.getElementById('deepButtons');c.innerHTML+='<div class="break"></div><p>帰還後、同行刀と、泛塵が贈り物を大切にしていたことについて話した。</p>';b.innerHTML='<button onclick="giftChoice(1)">泛塵について</button><button onclick="giftChoice(2)">自分たちの「たからもの」について</button>'}
-function giftChoice(n){const c=document.getElementById('deepContent'),b=document.getElementById('deepButtons');state.extraFlag=n===2;if(n===1){c.innerHTML+='<div class="observation"><p>泛塵があの品を大切にしていたことについて、同行刀と話した。</p><p>あれほど大切にされていたことを贈った本人が知ったなら、きっと嬉しかったのではないか――そんな風に二人で思いを馳せた。</p></div>'}else{c.innerHTML+='<div class="observation"><p>泛塵にとってのあの品のように、自分から贈ったものも、ずっと大切にしてもらえたら嬉しいと思うと同行刀に伝えた。</p><p>同行刀は少し考えてから、贈り物そのものだけではなく、それを誰から受け取ったのかも大切なのかもしれない、と考えを返した。</p></div>'}b.innerHTML='<button onclick="trueDecision()">最終判断へ</button>'}
-function trueDecision(){const c=document.getElementById('deepContent'),b=document.getElementById('deepButtons');c.innerHTML='<p>得られた情報をもとに、この本丸を今後どう扱うべきか。最終判断を求められた。</p>';b.innerHTML='<button onclick="showTrue(1)">彼らが春を見せたかった審神者は、もうここにいない</button><button onclick="showTrue(2)">彼らが春を見せたかった審神者は、今もここにいる</button><button onclick="showTrue(3)">本件を異常存在の残留事例として報告する</button>'}
-function normalInterview(){const c=document.getElementById('deepContent'),b=document.getElementById('deepButtons');c.innerHTML+='<div class="break"></div><p>まだ聞きたいことはあった。しかし視界を埋め尽くすほどの花びらが舞い上がり、同行刀があなたを庇うように前へ出る。敵意は感じない。ここから先へ進むことを、静かに拒まれているようだった。</p><p>次の瞬間、保護術式が作動した。</p><p>帰還後、あなたと同行刀に異常は確認されなかったが、政府はあなたによる本件の調査を終了した。数日後、接触した存在についてどう考えるか、任意の聴取への協力を打診された。</p>';b.innerHTML='<button onclick="showNormal(\'A\')">旧所属刀剣男士本人である可能性が高いと答える</button><button onclick="showNormal(\'B\')">刀剣男士に由来する異常存在だと思うと答える</button><button onclick="showNormal(\'C\')">聴取に協力しない</button>'}
-function endBox(code,title,disp){return '<div class="endtitle"><small>'+code+'</small><strong>《'+title+'》</strong></div><div class="disposition">――'+disp+'</div>'}
-function showNormal(t){let h='';if(t==='A'){h='<p>あなたは、あの人影を旧所属刀剣男士本人である可能性が高いと考えている、と答えた。確証はない。それでも、交わした言葉をただの異常現象として片づけることはできなかった。</p><p>しばらくして新しい調査員が選任された。前任者が旧所属刀剣男士本人と思われる存在との意思疎通に成功していることを引き継いだ再調査だった。</p><p>満開の桜の下を、新しい調査員とその刀剣男士が歩いていく。</p><p>「桜は好きですか？」</p><p>調査員は足を止め、声の主を探す。同行刀も止めようとはしなかった。</p><p>しばらくして、調査員が何かを答えた。</p>'+endBox('END 05-A','調査引継ぎ','NORMAL END：担当変更／再調査継続')}else if(t==='B'){h='<p>あなたは、あの人影を旧所属刀剣男士本人と断定できず、刀剣男士に由来する異常存在である可能性が高いと答えた。その所見は注意事項とともに記録された。</p><p>後任の調査員には、人の姿を取る未知の存在と、前任者の強制帰還を踏まえて十分な警戒を行うよう指示が出された。</p><p>満開の桜の下で、声がする。</p><p>「桜は好きですか？」</p><p>姿は見えない。もう一度、同じ問いかけが聞こえた。</p><p>調査員は危険な接触の可能性があると判断し、同行刀へ抜刀を指示した。</p><p>その瞬間。</p><p>……一斉に、本丸中の桜がこちらを向いた気がした。</p>'+endBox('END 05-B','調査引継ぎ','NORMAL END：担当変更／警戒下再調査')}else{h='<p>あなたは、任意の聴取への協力を断った。理由を求められることはなかった。</p><p>それからしばらく経っても、本件に大きな進展はなかった。一度関わった案件については、頼まなくとも定期的な経過報告が届く。あなたの強制帰還と得られた情報の少なさから、後任者の選定には時間がかかっているらしい。</p><p>断片的に真実を語ってくれた、刀剣男士だったかもしれない誰か。桜吹雪とともに優しくあなたを拒んだ誰か。</p><p>あれはきっと、もうあの本丸に触れてほしくないという意思だったのだろう。結局、自分の調査は何も進められなかったのかもしれない。それでも、彼が望んでいることなら叶えてやりたいと思ってしまった。</p><p>――これも、あの美しい常春の本丸の、桜に魅せられた結果なのだろうか。</p>'+endBox('END 05-C','調査引継ぎ','NORMAL END：調査停滞／後任者未定')}showEnding(h,'NORMAL 05-'+t)}
-function showBad(){const h='<p>「桜は好きですか？」――あなたが答えると、辺りが静まり、やがて嬉しそうな小さな声がした。</p><p>「うれしいな」「主君も、桜がお好きでした」「僕たちは、この景色を守り続けてるんです」</p><p>風もないのに花びらが舞い上がり、あなたと同行刀の周囲へ集まる。</p><p>「……あなたも桜になったら、きっと綺麗ですよ」「そうしたら、あなたも……もっと、気に入ると思います」</p><p>同行刀があなたを庇うように前へ出る。その周囲に、ひときわ多くの花びらが集まった。</p><p>あとで聞いた話では、あのとき同行刀は「呼ばれた」という感覚がしたのだという。</p><p>――先ほど、あの人影が最初に「あなた」と呼んでいたのは、自分ではなかったのではないか。</p><p>そう考えるより先に、保護術式が作動した。</p><div class="break"></div><p>帰還後、あなた自身に異常は確認されなかった。しかし同行刀の霊力に、現地の桜と「誉」の花びらから記録された反応によく似た変化が現れていた。</p><p>本人は何も感じないという。ただ、ときどき誰も何も言っていないのに窓の外を見るようになった。</p><p>数日後。経過観察中の同行刀の肩へ、一枚の花びらが落ちた。室内だった。</p><p>同行刀はそれを手に取り、しばらく見つめる。</p><p>それから、彼はいつになく真剣な声色であなたに尋ねる。</p><p>――自分は、美しく咲けたか、と。</p><p>瞬間、春の薫りと目も開けていられないほどの桜吹雪が、あなたと彼を覆い尽くした。</p>'+endBox('END 04','桜は好きですか','BAD END：緊急帰還／同行刀経過観察');showEnding(h,'BAD 04')}
-function showTrue(n){if(n===2&&state.april&&state.extraFlag){showExtra();return}let h='';if(n===1){const m=inputMonth();let suffix='A',season='夏',seasonLine='季節に連動する景趣は、ようやく現在の季節――夏を映した。',closing='春の先には、夏がある。今度は彼らも、その季節を一緒に見ているのかもしれない。';if(m>=9&&m<=11){suffix='B';season='秋';seasonLine='季節に連動する景趣は、ようやく現在の季節――秋を映した。';closing='満開の桜しかなかった庭にも、ようやく秋が訪れた。今度は彼らも、春ではない季節を一緒に眺めているのかもしれない。'}else if(m===12||(m>=1&&m<=3)){suffix='C';season='冬';seasonLine='季節に連動する景趣は、ようやく現在の季節――冬を映した。';closing='桜のない冬の庭は静かだった。けれど冬の先には、また春が来る。今度は彼らも、一緒に次の春を待っているのかもしれない。'}else if(m===4){suffix='A';season='夏';seasonLine='季節に連動する景趣は、やがて春の先の季節へ移っていった。';closing='春は終わった。それでも季節は続いていく。今度は彼らも、その先の景色を一緒に見ているのかもしれない。'}h='<p>彼らが春を見せたかった審神者は、もうここにいない。</p><p>あなたはそう結論づけた。証明するものはない。それでも、刀剣男士たちが春を咲かせ続ける理由は、もうここにはない可能性を採った。</p><p>あなたの判断が伝えられたあと、桜は少しずつ花を落とし始めた。やがて刀剣男士に似た反応も観測されなくなった。</p><p>'+seasonLine+'</p><p>彼らが消滅したのか、別の場所へ移ったのか、あるいは元審神者のもとへ向かったのか。確認する方法はなかった。</p><p>それでも、なんとなく。</p><p>春の終わりを迎えた刀剣男士たちと、ずっと春を待っていた元審神者は、今度こそ同じ場所へ行けたのではないかと。</p><p>確かめることはできない。ただ、そんな気がした。</p><p>'+closing+'</p>'+endBox('END 01-'+suffix,'春の終わり','TRUE END：異常終息／通常管理へ移行')}else if(n===2){h='<p>彼らが春を見せたかった審神者は、今もここにいる。</p><p>あなたは、そう結論づけた。元審神者の姿も声もなく、魂が残っていることを示す明確な反応もない。それでも刀剣男士たちは主をここへ残し、自らも残ることを選んだ。彼らが今も春を咲かせ続けているのなら、その春を見せる相手もまたここにいるのだと。</p><p>政府は桜を伐採せず、解除術式も行わなかった。季節が変わっても、景趣が変わっても、庭の桜だけは満開だった。</p><p>それからしばらくして、その本丸に新しい審神者がやってきた。桜についてすべて説明を受けたうえで、ここへ来ることを選んだ。</p><p>新たな刀剣男士も顕現し、本丸に人の声が戻った。廊下を歩く足音がして、庭に洗濯物が干され、縁側には湯呑みが置かれるようになった。満開の桜は、その生活を邪魔することもなく、ただそこにあった。</p><p>ある春の日、新しい審神者が「綺麗だね」と言うと、風はないのに庭の桜がわずかに揺れた。「うん。今年も綺麗だよ」返事はない。ただ、また少しだけ花びらが舞った。</p><p>いつかこの審神者にも本丸を去る日が来る。そのとき何を望むのか、桜はどうするのか。それはまだ誰にも分からない。</p><p>ただ、この本丸では今日も、昔の春と新しい春が同じ庭に咲いている。</p><p>春は終わらなかった。</p><p>終わらせる必要もなかった。</p>'+endBox('END 02','春は続く','TRUE END：特殊環境保全／条件付運用再開')}else{h='<p>本件を、異常存在の残留事例として報告する。</p><p>元審神者が今もこの本丸にいるのか、それとももうどこにもいないのか。あなたには判断できなかった。そして、判断できないものをどちらかに決める必要もないと思った。</p><p>政府は積極的な解除・除去を行わず、同時に安全性と現象の全容が確認できない状態での再利用も行わないと決定した。本丸は閉鎖された。</p><p>桜は伐採されず、新しい審神者も来ない。最低限の観測だけを残し、立ち入りは原則停止された。</p><p>かつての刀剣男士たちは政府記録から消えたわけではない。</p><p>けれど帰還したとも、保護されたとも、安全な存在だと認められたとも記録されない。正体不明の存在として残り続ける。</p><p>それが彼らにとって良いことだったのかは分からない。</p><p>もっと調べれば別の答えが見つかったかもしれない。新しい誰かと暮らす未来もあったかもしれない。</p><p>あるいは、本当にもう誰にも来てほしくなかったのかもしれない。</p><p>それを尋ねる者は、もういない。</p><p>誰も花見には来ない。</p><p>誰もその桜を切らない。</p><p>誰も、その下に何がいるのかを確かめない。</p><p>ただ、誰も知らない場所で。誰のために咲いているのかも、もう確かめられることなく。</p><p>桜は、今日も満開だった。</p>'+endBox('END 03','誰も知らない春','TRUE END：永久閉鎖／現状保全')}showEnding(h,n===1?'TRUE 01-'+(inputMonth()>=9&&inputMonth()<=11?'B':(inputMonth()===12||(inputMonth()>=1&&inputMonth()<=3)?'C':'A')):'TRUE 0'+n)}
-function showExtra(){const h='<p>あなたは「彼らが春を見せたかった審神者は、今もここにいる」と判断した。</p><p>政府は通常の再利用対象から外したうえで、桜を通常の景観として扱わないこと、伐採・移植を行わないこと、異常を報告することなどを条件に、事情を理解した審神者による管理を認める方針を示した。</p><p>その候補者について考えたとき、あなたには一人、心当たりがあった。</p><p>――自分自身だった。</p><p>同行刀にも意思確認が行われた。答えは、本人が自分で決めた。</p><div class="break"></div><p>それから時間が経ち、休日の縁側であなたと同行刀は満開の桜を眺めていた。</p><p>同行刀の手には、あなたから贈った品がある。それが何なのかは、この記録には残らない。</p><p>一枚の花びらが、その贈り物の上へ落ちた。</p><p>同行刀は、それを払い落とさなかった。</p><p>ここには今日も人がいる。刀剣男士がいる。誰かが桜を見ている。</p><p>そして。</p><p>春は、まだ続いている。</p>'+endBox('END 06','春は終わらない','EXTRA END：特殊環境保全／調査担当審神者への管理移管');showEnding(h,'EXTRA 06')}
-function showEnding(html,code){state.ending=code;document.getElementById('endingContent').innerHTML=html;const actions=document.getElementById('endingActions');if(code==='BAD 04'){actions.innerHTML='<button class="primary" onclick="resetProto()">調査を終える</button><button class="dream" onclick="wakeFromDream()">夢から覚める</button>';actions.classList.add('center-actions')}else{actions.innerHTML='<button class="primary" onclick="resetProto()">最初から調査する</button>';actions.classList.remove('center-actions')}go(7)}
-function wakeFromDream(){go(8)}
-function canvasFont(size,serif=false,weight='400'){return weight+' '+size+'px '+(serif?'"Yu Mincho","Hiragino Mincho ProN",serif':'"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif')}
-function wrapLines(ctx,text,maxWidth){const chars=[...String(text)],lines=[];let line='';for(const ch of chars){const test=line+ch;if(line&&ctx.measureText(test).width>maxWidth){lines.push(line);line=ch}else line=test}if(line||!lines.length)lines.push(line);return lines}
-function drawWrapped(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){const lines=wrapLines(ctx,text,maxWidth).slice(0,maxLines);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*lineHeight));return y+lines.length*lineHeight}
-let activeExportUrl='';
-function isTouchDevice(){return (navigator.maxTouchPoints||0)>0 || (window.matchMedia&&window.matchMedia('(pointer:coarse)').matches)}
-function closeExportModal(){const modal=document.getElementById('exportModal');if(modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}if(activeExportUrl){URL.revokeObjectURL(activeExportUrl);activeExportUrl=''}}
-function showExportModal(blob,filename){const modal=document.getElementById('exportModal'),img=document.getElementById('exportPreview'),link=document.getElementById('exportDownloadLink'),shareBtn=document.getElementById('exportShareBtn');if(!modal||!img||!link)return;if(activeExportUrl)URL.revokeObjectURL(activeExportUrl);activeExportUrl=URL.createObjectURL(blob);img.src=activeExportUrl;link.href=activeExportUrl;link.download=filename;let file=null,canFileShare=false;try{file=new File([blob],filename,{type:'image/png'});canFileShare=!!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))}catch(e){}if(shareBtn){shareBtn.style.display=canFileShare?'inline-flex':'none';shareBtn.onclick=async()=>{try{await navigator.share({files:[file],title:'特殊環境下 現地調査'});}catch(e){if(e&&e.name!=='AbortError')console.warn(e)}}}modal.classList.add('open');modal.setAttribute('aria-hidden','false')}
-function exportCanvas(canvas,filename){canvas.toBlob(blob=>{if(!blob)return;if(isTouchDevice()){showExportModal(blob,filename);return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png')}
-function addDownload(box,canvas,filename){box.appendChild(canvas);const a=document.createElement('a');a.className='download-link';a.textContent='PNG画像を保存';a.href='#';a.addEventListener('click',e=>{e.preventDefault();exportCanvas(canvas,filename)});box.appendChild(a)}
-document.addEventListener('DOMContentLoaded',()=>{document.getElementById('exportClose')?.addEventListener('click',closeExportModal);document.getElementById('exportCloseBtn')?.addEventListener('click',closeExportModal);document.getElementById('exportModal')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeExportModal()})});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeExportModal()});
-function endingParts(){const raw=state.ending||'［未確定］';let type='',num='';if(raw.startsWith('TRUE ')){type='TRUE END';num=raw.slice(5)}else if(raw.startsWith('NORMAL ')){type='NORMAL END';num=raw.slice(7)}else if(raw.startsWith('BAD ')){type='BAD END';num=raw.slice(4)}else if(raw.startsWith('EXTRA ')){type='EXTRA END';num=raw.slice(6)}return {raw,type,num,label:num?'END '+num:raw}}
-function endingTitle(){const el=document.querySelector('#endingContent .endtitle strong');return el?el.textContent.replace(/[《》]/g,''):'最終記録'}
-function endingDisposition(){const el=document.querySelector('#endingContent .disposition');return el?el.textContent.replace(/^――/,''):'［未確定］'}
-function showSimplePreview(){
- const box=document.getElementById('simplePreview');box.style.display='block';box.innerHTML='';
- const master=val('masterName')||'［未入力］', sword=val('swordName')||'［未入力］';
- const obs=state.observations.length?state.observations.map(o=>o.code).join(' ／ '):'なし';
- const ep=endingParts(), title=endingTitle();
- const W=960,H=540,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;canvas.className='save-image';const ctx=canvas.getContext('2d');
- ctx.fillStyle='#e7e7e2';ctx.fillRect(0,0,W,H);ctx.fillStyle='#171a19';ctx.fillRect(0,0,W,76);ctx.fillStyle='#f1f2ef';ctx.font=canvasFont(28,true,'500');ctx.fillText('特殊環境下 現地調査：完了報告',34,48);
- ctx.strokeStyle='#858b87';ctx.lineWidth=1;ctx.strokeRect(34,108,W-68,H-148);
- ctx.fillStyle='#202422';ctx.font=canvasFont(32,true,'500');ctx.fillText('《狂い咲きの本丸》',54,160);
- ctx.fillStyle='#343936';ctx.fillRect(54,190,426,108);ctx.fillStyle='#aeb3af';ctx.font=canvasFont(12,false,'600');ctx.fillText('FINAL RECORD',76,215);ctx.fillStyle='#f1f2ef';ctx.font=canvasFont(27,false,'700');ctx.fillText(ep.label,76,255);ctx.font=canvasFont(24,true,'500');drawWrapped(ctx,'《'+title+'》',205,255,250,31,2);
- ctx.fillStyle='#69706c';ctx.font=canvasFont(12,false,'600');ctx.fillText('会話',520,207);ctx.fillStyle='#202422';ctx.font=canvasFont(15,false,'500');let ty=232;const talkOrder=['誉の桜','春を待つ','たからもの'];talkOrder.forEach(k=>{if(state.afterTalks[k]){ty=drawWrapped(ctx,state.afterTalks[k],520,ty,365,21,2)+5}});if(ty===232){ctx.fillText('なし',520,ty)};
- ctx.fillStyle='#69706c';ctx.font=canvasFont(12,false,'600');ctx.fillText('調査担当',54,349);ctx.fillText('同行刀',54,386);ctx.fillStyle='#202422';ctx.font=canvasFont(20,false,'500');drawWrapped(ctx,master,130,356,340,25,1);drawWrapped(ctx,sword,130,393,340,25,1);
- ctx.strokeStyle='#b6bab6';ctx.beginPath();ctx.moveTo(54,410);ctx.lineTo(906,410);ctx.stroke();
- ctx.fillStyle='#69706c';ctx.font=canvasFont(12,false,'600');ctx.fillText('条件観測',54,440);ctx.fillStyle='#202422';ctx.font=canvasFont(17,false,'500');drawWrapped(ctx,obs,130,446,750,23,2);
- ctx.fillStyle='#676e6a';ctx.font=canvasFont(11,false,'400');ctx.fillText('歴防本部　生活環境部　本丸管理課',40,H-17);ctx.textAlign='right';ctx.fillText(ep.type+' / UNOFFICIAL FAN-MADE',W-40,H-17);ctx.textAlign='left';
- addDownload(box,canvas,'狂い咲きの本丸_調査完了報告.png');
-}
-function showDetailPreview(){
- const box=document.getElementById('detailPreview');box.style.display='block';box.innerHTML='';const master=val('masterName')||'［未入力］',sword=val('swordName')||'［未入力］';const ep=endingParts();
- const W=900,H=1320,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;canvas.className='save-image';const ctx=canvas.getContext('2d');ctx.fillStyle='#e7e7e2';ctx.fillRect(0,0,W,H);ctx.fillStyle='#171a19';ctx.fillRect(0,0,W,104);ctx.fillStyle='#f1f2ef';ctx.font=canvasFont(32,true,'500');ctx.fillText('特殊環境下 現地調査：詳細記録',40,66);
- const left=58,right=W-58;let y=172;ctx.fillStyle='#202422';ctx.font=canvasFont(31,true,'500');ctx.fillText('《狂い咲きの本丸》',left,y);y+=48;ctx.fillStyle='#69706c';ctx.font=canvasFont(15,false,'600');ctx.fillText('調査担当',left,y);ctx.fillStyle='#202422';ctx.font=canvasFont(20,false,'500');ctx.fillText(master,left+110,y+5);ctx.fillStyle='#69706c';ctx.font=canvasFont(15,false,'600');ctx.fillText('同行刀',470,y);ctx.fillStyle='#202422';ctx.font=canvasFont(20,false,'500');ctx.fillText(sword,550,y+5);y+=34;ctx.strokeStyle='#aeb3af';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();y+=34;
- function heading(t){ctx.fillStyle='#343936';ctx.fillRect(left,y-23,6,27);ctx.fillStyle='#343936';ctx.font=canvasFont(20,true,'600');ctx.fillText(t,left+18,y);y+=30}
- heading('条件観測');ctx.fillStyle='#202422';ctx.font=canvasFont(18,false,'500');const obs=state.observations.length?state.observations.map(o=>o.point+'：'+o.code).join(' ／ '):'なし';y+=5;y=drawWrapped(ctx,obs,left,y,right-left,27,3)+24;
- heading('現地調査経路');ctx.font=canvasFont(17,false,'500');state.trail.forEach((t,i)=>{const rowY=y;ctx.fillStyle='#6b726e';ctx.font=canvasFont(14,false,'600');ctx.fillText(String(i+1).padStart(2,'0')+' / POINT '+t.point,left,rowY);let rightY=rowY+11;ctx.fillStyle='#202422';ctx.font=canvasFont(19,true,'500');ctx.fillText(t.name,left+125,rightY);rightY+=27;ctx.font=canvasFont(16,false,'400');ctx.fillStyle='#414744';rightY=drawWrapped(ctx,t.choice,left+125,rightY,right-left-125,23,2);if(t.key){ctx.fillStyle='#6b726e';ctx.font=canvasFont(14,false,'500');ctx.fillText('取得：'+t.key,left+125,rightY);rightY+=23}y=Math.max(rowY+24,rightY);ctx.strokeStyle='#c5c8c4';ctx.beginPath();ctx.moveTo(left,y+7);ctx.lineTo(right,y+7);ctx.stroke();y+=29});
- y+=8;heading('追加照会');ctx.fillStyle='#202422';ctx.font=canvasFont(17,false,'500');y=drawWrapped(ctx,state.lookups.join(' ／ ')||'なし',left,y,right-left,25,3)+10;const detailTalks=['誉の桜','春を待つ','たからもの'].filter(k=>state.afterTalks[k]).map(k=>k+'：'+state.afterTalks[k]);if(detailTalks.length){ctx.fillStyle='#69706c';ctx.font=canvasFont(14,false,'600');ctx.fillText('会話',left,y);y+=24;ctx.fillStyle='#414744';ctx.font=canvasFont(15,false,'500');detailTalks.forEach(t=>{y=drawWrapped(ctx,t,left,y,right-left,22,2)+3})}y+=14;
- heading('最終記録');ctx.fillStyle='#202422';ctx.font=canvasFont(22,false,'700');ctx.fillText(ep.label,left,y);y+=34;ctx.fillStyle='#202422';ctx.font=canvasFont(28,true,'500');ctx.fillText('《'+endingTitle()+'》',left,y);y+=36;ctx.fillStyle='#414744';ctx.font=canvasFont(16,false,'500');y=drawWrapped(ctx,endingDisposition(),left,y,right-left,24,3);
- ctx.fillStyle='#676e6a';ctx.font=canvasFont(13,false,'400');ctx.fillText('歴防本部　生活環境部　本丸管理課',52,H-32);ctx.textAlign='right';ctx.fillText('UNOFFICIAL FAN-MADE / DETAIL RECORD',W-52,H-32);ctx.textAlign='left';
- addDownload(box,canvas,'狂い咲きの本丸_調査詳細記録.png');
-}
-function shareResult(){
- const p=endingParts();
- if(!p.num)return;
- const text='【刀剣乱舞・非公式ファンメイド】特殊環境下現地調査\n《狂い咲きの本丸》を調査しました。\n\n調査結果：END '+p.num+'\n\n#特殊環境下現地調査\n#狂い咲きの本丸';
- const pageUrl='https://milk-tools.com/special-field/kuruizaki/';
- const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+(pageUrl?'&url='+encodeURIComponent(pageUrl):'');
- window.open(url,'_blank','noopener,noreferrer');
-}
-function resetProto(){location.reload()}
-</script>
-<div class="export-modal" id="exportModal" aria-hidden="true">
-  <div class="export-dialog" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
-    <button type="button" class="export-close" id="exportClose" aria-label="閉じる">×</button>
-    <h3 id="exportTitle">画像を保存・共有</h3>
-    <p>作成した画像です。端末やブラウザに合う方法で保存してください。</p>
-    <img id="exportPreview" class="export-preview" alt="作成した特殊環境下現地調査記録画像">
-    <div class="export-buttons">
-      <button type="button" id="exportShareBtn">画像を共有</button>
-      <a id="exportDownloadLink" class="secondary" href="#" download>画像をダウンロード</a>
-      <button type="button" class="secondary" id="exportCloseBtn">閉じる</button>
-    </div>
-    <div class="export-help">スマートフォンで直接保存できない場合は、上の画像を長押しして保存してください。対応している端末では「画像を共有」から保存先やアプリを選べます。</div>
-  </div>
-</div>
-
-</body>
-</html>
+</main>
+<footer class="footer"><span>特殊環境下現地調査</span><span>非公式ファンメイドコンテンツ</span></footer>
+</body></html>
