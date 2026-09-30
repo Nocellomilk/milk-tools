@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>狂い咲きの本丸｜全調査記録照合｜歴防本部</title><style>
+
+*{box-sizing:border-box}
+:root{
+ --bg:#141617;--panel:#2d3031;--panel2:#373a3b;--paper:#e7e7e2;--ink:#f1f2ef;
+ --muted:#c0c5c1;--line:#555b58;--line2:#6b716d;--accent:#c3c6c1;--dim:#303435;
+ --warn:#b8a99a;--black:#090a0b;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#282b2c 0,#151718 42%,#0d0f10 100%);color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.85;min-height:100vh}
+button,input,select{font:inherit}
+.govbar{background:#090a0b;border-bottom:1px solid #343839;color:#eee}
+.govbar-inner{width:min(1120px,94%);margin:auto;padding:15px 0;display:flex;align-items:center;gap:20px}
+.brand small{display:block;font-size:10px;letter-spacing:.18em;color:#858b88}
+.brand strong{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;letter-spacing:.12em;font-weight:500}
+.dept{margin-left:auto;font-size:12px;color:#a8adaa;border:1px solid #3c4140;padding:6px 10px;letter-spacing:.08em}
+.unofficial{font-size:11px;color:#949997}
+.shell{width:min(980px,94%);margin:28px auto 60px}
+.topline{font-size:11px;letter-spacing:.16em;color:#737a77;border-bottom:1px solid #343837;padding-bottom:9px;margin-bottom:20px}
+.card{background:linear-gradient(180deg,#323536,#292c2d);border:1px solid var(--line);box-shadow:0 16px 50px #0008;margin-bottom:18px}
+.hero{padding:34px 36px 30px;border-top:4px solid #5c615e;position:relative;overflow:hidden}
+
+.kicker{font-size:10px;letter-spacing:.22em;color:#7f8682;margin-bottom:5px}
+h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:500}
+h1{font-size:32px;letter-spacing:.1em;margin:0 0 8px;color:#eceeea}
+.hero p{margin:0;color:#c1c6c2;font-size:13px;max-width:720px}
+.notice{margin-top:22px;border:1px solid #3b403e;background:#292c2d;padding:14px 16px;color:#d0d4d0;font-size:12px}
+.screen{display:none;padding:30px 34px 34px}
+.screen.active{display:block}
+.section-title{display:flex;align-items:center;gap:12px;margin:0 0 20px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.section-title .num{font-size:10px;border:1px solid #555b58;padding:3px 7px;color:#a8aeaa;letter-spacing:.1em}
+.section-title h2{font-size:22px;letter-spacing:.07em;margin:0;color:#e1e3df}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:15px}
+label{display:block;font-size:12px;color:#a9afab;margin-bottom:6px}
+input,select{width:100%;background:#1c1f20;color:#f0f1ee;border:1px solid #555b58;padding:11px 12px;outline:none}
+input:focus,select:focus{border-color:#737a76}
+.help{font-size:11px;color:#747b77;margin-top:5px}
+.btnrow{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+button{border:1px solid #555b58;background:#24282a;color:#e5e7e3;padding:10px 17px;cursor:pointer}
+button:hover{background:#303537}
+button.primary{background:#d8dad5;color:#161819;border-color:#d8dad5;font-weight:700}
+button.primary:hover{background:#f0f1ed}
+button.ghost{background:transparent}
+.button-link{appearance:none;border:1px solid #555b58;background:#24282a;color:#e5e7e3;padding:10px 16px;font:inherit;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.button-link:hover{background:#303537}.ghost-link{background:transparent}
+.center-actions{justify-content:center}
+button.dream{background:#e7e9e5;color:#17191a;border-color:#e7e9e5;font-weight:700;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 18px rgba(231,233,229,.10)}
+button.dream:hover{background:#fff}
+.dreamtext{max-width:760px;margin:0 auto}
+.casehead{border:1px solid #444947;background:#292c2d;padding:17px 19px;margin-bottom:17px}
+.casehead small{display:block;color:#7f8682;letter-spacing:.16em;font-size:9px}
+.casehead strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;letter-spacing:.09em;margin:3px 0;color:#e7e9e5}
+.casehead span{font-size:11px;color:#8d9490}
+.record{border-left:2px solid #555b58;padding:2px 0 2px 18px;margin:20px 0}
+.record h3{font-size:16px;margin:0 0 5px;color:#d7dad6}
+.record p{font-size:13px;color:#c7cbc7;margin:0 0 8px}
+.record ul{margin:7px 0 0;padding-left:20px;color:#bec3bf;font-size:13px}
+.warning{border:1px solid #514943;background:#191613;padding:15px 17px;color:#b7aca3;font-size:12px;margin:18px 0}.warning h3{margin:0 0 10px;color:#d2c8bf;font-size:13px;letter-spacing:.08em}.warning p{margin:0;line-height:1.9}.warning p+p{margin-top:8px}
+.locations{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.loc{border:1px solid #3d4240;background:#2d3031;padding:17px;cursor:pointer;min-height:150px;transition:.15s}
+.loc:hover{border-color:#707672;background:#181b1c}
+.loc.done{opacity:.48;pointer-events:none;cursor:default;filter:saturate(.45)}.loc.done:after{content:'調査済';display:block;margin-top:12px;font-size:10px;letter-spacing:.14em;color:#9da39f}
+.loc .code{font-size:9px;letter-spacing:.18em;color:#717874}
+.loc strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;margin:5px 0 7px}
+.loc p{font-size:11.5px;color:#afb5b1;margin:0}
+.loc-slot{min-height:150px;border:1px solid rgba(90,96,92,.22);background:rgba(45,48,49,.12)}
+.event{display:none;margin-top:18px;border:1px solid #444a47;background:#303334;padding:22px}
+.event.active{display:block}
+.event h3{margin:0 0 12px;font-size:20px}
+.event p{font-size:13px;color:#d0d4d0}
+.choice{display:grid;gap:8px;margin-top:15px}
+.choice button{text-align:left}
+.observation{margin-top:14px;padding:13px 15px;border:1px dashed #4c524f;color:#d5d9d5;font-size:12.5px;background:#3a3e3d}
+.keyword{display:inline-block;border:1px solid #626864;background:#3a3f3d;padding:4px 9px;margin:4px 5px 0 0;font-size:11px;color:#d5d8d4}
+.special{border-color:#625b55;background:#171513}
+.special .section-title{border-color:#49423d}
+.specialflag{display:none;margin:12px 0;padding:12px;border:1px solid #615950;color:#c0b3a7;font-size:12px}
+.specialflag.on{display:block}
+.resultbox{border:1px solid #454a48;background:#2d3031;padding:20px}
+.resultbox dl{display:grid;grid-template-columns:150px 1fr;margin:0;font-size:12px}
+.resultbox dt,.resultbox dd{padding:8px 0;border-bottom:1px solid #282c2b;margin:0}
+.resultbox dt{color:#7f8682}.resultbox dd{color:#e1e4e0}
+.lookup{display:flex;gap:8px;margin-top:12px}
+.lookup input{flex:1}
+.lookupout{margin-top:12px;padding:14px;border:1px solid #373c3a;background:#303334;color:#e0e3df;font-size:12px;min-height:48px}
+.trail{margin-top:18px;border-top:1px solid #4b514e}.trail-item{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:14px 4px;border-bottom:1px solid #414644}.trail-no{font-size:10px;color:#8d9490;letter-spacing:.12em}.trail-item strong{display:block;font-size:13px;color:#eceeeb}.trail-item span{display:block;font-size:11.5px;color:#b8bdb9;margin-top:3px}.savecards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.savecard{border:1px solid #555b58;background:#292c2d;padding:18px}.savecard strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;margin-bottom:6px}.savecard p{font-size:11.5px;color:#b6bbb7;margin:0 0 12px}.spoiler{font-size:10.5px;color:#c9bdb2;border-left:2px solid #756b63;padding-left:9px;margin:10px 0}.preview{margin-top:10px;padding:14px;border:1px dashed #606662;background:#363a39;font-size:11px;color:#d4d8d4;white-space:pre-line}.savecard button{width:100%}.save-image{display:block;width:100%;height:auto;margin-top:12px;border:1px solid #555b58;background:#e7e7e2}.download-link{display:block;text-align:center;margin-top:8px;border:1px solid #555b58;padding:9px 12px;color:#e5e7e3;text-decoration:none;background:#24282a}.download-link:hover{background:#303537}@media(max-width:720px){.savecards{grid-template-columns:1fr}}.footer{width:min(980px,94%);margin:0 auto 35px;color:#626966;font-size:10px;display:flex;justify-content:space-between;gap:20px}
+.debug{color:#6e7571;font-size:10px;margin-top:20px}
+.prose{font-size:13px;color:#d0d4d0}.prose p{margin:0 0 1em}.prose .break{height:1px;background:#444a47;margin:24px 0}.endtitle{margin:24px 0 10px;padding:18px;border:1px solid #555b58;background:#232627;text-align:center}.endtitle small{display:block;font-size:10px;letter-spacing:.18em;color:#8e9591}.endtitle strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;letter-spacing:.08em;margin-top:4px}.disposition{text-align:center;font-size:11px;color:#9da39f}.locked{opacity:.35;pointer-events:none}.subtle{font-size:11px;color:#8e9591}.finalchoices{display:grid;gap:9px;margin-top:16px}.finalchoices button{padding:13px 15px}.hidden{display:none!important}
+@media(max-width:720px){.hero,.screen{padding-left:20px;padding-right:20px}.grid,.locations{grid-template-columns:1fr}.resultbox dl{grid-template-columns:1fr}.resultbox dt{border-bottom:0;padding-bottom:0}.lookup{display:block}.lookup button{margin-top:8px;width:100%}.govbar-inner{flex-wrap:wrap}.dept{margin-left:0}.hero:after{display:none}}
+/* v0.4.1 readability pass: narrative/readable content enlarged; bureaucratic chrome stays compact */
+.record h3{font-size:19px;line-height:1.55}
+.record p,.record ul{font-size:16.5px;line-height:1.9}
+.loc strong{font-size:20px}.loc p{font-size:15.5px;line-height:1.75}
+.event h3{font-size:22px;line-height:1.5}.event p{font-size:17px;line-height:1.9}
+.observation{font-size:16px;line-height:1.85}
+.keyword{font-size:13px}
+.specialflag{font-size:15px;line-height:1.75}
+.lookupout{font-size:16px;line-height:1.85}
+.resultbox dl{font-size:15.5px;line-height:1.7}
+.trail-item strong{font-size:16px;line-height:1.55}.trail-item span{font-size:14.5px;line-height:1.65}
+.savecard strong{font-size:20px}.savecard p{font-size:15.5px;line-height:1.75}
+.spoiler{font-size:13.5px;line-height:1.65}
+.preview{font-size:16px;line-height:1.75;padding:18px}
+.prose{font-size:17.5px;line-height:1.95}.prose p{margin:0 0 1.15em}
+.endtitle small{font-size:11px}.endtitle strong{font-size:27px}.disposition{font-size:14px;line-height:1.6}
+.finalchoices button,.choice button{font-size:15.5px;line-height:1.55}
+@media(max-width:720px){
+ .record p,.record ul{font-size:17px;line-height:1.9}
+ .loc p{font-size:16px}.event p{font-size:17px}
+ .observation,.lookupout{font-size:16.5px}
+ .resultbox dl{font-size:16px}
+ .prose{font-size:18px;line-height:1.95}
+ .preview{font-size:16.5px;line-height:1.8}
+ .savecard p{font-size:16px}
+}
+
+/* スマートフォン向け画像保存・共有 */
+.export-modal{display:none;position:fixed;inset:0;z-index:1000;background:#151817d9;padding:22px;overflow:auto}
+.export-modal.open{display:flex;align-items:center;justify-content:center}
+.export-dialog{width:min(760px,96vw);max-height:94vh;overflow:auto;background:#e7e7e2;border:1px solid #555b58;border-top:5px solid #343936;box-shadow:0 18px 60px #0008;padding:20px;color:#202422}
+.export-dialog h3{margin:0 0 8px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;color:#202422}
+.export-dialog p{margin:0 0 13px;font-size:12px;line-height:1.85;color:#5f6662}
+.export-preview{display:block;max-width:100%;max-height:62vh;margin:0 auto 14px;border:1px solid #aeb3af;background:#fff}
+.export-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.export-buttons button,.export-buttons a{display:inline-flex;align-items:center;justify-content:center;min-width:148px;padding:10px 14px;border:1px solid #343936;background:#343936;color:#f1f2ef;text-decoration:none;font:11px/1.2 inherit;cursor:pointer}
+.export-buttons .secondary{background:#f4f4ef;color:#343936;border-color:#858b87}
+.export-help{margin-top:12px;padding:10px 12px;border-left:3px solid #69706c;background:#d9dad5;font-size:11px;line-height:1.8;color:#4b514e}
+.export-close{float:right;border:0!important;background:transparent!important;color:#5f6662!important;font-size:20px!important;padding:0 2px!important;min-width:0!important}
+
+
+.verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.verify-row{display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center}.verify-code{font-size:11px;letter-spacing:.12em;color:#a8aeaa;border:1px solid #555b58;padding:10px 8px;text-align:center;background:#252829}.verify-message,.memorial-wrap,.verify-error{display:none}.verify-message.on,.memorial-wrap.on,.verify-error.on{display:block}.verify-message{margin-top:22px;padding:20px;border:1px solid #555b58;background:#303334}.verify-error{margin-top:18px;padding:14px 16px;border:1px solid #615950;background:#171513;color:#cbbfb4;font-size:14px}.memorial-canvas{display:block;width:min(100%,720px);height:auto;margin:14px auto;border:1px solid #555b58;background:#e7e7e2}.name-row{margin-top:18px;padding-top:18px;border-top:1px solid #444a47}@media(max-width:720px){.verify-grid{grid-template-columns:1fr}.verify-row{grid-template-columns:82px 1fr}}
+</style></head><body>
+<header class="govbar"><div class="govbar-inner"><div class="brand"><small>HISTORY DEFENSE HEADQUARTERS</small><strong>歴防本部</strong></div><div class="dept">生活環境部　本丸管理課</div><div class="unofficial">二次創作・非公式ファンメイド</div></div></header>
+<div class="shell"><div class="topline">本丸管理課 ＞ 特殊環境下における現地調査 ＞ 全調査記録照合</div>
+<div class="card hero"><div class="kicker">SPECIAL FIELD INVESTIGATION / COMPLETE RECORD</div><h1>全調査記録照合</h1><p>《狂い咲きの本丸》に関するすべての調査結果を確認した方を対象とした、記録照合用ページです。</p></div>
+<div class="card"><section class="screen active"><div class="section-title"><span class="num">01</span><h2>調査記録入力</h2></div>
+<div class="casehead"><small>SPECIAL FIELD INVESTIGATION 01</small><strong>狂い咲きの本丸</strong><span>全10件の最終記録について、到達したEND名を入力してください。</span></div>
+<div class="record"><h3>照合方法</h3><p>各END番号に対応するタイトルを入力してください。すべての記録が一致した場合、全調査記録の確認完了として記録します。</p></div>
+<div class="verify-grid"><div class="verify-row"><div class="verify-code">END 01-A</div><input id="e1" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 01-B</div><input id="e2" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 01-C</div><input id="e3" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 02</div><input id="e4" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 03</div><input id="e5" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 04</div><input id="e6" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 05-A</div><input id="e7" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 05-B</div><input id="e8" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 05-C</div><input id="e9" autocomplete="off" placeholder="END名を入力"></div>
+<div class="verify-row"><div class="verify-code">END 06</div><input id="e10" autocomplete="off" placeholder="END名を入力"></div></div>
+<div id="verifyError" class="verify-error">照合できない記録があります。各調査記録をもう一度ご確認ください。</div>
+<div class="btnrow"><button class="primary" onclick="verifyRecords()">調査記録を照合する</button></div>
+<div id="success" class="verify-message"><div class="section-title"><span class="num">COMPLETE</span><h2>全調査記録確認</h2></div><div class="prose"><p><strong>全調査記録の照合を確認しました。</strong></p><p>《狂い咲きの本丸》に関するすべての調査結果を確認したことを記録します。</p><p>長期にわたる現地調査へのご協力、ありがとうございました。</p></div>
+<div class="name-row"><div class="field"><label>審神者名（任意）</label><input id="masterName" placeholder="例：審神者"><div class="help">記念画像にのみ使用します。</div></div></div>
+<div class="btnrow center-actions"><button onclick="makeMemorial()">記念画像を作成</button></div>
+<div id="memorialWrap" class="memorial-wrap"><canvas id="memorial" class="memorial-canvas" width="960" height="540"></canvas><div class="btnrow center-actions"><a id="saveLink" class="button-link" download="狂い咲きの本丸_全調査記録確認証.png">画像を保存</a><button type="button" onclick="shareComplete()">Xでシェア</button></div></div></div>
+</section></div></div>
+<footer class="footer"><div><strong>歴防本部　生活環境部　本丸管理課</strong><br>特殊環境下現地調査端末</div><div>UNOFFICIAL FAN-MADE<br>刀剣乱舞 二次創作・非公式ファンメイド</div></footer>
+<script>
+const answers=["春の終わり","春の終わり","春の終わり","春は続く","誰も知らない春","桜は好きですか","調査引継ぎ","調査引継ぎ","調査引継ぎ","春は終わらない"];
+function normalize(s){return (s||"").normalize("NFKC").replace(/[\s　]+/g,"").replace(/[「」『』《》]/g,"")}
+function verifyRecords(){const ok=answers.every((a,i)=>normalize(document.getElementById("e"+(i+1)).value)===normalize(a));document.getElementById("verifyError").classList.toggle("on",!ok);document.getElementById("success").classList.toggle("on",ok);if(ok)document.getElementById("success").scrollIntoView({behavior:"smooth",block:"start"})}
+function makeMemorial(){
+ const c=document.getElementById("memorial"),x=c.getContext("2d");
+ const name=(document.getElementById("masterName").value||"審神者").trim();
+ const W=960,H=540;
+ x.clearRect(0,0,W,H);
+
+ // 通常の調査完了画像と同一の上部レイアウト
+ x.fillStyle="#e7e7e2";x.fillRect(0,0,W,H);
+ x.fillStyle="#171a19";x.fillRect(0,0,W,76);
+ x.fillStyle="#f1f2ef";
+ x.font='500 28px "Yu Mincho","Hiragino Mincho ProN",serif';
+ x.fillText("特殊環境下 現地調査",34,48);
+
+ // 本文枠
+ x.strokeStyle="#858b87";x.lineWidth=1;
+ x.strokeRect(34,108,W-68,H-148);
+
+ x.fillStyle="#69706c";
+ x.font='600 12px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText("SPECIAL FIELD INVESTIGATION 01",54,142);
+
+ x.fillStyle="#202422";
+ x.font='500 31px "Yu Mincho","Hiragino Mincho ProN",serif';
+ x.fillText("《狂い咲きの本丸》",54,181);
+
+ x.font='500 42px "Yu Mincho","Hiragino Mincho ProN",serif';
+ x.fillText("全調査記録確認証",54,244);
+
+ x.strokeStyle="#b6bab6";
+ x.beginPath();x.moveTo(54,268);x.lineTo(906,268);x.stroke();
+
+ x.fillStyle="#69706c";
+ x.font='600 12px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText("INVESTIGATION RECORD",54,304);
+
+ x.fillStyle="#202422";
+ x.font='700 30px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText("10 / 10",54,342);
+
+ x.fillStyle="#69706c";
+ x.font='600 12px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText("調査担当",54,382);
+
+ x.fillStyle="#202422";
+ x.font='500 20px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText(name,130,389);
+
+ x.fillStyle="#414744";
+ x.font='500 15px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText("本件における全10件の最終記録を確認したことを記録します。",54,430);
+
+ // 桜印
+ x.save();x.translate(824,208);x.strokeStyle="#8b908c";x.fillStyle="#d7d8d3";x.lineWidth=2;
+ for(let i=0;i<5;i++){
+   const a=-Math.PI/2+i*Math.PI*2/5;
+   x.save();x.rotate(a);x.beginPath();x.moveTo(0,-5);
+   x.bezierCurveTo(-18,-18,-22,-45,0,-55);
+   x.bezierCurveTo(22,-45,18,-18,0,-5);
+   x.closePath();x.fill();x.stroke();x.restore();
+ }
+ x.beginPath();x.arc(0,0,6,0,Math.PI*2);x.fillStyle="#e7e7e2";x.fill();x.stroke();x.restore();
+
+ x.fillStyle="#676e6a";
+ x.font='400 11px "Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif';
+ x.fillText("歴防本部　生活環境部　本丸管理課",40,H-17);
+ x.textAlign="right";x.fillText("COMPLETE RECORD / UNOFFICIAL FAN-MADE",W-40,H-17);x.textAlign="left";
+
+ document.getElementById("memorialWrap").classList.add("on");
+ document.getElementById("saveLink").href=c.toDataURL("image/png");
+}
+function shareComplete(){
+ const text="【刀剣乱舞・非公式ファンメイド】特殊環境下現地調査\n《狂い咲きの本丸》すべての結末を見届けました。\n\n#特殊環境下現地調査\n#狂い咲きの本丸";
+ const url="https://milk-tools.com/special-field/kuruizaki/";
+ const shareUrl="https://twitter.com/intent/tweet?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url);
+ window.open(shareUrl,"_blank","noopener,noreferrer");
+}
+
+</script></body></html>
