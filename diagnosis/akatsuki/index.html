@@ -3,57 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>非公式・刀剣男士個体観測｜追加審査 動作試作 v4.6（保存画像配色・ヘッダー検証版）</title>
+<title>非公式・刀剣男士個体観測｜追加審査《暁》試作</title>
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-:root{--bg:#cfd2d0;--paper:#f1f1ed;--paper2:#e8e9e5;--ink:#292d2d;--muted:#666d6b;--line:#a8adaa;--line2:#c5c9c5;--deep:#343d3b;--accent:#566561;--pale:#e0e3df;--silver:#7b8481}
-body{margin:0;background:linear-gradient(180deg,#c8ccca 0%,#dadcd8 38%,#cfd2d0 100%);color:var(--ink);font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
-.wrap{width:min(980px,94%);margin:48px auto 76px}.back{display:inline-block;margin-bottom:15px;padding:9px 14px;border:1px solid #969d99;background:#eceeea;color:#46534f;text-decoration:none;font-size:12px;font-weight:bold}
-.header{position:relative;text-align:center;padding:40px 26px 36px;margin-bottom:24px;background:rgba(242,242,238,.97);border:1px solid var(--line);border-top:5px solid var(--deep);box-shadow:0 9px 28px #20252320}.header:after{content:"ADDITIONAL EXAMINATION / WORKING PROTOTYPE";position:absolute;right:18px;bottom:10px;color:#7e8783;font:10px/1.4 Arial,sans-serif;letter-spacing:.16em}.seal{display:inline-flex;width:58px;height:58px;border:1px solid var(--accent);align-items:center;justify-content:center;color:var(--accent);font-weight:bold;letter-spacing:.08em;font-size:11px;margin-bottom:13px;transform:rotate(-2deg)}
-.kicker{font-size:12px;letter-spacing:.28em;color:var(--silver)}h1{font-size:30px;letter-spacing:.14em;margin:8px 0 10px}.sub{max-width:800px;margin:auto;font-size:13px;color:var(--muted);line-height:2}.unofficial{display:inline-block;margin-top:16px;padding:5px 11px;border:1px solid #999f9c;color:#606864;background:#e7e9e5;font:10px/1.5 Arial,sans-serif;letter-spacing:.14em}
-.panel{background:rgba(243,243,239,.98);border:1px solid var(--line);box-shadow:0 8px 24px #20252318;margin-bottom:24px}.input-panel{padding:30px 34px}.section-code{font:11px/1.4 Arial,sans-serif;letter-spacing:.18em;color:var(--accent);margin-bottom:7px}h2{font-size:19px;letter-spacing:.08em;margin:0 0 8px}.lead{font-size:13px;color:var(--muted);line-height:1.9;margin:0 0 24px}
-.field label,.question-label{display:block;font-size:13px;color:#444d4a;margin-bottom:8px;font-weight:bold}.field input,.other-input,select,.registered-input{width:100%;padding:12px 13px;border:1px solid #b3b8b4;background:#fafaf7;color:var(--ink);font:inherit;font-size:15px;outline:none}.field input:focus,.other-input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 2px #56656118}.registered-input{margin-top:8px;background:#f4f4f0;color:#59615e;letter-spacing:.12em;cursor:not-allowed;opacity:1;-webkit-text-fill-color:#59615e}.registered-input.pin{letter-spacing:.28em}.field-note,.question-hint{font-size:10px;color:#7a817e;line-height:1.7}
-.exam-block{margin-top:26px;padding-top:24px;border-top:1px solid var(--line2)}.exam-block:first-of-type{margin-top:18px}.choice-options{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.choice-option{position:relative}.choice-option input{position:absolute;opacity:0;pointer-events:none}.choice-option span{display:flex;min-height:50px;height:100%;align-items:center;justify-content:center;padding:9px 7px;border:1px solid #b3b8b4;background:#f7f7f3;color:#4a5350;font-size:12px;text-align:center;cursor:pointer;transition:.15s;line-height:1.5}.choice-option span:hover{border-color:#747f7b;background:#eceeea}.choice-option input:checked+span{border-color:var(--deep);background:#dce1dd;color:#29322f;box-shadow:inset 0 0 0 1px #343d3b33;font-weight:bold}
-.other-wrap{display:none;margin-top:9px}.other-wrap.show{display:block}.material-note{margin-top:8px;font-size:10px;line-height:1.8;color:#737b78}.notice{margin-top:22px;padding:16px 18px;border:1px solid #aaa6a0;border-left:5px solid #6b6760;background:linear-gradient(135deg,#eeede8,#e5e5df);color:#5f625e;font-size:11px;line-height:1.9}.actions{text-align:center}button{margin-top:25px;padding:13px 36px;border:1px solid #252c2a;background:var(--deep);color:#fff;font-family:inherit;letter-spacing:.16em;cursor:pointer;box-shadow:0 3px 8px #0002}button:hover{filter:brightness(1.08)}#prototypeMessage{min-height:18px;margin-top:12px;text-align:center;color:#626966;font-size:11px}
-.binary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.binary-card{border:1px solid #b3b8b4;background:#f7f7f3;padding:12px}.binary-card label{display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer}.binary-card input{accent-color:#566561}.binary-card small{display:block;margin-top:5px;color:#7a817e;font-size:9px;line-height:1.5}
-details.dev{margin-top:18px;border:1px dashed #a8adaa;background:#eeefeb;padding:12px 14px}details.dev summary{cursor:pointer;font-size:11px;font-weight:bold;color:#59615e}.devgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.devgrid label{font-size:10px;color:#6a716e}.devgrid select{margin-top:5px;font-size:12px;padding:9px}
-.result-panel{display:none;padding:30px 34px}.result-panel.show{display:block}.result-head{text-align:center;padding:8px 0 22px;border-bottom:1px solid var(--line2)}.result-name{font-size:13px;color:#69716e}.main-type{font-size:34px;letter-spacing:.14em;margin:9px 0 4px;color:#2f3936}.main-caption{font-size:11px;color:#777f7c}.secondary{margin:18px auto 0;max-width:700px;padding:12px 15px;background:#e7e9e5;border:1px solid #b7bcb8;font-size:11px;line-height:1.8}.secondary strong{color:#39433f}
-.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}.result-card{border:1px solid #aeb4b0;background:#f8f8f5;padding:18px}.result-card h3{margin:0 0 10px;font-size:13px;letter-spacing:.08em;color:#4b5551}.pole-value{font-size:25px;letter-spacing:.08em}.pole-sub{font-size:10px;color:#7a817e;line-height:1.7;margin-top:7px}.axis-card{grid-column:1/-1}.axis-row{margin:14px 0}.axis-title{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px}.axis-title strong{font-size:13px}.bar{height:10px;background:#d8dbd7;border:1px solid #b7bbb8;position:relative}.bar-fill{height:100%;background:#65736f}.axis-numbers{display:flex;justify-content:space-between;margin-top:4px;font:10px Arial,sans-serif;color:#69716e}.score-table{width:100%;border-collapse:collapse;font-size:11px}.score-table td{padding:6px 4px;border-bottom:1px solid #d1d4d0}.score-table td:last-child{text-align:right;font-family:Arial,sans-serif}.result-note{margin-top:18px;padding:12px 14px;border-left:4px solid #777f7b;background:#e9eae6;color:#626a67;font-size:10px;line-height:1.85}.warning-lite{border-left-color:#4d5753;background:#e3e5e1;color:#505855}
-.disclaimer{padding:21px 24px;font-size:12px;color:#666e6b;background:#edeee9;border:1px solid var(--line);box-shadow:0 7px 20px #20252310;line-height:1.95}.disclaimer strong{color:#414946}.footer{text-align:center;color:#777f7c;font-size:10px;letter-spacing:.11em;margin-top:18px}
-@media(max-width:720px){.wrap{margin:18px auto 58px}.header{padding:31px 17px}h1{font-size:23px}.input-panel,.result-panel{padding:21px 17px}.choice-options{grid-template-columns:repeat(2,1fr)}.choice-option span{min-height:52px;padding:9px 6px}.binary-row,.result-grid,.devgrid{grid-template-columns:1fr}.axis-card{grid-column:auto}}
+:root{
+  --bg:#dfe3e8;--paper:#f8f8f5;--paper2:#eef0f2;--ink:#2f3440;--muted:#6c7180;
+  --line:#b8bdc8;--line2:#d4d6dc;--deep:#4b5267;--blue:#66758d;--violet:#7a748c;
+  --gold:#a3936e;--pale:#ececf2;--dawn:#f2eee6;
+}
+body{margin:0;background:
+ linear-gradient(180deg,#cfd5df 0%,#e5e4e8 32%,#eee9e2 68%,#dfe3e8 100%);
+ color:var(--ink);font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
+.wrap{width:min(980px,94%);margin:48px auto 76px}
+.back{display:inline-block;margin-bottom:15px;padding:9px 14px;border:1px solid #aeb4c0;background:#f6f6f3;color:#505a70;text-decoration:none;font-size:12px;font-weight:bold}
+.header{position:relative;text-align:center;padding:40px 26px 36px;margin-bottom:24px;background:rgba(250,249,246,.96);border:1px solid var(--line);border-top:5px solid var(--deep);box-shadow:0 9px 28px #30344318}
+.header:after{content:"ADDITIONAL OBSERVATION / AKATSUKI";position:absolute;right:18px;bottom:10px;color:#8b8993;font:10px/1.4 Arial,sans-serif;letter-spacing:.16em}
+.seal{display:inline-flex;width:60px;height:60px;border:1px solid var(--violet);align-items:center;justify-content:center;color:var(--violet);font-weight:bold;letter-spacing:.08em;font-size:12px;margin-bottom:13px;transform:rotate(-2deg);background:#fbfaf7}
+.kicker{font-size:12px;letter-spacing:.28em;color:#8a8995}h1{font-size:30px;letter-spacing:.14em;margin:8px 0 10px}
+.sub{max-width:800px;margin:auto;font-size:13px;color:var(--muted);line-height:2}
+.unofficial{display:inline-block;margin-top:16px;padding:5px 11px;border:1px solid #aaa9b3;color:#6d6b76;background:#f0eff1;font:10px/1.5 Arial,sans-serif;letter-spacing:.14em}
+.notice{margin-top:18px;padding:15px 18px;border:1px solid #c6bfaf;border-left:5px solid var(--gold);background:linear-gradient(135deg,#f6f4ee,#eeedf1);color:#66636a;font-size:11px;line-height:1.9;text-align:left}
+.panel{background:rgba(249,249,246,.98);border:1px solid var(--line);box-shadow:0 8px 24px #30344314;margin-bottom:24px}
+.input-panel,.result-panel{padding:30px 34px}.section-code{font:11px/1.4 Arial,sans-serif;letter-spacing:.18em;color:var(--violet);margin-bottom:7px}
+h2{font-size:19px;letter-spacing:.08em;margin:0 0 8px}.lead{font-size:13px;color:var(--muted);line-height:1.9;margin:0 0 22px}
+.field label,.question-label{display:block;font-size:13px;color:#4c5260;margin-bottom:8px;font-weight:bold}
+.field input,select{width:100%;padding:12px 13px;border:1px solid #bdc1ca;background:#fdfcf9;color:var(--ink);font:inherit;font-size:14px;outline:none}
+.field input:focus,select:focus{border-color:var(--violet);box-shadow:0 0 0 2px #7a748c18}
+.field-note,.question-hint{font-size:10px;color:#858792;line-height:1.7}.field-note{margin-top:6px}
+.exam-block{margin-top:26px;padding-top:24px;border-top:1px solid var(--line2)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.choice-options{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.choice-option{position:relative}.choice-option input{position:absolute;opacity:0;pointer-events:none}
+.choice-option span{display:flex;min-height:50px;height:100%;align-items:center;justify-content:center;padding:9px 7px;border:1px solid #bdc1ca;background:#faf9f6;color:#555b69;font-size:12px;text-align:center;cursor:pointer;transition:.15s;line-height:1.5}
+.choice-option span:hover{border-color:#8c8998;background:#f0eff2}.choice-option input:checked+span{border-color:var(--deep);background:#e7e6ec;color:#333947;box-shadow:inset 0 0 0 1px #4b526733;font-weight:bold}
+.actions{text-align:center}button{margin-top:25px;padding:13px 36px;border:1px solid #373d50;background:var(--deep);color:#fff;font-family:inherit;letter-spacing:.16em;cursor:pointer;box-shadow:0 3px 8px #0002}
+button:hover{filter:brightness(1.08)}#error{min-height:18px;margin-top:12px;text-align:center;color:#8a4b54;font-size:11px}
+.result-panel{display:none}.result-panel.show{display:block}.result-head{text-align:center;padding:10px 0 26px;border-bottom:1px solid var(--line2)}
+.result-name{font-size:19px;font-weight:bold;color:#505766}.main-type{font-size:38px;letter-spacing:.15em;margin:12px 0 5px;color:#343b4c}
+.main-caption{font-size:13px;line-height:1.8;color:#727582}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.result-card{border:1px solid #c1c4cc;background:linear-gradient(145deg,#fbfaf7,#f0eff2);padding:20px}
+.result-card h3{margin:0 0 10px;font-size:13px;letter-spacing:.08em;color:#5c6170}.result-value{font-size:25px;font-weight:bold;letter-spacing:.08em;color:#3e4557}
+.result-sub{font-size:12px;line-height:1.85;color:#70737f;margin-top:8px}.wide{grid-column:1/-1}
+.observation{margin-top:18px;padding:18px 20px;border:1px solid #c6c2c9;border-left:5px solid var(--violet);background:#f6f4f3;font-size:13px;line-height:2;color:#555965}
+.caution{margin-top:16px;padding:14px 16px;border-left:4px solid var(--gold);background:#f2eee7;color:#68636a;font-size:11px;line-height:1.9}
+.dev-note{margin-top:18px;padding:13px 15px;border:1px dashed #aaaab3;background:#f0eff1;color:#74727d;font-size:11px;line-height:1.8}
+.disclaimer{padding:21px 24px;font-size:12px;color:#70727d;background:#f3f2f0;border:1px solid var(--line);box-shadow:0 7px 20px #30344310;line-height:1.95}
+.footer{text-align:center;color:#85858e;font-size:10px;letter-spacing:.11em;margin-top:18px}
+@media(max-width:720px){.wrap{margin:18px auto 58px}.header{padding:31px 17px}h1{font-size:23px}.input-panel,.result-panel{padding:21px 17px}.choice-options{grid-template-columns:repeat(2,1fr)}.grid3,.result-grid{grid-template-columns:1fr}.wide{grid-column:auto}.main-type{font-size:30px}}
 
-/* v4.5 result readability / previous-export style checkpoint */
-.result-panel{padding:36px 40px}.result-panel .section-code{font-size:12px}.result-head{padding:12px 0 30px}.result-name{font-size:20px;font-weight:bold;color:#4a5551;letter-spacing:.04em}.main-type{font-size:46px;line-height:1.35;margin:12px 0 6px;color:#27312e}.main-caption{font-size:15px;line-height:1.8;color:#5d6663}.secondary{margin-top:22px;max-width:760px;padding:16px 18px;font-size:16px;line-height:1.8;background:#e7e9e5}.result-grid{display:block;margin-top:24px}.result-card{margin-top:16px;padding:24px 26px}.result-card h3{font-size:18px;margin-bottom:14px}.pole-value{font-size:34px;font-weight:bold}.pole-sub{font-size:14px;line-height:1.8;color:#5e6864}.axis-card{margin-top:16px}.axis-row{padding:8px 0 13px;margin:10px 0 16px;border-bottom:1px solid #d6d9d5}.axis-row:last-child{border-bottom:0}.axis-title{font-size:15px;margin-bottom:10px;align-items:center}.axis-title strong{font-size:19px;color:#36423e}.bar{height:16px}.axis-numbers{font-size:14px;margin-top:7px;color:#505b57}.result-note{font-size:14px;line-height:1.8;padding:16px 18px}.result-actions{margin-top:28px;padding-top:24px;border-top:1px solid var(--line2);text-align:center}.result-actions button{margin:7px 5px 0;padding:14px 22px;font-size:14px;letter-spacing:.08em}.result-actions button.secondary-action{background:#f4f4f0;color:#34403c;border-color:#69736f}.handling-notice{margin-top:20px;padding:18px 20px;border:2px solid #737b77;background:#e4e5e0;color:#3f4945;font-size:15px;line-height:1.9;text-align:left}.handling-notice .handling-code{display:block;margin-bottom:6px;font:11px/1.4 Arial,sans-serif;letter-spacing:.16em;color:#66706c}.handling-notice strong{font-size:17px;color:#303936}.export-status{min-height:18px;margin-top:10px;font-size:13px;color:#59635f}.balance-tag{display:inline-block;margin-left:8px;padding:2px 7px;border:1px solid #89918d;font-size:11px;color:#59625f;vertical-align:middle;background:#eef0ec}.detail-warning{font-weight:bold}.field-note,.material-note{font-size:12px}.question-hint{font-size:11px}
-.axis-win{font-weight:700!important;color:#242b29!important}.pole-description{font-size:15px;line-height:1.9;color:#3f4945;margin-top:12px}.pole-level-description{font-size:13px;line-height:1.8;color:#69716e;margin-top:6px}
-.aspect-card{border-left:4px solid #566561;background:linear-gradient(135deg,#f5f5f1,#eceee9)}.aspect-count-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.aspect-count-number{font:700 38px/1 Arial,sans-serif;color:#2f3936}.aspect-count-unit{font-size:14px;color:#5d6663}.aspect-note{margin-top:10px;font-size:12px;line-height:1.9;color:#69716e}.aspect-warning{margin-top:12px;padding:11px 13px;border:1px solid #c2c7c3;background:#eef0ec;font-size:12px;line-height:1.85;color:#505956}.reference-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid #d1d4d0}.reference-links a{display:inline-block;padding:8px 11px;border:1px solid #9aa19d;background:#f2f3ef;color:#43504c;text-decoration:none;font-size:12px;font-weight:bold;letter-spacing:.03em}.reference-links a:hover{background:#e2e5e1;border-color:#69736f}.reference-links a.common-ref{font-weight:normal;color:#5c6662}
-@media(max-width:720px){.result-panel{padding:25px 18px}.result-name{font-size:18px}.main-type{font-size:36px}.main-caption{font-size:14px}.secondary{font-size:15px}.result-card{padding:20px 16px}.result-card h3{font-size:17px}.pole-value{font-size:30px}.axis-title{font-size:14px}.axis-title strong{font-size:17px}.result-actions button{display:block;width:100%;margin:9px 0 0}.handling-notice{font-size:14px;padding:16px}.handling-notice strong{font-size:16px}}
+.binary-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.binary-card{border:1px solid #bdc1ca;background:#faf9f6;padding:12px}.binary-card label{display:flex;align-items:center;gap:7px;font-size:12px;cursor:pointer}.binary-card small{display:block;font-size:10px;color:#858792;line-height:1.6;margin-top:5px}
+.other-wrap{display:none;margin-top:9px}.other-wrap.show{display:block}.other-input{width:100%;padding:12px;border:1px solid #bdc1ca;background:#fdfcf9;font:inherit}.material-note{margin-top:8px;font-size:11px;color:#858792}.result-sub{font-size:12px;line-height:1.8;color:#70737f}.result-head .result-sub{margin-top:12px}.binary-row .field{min-width:0}
+@media(max-width:720px){.binary-row{grid-template-columns:1fr}}
 
+/* Result presentation based on the Tasogare prototype; Akatsuki-only content */
+.result-panel{padding:36px 40px}.result-panel .section-code{font-size:12px}
+.result-head{padding:12px 0 28px}.result-name{font-size:20px}.main-type{font-size:44px;line-height:1.35}.main-caption{font-size:15px}
+.result-grid{display:block;margin-top:22px}.result-card{margin-top:16px;padding:24px 26px}.result-card h3{font-size:18px;margin-bottom:14px}.result-value{font-size:34px}.result-sub{font-size:14px;line-height:1.9}
+.safety-verdict{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:18px 0 8px;padding:14px 20px;border-top:1px solid #b9c1ce;border-bottom:1px solid #b9c1ce;background:linear-gradient(90deg,#f7f7f4,#edf1f4,#f7f7f4);color:#505c70}.safety-verdict .safety-label{font-size:13px;letter-spacing:.09em}.safety-verdict .safety-value{font-size:22px;font-weight:bold;letter-spacing:.12em;color:#3d5267}.safety-verdict .safety-value:before{content:"✓";display:inline-block;margin-right:9px;font-family:Arial,sans-serif;font-size:16px;color:#607d78}.safety-verdict .safety-note{flex-basis:100%;text-align:center;font-size:11px;line-height:1.6;color:#777e88;margin-top:-6px}.result-card.aspect-card{border-left:5px solid #7a748c}.observation{font-size:15px;line-height:2}
+.reference-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.reference-links a{padding:10px 13px;border:1px solid #aeb4c0;background:#f2f3f5;color:#505a70;text-decoration:none;font-size:13px}
+.save-share-heading{font-size:13px;font-weight:600;letter-spacing:.06em;color:#555e72;margin-bottom:8px}.save-share-guidance{text-align:left;font-size:11px;line-height:1.9;color:#737b8b;margin:10px auto 0;max-width:720px}.save-share-guidance strong{font-weight:600}.result-actions{text-align:center;margin-top:24px;padding-top:22px;border-top:1px solid var(--line2)}.result-actions button{margin:7px 5px;padding:13px 20px;font-size:14px}.result-actions button.secondary-action{background:#f4f4f0;color:#414b60;border-color:#8d95a6}.export-status{font-size:13px;min-height:20px;margin-top:10px}.handling-notice{margin-top:20px;padding:18px 20px;border:2px solid #9da5b5;background:#e9ebef;text-align:left;font-size:14px;line-height:1.9}.handling-notice strong{font-size:16px}
+@media(max-width:720px){.result-panel{padding:25px 18px}.result-name{font-size:18px}.main-type{font-size:34px}.result-card{padding:20px 16px}.result-card h3{font-size:17px}.result-actions button{display:block;width:100%;margin:9px 0}.safety-verdict{gap:8px 14px;padding:13px 10px}.safety-verdict .safety-label{font-size:12px}.safety-verdict .safety-value{font-size:20px}.safety-verdict .safety-note{margin-top:0}}
+
+/* 個体観測と同じ事前提出資料レイアウト（PC 4列、スマホ 2列） */
+.material-options{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.material-options .choice-option span{display:flex;min-height:46px;padding:12px 8px;border-color:#bdc1ca;background:#faf9f6;color:#555b69;font-size:13px;line-height:1.45}
+.material-options .choice-option span:hover{border-color:#8c8998;background:#f0eff2}
+.material-options .choice-option input:checked+span{border-color:var(--deep);background:#e7e6ec;color:#333947;box-shadow:inset 0 0 0 1px #4b526733;font-weight:bold}
+/* 安全確認欄：装飾なしの公的観測記録風の四角枠 */
+.safety-verdict{display:block;position:relative;margin:18px 0 12px;padding:25px 20px 20px;border:1px solid #aeb9c2;background:linear-gradient(135deg,#fbfaf7 0%,#f0f3f5 100%);box-shadow:inset 0 0 0 4px #fafaf8,inset 0 0 0 5px #c5cdd3;color:#35485f;text-align:center}
+.safety-verdict-main{display:flex;align-items:center;justify-content:center;gap:22px}
+.safety-verdict .safety-label{font-size:15px;letter-spacing:.1em;color:#43566b}
+.safety-divider{display:block;width:1px;height:31px;background:#aab6c2}
+.safety-verdict .safety-value{font-size:27px;font-weight:600;letter-spacing:.13em;color:#293e54}
+.safety-verdict .safety-value:before{content:none}
+.safety-verdict .safety-note{display:block;margin:12px 0 0;font-size:11px;line-height:1.7;color:#697989}
+@media(max-width:720px){
+ .material-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .safety-verdict{padding:21px 12px 17px}
+ .safety-verdict-main{gap:13px}
+ .safety-verdict .safety-label{font-size:12px;letter-spacing:.03em}
+ .safety-divider{height:25px}
+ .safety-verdict .safety-value{font-size:23px}
+ .safety-verdict .safety-note{margin-top:10px;font-size:10px}
+}
+
+/* Result layout: heading, safety verdict, main aspect and its short explanation. */
+.result-report-heading{text-align:center;margin:23px 0 13px;font-size:20px;letter-spacing:.07em;color:#414b60;font-weight:600}
+.result-head{padding-top:20px}
+.result-head .main-caption{margin:0 0 12px}
+.result-head .main-type{margin:0 0 14px}
+.result-a-short{max-width:690px;margin:0 auto 14px;text-align:center;color:#5b6474;font-size:14px;line-height:1.9}
+.result-secondary{margin-top:12px;font-size:12px;line-height:1.8;color:#777f8c}
+@media(max-width:720px){.result-report-heading{font-size:17px}.result-a-short{font-size:13px}}
+
+/* v0.7: subdued Akatsuki-tinted document header */
+.result-report-banner{
+  margin:14px -12px 13px;padding:23px 16px 26px;text-align:center;
+  background:linear-gradient(180deg,#e8e8f0 0%,#efeff4 42%,#f7f7f6 82%,rgba(248,248,246,0) 100%);
+}
+.result-report-kicker{font-size:11px;letter-spacing:.2em;color:#59647b;line-height:1.8;font-weight:500}
+.result-report-banner .result-report-heading{margin:8px 0 0;font-size:15px;font-weight:400;letter-spacing:.055em;line-height:1.8;color:#4d586c}
+@media(max-width:720px){.result-report-banner{margin:10px -8px 12px;padding:19px 12px 23px}.result-report-banner .result-report-heading{font-size:14px}}
+
+/* v0.8: result header and report-style summary */
+.result-panel{position:relative}
+.result-report-banner{
+ margin:0 -34px 18px;padding:32px 20px 48px;
+ background:linear-gradient(180deg,#e6e8f0 0%,#eaebf1 30%,#f0f0f3 65%,#f8f8f5 100%);
+}
+.result-report-banner .result-report-kicker{letter-spacing:.2em}
+.result-head{padding:25px 0 24px}
+.result-head .main-type{font-weight:600;letter-spacing:.10em;margin:14px 0 13px}
+.result-head .result-a-short{max-width:760px;font-size:14px;line-height:1.9;margin:0 auto;color:#6a768d}
+.result-summary-card{margin:24px 0 12px;border:1px solid #c3cad3;border-left:4px solid #6c8290;background:linear-gradient(145deg,#fbfbfa,#f3f4f5);padding:22px 24px 25px}
+.result-summary-label{font:10px/1.5 Arial,sans-serif;letter-spacing:.15em;color:#697d93;margin-bottom:13px}
+.result-summary-text{font-size:14px;line-height:2.05;color:#505c70}
+.result-secondary{text-align:center;margin:14px 0 20px;font-size:12px;color:#737b8a}
+@media(max-width:720px){
+ .result-report-banner{margin:0 -17px 16px;padding:28px 14px 43px}
+ .result-head .main-type{font-size:34px}
+ .result-head .result-a-short{font-size:13px}
+ .result-summary-card{padding:19px 17px 21px}
+ .result-summary-text{font-size:13px}
+}
+
+/* v0.9: document-wide header wash, compact aspect hierarchy */
+.result-panel.show{background:linear-gradient(180deg,#e6e8f0 0px,#ecedf2 85px,#f4f4f5 155px,#f8f8f5 215px,#f8f8f5 100%);padding-top:0}
+.result-report-banner{background:none;margin:0 -40px 18px;padding:32px 20px 48px}
+.result-head .result-a-short{border-left:3px solid #85819a;text-align:left;padding:10px 18px;margin:0 auto;max-width:760px;background:rgba(236,236,241,.4)}
+.secondary-aspect-card{margin:22px 0 18px;padding:16px 20px;border:1px solid #c0c3ce;border-left:3px solid #817b93;background:linear-gradient(130deg,#fafaf9,#f0f0f3)}
+.secondary-aspect-label{font-size:12px;letter-spacing:.06em;color:#697083;margin-bottom:9px}
+.secondary-aspect-item+.secondary-aspect-item{border-top:1px solid #d6d7df;margin-top:12px;padding-top:12px}
+.secondary-aspect-name{font-size:20px;line-height:1.6;font-weight:600;color:#394257}
+.secondary-aspect-description{font-size:13px;line-height:1.85;color:#6b7384;margin-top:3px}
+.aspect-card{border-left:4px solid #817b93!important;background:linear-gradient(135deg,#f8f8f7,#f0eff3)}
+.aspect-count-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:14px;color:#545b6d}
+.aspect-count-number{font:700 38px/1 Arial,sans-serif;color:#354058}
+.aspect-count-unit{font-size:14px;color:#6b7182}
+.aspect-note{margin-top:10px;font-size:12px;line-height:1.9;color:#73798a}
+.aspect-card .reference-links{margin-top:16px;padding-top:14px;border-top:1px solid #d0d2dc}
+@media(max-width:720px){.result-report-banner{margin:0 -18px 16px;padding:28px 14px 43px}.result-head .result-a-short{padding:10px 12px}.secondary-aspect-card{padding:14px}.secondary-aspect-name{font-size:18px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <a class="back" href="https://milk-tools.com/">← みるくの診断・ツール置き場へ</a>
+
 <header class="header">
-<div class="seal">追加<br>審査</div><div class="kicker">非公式・本丸個体追加観測</div><h1>刀剣男士個体観測・追加審査</h1>
-<p class="sub">本追加審査は、対象となる刀剣男士の現在の状態や異常の有無を判定するものではありません。対象個体の性質、審神者との関係性および観測資料をもとに、存在の揺らぎが大きく生じた場合に予想される傾向を観測・分類します。</p>
-<span class="unofficial">UNOFFICIAL FAN-MADE / WORKING PROTOTYPE v4.8 / ASPECT COUNT + ARCHIVE LINKS</span>
-<div class="notice"><strong>動作確認用の試作です</strong><br>現在までに決定した「5傾向仮判定」「固有2極」「共通3軸」を組み込んでいます。今回、前作《対主傾向》10タイプからの5タイプ補正を正式入力として接続し、情緒・神性・揺らぎによる共通3軸補正、固有2極への極端値補正、爪・毛髪の特殊処理を含めて確認できます。精密観測札の専用特記は後日実装予定です。</div>
+  <div class="seal">暁</div>
+  <div class="kicker">非公式・本丸個体追加観測</div>
+  <h1>刀剣男士個体観測・追加審査《暁》</h1>
+  <p class="sub">通常の個体観測では表面化しにくい、対象個体の別側面および霊的性質について追加観測を行います。本審査は異常化・危険性を判定するものではありません。</p>
+  <span class="unofficial">UNOFFICIAL FAN-MADE / WORKING PROTOTYPE v0.2</span>
+  <div class="notice"><strong>試作版</strong><br>質問は《黄昏》と共通の内容に更新済み。結果Aの10分類配点と側面数の共通計算を実装しています。結果文と同点処理は引き続き調整中です。</div>
 </header>
-<div class="notice"><strong>検証仕様：関係性の主要タイプ加点を +2 に変更</strong><br>
-この版では、主要5タイプ判定に限り「関係性」の加点を通常の+1ではなく+2として計算します。
-魅力・欠点・提出資料、固有2極、共通3軸、前作《対主傾向》補正は現行仕様のままです。
-比較検証用のため、正式仕様ではありません。</div>
+
 <section class="panel input-panel">
-<div class="section-code">ADDITIONAL FILE 01 / SUBJECT DATA</div><h2>追加審査対象</h2>
-<div class="field"><label for="formalName">刀剣名</label><input id="formalName" type="text" maxlength="40" placeholder="例：和泉守兼定"><div class="field-note">診断結果・保存画像に表示する名前です。</div></div>
-<div class="exam-block"><div class="section-code">SUBJECT AUTHENTICATION / REGISTERED</div><div class="question-label">認証情報</div><div class="devgrid"><label>審神者認証番号<input class="registered-input" type="text" value="************" disabled></label><label>暗証番号<input class="registered-input pin" type="text" value="****" disabled></label></div></div>
+<div class="section-code">AKATSUKI FILE 01 / SUBJECT DATA</div><h2>追加審査対象</h2>
+<p class="lead">「刀剣男士個体観測」の結果と、対象個体についての追加情報を入力してください。</p>
+<div class="field"><label for="formalName">刀剣名</label><input id="formalName" type="text" maxlength="40" placeholder="例：歌仙兼定"><div class="field-note">結果画面に表示する名前です。</div></div>
 <div class="exam-block"><div class="section-code">PREVIOUS OBSERVATION / REQUIRED</div><div class="question-label">個体観測結果</div><p class="lead" style="margin-bottom:14px">まだ個体観測を行っていない場合：<a href="https://milk-tools.com/">個体観測へ</a></p><div class="field" style="margin-bottom:14px"><label for="masterTendency">対主傾向</label><select id="masterTendency"><option value="">選択してください</option><option value="affectionate">愛情型</option><option value="reverent">敬愛型</option><option value="protective">保護型</option><option value="thoughtful">思慮型</option><option value="partner">相棒型</option><option value="dagger">懐剣型</option><option value="leading">先導型</option><option value="independent">自立型</option><option value="service">奉仕型</option><option value="free">自在型</option></select></div><div class="binary-row"><div class="field"><label for="emotion">情緒</label><input id="emotion" type="number" min="0" max="100" step="1" placeholder="0～100"></div><div class="field"><label for="divinity">神性</label><input id="divinity" type="number" min="0" max="100" step="1" placeholder="0～100"></div><div class="field"><label for="fluctuation">存在の揺らぎ</label><input id="fluctuation" type="number" min="0" max="100" step="1" placeholder="0～100"></div></div></div>
 <div class="exam-block"><div class="question-label">本丸での位置づけ <span class="question-hint">該当するものをすべて</span></div><div class="binary-row">
 <div class="binary-card"><label><input type="checkbox" id="isStarter"> 初期刀である</label></div><div class="binary-card"><label><input type="checkbox" id="isAttendant"> 現在の近侍である</label></div><div class="binary-card"><label><input type="checkbox" id="isSpecial"> 特別な一振りである</label><small>恋愛に限らず、あなた自身の感覚で選択してください。</small></div>
 </div></div>
 
-<div class="exam-block"><div class="question-label">事前提出資料 <span class="question-hint">いずれか1つ</span></div><div class="choice-options">
-<label class="choice-option"><input type="radio" name="material" value="none"><span>資料なし</span></label><label class="choice-option"><input type="radio" name="material" value="personal"><span>私物</span></label><label class="choice-option"><input type="radio" name="material" value="battle"><span>装束（戦闘）</span></label><label class="choice-option"><input type="radio" name="material" value="duty"><span>装束（内番）</span></label><label class="choice-option"><input type="radio" name="material" value="accessory"><span>装身具</span></label><label class="choice-option"><input type="radio" name="material" value="treasure"><span>宝物</span></label><label class="choice-option"><input type="radio" name="material" value="observe"><span>観測札</span></label><label class="choice-option"><input type="radio" name="material" value="precision"><span>精密観測札</span></label><label class="choice-option"><input type="radio" name="material" value="nail"><span>爪</span></label><label class="choice-option"><input type="radio" name="material" value="hair"><span>毛髪</span></label>
+<div class="exam-block"><div class="question-label">事前提出資料</div><div class="choice-options material-options">
+<label class="choice-option"><input type="radio" name="material" value="none"><span>資料なし</span></label><label class="choice-option"><input type="radio" name="material" value="personal"><span>私物</span></label><label class="choice-option"><input type="radio" name="material" value="battle"><span>装束（戦闘）</span></label><label class="choice-option"><input type="radio" name="material" value="duty"><span>装束（内番）</span></label><label class="choice-option"><input type="radio" name="material" value="accessory"><span>装身具</span></label><label class="choice-option"><input type="radio" name="material" value="treasure"><span>宝物</span></label><label class="choice-option"><input type="radio" name="material" value="observe"><span>観測札</span></label><label class="choice-option"><input type="radio" name="material" value="precision"><span>精密観測札</span></label>
 </div><div class="material-note">追加資料の提出は任意です。資料を提出しない場合でも、追加審査を行うことができます。</div></div>
 
 <div class="exam-block"><div class="section-code">ADDITIONAL FILE 02 / SUPPLEMENTARY DATA</div><h2>追加情報</h2><div class="question-label">あなたと対象の関係性にもっとも近いものをお答えください</div><div class="choice-options">
@@ -70,35 +184,26 @@ details.dev{margin-top:18px;border:1px dashed #a8adaa;background:#eeefeb;padding
 </div><div class="other-wrap" id="faultOther"><input class="other-input" type="text" maxlength="50" placeholder="対象の欠点を入力（「なし」でも可）"></div>
 
 </div>
-<div class="actions"><button type="button" id="prototypeButton">追加審査を開始する</button></div><div id="prototypeMessage"></div>
+<div class="actions"><button type="button" id="run">追加審査《暁》を開始する</button></div><div id="error"></div>
+<div class="dev-note"><strong>試作版：</strong>結果Aの10分類配点と、前作《黄昏》と共通の側面数計算を実装しています。神性・情緒の結果A補正と同点処理を適用しています。</div>
 </section>
-
 <section class="panel result-panel" id="resultPanel">
-<div class="section-code">OBSERVATION RESULT / PROVISIONAL</div>
-<div class="result-head">
-  <div class="result-name" id="resultName"></div>
-  <div class="main-type" id="mainType"></div>
-  <div class="main-caption">存在の揺らぎが大きく生じた場合に予想される主要傾向（検証判定）</div>
-  <div class="secondary" id="secondaryBox" style="display:none"></div>
-</div>
+<div class="result-report-banner"><div class="result-report-kicker">顕現個体追加審査</div><div class="result-name result-report-heading">審査対象：<span id="resultName"></span></div></div>
+<div class="safety-verdict" role="status"><div class="safety-verdict-main"><span class="safety-label">危険な側面の兆候</span><span class="safety-divider" aria-hidden="true"></span><span class="safety-value">なし</span></div><span class="safety-note">本審査は安全な側面の観測を目的としています。</span></div>
+<div class="result-head"><div class="main-caption">確認された側面のうち、最も表出しやすい側面</div><div class="main-type" id="formResult"></div><div class="result-a-short" id="observationText"></div></div>
+<div class="result-summary-card"><div class="result-summary-label">ADDITIONAL OBSERVATION SUMMARY</div><div class="result-summary-text" id="observationLongText"></div></div>
+<div id="secondaryBox" class="secondary-aspect-card" style="display:none"><div class="secondary-aspect-label">次点で表出しやすい側面</div><div id="secondaryAspectList"></div></div>
 <div class="result-grid">
-  <div class="result-card"><h3>固有傾向</h3><div class="pole-value" id="poleResult"></div><div class="pole-sub" id="poleDetail"></div><div class="reference-links"><a id="tendencyDetailLink" href="#" target="_blank" rel="noopener">分類詳細を閲覧</a><a id="researchArchiveLink" href="#" target="_blank" rel="noopener">関連研究資料を閲覧</a></div></div>
-  <div class="result-card aspect-card"><h3>側面観測</h3><div class="aspect-count-line"><span>現在確認されている側面数</span><span class="aspect-count-number" id="aspectCount"></span><span class="aspect-count-unit">側面</span></div><div class="aspect-note">※審神者が日常的に認識している対象個体の通常時の在り方は、この数に含まれません。</div><div class="aspect-warning">確認された側面の存在自体は、現在の異常・危険性を示すものではありません。現在確認されている側面のうち、将来的に本審査で示された固有傾向と関連する性質が含まれる可能性があります。</div><div class="reference-links"><a class="common-ref" href="shared_foundation_aspect_reference_prototype_v1.html" target="_blank" rel="noopener">共通基礎資料｜「側面」について</a></div></div>
-  <div class="result-card axis-card"><h3>共通3軸</h3><div id="axisResults"></div><div class="pole-sub">※現在の状態ではなく、異常傾向が発現した場合に予測される方向性です。50:50は《均衡観測》として表示します。</div></div>
+<div class="result-card aspect-card"><h3>側面観測</h3><div class="aspect-count-line"><span>現在確認されている側面数</span><span class="aspect-count-number" id="aspectCount"></span><span class="aspect-count-unit">側面</span></div><div class="aspect-note">※審神者が日常的に認識している対象個体の通常時の在り方は、この数に含まれません。</div><div class="reference-links"><a href="akatsuki_aspects_reference_v0_7_fulltext_summaries.html" target="_blank" rel="noopener">共通基礎資料｜「側面」について</a></div></div>
+
 </div>
-<div class="result-note warning-lite" id="resultNotes"></div>
-<div class="result-actions">
-  <button type="button" id="saveResultButton">結果画像を保存</button>
-  <button type="button" class="secondary-action" id="saveDetailButton">詳細記録を保存</button>
-  <button type="button" class="secondary-action" id="shareButton">Xで結果をシェア</button>
-  <div class="export-status" id="exportStatus"></div>
-  <div class="handling-notice"><span class="handling-code">NOTICE / HANDLING OF EXAMINATION RESULTS</span><strong>追加審査結果の取り扱いについて</strong><br>追加審査の特性上、刀剣名はシェア文に含まれません。必要に応じて、結果画像を添付してください。<br><span class="detail-warning">審査結果の取り扱いには十分に注意してください。</span></div>
-</div>
+<div class="result-actions"><div class="save-share-heading">審査結果を保存・共有</div><button type="button" id="saveResultButton">結果画像を保存</button><button type="button" id="saveDetailButton" class="secondary-action">詳細記録を保存</button><button type="button" id="shareButton" class="secondary-action">Xで結果をシェア</button><div class="export-status" id="exportStatus"></div><div class="save-share-guidance">投稿用の結果画像・シェア文には「刀剣名」を使用します。詳細記録には入力した観測情報をすべて保存します。<br><strong>詳細記録には、対象となる刀剣男士および本丸内の詳細な情報が含まれます。公開・共有の際は、取り扱いにご注意ください。</strong></div><div class="handling-notice"><strong>追加審査結果の取り扱いについて</strong><br>追加審査の特性上、刀剣名はシェア文に含まれません。必要に応じて、結果画像を添付してください。<br>審査結果の取り扱いには十分に注意してください。</div></div>
 </section>
-<section class="disclaimer"><strong>ご利用にあたって</strong><br>この診断は『刀剣乱舞ONLINE』を題材にした非公式のファンメイド・二次創作補助ツールです。公式の設定・見解とは一切関係ありません。診断結果は現在の異常・危険性を示すものではなく、「もし対象個体が闇に偏った場合」の創作上の傾向を扱います。</section><div class="footer">ADDITIONAL INDIVIDUAL OBSERVATION / WORKING PROTOTYPE v4.8 / ASPECT COUNT + ARCHIVE LINKS</div>
+<div class="disclaimer"><strong>ご利用にあたって</strong><br>この診断は『刀剣乱舞ONLINE』を題材にした非公式のファンメイド・二次創作補助ツールです。公式の設定・見解とは一切関係ありません。診断結果は、二次創作や想像を広げるきっかけのひとつとしてお楽しみください。</div>
+<div class="footer">UNOFFICIAL FAN-MADE / TOUKEN INDIVIDUAL OBSERVATION / AKATSUKI</div>
 </div>
+
 <script>
-const TYPE_NAMES={control:'支配欲',protect:'過保護',consume:'境界の喪失',affection:'情愛',deviate:'存在の逸脱'};
 const PREV_TENDENCY_BONUS={
   affectionate:{main:'affection',sub:'deviate'},
   reverent:{main:'affection',sub:'consume'},
@@ -117,98 +222,9 @@ const typeMaps={
  fault:{stubborn:'affection',strong:'control',weak:'protect',reckless:'deviate',naive:'consume',rough:'deviate',cold:'affection',childish:'protect',anxious:'control',other:'consume'},
  material:{none:null,personal:null,battle:null,duty:null,accessory:'control',treasure:'consume',observe:null,precision:'deviate',nail:'protect',hair:'affection'}
 };
-const axisMaps={
- material:{none:[['other',5],['passive',5],['mask',5]],duty:[['master',5],['active',5],['clear',5]],personal:[['other',5],['passive',20],['clear',5]],hair:[['master',5],['active',20],['mask',5]],accessory:[['other',20],['active',5],['mask',20]],treasure:[['master',20],['passive',5],['clear',20]],observe:[['master',10],['passive',10],['clear',10]],battle:[['other',10],['active',10],['mask',10]],nail:[['other',20],['active',20],['clear',20]],precision:[['master',20],['passive',20],['mask',20]]},
- relation:{master:[['master',3],['passive',3],['mask',3]],friend:[['other',3],['active',3],['clear',3]],comrade:[['other',3],['active',3]],bestfriend:[['master',3],['passive',3]],partner:[['master',3],['active',3],['clear',3]],buddy:[['other',3],['clear',3]],sibling:[['master',3],['mask',3]],work:[['other',3],['passive',3],['mask',3]],mentor:[['active',3],['clear',3]],other:[['passive',3],['mask',3]]},
- appeal:{strength:[['active',3],['clear',3]],kind:[['passive',3],['mask',3]],serious:[['master',3],['passive',3],['clear',3]],reliable:[['master',3],['passive',3]],wise:[['other',3],['passive',3],['mask',3]],innocent:[['master',3],['active',3],['clear',3]],devoted:[['master',3],['clear',3]],beauty:[['other',3],['mask',3]],free:[['other',3],['active',3]],other:[['other',3],['active',3],['mask',3]]},
- fault:{stubborn:[['master',3],['active',3],['clear',3]],strong:[['other',3],['active',3]],weak:[['master',3],['passive',3]],reckless:[['other',3],['active',3],['mask',3]],naive:[['master',3],['passive',3],['clear',3]],rough:[['other',3],['passive',3],['mask',3]],cold:[['passive',3],['clear',3]],childish:[['master',3],['clear',3]],anxious:[['other',3],['mask',3]],other:[['active',3],['mask',3]]}
-};
-const poleDefs={
- control:{left:'直接',right:'環境',relation:{master:['L',1],friend:['R',2],comrade:['L',1],bestfriend:['R',1],partner:['R',3],buddy:['L',2],sibling:['L',3],work:['R',1],mentor:['L',1],other:['R',1]},appeal:{strength:['L',2],kind:['R',1],serious:['L',1],reliable:['L',1],wise:['R',2],innocent:null,devoted:['L',1],beauty:['R',1],free:null,other:['R',1]},fault:{stubborn:['L',1],strong:['L',3],weak:['R',1],reckless:null,naive:['R',1],rough:null,cold:null,childish:['L',1],anxious:['R',3],other:null}},
- protect:{left:'隔離',right:'排他',relation:{master:['R',3],friend:['R',1],comrade:['L',1],bestfriend:['R',1],partner:['L',3],buddy:['L',2],sibling:['R',2],work:['R',1],mentor:['L',1],other:['L',1]},appeal:{strength:['R',3],kind:['L',2],serious:['L',2],reliable:['R',2],wise:['L',2],innocent:['R',2],devoted:['L',3],beauty:['R',1],free:['R',2],other:['L',1]},fault:{stubborn:null,strong:['L',1],weak:['L',2],reckless:['R',2],naive:null,rough:['L',1],cold:['R',1],childish:null,anxious:['R',1],other:null}},
- consume:{left:'侵食',right:'融合',relation:{master:['L',1],friend:['R',1],comrade:['L',3],bestfriend:['R',3],partner:['L',1],buddy:['L',1],sibling:['R',1],work:['R',1],mentor:['L',2],other:['R',2]},appeal:{strength:null,kind:['R',1],serious:null,reliable:['L',1],wise:null,innocent:['R',1],devoted:['R',2],beauty:['L',2],free:['L',1],other:null},fault:{stubborn:['L',3],strong:['L',2],weak:['R',2],reckless:['R',2],naive:['R',3],rough:['L',1],cold:['R',1],childish:['L',2],anxious:['L',2],other:['R',2]}},
- affection:{left:'希求',right:'抑圧',relation:{master:['R',3],friend:['L',1],comrade:['R',1],bestfriend:['R',1],partner:['L',1],buddy:['R',1],sibling:['R',2],work:['L',2],mentor:['L',1],other:['L',3]},appeal:{strength:['R',1],kind:null,serious:['R',1],reliable:null,wise:['R',2],innocent:['L',1],devoted:['L',2],beauty:['L',1],free:['L',1],other:['R',1]},fault:{stubborn:null,strong:['L',1],weak:['R',1],reckless:null,naive:['L',1],rough:null,cold:['R',3],childish:null,anxious:['R',1],other:['L',3]}},
- deviate:{left:'魔',right:'神',relation:{master:['L',3],friend:null,comrade:['L',2],bestfriend:['R',2],partner:['L',3],buddy:['R',3],sibling:['R',3],work:null,mentor:null,other:null},appeal:{strength:null,kind:['R',3],serious:['L',3],reliable:null,wise:['R',4],innocent:['R',3],devoted:['L',3],beauty:['L',4],free:null,other:null},fault:{stubborn:['L',4],strong:null,weak:null,reckless:null,naive:['R',3],rough:['L',3],cold:['R',4],childish:['R',3],anxious:null,other:['L',3]},tie:{master:'L',friend:'L',comrade:'L',bestfriend:'R',partner:'L',buddy:'R',sibling:'R',work:'R',mentor:'R',other:'L'}}
-};
-function checked(name){const x=document.querySelector('input[name="'+name+'"]:checked');return x?x.value:null}
-function validate(){if(!document.getElementById('formalName').value.trim())return '刀剣名を入力してください。';if(!document.getElementById('masterTendency').value)return '個体観測結果の《対主傾向》を選択してください。';for(const id of ['emotion','divinity','fluctuation']){const el=document.getElementById(id);if(el.value==='')return '個体観測値（情緒・神性・存在の揺らぎ）をすべて入力してください。';const v=Number(el.value);if(!Number.isInteger(v)||v<0||v>100)return '個体観測値は0～100の整数で入力してください。';}for(const n of ['material','relation','appeal','fault'])if(!checked(n))return '未回答の項目があります。4項目すべて選択してください。';return ''}
-function addAxis(scores,key,val){if(key==='master'||key==='other')scores.target[key]+=val;else if(key==='active'||key==='passive')scores.action[key]+=val;else scores.exposure[key]+=val}
-function prevValue(id){return Number(document.getElementById(id).value)}
-function directionalPrevBonus(v){if(v<=20)return -6;if(v<=40)return -4;if(v<=60)return -2;if(v<=80)return 2;if(v<=94)return 4;return 6}
-function fluctBonus(v){if(v<=60)return 0;if(v<=80)return 1;if(v<=94)return 2;return 3}
-function computeAxes(material,relation,appeal,fault){const s={target:{master:0,other:0},action:{active:0,passive:0},exposure:{clear:0,mask:0}};[['material',material],['relation',relation],['appeal',appeal],['fault',fault]].forEach(([g,v])=>{(axisMaps[g][v]||[]).forEach(([k,n])=>addAxis(s,k,n))});
- const emotion=prevValue('emotion'),divinity=prevValue('divinity'),fluct=prevValue('fluctuation');
- // 前作値：情緒は対主/対他、神性は明瞭/擬態。0-60は左側、61-100は右側へ2/4/6。
- const eb=directionalPrevBonus(emotion); if(eb<0)s.target.other+=-eb;else s.target.master+=eb;
- const db=directionalPrevBonus(divinity); if(db<0)s.exposure.clear+=-db;else s.exposure.mask+=db;
- let bonusCount=['isStarter','isAttendant','isSpecial'].filter(id=>document.getElementById(id).checked).length;let bonus=[0,3,5,7][bonusCount];const fb=fluctBonus(fluct);
- function pair(a,b){let left=50+(a-b);
-   // 高揺らぎは、その時点で優勢な側を3軸共通で増幅。完全均衡はそのまま残す。
-   if(left>50)left+=fb;else if(left<50)left-=fb;
-   if(left>50)left+=bonus;else if(left<50)left-=bonus;
-   // 激レア観測補正：2条件以上かつ通常補正後84:16以上。
-   if(bonusCount===2&&(left>=84||left<=16)){left+=left>50?6:-6;}else if(bonusCount===3&&(left>=84||left<=16)){left+=left>50?8:-8;}
-   left=Math.max(6,Math.min(94,left));return [left,100-left]
- }
- return {target:pair(s.target.master,s.target.other),action:pair(s.action.active,s.action.passive),exposure:pair(s.exposure.clear,s.exposure.mask),bonus,bonusCount,fluctBonus:fb};}
 function computeTypes(material,relation,appeal,fault){let s={control:0,protect:0,consume:0,affection:0,deviate:0};[['material',material],['relation',relation],['appeal',appeal],['fault',fault]].forEach(([g,v])=>{const t=typeMaps[g][v];if(t)s[t]+=(g==='relation'?2:1)});const prev=PREV_TENDENCY_BONUS[document.getElementById('masterTendency').value]||null;const pm=prev?.main||'',ps=prev?.sub||'';if(pm)s[pm]+=2;if(ps)s[ps]+=1;let notes=[];let max=Math.max(...Object.values(s));let tied=Object.keys(s).filter(k=>s[k]===max);if(tied.length>1&&pm&&tied.includes(pm)){s[pm]+=1;notes.push('首位同点を前作メイン補正で決着（+1）');}else if(tied.length>1&&ps&&tied.includes(ps)){s[ps]+=1;notes.push('首位同点を前作サブ補正で決着（+1）');}
 max=Math.max(...Object.values(s));tied=Object.keys(s).filter(k=>s[k]===max);let provisionalTie=false,main=tied[0];if(tied.length>1){provisionalTie=true;const order=[typeMaps.relation[relation],typeMaps.appeal[appeal],typeMaps.fault[fault],typeMaps.material[material],'control','protect','consume','affection','deviate'];main=order.find(t=>t&&tied.includes(t))||tied[0];notes.push('首位同点が残ったため、2極表示用に試作上の仮優先を使用');}
 let sorted=Object.entries(s).sort((a,b)=>b[1]-a[1]);let secondScore=sorted.find(([k,v])=>k!==main)?.[1]??-99;let secondary=[];if(!provisionalTie&&max-secondScore===1){secondary=sorted.filter(([k,v])=>k!==main&&v===secondScore).map(([k])=>k)}return {scores:s,main,secondary,provisionalTie,notes,prevMain:pm,prevSub:ps};}
-const POLE_DESCRIPTIONS={
- control:{直接:'主の判断や選択へ直接介入し、自ら意思決定を担おうとする傾向。',環境:'主を取り巻く環境や状況を制御し、選択そのものを誘導しようとする傾向。'},
- protect:{隔離:'主を危険から遠ざけ、安全な領域へ隔離しようとする傾向。',排他:'主に及ぶ危険を排除し、安全を確保しようとする傾向。'},
- consume:{侵食:'主を自らの側へ変質させ、両者の境界を失わせようとする傾向。',融合:'主を自らの存在へ取り込み、両者の境界を失わせようとする傾向。'},
- affection:{希求:'主への想いを示し、その関係の成立を強く求める傾向。',抑圧:'主への想いを抑え込み、関係の成立そのものを拒もうとする傾向。'},
- deviate:{魔:'異常を自らへ取り込み適応することで、存在を変質させる傾向。',神:'神性を強めることで異常へ対抗し、自らの存在を変質させる傾向。'}
-};
-const POLE_LEVEL_DESCRIPTIONS={
- weak:'当該傾向が認められるものの、他方の性質も比較的強く残る状態。',
- medium:'当該傾向が明確に優勢である状態。',
- strong:'当該傾向への著しい偏りが認められる状態。'
-};
-const materialTieSide={
- nail:{control:'L',protect:'R',consume:'L',affection:'R',deviate:'R'},
- hair:{control:'R',protect:'L',consume:'R',affection:'L',deviate:'L'}
-};
-const materialNonTieBonus={nail:{control:'L',protect:'R'},hair:{consume:'R',affection:'L'}};
-function computePole(type,relation,appeal,fault,material){const d=poleDefs[type];let L=0,R=0;[['relation',relation],['appeal',appeal],['fault',fault]].forEach(([g,v])=>{const x=d[g][v];if(!x)return;if(x[0]==='L')L+=x[1];else R+=x[1]});
- // 前作極端値補正：情緒（逸脱のみ神性）0-20 / 81-100 で+2。
- const pv=type==='deviate'?prevValue('divinity'):prevValue('emotion');
- if(pv<=20){if(type==='control')R+=2;else if(type==='protect')L+=2;else if(type==='consume')L+=2;else if(type==='affection')R+=2;else if(type==='deviate')L+=2;}
- else if(pv>=81){if(type==='control')L+=2;else if(type==='protect')R+=2;else if(type==='consume')R+=2;else if(type==='affection')L+=2;else if(type==='deviate')R+=2;}
- let diff=L-R,tie=false,side,abs=Math.abs(diff),level,specialMaterial=false;
- // 爪・毛髪で同点なら、資料ごとの方向へ「特化」として観測。
- if(diff===0&&(material==='nail'||material==='hair')){const dir=materialTieSide[material][type];side=dir==='L'?d.left:d.right;level='特化';tie=true;specialMaterial=true;}
- else{
-   // 非同点時：爪は支配/過保護、毛髪は捕食/情愛のみ対応側へ+1。逸脱には非同点補正なし。
-   const mb=materialNonTieBonus[material]&&materialNonTieBonus[material][type];if(diff!==0&&mb){if(mb==='L')L+=1;else R+=1;diff=L-R;abs=Math.abs(diff);specialMaterial=true;}
-   if(diff===0){tie=true;let dir=(d.tie&&d.tie[relation])||((d.relation[relation]&&d.relation[relation][0])||'L');side=dir==='L'?d.left:d.right;level='やや';}
-   else{side=diff>0?d.left:d.right;level=abs<=2?'やや':abs<=4?'強め':'特化';}
- }
- let levelKey=level==='やや'?'weak':level==='強め'?'medium':'strong';
- let label;
- if(type==='deviate'){
-   label=levelKey==='weak'?side+'性傾向あり':levelKey==='medium'?side+'性':side+'性化が顕著';
- }else{
-   label=levelKey==='weak'?side+'型の傾向あり':levelKey==='medium'?side+'型':side+'型に特化';
- }
- const description=POLE_DESCRIPTIONS[type][side]||'';
- const levelDescription=POLE_LEVEL_DESCRIPTIONS[levelKey]||'';
- return {label,L,R,diff,tie,left:d.left,right:d.right,specialMaterial,side,levelKey,description,levelDescription}}
-function axisHTML(title,leftName,rightName,pair){
- let [l,r]=pair;const bal=l===50?'<span class="balance-tag">均衡観測</span>':'';
- const leftClass=l>r?' axis-win':'';const rightClass=r>l?' axis-win':'';
- return `<div class="axis-row"><div class="axis-title"><span class="${leftClass.trim()}">${leftName}</span><strong>${title}${bal}</strong><span class="${rightClass.trim()}">${rightName}</span></div><div class="bar"><div class="bar-fill" style="width:${l}%"></div></div><div class="axis-numbers"><span class="${leftClass.trim()}">${leftName} ${l}</span><span class="${rightClass.trim()}">${r} ${rightName}</span></div></div>`
-}
-document.querySelectorAll('input[name="appeal"],input[name="fault"]').forEach(input=>input.addEventListener('change',()=>{['appeal','fault'].forEach(group=>{const c=document.querySelector('input[name="'+group+'"]:checked');document.getElementById(group==='appeal'?'appealOther':'faultOther').classList.toggle('show',!!c&&c.value==='other')})}));
-let lastResult=null;
-const MATERIAL_LABELS={none:'資料なし',personal:'私物',battle:'装束（戦闘）',duty:'装束（内番）',accessory:'装身具',treasure:'宝物',observe:'観測札',precision:'精密観測札',nail:'爪',hair:'毛髪'};
-const RELATION_LABELS={master:'主従',friend:'友人',comrade:'戦友',bestfriend:'親友',partner:'恋人・配偶者',buddy:'相棒',sibling:'兄弟・姉妹',work:'上司・部下・同僚',mentor:'師弟',other:'その他'};
-const APPEAL_LABELS={strength:'強さ',kind:'優しさ',serious:'真面目さ・誠実さ',reliable:'頼もしさ',wise:'賢さ・思慮深さ',innocent:'無邪気さ',devoted:'一途さ',beauty:'格好良さ・美しさ',free:'自由さ・面白さ',other:'その他'};
-const FAULT_LABELS={stubborn:'頑固・真面目すぎる',strong:'気が強い',weak:'気が弱い',reckless:'無鉄砲・無茶をする',naive:'世間知らず',rough:'大雑把・適当',cold:'冷たい・不愛想',childish:'わがまま・子供っぽい',anxious:'心配性・考えすぎる',other:'その他'};
-const PREV_LABELS={affectionate:'愛情型',reverent:'敬愛型',protective:'保護型',thoughtful:'思慮型',partner:'相棒型',dagger:'懐剣型',leading:'先導型',independent:'自立型',service:'奉仕型',free:'自在型'};
-const TENDENCY_DETAIL_LINKS={control:'additional_exam_tendency_01_control_desire.html',protect:'additional_exam_tendency_02_overprotection.html',consume:'additional_exam_tendency_03_boundary_loss.html',affection:'additional_exam_tendency_04_affection.html',deviate:'additional_exam_tendency_05_existential_deviation.html'};
-const RESEARCH_ARCHIVE_LINKS={control:'additional_exam_control_desire_research_archive_prototype_v1.html',protect:'additional_exam_overprotection_research_archive_prototype_v3_1_layout_fix.html',consume:'additional_exam_boundary_loss_research_archive_prototype_v1.html',affection:'additional_exam_affection_research_archive_prototype_v1.html',deviate:'additional_exam_existential_deviation_research_archive_prototype_v1.html'};
 const ASPECT_RELATION_BONUS={master:3,friend:9,comrade:7,bestfriend:7,partner:5,buddy:9,sibling:5,work:3,mentor:3,other:5};
 const ASPECT_APPEAL_BONUS={strength:-5,kind:5,serious:-7,reliable:5,wise:-5,innocent:-9,devoted:-5,beauty:7,free:5,other:9};
 const ASPECT_FAULT_BONUS={stubborn:-9,strong:-7,weak:5,reckless:5,naive:-5,rough:7,cold:9,childish:5,anxious:-5,other:-5};
@@ -228,91 +244,102 @@ function computeAspectCount(types,material,relation,appeal,fault){
   if(material==='precision')count=Math.min(5,count+1);
   return {count,score};
 }
-function getOtherLabel(group,base){if(base!=='その他')return base;const el=document.querySelector('#'+(group==='appeal'?'appealOther':'faultOther')+' input');const txt=el&&el.value.trim();return txt?`その他（${txt}）`:'その他';}
-function buildPositionLabel(){const x=[];if(document.getElementById('isStarter').checked)x.push('初期刀');if(document.getElementById('isAttendant').checked)x.push('現在の近侍');if(document.getElementById('isSpecial').checked)x.push('特別な一振り');return x.length?x.join('／'):'該当なし';}
-function renderResult(r){document.getElementById('resultName').textContent=r.name+'　追加観測結果';document.getElementById('mainType').textContent=TYPE_NAMES[r.types.main]+(r.types.provisionalTie?'（仮）':'');document.getElementById('aspectCount').textContent=String(r.aspect.count);document.getElementById('tendencyDetailLink').href=TENDENCY_DETAIL_LINKS[r.types.main];document.getElementById('researchArchiveLink').href=RESEARCH_ARCHIVE_LINKS[r.types.main];let sb=document.getElementById('secondaryBox');if(r.types.secondary.length){sb.style.display='block';sb.innerHTML='<strong>副次傾向：</strong>'+r.types.secondary.map(t=>TYPE_NAMES[t]).join('／')+'<br>主要傾向と近い値を示す別側面が確認されています。';}else sb.style.display='none';document.getElementById('poleResult').textContent=r.pole.label;document.getElementById('poleDetail').innerHTML=`<div>${r.pole.description}</div><div class="pole-level-description">${r.pole.levelDescription}</div><div style="margin-top:7px">${r.pole.left} ${r.pole.L} ／ ${r.pole.right} ${r.pole.R}</div>`;document.getElementById('axisResults').innerHTML=axisHTML('作用対象','対主','対他',r.axes.target)+axisHTML('行動傾向','能動','受動',r.axes.action)+axisHTML('認知態度','明瞭','擬態',r.axes.exposure);let notes=[];if(prevValue('fluctuation')<=15)notes.push('存在の揺らぎ：低値域のため、専用特記は今後の版で追加予定です。');if(r.material==='precision')notes.push('精密観測札：通常観測より高精度の側面捕捉結果を反映しています。');if(!notes.length)notes.push('現在は結果画面・保存画像のレイアウト確認用です。特記・警告本文は今後追加予定です。');document.getElementById('resultNotes').innerHTML='<strong>試作上の注意</strong><br>'+notes.join('<br>');}
-document.getElementById('prototypeButton').addEventListener('click',()=>{const err=validate();const msg=document.getElementById('prototypeMessage');if(err){msg.textContent=err;return}msg.textContent='';const material=checked('material'),relation=checked('relation'),appeal=checked('appeal'),fault=checked('fault');const types=computeTypes(material,relation,appeal,fault),axes=computeAxes(material,relation,appeal,fault),pole=computePole(types.main,relation,appeal,fault,material),aspect=computeAspectCount(types,material,relation,appeal,fault);lastResult={name:document.getElementById('formalName').value.trim(),material,relation,appeal,fault,types,axes,pole,aspect,prevTendency:document.getElementById('masterTendency').value,emotion:prevValue('emotion'),divinity:prevValue('divinity'),fluctuation:prevValue('fluctuation'),position:buildPositionLabel(),appealLabel:getOtherLabel('appeal',APPEAL_LABELS[appeal]),faultLabel:getOtherLabel('fault',FAULT_LABELS[fault])};renderResult(lastResult);const panel=document.getElementById('resultPanel');panel.classList.add('show');panel.scrollIntoView({behavior:'smooth',block:'start'});});
-function cfont(size,weight='normal'){return `${weight} ${size}px "Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif`;}
-function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){const chars=[...String(text)],lines=[];let line='';for(const ch of chars){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;if(lines.length>=maxLines-1)break}else line=test}if(line&&lines.length<maxLines)lines.push(line);lines.forEach((ln,i)=>ctx.fillText(ln,x,y+i*lineHeight));return y+lines.length*lineHeight;}
-function drawFitText(ctx,text,x,y,maxWidth,startSize=36,minSize=20,weight='bold',align='left'){let size=startSize;while(size>minSize){ctx.font=cfont(size,weight);if(ctx.measureText(String(text)).width<=maxWidth)break;size-=2;}ctx.font=cfont(size,weight);ctx.textAlign=align;ctx.fillText(String(text),x,y);}
-function downloadCanvas(canvas,filename){canvas.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);},'image/png');}
-function drawExportPaper(ctx,height,title,name,english='ADDITIONAL INDIVIDUAL OBSERVATION FILE'){
-  // v4.6: previous-record layout, additional-exam gray palette.
-  ctx.fillStyle='#cfd2d0';ctx.fillRect(0,0,1200,height);
-  ctx.fillStyle='#f7f7f3';ctx.fillRect(58,55,1084,height-110);
-  ctx.strokeStyle='#a8adaa';ctx.lineWidth=2;ctx.strokeRect(58,55,1084,height-110);
-  ctx.fillStyle='#343d3b';ctx.fillRect(58,55,1084,12);
-  ctx.textAlign='left';ctx.fillStyle='#66706c';ctx.font='22px Arial';ctx.fillText(english,100,118);
-  ctx.fillStyle='#292d2d';ctx.font=cfont(42,'bold');ctx.fillText(title,100,180);
-  ctx.textAlign='right';ctx.fillStyle='#66706c';ctx.font=cfont(18,'bold');ctx.fillText('対象個体',1100,122);
-  ctx.fillStyle='#29322f';drawFitText(ctx,name,1100,178,430,36,22,'bold','right');ctx.textAlign='left';
-  ctx.strokeStyle='#c5c9c5';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(100,235);ctx.lineTo(1100,235);ctx.stroke();
-}
-function drawAxisExport(ctx,title,left,right,pair,x,y,w){
-  const [l,r]=pair;
-  ctx.fillStyle='#566561';ctx.font=cfont(21,'bold');ctx.fillText(title,x,y);
-  if(l===50){ctx.fillStyle='#eceeea';ctx.fillRect(x+180,y-25,126,30);ctx.strokeStyle='#a8adaa';ctx.lineWidth=1;ctx.strokeRect(x+180,y-25,126,30);ctx.fillStyle='#666d6b';ctx.font=cfont(13,'bold');ctx.textAlign='center';ctx.fillText('均衡観測',x+243,y-5);ctx.textAlign='left';}
-  ctx.font=cfont(16,l>r?'bold':'normal');ctx.fillStyle=l>r?'#242b29':'#7a817e';ctx.fillText(left,x,y+42);
-  ctx.textAlign='right';ctx.font=cfont(16,r>l?'bold':'normal');ctx.fillStyle=r>l?'#242b29':'#7a817e';ctx.fillText(right,x+w,y+42);ctx.textAlign='left';
-  ctx.fillStyle='#d8dbd7';ctx.fillRect(x,y+58,w,18);ctx.fillStyle='#65736f';ctx.fillRect(x,y+58,w*l/100,18);
-  ctx.font=l>r?'bold 15px Arial':'15px Arial';ctx.fillStyle=l>r?'#242b29':'#7a817e';ctx.fillText(`${left} ${l}`,x,y+105);
-  ctx.textAlign='right';ctx.font=r>l?'bold 15px Arial':'15px Arial';ctx.fillStyle=r>l?'#242b29':'#7a817e';ctx.fillText(`${r} ${right}`,x+w,y+105);ctx.textAlign='left';
-}
-function resultCanvas(){
-  const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=1870;const ctx=c.getContext('2d');
-  drawExportPaper(ctx,c.height,'追加審査記録',r.name,'ADDITIONAL INDIVIDUAL EXAMINATION FILE');
-  // Main result: follows the visual hierarchy of the previous observation record.
-  ctx.fillStyle='#5e6864';ctx.font=cfont(21,'bold');ctx.fillText('追加審査結果',100,282);
-  ctx.fillStyle='#303936';ctx.font=cfont(52,'bold');ctx.fillText(TYPE_NAMES[r.types.main],100,350);
-  ctx.fillStyle='#666d6b';ctx.font=cfont(19);ctx.fillText('存在の揺らぎが大きく生じた場合に予想される主要傾向',100,392);
 
-  const boxY=430,boxW=480,boxH=250;
-  // unique tendency
-  ctx.fillStyle='#eeeeea';ctx.fillRect(100,boxY,boxW,boxH);ctx.strokeStyle='#b7bcb8';ctx.lineWidth=1;ctx.strokeRect(100,boxY,boxW,boxH);
-  ctx.fillStyle='#666f6b';ctx.font=cfont(19,'bold');ctx.fillText('固有傾向',124,boxY+39);ctx.fillStyle='#343d3b';drawFitText(ctx,r.pole.label,124,boxY+88,430,35,24,'bold','left');
-  ctx.fillStyle='#46534f';ctx.font=cfont(15);wrapText(ctx,r.pole.description,124,boxY+132,430,23,3);ctx.fillStyle='#747c79';ctx.font=cfont(13);wrapText(ctx,r.pole.levelDescription,124,boxY+190,430,20,2);
-  // secondary tendency
-  ctx.fillStyle='#eeeeea';ctx.fillRect(620,boxY,boxW,boxH);ctx.strokeStyle='#b7bcb8';ctx.strokeRect(620,boxY,boxW,boxH);
-  ctx.fillStyle='#666f6b';ctx.font=cfont(19,'bold');ctx.fillText('副次傾向',644,boxY+39);
-  const sec=r.types.secondary.length?r.types.secondary.map(t=>TYPE_NAMES[t]).join('／'):'なし';ctx.fillStyle='#343d3b';drawFitText(ctx,sec,644,boxY+88,430,33,22,'bold','left');
-  ctx.fillStyle='#666d6b';ctx.font=cfont(15);wrapText(ctx,r.types.secondary.length?'主要傾向と近い値を示す別側面が確認されています。':'主要傾向が比較的明瞭に確認されています。',644,boxY+126,425,23,2);
-
-  const aspectY=724;ctx.fillStyle='#eef0ec';ctx.fillRect(100,aspectY,1000,190);ctx.strokeStyle='#aeb4b0';ctx.lineWidth=1;ctx.strokeRect(100,aspectY,1000,190);ctx.fillStyle='#666f6b';ctx.font=cfont(19,'bold');ctx.fillText('側面観測',128,aspectY+42);ctx.fillStyle='#343d3b';ctx.font=cfont(24,'bold');ctx.fillText('現在確認されている側面数',128,aspectY+88);ctx.font='bold 46px Arial';ctx.fillText(String(r.aspect.count),470,aspectY+91);ctx.fillStyle='#666d6b';ctx.font=cfont(14);wrapText(ctx,'※通常時の在り方は側面数に含まれません。確認された側面の存在自体は、現在の異常・危険性を示すものではありません。',128,aspectY+126,900,23,3);
-
-   const axisY=954;ctx.fillStyle='#f4f4f0';ctx.fillRect(100,axisY,1000,535);ctx.strokeStyle='#b7bcb8';ctx.strokeRect(100,axisY,1000,535);
-  ctx.fillStyle='#7b8481';ctx.font='14px Arial';ctx.fillText('COMMON OBSERVATION AXES',128,axisY+38);
-  ctx.fillStyle='#46534f';ctx.font=cfont(29,'bold');ctx.fillText('共通3軸',128,axisY+82);
-  drawAxisExport(ctx,'作用対象','対主','対他',r.axes.target,128,axisY+145,944);
-  drawAxisExport(ctx,'行動傾向','能動','受動',r.axes.action,128,axisY+285,944);
-  drawAxisExport(ctx,'認知態度','明瞭','擬態',r.axes.exposure,128,axisY+425,944);
-
-  const noteY=1534;ctx.fillStyle='#e7e9e5';ctx.fillRect(100,noteY,1000,250);ctx.strokeStyle='#969d99';ctx.lineWidth=2;ctx.strokeRect(100,noteY,1000,250);
-  ctx.fillStyle='#566561';ctx.font=cfont(21,'bold');ctx.fillText('追加審査結果の取り扱いについて',128,noteY+45);
-  ctx.fillStyle='#666d6b';ctx.font=cfont(16);wrapText(ctx,'本結果は対象個体の現在の異常・危険性を示すものではありません。存在の揺らぎが大きく生じた場合に予想される創作上の傾向です。',128,noteY+88,900,28,3);
-  ctx.fillStyle='#46534f';ctx.font=cfont(17,'bold');ctx.fillText('審査結果の取り扱いには十分に注意してください。',128,noteY+198);
-  ctx.fillStyle='#777f7c';ctx.font='14px Arial';ctx.fillText('UNOFFICIAL FAN-MADE / WORKING PROTOTYPE',100,1768);
-  return c;
+const $=s=>document.querySelector(s);
+function checked(name){return document.querySelector('input[name="'+name+'"]:checked')?.value||null}
+function prevValue(id){return Number(document.getElementById(id).value)}
+const AK_NAMES={spirit:'分霊：霊体型',animal:'分霊：動物型',incomplete:'分霊：不完全型',appearance:'変化：外見',inner:'変化：内面',yoso:'変化：妖素',alternate:'変化：異聞',reverse:'反転',normal:'通常側面',divine:'神霊'};
+const AK_SHORT_DESCRIPTIONS={"通常側面": "日常的に自然な範囲で切り替えている側面が優勢で、特殊な分類の側面が表れにくい状態。", "分霊：霊体型": "霊力が集まって生じた、実体を持たない分霊。光や火の玉のように見えることもあり、霊的な感覚を持たない者には認識されない場合もある。", "分霊：動物型": "霊力によって動物の姿を取った分霊。犬や猫などが多いが、大型あるいは獰猛な動物として現れる可能性もある。", "分霊：不完全型": "人の姿を取るだけの霊力を持ちながら、元となった刀剣男士の姿を完全には再現できていない分霊。", "変化：外見": "存在の揺らぎによって霊力の巡りが変化し、外見に通常とは異なる特徴が現れる側面。", "変化：内面": "存在の揺らぎが精神や思考に影響し、普段は表に出さない感情や性質が顕著に現れる側面。", "変化：妖素": "存在の揺らぎを補うように、人ならざる存在の特徴を一時的に取り込む側面。", "変化：異聞": "現在の顕現とは異なる時代、来歴、逸話、解釈に基づく姿が表出する側面。", "反転": "存在の揺らぎによって霊力が大きく変動し、本人が持つ性質の一部が反対の方向へ変化する側面。", "神霊": "刀剣男士の持つ神霊的な性質が、通常時より顕著に表出する側面。"};
+const AK_LONG_DESCRIPTIONS={"通常側面":"対象個体には複数の側面が存在しますが、特殊な変化よりも、日常的に見せている自然な側面が優勢です。通常側面が優勢であることと側面の数に相関は認められておらず、相手や状況によって多彩な顔を見せることもあります。通常側面が優勢だと判定されたからといって、他の特殊な側面が存在しないわけではありません。","分霊：霊体型":"対象個体の霊力から、実体を持たない小さな分霊が生じる可能性があります。人魂や鬼火、光の塊のような姿をとることが多く、見る者の霊的な感覚によっては認識できない場合もあります。人形やぬいぐるみなどの依り代を与えることで、安定した状態を保てると考えられます。","分霊：動物型":"対象個体の霊力から、動物の姿をした分霊が生じる可能性があります。犬や猫などの身近な動物が多く、毛並みや瞳の色には元の刀剣男士の特徴が反映されることがあります。ただし、大型動物や獰猛な動物として現れる事例もあり、その姿や性質に応じた対応が必要です。","分霊：不完全型":"対象個体の姿を不完全に再現した、人型の分霊が生じる可能性があります。元の刀剣男士より幼い姿や、小さな体格で現れることが多く、手のひらに収まるほどの事例も確認されています。潜在的な危険性は指摘されていますが、現行の政府基準では危険な側面には分類されません。","変化：外見":"存在の揺らぎが霊力の巡りに影響し、対象個体の外見に変化が現れる側面です。髪型や髪色、戦装束などの軽微な変化から、体格や性別そのものが変わる事例まで確認されています。ただし、変化の規模にかかわらず、本人の意識や記憶、内面にはほとんど影響がありません。","変化：内面":"普段は表に出さない感情や思考、本人も自覚していない性質などが、強く表出する側面です。些細な不満が大きく現れることもあれば、隠していた感謝や好意が明らかになる場合もあります。新しい人格や感情が生まれるわけではなく、もともと本人の内側に存在するものが強調、誇張されて現れます。","変化：妖素":"存在の揺らぎを補うため、対象個体が人ならざる存在の要素を一時的に取り込む側面です。動物の耳や尾が現れる程度の変化から、妖怪や伝承上の存在に近い姿や性質を示す事例まであります。外見が怪異に近づいたとしても、それだけで危険な状態にあるとは判断されません。","変化：異聞":"現在の顕現とは異なる時代や来歴、逸話、解釈に基づく姿が表出する側面です。装束や装備だけでなく、口調や物事の捉え方まで変化することがあります。別人のように見えても、あくまで同一の刀剣男士が持つ別の可能性であり、その由来を本人も把握していない場合があります。","反転":"存在の揺らぎによって、対象個体が持つ性質の一部が反対の方向へ変化する側面です。普段は物静かな刀剣男士が饒舌になるなど、性格や言動に変化が現れるほか、髪色や戦装束などの外見が変化する場合もあります。内面と外見のどちらか、あるいは両方が反転しますが、その条件は判明していません。","神霊":"対象個体が本来持つ神霊的な性質が、通常時より強く表出する側面です。神性や能力が大きく高まり、外見にも神々しい変化が現れることがあります。一方、姿がまったく変わらない事例や、ただ光り輝き続ける事例も存在します。刀剣男士としての存在は維持されており、完全な神へ変質したことを意味するものではありません。"};
+const AK_PREV={
+ affectionate:['yoso','appearance'],reverent:['incomplete','reverse'],protective:['appearance','divine'],thoughtful:['divine','inner'],partner:['reverse','animal'],dagger:['inner','incomplete'],leading:['alternate','spirit'],independent:['spirit','yoso'],service:['normal','alternate'],free:['animal','normal']
+};
+const AK_REL={master:'spirit',friend:'animal',comrade:'alternate',bestfriend:'yoso',partner:'reverse',buddy:'incomplete',sibling:'appearance',work:'normal',mentor:'divine',other:'inner'};
+const AK_APPEAL={strength:['alternate','animal'],kind:['divine','reverse'],serious:['appearance','alternate'],reliable:['normal','divine'],wise:['inner','yoso'],innocent:['animal','appearance'],devoted:['incomplete','spirit'],beauty:['yoso','incomplete'],free:['reverse','inner'],other:['spirit','normal']};
+const AK_FAULT={stubborn:['incomplete','appearance'],strong:['alternate','incomplete'],weak:['divine','yoso'],reckless:['spirit','reverse'],naive:['animal','divine'],rough:['inner','animal'],cold:['reverse','normal'],childish:['appearance','spirit'],anxious:['yoso','alternate'],other:['normal','inner']};
+const AK_ORDER=Object.keys(AK_NAMES);
+// Numeric observation modifiers: 0–19 / 20–39 / 40–60 / 61–80 / 81–100.
+const AK_DIVINITY_BONUS=['normal','yoso','appearance','spirit','divine'];
+const AK_EMOTION_BONUS=['alternate','animal','reverse','inner','incomplete'];
+function akBand(n){return n<=19?0:n<=39?1:n<=60?2:n<=80?3:4}
+function computeAkatsuki(material,relation,appeal,fault){
+ const scores=Object.fromEntries(AK_ORDER.map(k=>[k,0]));
+ const p=AK_PREV[$('#masterTendency').value];
+ scores[p[0]]+=2;scores[p[1]]+=1;
+ scores[AK_REL[relation]]+=2;
+ for(const k of AK_APPEAL[appeal])scores[k]++;
+ for(const k of AK_FAULT[fault])scores[k]++;
+ if(material==='none'){scores.divine--;scores.yoso--}
+ if(material==='precision'){scores.divine+=2;scores.yoso+=2}
+ const divinity=prevValue('divinity');
+ scores[AK_DIVINITY_BONUS[akBand(divinity)]]++;
+ scores[AK_EMOTION_BONUS[akBand(prevValue('emotion'))]]++;
+ let max=Math.max(...Object.values(scores));
+ let tied=AK_ORDER.filter(k=>scores[k]===max);
+ if(tied.length>1&&tied.includes(p[0]))scores[p[0]]++;
+ else if(tied.length>1&&tied.includes(p[1]))scores[p[1]]++;
+ max=Math.max(...Object.values(scores));
+ tied=AK_ORDER.filter(k=>scores[k]===max);
+ // Resolved tie order: relationship, appeal, fault, material, then fixed order.
+ const materialPriority={accessory:'appearance',treasure:'divine',precision:'yoso',nail:'incomplete',hair:'animal'};
+ const priority=[AK_REL[relation],...AK_APPEAL[appeal],...AK_FAULT[fault],materialPriority[material],
+  'spirit','animal','incomplete','appearance','inner','alternate','reverse','normal'];
+ let candidates=tied;
+ if(tied.includes('yoso')&&tied.includes('divine')){
+  const preferred=divinity<=50?'yoso':'divine';
+  candidates=tied.filter(k=>k!==(preferred==='yoso'?'divine':'yoso'));
+ }
+ const main=priority.find(k=>candidates.includes(k))||candidates[0];
+ const second=Math.max(...AK_ORDER.filter(k=>k!==main).map(k=>scores[k]));
+ const secondary=(max-second<=1)?[...AK_ORDER.filter(k=>k!==main&&scores[k]===second)].sort((a,b)=>{const ai=priority.indexOf(a),bi=priority.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)||AK_ORDER.indexOf(a)-AK_ORDER.indexOf(b)}).slice(0,1):[];
+ return {main,secondary,provisionalTie:false,scores};
 }
-function detailCanvas(){
-  const r=lastResult,c=document.createElement('canvas');c.width=1200;c.height=2310;const ctx=c.getContext('2d');
-  drawExportPaper(ctx,c.height,'追加審査詳細記録',r.name,'ADDITIONAL INDIVIDUAL DETAILED EXAMINATION FILE');
-  let y=250;
-  const section=title=>{ctx.fillStyle='#e8e9e5';ctx.fillRect(100,y,1000,48);ctx.fillStyle='#46534f';ctx.font=cfont(20,'bold');ctx.fillText(title,122,y+32);y+=84;};
-  const row=(label,value)=>{ctx.fillStyle='#666d6b';ctx.font=cfont(17,'bold');ctx.fillText(label,125,y);ctx.fillStyle='#39433f';ctx.font=cfont(18);wrapText(ctx,String(value),360,y,700,26,2);ctx.strokeStyle='#d1d4d0';ctx.beginPath();ctx.moveTo(125,y+17);ctx.lineTo(1075,y+17);ctx.stroke();y+=49;};
-  section('個体観測結果');row('対主傾向',PREV_LABELS[r.prevTendency]);row('情緒傾向',String(r.emotion));row('神性傾向',String(r.divinity));row('存在の揺らぎ',String(r.fluctuation));
-  section('本丸・追加情報');row('本丸での位置づけ',r.position);row('関係性',RELATION_LABELS[r.relation]);row('魅力に感じる点',r.appealLabel);row('欠点に感じる点',r.faultLabel);row('提出資料',MATERIAL_LABELS[r.material]);
-  section('追加審査結果');row('主要傾向',TYPE_NAMES[r.types.main]);row('副次傾向',r.types.secondary.length?r.types.secondary.map(t=>TYPE_NAMES[t]).join('／'):'なし');row('固有傾向',r.pole.label);row('現在確認されている側面数',r.aspect.count+'側面（通常時の在り方を除く）');row('固有傾向の概要',r.pole.description);row('偏りの程度',r.pole.levelDescription);row('作用対象',`対主 ${r.axes.target[0]} ／ 対他 ${r.axes.target[1]}`);row('行動傾向',`能動 ${r.axes.action[0]} ／ 受動 ${r.axes.action[1]}`);row('認知態度',`明瞭 ${r.axes.exposure[0]} ／ 擬態 ${r.axes.exposure[1]}`);
-  const noteY=2010;ctx.fillStyle='#f4f4f0';ctx.fillRect(100,noteY,1000,175);ctx.strokeStyle='#b7bcb8';ctx.lineWidth=1;ctx.strokeRect(100,noteY,1000,175);
-  ctx.fillStyle='#59615e';ctx.font=cfont(17,'bold');ctx.fillText('取扱注意',128,noteY+42);ctx.fillStyle='#666d6b';ctx.font=cfont(15);wrapText(ctx,'本記録には、対象となる刀剣男士および本丸内の詳細な入力情報が含まれます。公開・共有の際は、取り扱いに十分ご注意ください。',128,noteY+82,900,26,3);
-  ctx.fillStyle='#777f7c';ctx.font='14px Arial';ctx.fillText('UNOFFICIAL FAN-MADE / WORKING PROTOTYPE',100,2248);
-  return c;
+function validNum(id){const raw=$(id).value.trim();return raw!==''&&Number.isInteger(Number(raw))&&Number(raw)>=0&&Number(raw)<=100}
+for(const group of ['appeal','fault']){
+ document.querySelectorAll('input[name="'+group+'"]').forEach(input=>input.addEventListener('change',()=>{
+ const wrap=$('#'+group+'Other');wrap.classList.toggle('show',checked(group)==='other');
+ }));
 }
-function ensureResult(){if(lastResult)return true;document.getElementById('exportStatus').textContent='先に追加審査を実行してください。';return false;}
-document.getElementById('saveResultButton').addEventListener('click',()=>{if(!ensureResult())return;downloadCanvas(resultCanvas(),`追加審査_${lastResult.name}_結果.png`);document.getElementById('exportStatus').textContent='結果画像を作成しました。';});
-document.getElementById('saveDetailButton').addEventListener('click',()=>{if(!ensureResult())return;downloadCanvas(detailCanvas(),`追加審査_${lastResult.name}_詳細記録.png`);document.getElementById('exportStatus').textContent='詳細記録を作成しました。';});
-document.getElementById('shareButton').addEventListener('click',()=>{if(!ensureResult())return;const main=TYPE_NAMES[lastResult.types.main],pole=lastResult.pole.label;const text=`刀剣男士個体観測・追加審査
-主要傾向：${main}
-固有傾向：${pole}
-#刀剣男士個体観測`;const url='https://milk-tools.com/';window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url),'_blank','noopener,noreferrer');document.getElementById('exportStatus').textContent='シェア文には刀剣名を含めていません。必要に応じて結果画像を添付してください。';});
+$('#run').addEventListener('click',()=>{
+ const name=$('#formalName').value.trim(), material=checked('material'),relation=checked('relation'),appeal=checked('appeal'),fault=checked('fault');
+ if(!name||!$('#masterTendency').value||!validNum('#emotion')||!validNum('#divinity')||!validNum('#fluctuation')||!material||!relation||!appeal||!fault){$('#error').textContent='未入力の項目があります。すべて入力・選択してください。';return}
+ $('#error').textContent='';
+ const ak=computeAkatsuki(material,relation,appeal,fault);
+ // The legacy types are computed solely for the side-count formula and never displayed.
+ const hiddenTasogare=computeTypes(material,relation,appeal,fault);
+ const count=computeAspectCount(hiddenTasogare,material,relation,appeal,fault).count;
+ $('#resultName').textContent=name;
+ $('#formResult').textContent=AK_NAMES[ak.main]+(ak.provisionalTie?'（仮）':'');
+ $('#aspectCount').textContent=String(count);
+ $('#secondaryBox').style.display=ak.secondary.length?'block':'none';
+ $('#secondaryAspectList').replaceChildren(...ak.secondary.slice(0,1).map(k=>{const item=document.createElement('div');item.className='secondary-aspect-item';const title=document.createElement('div');title.className='secondary-aspect-name';title.textContent=AK_NAMES[k];const desc=document.createElement('div');desc.className='secondary-aspect-description';desc.textContent=AK_SHORT_DESCRIPTIONS[AK_NAMES[k]]||'';item.append(title,desc);return item;}));
+ $('#observationText').textContent=AK_SHORT_DESCRIPTIONS[AK_NAMES[ak.main]]||'結果Aの説明は調整中です。';
+ $('#observationLongText').textContent=AK_LONG_DESCRIPTIONS[AK_NAMES[ak.main]]||'';
+  window.akatsukiLastResult={name,aspect:AK_NAMES[ak.main],count,description:$('#observationLongText').textContent,secondary:ak.secondary.slice(0,1).map(k=>AK_NAMES[k]),provisionalTie:ak.provisionalTie};
+ $('#resultPanel').classList.add('show');$('#resultPanel').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+// Export prototype: no external libraries required; both image types are generated locally.
+function akDownloadCanvas(canvas,filename){canvas.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png')}
+function akImage(detailed){
+ const r=window.akatsukiLastResult,c=document.createElement('canvas');c.width=1200;c.height=detailed?1530:1230;const x=c.getContext('2d');
+ const serif='"Yu Mincho","Hiragino Mincho ProN",serif';
+ x.fillStyle='#e1e4ea';x.fillRect(0,0,c.width,c.height);x.fillStyle='#f8f8f5';x.fillRect(60,58,1080,c.height-116);x.strokeStyle='#aeb4c0';x.lineWidth=2;x.strokeRect(60,58,1080,c.height-116);
+ x.fillStyle='#4b5267';x.fillRect(60,58,1080,9);x.textAlign='center';x.fillStyle='#666f82';x.font='24px '+serif;x.fillText('非公式・刀剣男士個体観測｜追加審査《暁》',600,146);
+ x.font='bold 36px '+serif;x.fillStyle='#343b4c';x.fillText(r.name,600,225);
+ x.font='22px '+serif;x.fillStyle='#707786';x.fillText('確認された側面のうち、最も表出しやすい側面',600,286);
+ x.font='bold 62px '+serif;x.fillStyle='#353d50';x.fillText(r.aspect,600,388);
+ x.strokeStyle='#c5c9d2';x.beginPath();x.moveTo(130,435);x.lineTo(1070,435);x.stroke();
+ x.textAlign='left';x.font='26px '+serif;x.fillStyle='#626b7c';x.fillText('危険な側面の兆候',145,520);x.font='bold 43px '+serif;x.fillStyle='#343b4c';x.fillText('なし',145,580);
+ x.font='26px '+serif;x.fillStyle='#626b7c';x.fillText('現在確認されている側面数',145,685);x.font='bold 43px '+serif;x.fillStyle='#343b4c';x.fillText(r.count+' 側面',145,745);
+ x.font='22px '+serif;x.fillStyle='#5f6676';x.fillText('※通常時の在り方は側面数に含みません。',145,810);
+ if(detailed){x.font='bold 27px '+serif;x.fillStyle='#414b60';x.fillText('結果A｜観測記録',145,908);akWrap(x,r.description,145,962,910,34,24);if(r.secondary.length){x.font='21px '+serif;x.fillText('次点で表出しやすい側面：'+r.secondary.join('／'),145,1320)}}
+ x.textAlign='center';x.font='19px '+serif;x.fillStyle='#777f8c';x.fillText('UNOFFICIAL FAN-MADE / WORKING PROTOTYPE',600,c.height-115);return c;
+}
+function akWrap(ctx,text,left,top,maxWidth,lineHeight,fontSize){ctx.font=fontSize+'px "Yu Mincho",serif';let line='',y=top;for(const char of text){if(ctx.measureText(line+char).width>maxWidth){ctx.fillText(line,left,y);y+=lineHeight;line=char}else line+=char}if(line)ctx.fillText(line,left,y)}
+document.getElementById('saveResultButton').addEventListener('click',()=>{if(!window.akatsukiLastResult)return;akDownloadCanvas(akImage(false),'暁_結果.png');document.getElementById('exportStatus').textContent='結果画像を作成しました。'});
+document.getElementById('saveDetailButton').addEventListener('click',()=>{if(!window.akatsukiLastResult)return;akDownloadCanvas(akImage(true),'暁_詳細記録.png');document.getElementById('exportStatus').textContent='詳細記録画像を作成しました。'});
+document.getElementById('shareButton').addEventListener('click',()=>{if(!window.akatsukiLastResult)return;const r=window.akatsukiLastResult;const text='刀剣男士個体観測・追加審査《暁》\n刀剣名：'+r.name+'\n結果A：'+r.aspect+'\n危険な側面の兆候：なし\n#刀剣男士個体観測';window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text),'_blank','noopener')});
 </script>
-</body></html>
+</body>
+</html>
