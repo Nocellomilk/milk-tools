@@ -1,1 +1,926 @@
+<!DOCTYPE html>
 
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>露と消えにし</title>
+<style>
+:root{color-scheme:dark;--bg:#101b29;--panel:#1c2a3b;--panel2:#142131;--gold:#e8c784;--ink:#edf1f4;--muted:#a9b8c7;--line:#405168;--green:#9bd6c0}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#273a4d,var(--bg) 65%);color:var(--ink);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.6}header{border-bottom:1px solid #53637a;background:#111d2bde;padding:16px 20px;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;margin:0;color:var(--gold)}h1{font-size:1.55rem}h2{font-size:1.28rem;margin-bottom:12px}h3{font-size:1.05rem;margin-bottom:10px}.sub,.muted{color:var(--muted);font-size:.85rem}.wrap{max-width:1180px;margin:auto}.layout{display:grid;grid-template-columns:minmax(280px,370px) minmax(0,1fr);gap:18px;padding:20px}.panel{background:#1b2b3bdc;border:1px solid var(--line);border-radius:13px;padding:18px;margin-bottom:16px;box-shadow:0 7px 22px #0002}.stack{display:grid;gap:10px}.flex{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{justify-content:space-between}button,input,select,textarea{font:inherit}button{border:1px solid #7d735d;background:#334356;color:#f8f1df;padding:9px 12px;border-radius:8px;cursor:pointer}button:hover{background:#475d70}button.primary{background:#9b7744;border-color:#d6b777;color:#fff}button.primary:hover{background:#b18c56}button:disabled{opacity:.45;cursor:not-allowed}button.small{padding:5px 9px;font-size:.83rem}input,select,textarea{background:#101e2d;border:1px solid #617086;color:var(--ink);padding:9px;border-radius:7px;width:100%;min-width:0}label{display:grid;gap:5px;font-size:.89rem}fieldset{border:1px solid var(--line);border-radius:10px;padding:12px}legend{color:var(--gold);padding:0 6px}input[type=checkbox],input[type=radio]{width:auto;accent-color:#d5b57d}.radio{display:flex;align-items:center;gap:7px;cursor:pointer}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.stat{background:var(--panel2);border:1px solid #344a61;border-radius:8px;padding:8px}.stat b{display:block;color:var(--gold);font-size:1.1rem}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{background:#30455a;border:1px solid #4a637a;border-radius:20px;padding:3px 9px;font-size:.79rem}.log{max-height:610px;overflow:auto;display:grid;gap:10px}.entry{background:#142234;border-left:3px solid #647a8c;border-radius:6px;padding:11px 13px}.entry.choice{border-color:#e8c784}.entry.join{border-color:#9bd6c0}.entry .date{font-size:.78rem;color:var(--muted)}.entry strong{color:#f0d5a0}.choiceBox{border:1px solid #b89b65;background:#2a2c33;border-radius:12px;padding:17px;margin-bottom:16px}.choiceBox p{margin:6px 0 13px}.choiceButtons{display:grid;gap:8px}.choiceButtons button{text-align:left}.roster{max-height:225px;overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;border:1px solid var(--line);padding:10px;border-radius:8px}.roster label{display:flex;gap:7px;align-items:center;font-size:.82rem}.overlay{position:fixed;inset:0;background:#08111de9;z-index:20;display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:25px 12px}.setup{width:min(690px,100%);background:#1d2b3b;border:1px solid #a28b60;border-radius:14px;padding:23px}.hidden{display:none!important}.pill{font-size:.8rem;background:#3e4c5e;padding:4px 9px;border-radius:20px}.note{font-size:.83rem;color:#b9c8d6}.footer{max-width:1180px;margin:0 auto 30px;padding:0 20px;color:#9bacbd;font-size:.77rem}.scroll{max-height:240px;overflow:auto}.wide{width:100%}@media(max-width:760px){.layout{grid-template-columns:1fr;padding:12px}.grid2{grid-template-columns:1fr}.roster{grid-template-columns:1fr 1fr}header{position:static}}
+
+/* 見た目検討用：葡萄酒色 × 古い洋書 × 金の装飾 */
+:root{color-scheme:light;--bg:#f1e8df;--panel:#fffaf3;--panel2:#f8f0e7;--gold:#8a563c;--ink:#47352f;--muted:#8b7770;--line:#ddc4b1;--green:#778c73}
+body{background:radial-gradient(ellipse at 8% 8%,#fff8ed 0,transparent 36%),radial-gradient(ellipse at 90% 70%,#ecd5d0 0,transparent 38%),#f1e8df;color:var(--ink);font-family:'Yu Mincho','Hiragino Mincho ProN',serif;letter-spacing:.025em}
+body:before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.23;background-image:repeating-linear-gradient(0deg,transparent 0 3px,#8e71540a 4px 5px);z-index:0}
+header{position:relative;top:auto;background:#61302e;border-bottom:5px double #d2a87f;padding:22px 20px;color:#f7e9d8;box-shadow:0 8px 28px #603a3930}
+header .wrap{position:relative}header .wrap:before{content:'';position:absolute;left:-32px;top:0;color:#d9b68b;font-size:25px}
+h1,h2,h3{color:#743f3d;font-family:'Yu Mincho','Hiragino Mincho ProN',serif;font-weight:600}h1{font-size:2rem;letter-spacing:.18em;color:#f5e7d3}header .sub{color:#e3c5b6;letter-spacing:.17em}header .pill{background:#7c4947;color:#f8e9d8;border-color:#b98280}
+.wrap{max-width:1280px}.layout{grid-template-columns:minmax(245px,305px) minmax(0,1fr);gap:25px;padding:30px 20px}
+.panel{background:linear-gradient(135deg,#fffdf8,#f9f1e9);border:1px solid #d7bda6;border-radius:3px;padding:22px 24px;margin-bottom:20px;box-shadow:0 5px 0 #e6d3c34d,0 12px 32px #734b3c12;position:relative}
+.panel:before{content:'';position:absolute;right:13px;top:7px;font-size:23px;color:#b89283;opacity:.65}.panel h2{font-size:1.26rem;letter-spacing:.13em;border-bottom:1px solid #d9bfa9;padding-bottom:10px;margin-bottom:17px}
+.panel h2:before{content:'';font-size:.7rem;color:#b78d72;margin-right:9px}
+button{border-radius:2px;border:1px solid #aa7775;background:#fff8f0;color:#754846;padding:9px 13px;box-shadow:0 2px 0 #e2cbc2;transition:background .15s}button:hover{background:#f4e0d9}button.primary{background:#76403e;color:#fff5e9;border-color:#76403e}button.primary:hover{background:#955a58}button:disabled{opacity:.42}
+input,select,textarea{background:#fffdfa;color:#553f39;border:1px solid #cdb4a3;border-radius:2px;padding:10px}input:focus,select:focus{outline:2px solid #d8b3a7}fieldset{border:1px solid #d5b9a5;border-radius:2px;padding:17px}legend{color:#804644;font-weight:bold;letter-spacing:.12em}input[type=checkbox],input[type=radio]{accent-color:#844d4b}
+.sub,.muted,.note{color:#8a756b}.pill{background:#f1dfd2;color:#764c4c;border:1px solid #d4b4a1;border-radius:2px}.tag{background:#f6e8dd;color:#694a46;border:1px solid #d8bda8;border-radius:2px;padding:4px 8px}.stat{background:#fbf4eb;border:1px solid #e4cfbc;border-radius:2px}.stat b{color:#8a4e4c}.stats{gap:7px}
+.log{max-height:700px;gap:0;padding:2px 8px 2px 20px;border-left:1px solid #cfae98}.entry{position:relative;background:transparent;border:0;border-bottom:1px solid #eadbd0;border-radius:0;padding:15px 10px 17px 18px}.entry:before{content:'';position:absolute;left:-27px;top:17px;background:#fcf7f0;color:#a16b69;font-size:14px}.entry.choice:before{content:'◆';color:#874240}.entry.join:before{content:'❀';color:#778a65}.entry .date{color:#a07973;letter-spacing:.09em}.entry strong{color:#753f3d;display:block;font-size:1.05rem;margin:3px 0}.entry>div:last-child{line-height:1.85}
+.choiceBox{background:linear-gradient(140deg,#fff7eb,#f2ded8);border:2px double #aa7573;border-radius:2px;padding:22px 26px;box-shadow:0 8px 25px #6137361a}.choiceBox h3{font-size:1.25rem}.choiceButtons button{text-align:left;background:#fffaf3}.choiceButtons button:hover{background:#f3e1d8}
+.overlay{background:#432a29c9;backdrop-filter:blur(5px);padding:25px 12px}.setup{background:#fffaf3;border:1px solid #d6b79e;border-radius:3px;padding:30px 35px;box-shadow:0 0 0 7px #fff6ed55,0 20px 80px #27161570;max-width:760px}.setup>div:first-child{text-align:center}.setup h2{font-size:1.7rem;letter-spacing:.17em}.setup .note{line-height:1.8}.roster{background:#fffdf9;border:1px solid #dec7b6;border-radius:2px}.footer{color:#927c71}
+.hero{background:#68312f;color:#f8e9da;border:1px solid #b88a7e;padding:26px 30px;margin-bottom:20px;position:relative;overflow:hidden;text-align:center;box-shadow:0 12px 28px #6b3e3c20}.hero:before,.hero:after{content:'❀';position:absolute;font-size:120px;line-height:1;color:#d9a99a;opacity:.17;top:-19px}.hero:before{left:-16px}.hero:after{right:-16px;transform:scaleX(-1)}.hero .eyebrow{font-size:.72rem;letter-spacing:.32em;color:#e6c7aa}.hero h2{font-size:1.8rem;color:#fff3df;margin:7px 0;border:0}.hero p{font-size:.85rem;margin:0;color:#e9cabb}.ornament{text-align:center;color:#b38c7b;letter-spacing:.65em;margin:8px 0 14px}.preview{border:1px solid #e0c9b6;background:#fff8f0;padding:15px 18px;margin-bottom:18px}.preview h3{font-size:1rem;margin:0 0 7px}.preview .note{margin:0}.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.preview-cell{padding:10px 7px;text-align:center;border:1px solid #e6d2c3;background:#fffdf9}.preview-cell b{display:block;color:#7c4745;font-size:1.05rem}.preview-cell span{font-size:.74rem;color:#957e74}.ribbon{display:inline-block;background:#753e3c;color:#f8e9db;font-size:.73rem;padding:4px 12px;letter-spacing:.13em;margin-bottom:8px}.preview-choices{display:flex;gap:8px;flex-wrap:wrap}.preview-choices button{font-size:.82rem}.mode-note{font-size:.78rem;color:#8c7168;margin:6px 0 0}.preview-notice{font-size:.75rem;color:#967f75;margin:9px 0 0}
+@media(max-width:760px){.layout{grid-template-columns:1fr;padding:14px}.panel{padding:18px}.setup{padding:22px 17px}.hero{padding:20px 10px}.hero h2{font-size:1.4rem}header h1{font-size:1.45rem}.preview-grid{grid-template-columns:1fr 1fr}header .wrap:before{display:none}}
+
+/* 所属刀剣男士：折りたたみ式コンパクト一覧 */
+.roster-panel{padding:0!important;overflow:hidden}
+.owned-details>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:17px 18px;color:#865c6a;user-select:none}
+.owned-details>summary::-webkit-details-marker{display:none}
+.owned-title{font-size:1.17rem;font-weight:600}
+.owned-summary-right{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.owned-toggle{font-size:.75rem;color:#a0808a;white-space:nowrap}
+.owned-toggle::after{content:" ▾"}
+.owned-details[open] .owned-toggle{font-size:0}
+.owned-details[open] .owned-toggle::after{content:"閉じる ▴";font-size:.75rem}
+.owned-details>summary:hover{background:#fff4f4}
+.owned-details>summary:focus-visible{outline:2px solid #c3918f;outline-offset:-3px}
+.compact-romance{padding:0 12px 13px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:340px;overflow:auto}
+.compact-romance .romance-card{padding:7px 8px;min-width:0}
+.compact-romance .romance-card strong{display:block;font-size:.83rem;line-height:1.4;overflow-wrap:anywhere}
+.compact-romance .romance-card .muted{font-size:.71rem;line-height:1.4}
+.compact-romance .meter{height:4px;margin-top:5px}
+@media(max-width:400px){.compact-romance{grid-template-columns:1fr 1fr}.owned-details>summary{padding:14px 12px}.owned-title{font-size:1rem}}
+
+/* Ending PNG export prototype */
+.tsuyu-image-modal{position:fixed;inset:0;z-index:9999;background:#080405e8;display:flex;align-items:center;justify-content:center;padding:18px}
+.tsuyu-image-modal.hidden{display:none}
+.tsuyu-image-dialog{width:min(650px,96vw);max-height:94vh;overflow:auto;background:#1a1012;color:#eee0dc;border:1px solid #704044;padding:20px;box-shadow:0 15px 60px #000c}
+.tsuyu-image-dialog h3{margin:0 0 12px;font-size:19px}
+.tsuyu-image-dialog img{display:block;max-width:100%;max-height:58vh;margin:0 auto 15px;border:1px solid #603237}
+.tsuyu-image-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.tsuyu-image-actions a,.tsuyu-image-actions button{padding:10px 13px;border:1px solid #82545a;background:#2e171b;color:#f4e8e4;text-decoration:none;cursor:pointer}
+.tsuyu-image-help{font-size:12px;color:#d0b5b3;line-height:1.8;margin-top:13px}
+</style><style>
+:root{color-scheme:light;--bg:#f8f0e9;--panel:#fffaf5;--panel2:#f8edea;--gold:#a97c6e;--ink:#55454b;--muted:#947d81;--line:#e7ccd0;--green:#7e9e83}
+body{color:var(--ink);background:
+radial-gradient(ellipse at 0% 5%,#f2cccba8,transparent 32%),
+radial-gradient(ellipse at 100% 30%,#e7d8e8aa,transparent 33%),
+radial-gradient(ellipse at 20% 95%,#f7d5c2aa,transparent 34%),
+#faf4ed;font-family:"Yu Mincho","Hiragino Mincho ProN",serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.26;background-image:repeating-linear-gradient(0deg,transparent 0 4px,#c6a8a322 5px 6px);z-index:-1}
+header{background:#fbf5f1ee;border-bottom:1px solid #e9cdd0;box-shadow:0 3px 18px #8d5b6520}
+header h1{color:#805467;font-size:1.7rem}header h1 span{color:#ad8892!important}
+header .sub{color:#a48691}
+h1,h2,h3{color:#875b6b}
+h2{border-bottom:1px solid #e8cdd2;padding-bottom:9px}
+.layout{grid-template-columns:minmax(270px,335px) minmax(0,1fr);gap:24px}
+.panel,.preview,.setup{background:#fffaf6ed;border:1px solid #e7cdd2;border-radius:3px;box-shadow:0 8px 24px #ac7a781a}
+.panel{padding:20px}
+.panel:before{content:"❀";display:block;text-align:center;color:#c99e9c;font-size:14px;line-height:1;margin-bottom:8px}
+button{background:#fff7f4;border:1px solid #cbaab4;color:#805568;border-radius:3px}
+button:hover{background:#f5e1e6}
+button.primary,.ribbon{background:#946578;color:#fff9f4;border-color:#946578}
+button.primary:hover{background:#805269}
+input,select,textarea{background:#fffdfa;border:1px solid #dec3ca;color:#604b54;border-radius:2px}
+fieldset{border:1px solid #e0c4cb;border-radius:2px}
+legend{color:#875b6b}
+.pill,.tag{background:#f8e9ed;color:#8b6373;border:1px solid #e5cbd1;border-radius:3px}
+.stat,.preview-cell{background:#fdf4f2;border:1px solid #ead5d7;border-radius:2px}
+.stat b,.preview-cell b{color:#956879}
+.entry{background:#fffaf7;border:0;border-left:2px solid #d7b5c2;border-radius:0;border-bottom:1px solid #f0e2e0}
+.entry.choice{border-left-color:#b58a71}.entry.join{border-left-color:#91a98c}
+.entry strong{color:#865c6a}
+.choiceBox{background:#fbf0ef;border:1px solid #dcb9c5;border-radius:3px}
+.overlay{background:#68505b9c;backdrop-filter:blur(5px)}
+.setup{background:#fffaf5}
+.roster{border-color:#e5cdd2}
+.note,.muted,.sub{color:#987e87}
+.hero{background:
+radial-gradient(circle at 12% 25%,#f6d4dd 0 7%,transparent 24%),
+radial-gradient(circle at 90% 75%,#ead4e6 0 9%,transparent 28%),
+linear-gradient(125deg,#fff9f3,#f6e5e9 50%,#fff7ef);
+border:1px solid #d7b5c0;color:#7f5267;box-shadow:0 12px 30px #ad79772b;padding:42px 28px}
+.hero:before,.hero:after{content:"❀";color:#bd8f8d;opacity:.5;font-size:110px;top:-12px}
+.hero h2{color:#86586c;border:0;font-size:2rem;letter-spacing:.13em}
+.hero p{color:#977583}.hero .eyebrow{color:#a77d8f}
+.ornament{color:#b88785}
+.preview{background:#fffaf7;border-color:#e5cbd1}
+.preview-cell{background:#fdf3f1}
+.ribbon{letter-spacing:.12em}
+.footer{color:#a38a91}
+@media(max-width:760px){.layout{grid-template-columns:1fr;gap:8px}.hero{padding:30px 12px}.hero h2{font-size:1.5rem}}
+</style>
+<style>
+body{font-family:"Yu Mincho","Hiragino Mincho ProN",serif}
+header{position:relative} .layout{grid-template-columns:minmax(260px,320px) minmax(0,1fr)}
+.setup{max-width:850px;max-height:90vh;overflow:auto}
+.setup label{display:block}.setup input,.setup select{width:100%;margin-top:5px}
+.roster{max-height:180px;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:5px;padding:10px;background:#fff8f6}
+.roster label{font-size:.82rem}.roster input{width:auto}
+.romance-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:9px}
+.romance-card{border:1px solid #e7cdd2;background:#fff8f6;padding:11px;border-radius:4px}
+.romance-card strong{color:#865c6a}.meter{height:7px;background:#eddbdf;margin-top:7px;border-radius:5px;overflow:hidden}
+.meter span{display:block;height:100%;background:#c3918f}
+.choiceBox{margin-bottom:18px;padding:18px}
+.choiceButtons{display:flex;gap:8px;flex-wrap:wrap}
+.entry{padding:12px 5px}.entry .date{font-size:.77rem;color:#a0808a}
+.hero{margin-bottom:16px;text-align:center}.preview{margin-bottom:16px;padding:18px}
+.pill{display:inline-block;padding:4px 9px}.hidden{display:none!important}
+#endOverlay .setup{max-width:650px}
+@media(max-width:750px){.layout{grid-template-columns:1fr}.hero h2{font-size:1.5rem}}
+</style><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* フォント試着版：レイアウト・ゲームロジックは変更なし */
+body, button, input, select, textarea, label, .entry, .note, .sub, .muted, .footer {
+  font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+}
+h1, h2, h3, legend, .hero, .ribbon, .stat b, .romance-card strong {
+  font-family: 'Kiwi Maru', 'Zen Maru Gothic', serif;
+  font-weight: 300; /* Kiwi Maru Light */
+}
+</style>
+<style>
+/* 闇本丸・配色試作 01 : 黒紫と暗紅 */
+:root{color-scheme:dark;--bg:#17121d;--panel:#241b2a;--panel2:#2d2232;--gold:#c6a6a5;--ink:#e8dfe6;--muted:#b7a6b6;--line:#594453;--green:#8c889f}
+body{color:var(--ink);background:radial-gradient(ellipse at 78% 0%,#39263e 0%,transparent 42%),radial-gradient(ellipse at 0% 85%,#321c1b 0%,transparent 48%),#17121d}
+body:before{background-image:repeating-linear-gradient(0deg,transparent 0 5px,#d1b3c008 6px 7px);opacity:.4;z-index:0}
+header{background:#211725ee;border-bottom:1px solid #775262;box-shadow:0 4px 22px #08050a99}
+header h1, h1,h2,h3,.panel h2,.hero h2{color:#eadce3}
+header .sub,.sub,.muted,.note,.footer{color:#b6a0af}
+.panel,.preview,.setup{background:linear-gradient(145deg,#2b202f,#211a27);border:1px solid #5e4859;box-shadow:0 10px 32px #09050a66;color:#e8dfe6}
+.panel:before{content:'';color:#957485}.panel h2{border-color:#654a5c}.panel h2:before{color:#ad7977}
+button,.choiceButtons button{background:#382738;color:#e8dce4;border:1px solid #816071;box-shadow:none}
+button:hover,.choiceButtons button:hover{background:#503348}
+button.primary,.ribbon{background:#743735;color:#fff0f2;border-color:#aa6260}
+button.primary:hover{background:#8c4543}
+input,select,textarea{background:#201923;color:#f1e5ec;border:1px solid #71576b}
+fieldset,.roster{border-color:#63495d;background:#241c2a}legend{color:#d6b4c1}
+.pill,.tag{background:#392b3c;color:#e5ccd7;border:1px solid #745469}
+.stat,.preview-cell,.romance-card{background:#302335;border:1px solid #654b5f;color:#e8dfe6}
+.stat b,.preview-cell b,.romance-card strong{color:#e6b9b7}
+.meter{background:#4c374a}.meter span{background:#a55b58}
+.entry{background:#251b2a;border-left:2px solid #795368;border-bottom:1px solid #493748}
+.entry:before{background:#251b2a;color:#b98d8c}.entry strong{color:#e7c2d0}.entry .date{color:#ac91a3}
+.choiceBox{background:linear-gradient(125deg,#352332,#261b2a);border:1px solid #936378;box-shadow:0 12px 28px #08040977}
+.overlay{background:#100b15d9}.setup{background:#241b2a}.owned-details>summary{color:#e4c9d7}.owned-details>summary:hover{background:#3b2a3b}.owned-toggle{color:#bba0b0}
+.hero{background:radial-gradient(ellipse at 50% -20%,#613534 0%,transparent 62%),linear-gradient(140deg,#291b2c,#1c1625);border:1px solid #7b5369;color:#e8dce6;box-shadow:0 16px 34px #09050c99;padding:42px 24px}
+.hero:before,.hero:after{content:'';color:#b88caa;opacity:.15;font-size:125px}.hero h2{color:#f0e3e8}.hero p{color:#c7aeba}.hero .eyebrow{color:#ba93a9}.ornament{color:#ad807e}
+.preview{background:#291e2d}.preview-cell{background:#352638}.footer{color:#aa96a7}
+@media(max-width:760px){.hero{padding:30px 12px}}
+</style><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&amp;family=Zen+Old+Mincho:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><style>
+/* 露と消えにし：政府書類 → 本丸ホラーの二段階デザイン */
+:root{color-scheme:dark;--bg:#0a080a;--panel:#151014;--panel2:#201414;--gold:#c4a6a6;--ink:#e9dfdc;--muted:#b7a5a6;--line:#622a28;--green:#aa7b81}
+body{font-family:'Noto Serif JP',serif;color:var(--ink);background:radial-gradient(ellipse at 80% 5%,#271615,transparent 43%),#090809}
+body:before{opacity:.14}
+body,button,input,select,textarea,label,.entry,.note,.sub,.muted,.footer{font-family:'Noto Serif JP',serif}
+h1,h2,h3,legend,.hero,.ribbon,.stat b,.romance-card strong{font-family:'Zen Old Mincho',serif;font-weight:500}
+header{background:#0e0a0dcc;border-bottom:1px solid #662523}
+button{border-radius:0!important;background:#211515;color:#eee0dc;border:1px solid #733230}
+button.primary{background:#742421!important;color:#fff0ec!important;border-color:#a13f3c!important}
+input,select,textarea{border-radius:0!important}
+.card,.panel,.choiceBox,.log,.romance-card{border-color:#5c2927!important}
+.pill{border-color:#783533!important}
+/* 政府側の画面だけ白と黒。あえてグラデーション・角丸・影を排する */
+#introOverlay,#setupOverlay{background:#fff!important;color:#101010!important;z-index:100}
+#introOverlay *,#setupOverlay *{box-shadow:none!important;text-shadow:none!important}
+#introOverlay .setup,#setupOverlay .setup{background:#fff!important;color:#111!important;border:2px solid #161616!important;border-radius:0!important;max-width:850px;max-height:92vh;overflow:auto;padding:clamp(18px,3vw,36px)!important}
+#introOverlay h2,#setupOverlay h2{font-family:'Zen Old Mincho',serif;color:#111!important;font-size:clamp(24px,3vw,33px);border-bottom:3px double #111;padding-bottom:12px;letter-spacing:.08em}
+#introOverlay h3,#setupOverlay h3{color:#111!important;border-bottom:1px solid #111;padding-bottom:8px}
+#introOverlay p,#setupOverlay p,#setupOverlay label,#introOverlay label{color:#151515!important}
+#introOverlay .note,#setupOverlay .note{color:#353535!important}
+#introOverlay button,#setupOverlay button{font-family:'Noto Serif JP',serif;color:#111!important;background:#e6e6e6!important;border:1px solid #333!important;border-radius:0!important;padding:10px 17px}
+#introOverlay button.primary,#setupOverlay button.primary{color:#fff!important;background:#171717!important;border:1px solid #171717!important}
+#setupOverlay input,#setupOverlay select{font-family:'Noto Serif JP',serif;background:#fff!important;color:#111!important;border:1px solid #555!important;border-radius:0!important;accent-color:#111}
+#setupOverlay .roster{background:#f5f5f5!important;border:1px solid #444!important;color:#111!important;border-radius:0!important}
+#setupOverlay .roster label{background:#fff!important;color:#111!important;border-color:#aaa!important;border-radius:0!important}
+#setupOverlay .grid2{gap:14px}
+.gov-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #222;padding-bottom:9px;font-size:12px;font-weight:700;letter-spacing:.05em}
+.gov-no{font-size:11px;font-weight:400;white-space:nowrap}
+.gov-band{background:#111;color:#fff!important;padding:9px 12px;margin:14px 0 18px;font-size:13px;letter-spacing:.12em}
+.gov-info{border:1px solid #333;background:#f7f7f7;padding:15px 17px;margin:16px 0;color:#111;line-height:2}
+.gov-warning{border-top:1px solid #111;border-bottom:1px solid #111;padding:12px 0;margin:17px 0;font-size:13px;color:#111}
+.gov-small{font-size:11px;color:#444!important}
+#introOverlay .gov-warning strong{color:#111}
+#setupOverlay .gov-setup-label{margin-top:6px;font-size:12px;color:#222}
+@media(max-width:640px){#introOverlay .setup,#setupOverlay .setup{padding:17px!important}.gov-head{align-items:flex-start}}
+</style><style>
+/* v0.3: 本編のみホラー表現へ全面切替。政府側の白黒画面は維持 */
+:root{color-scheme:dark;--bg:#080808;--panel:#101010;--panel2:#171313;--gold:#ddd5d1;--ink:#e5dfdb;--muted:#9c9390;--line:#542220;--green:#8b3734}
+body{background:#080808!important;color:var(--ink);letter-spacing:.02em}
+body:before{content:none!important}
+header{background:#080808!important;border:0!important;border-bottom:2px solid #86211e!important;box-shadow:none!important;backdrop-filter:none!important;padding:20px!important}
+header .wrap:before,.panel:before,.panel h2:before,.entry:before,.hero:before,.hero:after{content:none!important;display:none!important}
+h1,h2,h3{color:#e6dfd9!important;text-shadow:none!important}
+h1{font-size:1.9rem;letter-spacing:.14em}
+header .sub{color:#a99e9a!important;letter-spacing:.05em}
+.layout{gap:18px;padding:24px 20px}
+.panel,.card,.romance-card,.stat,.choiceBox,.entry,.hero{background:#111010!important;background-image:none!important;border-radius:0!important;box-shadow:none!important;filter:none!important}
+.panel{border:1px solid #4e2928!important;border-top:2px solid #742623!important;padding:21px 22px}
+.panel h2{color:#e5d9d5!important;border-bottom:1px solid #772e2b!important;padding-bottom:10px}
+.panel h3{color:#d9ccc8!important}
+.stat,.romance-card{border:1px solid #452221!important}
+.stat b,.romance-card strong{color:#e5d9d5!important}
+.tag,.pill{border:1px solid #652725!important;border-radius:0!important;background:#1a1113!important;color:#cbbbbb!important;box-shadow:none!important}
+button{background:#181314!important;border:1px solid #782f2c!important;border-radius:0!important;color:#e8dcda!important;box-shadow:none!important;text-shadow:none!important;transition:background .12s,border-color .12s}
+button:hover{background:#3b1615!important;border-color:#c03934!important}
+button.primary{background:#7e1b18!important;border:1px solid #b5312c!important;color:#fff3f0!important}
+button.primary:hover{background:#a3231f!important}
+input,select,textarea{background:#0b0a0a!important;color:#e9e0dd!important;border:1px solid #673331!important;border-radius:0!important;box-shadow:none!important}
+fieldset{border:1px solid #502523!important;border-radius:0!important}
+legend{color:#d8c8c4!important}
+input[type=checkbox],input[type=radio]{accent-color:#9b2a26}
+.roster{border-radius:0!important;background:#100d0e!important;border-color:#522625!important}
+.log{border-left:2px solid #7e2320!important;padding-left:14px!important;gap:0!important}
+.entry{border:0!important;border-bottom:1px solid #3e2524!important;border-left:2px solid #5d2422!important;margin:0!important;padding:16px 15px!important}
+.entry.choice{border-left:3px solid #aa2d29!important;background:#1d1010!important}
+.entry.join{border-left:3px solid #6d3533!important}
+.entry strong{color:#eee0dc!important}
+.entry .date{color:#aa8b8b!important;font-size:.78rem}
+.choiceBox{border:2px solid #922e2b!important;background:#1b0c0c!important;padding:20px!important}
+.choiceButtons button{border-left:4px solid #a62e2a!important;padding:12px 15px!important}
+.hero{border:1px solid #652321!important;border-top:3px solid #a52723!important;padding:34px 20px!important;text-align:center}
+.hero h2{font-size:clamp(2rem,4vw,3.2rem)!important;color:#eee5e0!important;letter-spacing:.22em!important}
+.hero .eyebrow{color:#b94c48!important;letter-spacing:.2em}
+.hero p{color:#c9b8b4!important}
+.ornament{display:none!important}
+.ribbon{background:#631a18!important;color:#f0deda!important;border:0!important;border-radius:0!important}
+.footer{color:#8c7775!important}
+/* overlay: 結末は本編と同じ暗赤。白い政府手続きには触れない */
+#endOverlay{background:#050505f5!important}
+#endOverlay .setup{background:#100c0d!important;border:2px solid #8d2825!important;border-radius:0!important;color:#e8ddda!important;box-shadow:none!important}
+#endOverlay h2{color:#e9dbd7!important}
+/* 政府手続き用の白背景・黒文字・硬いボタンを再確保 */
+#introOverlay,#setupOverlay{background:#fff!important;color:#111!important}
+#introOverlay .setup,#setupOverlay .setup{background:#fff!important;color:#111!important;border:2px solid #161616!important;border-radius:0!important}
+#introOverlay h2,#setupOverlay h2,#introOverlay h3,#setupOverlay h3{color:#111!important}
+#introOverlay button,#setupOverlay button{background:#e6e6e6!important;color:#111!important;border:1px solid #333!important}
+#introOverlay button.primary,#setupOverlay button.primary{background:#171717!important;color:#fff!important;border-color:#171717!important}
+#setupOverlay input,#setupOverlay select{background:#fff!important;color:#111!important;border:1px solid #555!important}
+#setupOverlay .roster{background:#f5f5f5!important;color:#111!important;border:1px solid #444!important}
+#setupOverlay .roster label{background:#fff!important;color:#111!important}
+@media(max-width:760px){.layout{padding:12px;gap:12px}.panel{padding:16px}}
+</style><style>
+/* 露と消えにし：政府書類から本丸への切替 */
+#transitionCurtain{position:fixed;inset:0;background:#030303;opacity:0;pointer-events:none;z-index:9999;transition:opacity .42s linear}
+#transitionCurtain.active{opacity:1;pointer-events:auto}
+#introOverlay,#setupOverlay{z-index:100}
+#profile .profile-name{font-family:"Zen Old Mincho",serif;font-size:1.55rem;color:#f0e7e3;letter-spacing:.06em;margin-bottom:7px}
+#profile .profile-meta{border-top:1px solid #462423;padding-top:6px}
+/* 過去の恋愛版の装飾を隠す */
+.hero .eyebrow,.ornament{display:none!important}
+/* v0.11: 期限と好感度の視認性を上げる赤いアクセント */
+#remain,#clock{background:#4b1210!important;border:1px solid #f1504a!important;color:#ff7873!important;font-weight:700}
+#deadlineDesc{color:#e8c4c3!important}
+.compact-romance .meter,.meter{background:#321110!important}
+.compact-romance .meter span,.meter span{background:#ff524c!important}
+.compact-romance .muted{color:#f19f9c!important}
+</style><style>
+
+/* v0.12 : 深紅過剰装飾テスト。ゲームロジック・政府手続きは変更しない */
+:root{--bg:#090303;--panel:#210807;--panel2:#310807;--line:#9b1f1b;--ink:#f5e6e2;--muted:#d5a19f}
+body{background:radial-gradient(ellipse 75% 45% at 84% 4%,#490806 0%,transparent 75%),radial-gradient(ellipse 48% 70% at 3% 66%,#360705 0%,transparent 82%),linear-gradient(115deg,#090303,#1c0605 52%,#090303)!important}
+header{background:linear-gradient(100deg,#180403 0%,#480907 50%,#130404 100%)!important;border-bottom:2px solid #e51f18!important;box-shadow:0 6px 30px #b506003d!important}
+header h1{color:#fff2ef!important;text-shadow:0 0 16px #ff2b244d!important}
+header .sub{color:#e2a5a3!important}
+.layout{position:relative}
+.layout:before{content:'';position:absolute;inset:12px 20px auto;height:1px;background:linear-gradient(90deg,transparent,#ed1c15,transparent);pointer-events:none}
+.panel{background:linear-gradient(130deg,#3b0806 0%,#240807 43%,#120707 100%)!important;border:1px solid #8f1e1a!important;border-top:3px solid #ee211a!important;box-shadow:inset 0 1px 0 #f73b3428,0 9px 28px #0008,0 0 24px #a90c0715!important}
+.panel h2{color:#fff0eb!important;border-bottom:1px solid #b51f1a!important;text-shadow:0 0 12px #d5171038!important}
+.panel h2:after{content:'';display:block;width:74px;height:2px;margin-top:10px;background:linear-gradient(90deg,#ff2720,transparent)}
+.hero{background:radial-gradient(ellipse 75% 120% at 50% -25%,#8e0f0b 0%,transparent 76%),linear-gradient(125deg,#3a0806,#160706 60%,#4a0907)!important;border:1px solid #a7221d!important;border-top:4px solid #ff2922!important;box-shadow:inset 0 0 42px #a80f0a2e,0 14px 34px #0009,0 0 30px #b5120c30!important}
+.hero:before,.hero:after{content:''!important;display:block!important;position:absolute;width:150px;height:150px;opacity:.5;top:auto;bottom:-100px;border:1px solid #e5231c;transform:rotate(45deg);pointer-events:none}
+.hero:before{left:-50px}.hero:after{right:-50px}
+.hero h2{color:#fff5f1!important;text-shadow:0 0 19px #fa201852!important}
+.hero p{color:#eab2b0!important}
+/* 任務期限：赤い本編の中で政府管理表示だけを緑に */
+.preview{background:linear-gradient(115deg,#10280b 0%,#0b1c09 53%,#071106 100%)!important;border:1px solid #367e28!important;border-left:4px solid #69dc43!important;box-shadow:inset 0 0 25px #43aa241c,0 5px 22px #0008!important}
+.preview h3{color:#c8ffc1!important;text-shadow:0 0 10px #73ff6a35!important}
+.preview .note,#deadlineDesc{color:#b5e4a7!important}
+#remain{background:#0b2c0a!important;border:1px solid #73ef57!important;color:#adff91!important;box-shadow:0 0 13px #55e34135!important}
+#clock{background:#300908!important;border:1px solid #b6231e!important;color:#ffc0be!important;box-shadow:none!important}
+/* 操作ボタン：彩度の高い赤を主役に */
+button{background:linear-gradient(145deg,#400f0d,#200a09)!important;border-color:#ac2924!important;color:#ffedeb!important}
+button:hover{background:linear-gradient(145deg,#851a16,#400d0b)!important;border-color:#ff4842!important}
+button.primary{background:linear-gradient(135deg,#f01d16,#8c0904)!important;border:1px solid #ff534d!important;color:#fff8f6!important;box-shadow:inset 0 1px 0 #ff96925c,0 0 18px #e7160f38!important}
+button.primary:hover{background:linear-gradient(135deg,#ff362f,#b80f09)!important}
+input,select,textarea{background:#170808!important;border-color:#a52420!important}
+/* 所属刀剣男士：暗赤のカードと鮮赤ゲージ */
+.owned-details>summary{background:linear-gradient(105deg,#4a0c0a,#200908)!important;border-bottom:1px solid #b0221d!important;color:#fff0ec!important}
+.owned-title{color:#fff0ec!important}
+.compact-romance{background:linear-gradient(155deg,#260908,#120808)!important}
+.romance-card{background:linear-gradient(140deg,#480d0b,#230a09)!important;border:1px solid #a32420!important;box-shadow:inset 0 1px 0 #ed373122!important}
+.romance-card strong{color:#ffe6e3!important}
+.compact-romance .muted{color:#eda6a4!important}
+.meter{background:#130606!important;border:1px solid #8e221e!important;border-radius:0!important;height:8px!important}
+.meter span{background:linear-gradient(90deg,#a10500,#ff2720,#ff605b)!important;box-shadow:0 0 10px #ff272070!important}
+/* 記録：黒ベタを減らし、赤い紙片の重なりに */
+.log{background:linear-gradient(120deg,#1d0706,#100606)!important;border-left:2px solid #ee1e17!important}
+.entry{background:linear-gradient(100deg,#340a09 0%,#1a0807 65%,#120707 100%)!important;border-left:3px solid #b5211c!important;border-bottom:1px solid #742c29!important}
+.entry:nth-child(even){background:linear-gradient(100deg,#290807,#130707)!important}
+.entry.choice{background:linear-gradient(100deg,#530b09,#220908)!important;border-left:4px solid #ff2e27!important}
+.entry.join{background:linear-gradient(100deg,#351110,#180908)!important}
+.entry .date{color:#f09f9c!important}
+.entry strong{color:#fff0ec!important}
+.choiceBox{background:linear-gradient(125deg,#5d0b08,#210908)!important;border:2px solid #f2312a!important;box-shadow:0 0 28px #c9100a38!important}
+.choiceButtons button{background:linear-gradient(100deg,#500d0b,#260908)!important;border-left:4px solid #ff2d26!important}
+.tag,.pill{background:linear-gradient(110deg,#4b0e0c,#200908)!important;border-color:#b5221d!important;color:#f7c4c2!important}
+#remain{background:#0b2c0a!important;border-color:#73ef57!important;color:#adff91!important}
+#clock{background:#300908!important;border-color:#b6231e!important;color:#ffc0be!important}
+#profile .profile-meta{border-color:#8c2724!important}
+/* 政府の導入画面と登録画面は従来の白黒を厳守 */
+#introOverlay button,#setupOverlay button{background:#e6e6e6!important;color:#111!important;border:1px solid #333!important;box-shadow:none!important}
+#introOverlay button.primary,#setupOverlay button.primary{background:#171717!important;color:#fff!important;border-color:#171717!important;box-shadow:none!important}
+@media(max-width:760px){.layout:before{inset:5px 12px auto}.hero:before,.hero:after{width:90px;height:90px;bottom:-65px}}
+
+
+/* v0.13: 乗算加工を参考に、赤の面積と明度を抑えた暗紅版。
+   構造・装飾・グラデーション・ゲームロジックはv0.12から変更しない。 */
+:root{--bg:#070101;--panel:#130302;--panel2:#1b0504;--line:#8e0f0b;--ink:#f5e6e2;--muted:#c99795}
+body{background:radial-gradient(ellipse 75% 45% at 84% 4%,#230201 0%,transparent 75%),radial-gradient(ellipse 48% 70% at 3% 66%,#190302 0%,transparent 82%),linear-gradient(115deg,#050202,#100202 52%,#050202)!important}
+header{background:linear-gradient(100deg,#0d0101 0%,#230302 50%,#0b0101 100%)!important;border-bottom-color:#db0a03!important;box-shadow:0 6px 30px #64030033!important}
+.panel{background:linear-gradient(130deg,#210302 0%,#150403 43%,#0b0404 100%)!important;border-color:#72110e!important;border-top-color:#e41009!important;box-shadow:inset 0 1px 0 #e6272020,0 9px 28px #0009,0 0 24px #68060310!important}
+.panel h2{border-bottom-color:#92130f!important;text-shadow:0 0 12px #9d0f0a22!important}
+.hero{background:radial-gradient(ellipse 75% 120% at 50% -25%,#490705 0%,transparent 76%),linear-gradient(125deg,#220302,#0d0303 60%,#280504)!important;border-color:#89130f!important;border-top-color:#f11b14!important;box-shadow:inset 0 0 42px #6a040125,0 14px 34px #000a,0 0 30px #6905021d!important}
+.hero p{color:#e5a19f!important}
+button{background:linear-gradient(145deg,#270706,#120404)!important;border-color:#8f1915!important}
+button:hover{background:linear-gradient(145deg,#590c09,#260706)!important;border-color:#ee322c!important}
+button.primary{background:linear-gradient(135deg,#c9120c,#5f0300)!important;border-color:#ed3731!important;box-shadow:inset 0 1px 0 #ff96923c,0 0 18px #a7070126!important}
+button.primary:hover{background:linear-gradient(135deg,#e8211a,#910803)!important}
+input,select,textarea{background:#0d0404!important;border-color:#861b17!important}
+.owned-details>summary{background:linear-gradient(105deg,#2c0403,#120404)!important;border-bottom-color:#8f130f!important}
+.compact-romance{background:linear-gradient(155deg,#160504,#0b0404)!important}
+.romance-card{background:linear-gradient(140deg,#290807,#150504)!important;border-color:#831a16!important}
+.meter{background:#0d0303!important;border-color:#7e1511!important}
+.log{background:linear-gradient(120deg,#100303,#090303)!important;border-left-color:#d9150e!important}
+.entry{background:linear-gradient(100deg,#1d0504 0%,#0f0404 65%,#0a0404 100%)!important;border-left-color:#961814!important;border-bottom-color:#551e1c!important}
+.entry:nth-child(even){background:linear-gradient(100deg,#180403,#0c0303)!important}
+.entry.choice{background:linear-gradient(100deg,#310605,#150504)!important;border-left-color:#ee241d!important}
+.entry.join{background:linear-gradient(100deg,#210a09,#100404)!important}
+.choiceBox{background:linear-gradient(125deg,#360806,#140605)!important;border-color:#dc2620!important;box-shadow:0 0 28px #85050128!important}
+.choiceButtons button{background:linear-gradient(100deg,#300807,#160504)!important;border-left-color:#ee241d!important}
+.tag,.pill{background:linear-gradient(110deg,#290706,#130404)!important;border-color:#921612!important}
+/* 緑はアクセントとして維持。文字の視認性も維持する。 */
+.preview{background:linear-gradient(115deg,#0a1907 0%,#071307 53%,#050b04 100%)!important;border-color:#286d1e!important;border-left-color:#4acb30!important;box-shadow:inset 0 0 25px #278c1716,0 5px 22px #0009!important}
+#remain{background:#071d07!important;border-color:#58d93e!important;color:#adff91!important;box-shadow:0 0 13px #35b92b25!important}
+.hero:before,.hero:after{content:none!important;display:none!important}
+/* 死亡による任務終了は政府の緑表示を無彩色に切り替える */
+.preview.deadline-death{background:linear-gradient(115deg,#242424,#161616 53%,#101010)!important;border-color:#666!important;border-left-color:#969696!important;box-shadow:inset 0 0 20px #77777715,0 5px 22px #0009!important}
+.preview.deadline-death h3{color:#dedede!important;text-shadow:none!important}
+.preview.deadline-death .note,.preview.deadline-death #deadlineDesc{color:#c1c1c1!important}
+.preview.deadline-death #remain{background:#292929!important;border-color:#8c8c8c!important;color:#e2e2e2!important;box-shadow:none!important}
+/* 政府の導入・登録画面は変更しない */
+
+</style><link href="https://fonts.googleapis.com/css2?family=Asap+Sharp:wght@500&display=swap" rel="stylesheet"/><style>
+/* 着任前二画面の情報整理 */
+#introOverlay .gov-no{text-align:right;line-height:1.8}
+#introOverlay .gov-warning{font-size:13px;line-height:1.9}
+#introOverlay .gov-warning p{margin:12px 0}
+#introOverlay .gov-confirm{font-size:14px;font-weight:700;color:#111}
+#introOverlay .gov-disclosure{border:1px solid #333;margin:4px 0 15px;color:#111}
+#introOverlay .gov-disclosure summary{cursor:pointer;padding:11px 13px;background:#f0f0f0;font-size:13px;font-weight:700}
+#introOverlay .gov-disclosure-body{padding:12px 17px;font-size:13px;line-height:1.9}
+#introOverlay .gov-disclosure-body h3{font-size:14px;margin:12px 0 7px}
+#introOverlay .gov-disclosure-body ul{padding-left:22px;margin:5px 0 17px}
+#setupOverlay .gov-registration-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #333;background:#f7f7f7;color:#111;margin:12px 0}
+#setupOverlay .gov-registration-info>div{padding:11px 14px;border-bottom:1px solid #bbb}
+#setupOverlay .gov-registration-info>div:nth-child(odd){border-right:1px solid #bbb}
+#setupOverlay .gov-registration-info>div:nth-last-child(-n+2){border-bottom:0}
+#setupOverlay .gov-registration-info span{display:block;font-size:12px;color:#444}
+#setupOverlay .gov-registration-info strong{display:block;font-size:16px;color:#111;font-weight:600;margin-top:3px}
+@media(max-width:480px){#setupOverlay .gov-registration-info{grid-template-columns:1fr}#setupOverlay .gov-registration-info>div{border-right:0!important;border-bottom:1px solid #bbb!important}#setupOverlay .gov-registration-info>div:last-child{border-bottom:0!important}}
+</style></head><body>
+<header><div class="wrap flex between"><div><h1>露と消えにし</h1><div class="sub">本丸運営死ミュレーション</div></div><div class="flex"><span class="pill" id="clock">未開始</span><button class="small" id="newBtn">新しく始める</button></div></div></header>
+<div class="overlay" id="introOverlay"><section class="setup stack">
+<div class="gov-head"><span>歴防本部 特別派遣管理部</span><span class="gov-no">文書番号：特派第036号<br>登録手続：01 / 02</span></div>
+<div class="gov-band">臨時着任に関する通知</div>
+<h2>政府特別派遣通知</h2>
+<p>指定された本丸への臨時着任に先立ち、以下の事項を確認してください。</p>
+<div class="gov-info"><div>任務区分：特別管理対象本丸への派遣</div><div>対象本丸番号：H-44S-0015136</div><div>管理部署：生活環境部 本丸管理課</div><div>任務内容：臨時審神者としての本丸運営</div><div>任務期間：三十六か月</div></div>
+<div class="gov-warning"><strong>確認事項</strong>
+<p>本コンテンツには、ホラー表現・怪異や怪奇現象などの表現が含まれます。</p>
+<p>音声・画像・映像による突然の脅かし表現はありません。<br>短い文章を中心に進行する、読み物形式のコンテンツです。</p>
+<p>謎解き・推理といった要素はほとんどありません。<br>理不尽な難易度や、審神者が簡単に命を落としたりする展開を楽しむことを目的とした作品です。</p>
+<p>また、審神者や本丸に所属する刀剣男士の言動が描写されます。<br>選択肢などによって幅を持たせていますが、ご自身の審神者・刀剣男士の解釈とは大きく異なる描写・展開・結末が含まれる可能性があります。</p>
+<p><strong>以上をご了承いただける方のみ、お進みください。</strong></p></div>
+<details class="gov-disclosure"><summary>含まれる表現について確認する</summary>
+<div class="gov-disclosure-body"><h3>含まれる表現</h3><ul>
+<li>プレイヤーである審神者の死亡に関する表現</li>
+<li>プレイヤーである審神者の命が軽く扱われる表現</li>
+<li>刀剣破壊、それに類する表現</li>
+<li>怪異・狂気・闇堕ちなどのホラー表現</li>
+<li>刀剣男士に嫌われる・悪意を向けられる表現</li>
+<li>刀剣男士をストーリー上の敵役や悪役として扱う表現</li>
+<li>事態が解決しない・救われないと感じる展開や結末</li>
+<li>バッドエンド・メリーバッドエンド</li>
+</ul><h3>含まれない表現</h3><ul>
+<li>グロテスクな描写（血、負傷、死亡などについて、簡潔な描写は含まれます）</li>
+<li>性的な描写</li>
+<li>音声・画像・映像による突然の脅かし</li>
+<li>大団円のハッピーエンド</li>
+</ul></div></details>
+<div class="flex between"><span class="gov-confirm">上記内容を必ず確認してください。</span><button class="primary" id="toSetupBtn" type="button">内容を確認し、着任手続へ進む　›</button></div>
+</section></div><div class="overlay hidden" id="setupOverlay"><section class="setup stack">
+<div class="gov-head"><span>歴防本部 特別派遣管理部</span><span class="gov-no">登録手続：02 / 02</span></div>
+<div class="gov-band">着任者情報登録</div>
+<label>審神者名<input id="name" maxlength="40" value="審神者"/></label>
+<p class="gov-small">※表示にのみ使用します。展開や結末には影響しません。</p>
+<div class="gov-registration-info">
+<div><span>開始年月</span><strong>2205年1月</strong></div>
+<div><span>所属サーバー</span><strong>山城国</strong></div>
+<div><span>任務期間</span><strong>36か月</strong></div>
+<div><span>所属刀剣男士</span><strong>20振り</strong></div>
+</div>
+<div><h2>政府特別派遣通知</h2><p>本丸管理番号 H-44S-0015136への臨時着任を命ずる。任期中は所属刀剣男士との関係に留意し、本丸運営を遂行すること。</p></div>
+<div class="flex between"><button id="loadBtn">保存データを読み込む</button><button class="primary" id="startBtn">本丸に向かう</button></div><input accept=".json,application/json" class="hidden" id="loadFile" type="file"/>
+</section></div>
+<div class="overlay hidden" id="endOverlay"><section class="setup stack"><h2>任務の結末</h2><div id="ending"></div><div class="flex"><button id="endExport">年代記を書き出す</button><button id="endSave">結果画像を保存する</button><button id="endClose">画面を閉じる</button></div></section></div>
+<main class="wrap layout">
+<aside><section class="panel"><h2>審神者と本丸</h2><div class="stack muted" id="profile">着任前</div></section><section class="panel roster-panel"><details class="owned-details"><summary><span class="owned-title">所属刀剣男士</span><span class="owned-summary-right"><span class="pill" id="ownedCount">0振り</span><span class="owned-toggle">一覧を開く</span></span></summary><div class="romance-grid compact-romance" id="romance"></div></details></section></aside>
+<div><div class="hero"><h2>露と消えにし</h2></div>
+<section class="preview"><div class="flex between"><h3>任務期限</h3><span class="pill" id="remain">あと36か月</span></div><p class="note" id="deadlineDesc">任務期間と進行は仮仕様です。</p></section>
+<section class="panel"><h2>運営操作</h2><div class="flex"><button class="primary" id="step">1か月進める</button><button id="auto">自動進行：OFF</button><label>速度<select id="speed"><option value="3200">ゆっくり</option><option selected="" value="1600">標準</option><option value="650">速い</option></select></label></div><div class="flex" style="margin-top:12px"><button id="save">途中保存（JSON）</button><button id="export">年代記を書き出す（TXT）</button><span class="note" id="status"></span></div></section>
+<section class="choiceBox hidden" id="choicePanel"><div class="sub">選択イベント</div><h3 id="choiceTitle"></h3><p id="choiceText"></p><div class="choiceButtons" id="choices"></div></section>
+<section class="panel"><div class="flex between"><h2>運営記録</h2><span class="muted" id="count">0件</span></div><div class="log" id="log"></div></section></div></main>
+<footer class="footer">非公式ファンメイド試作。イベント・結末は仮実装です。</footer>
+<script>
+const SWORDS=[{"id": "imano_tsurugi", "name": "今剣", "type": "短刀", "rarity": 1}, {"id": "hirano", "name": "平野藤四郎", "type": "短刀", "rarity": 2}, {"id": "atsushi", "name": "厚藤四郎", "type": "短刀", "rarity": 2}, {"id": "gotou", "name": "後藤藤四郎", "type": "短刀", "rarity": 2}, {"id": "shinano", "name": "信濃藤四郎", "type": "短刀", "rarity": 2}, {"id": "maeda", "name": "前田藤四郎", "type": "短刀", "rarity": 1}, {"id": "akita", "name": "秋田藤四郎", "type": "短刀", "rarity": 1}, {"id": "midare", "name": "乱藤四郎", "type": "短刀", "rarity": 1}, {"id": "gokotai", "name": "五虎退", "type": "短刀", "rarity": 1}, {"id": "yagen", "name": "薬研藤四郎", "type": "短刀", "rarity": 1}, {"id": "aizen", "name": "愛染国俊", "type": "短刀", "rarity": 1}, {"id": "sayo", "name": "小夜左文字", "type": "短刀", "rarity": 1}, {"id": "fudou", "name": "不動行光", "type": "短刀", "rarity": 2}, {"id": "nikkariaoe", "name": "にっかり青江", "type": "脇差", "rarity": 2}, {"id": "namazuo", "name": "鯰尾藤四郎", "type": "脇差", "rarity": 2}, {"id": "honebami", "name": "骨喰藤四郎", "type": "脇差", "rarity": 2}, {"id": "monoyoshi", "name": "物吉貞宗", "type": "脇差", "rarity": 3}, {"id": "horikawa", "name": "堀川国広", "type": "脇差", "rarity": 2}, {"id": "souza_samonji", "name": "宗三左文字", "type": "打刀", "rarity": 2}, {"id": "kashuu", "name": "加州清光", "type": "打刀", "rarity": 2}, {"id": "yamatonomakami", "name": "大和守安定", "type": "打刀", "rarity": 2}, {"id": "kasen", "name": "歌仙兼定", "type": "打刀", "rarity": 2}, {"id": "yamanbagiri_kunihiro", "name": "山姥切国広", "type": "打刀", "rarity": 2}, {"id": "hachiuka", "name": "蜂須賀虎徹", "type": "打刀", "rarity": 2}, {"id": "mutsunokami", "name": "陸奥守吉行", "type": "打刀", "rarity": 2}, {"id": "heshikiri_hasebe", "name": "へし切長谷部", "type": "打刀", "rarity": 3}, {"id": "shokudaikiri", "name": "燭台切光忠", "type": "太刀", "rarity": 3}, {"id": "izuminokami", "name": "和泉守兼定", "type": "打刀", "rarity": 3}, {"id": "doudanuki", "name": "同田貫正国", "type": "打刀", "rarity": 3}, {"id": "kurikara", "name": "大倶利伽羅", "type": "打刀", "rarity": 3}, {"id": "mikazuki", "name": "三日月宗近", "type": "太刀", "rarity": 5}, {"id": "kogarasumaru", "name": "小烏丸", "type": "太刀", "rarity": 4}, {"id": "kogitsunemaru", "name": "小狐丸", "type": "太刀", "rarity": 4}, {"id": "ichigo_hitofuri", "name": "一期一振", "type": "太刀", "rarity": 4}, {"id": "tsurumaru", "name": "鶴丸国永", "type": "太刀", "rarity": 4}, {"id": "uguisu", "name": "鶯丸", "type": "太刀", "rarity": 4}, {"id": "kousetsu", "name": "江雪左文字", "type": "太刀", "rarity": 4}, {"id": "yamabushi", "name": "山伏国広", "type": "太刀", "rarity": 3}, {"id": "shishiou", "name": "獅子王", "type": "太刀", "rarity": 3}, {"id": "higekiri", "name": "髭切", "type": "太刀", "rarity": 4}, {"id": "hizamaru", "name": "膝丸", "type": "太刀", "rarity": 4}, {"id": "taroutachi", "name": "太郎太刀", "type": "大太刀", "rarity": 3}, {"id": "jiroutachi", "name": "次郎太刀", "type": "大太刀", "rarity": 3}, {"id": "ishikirimaru", "name": "石切丸", "type": "大太刀", "rarity": 3}, {"id": "hotarumaru", "name": "螢丸", "type": "大太刀", "rarity": 4}, {"id": "iwatooshi", "name": "岩融", "type": "薙刀", "rarity": 3}, {"id": "tomoegata", "name": "巴形薙刀", "type": "薙刀", "rarity": 4}, {"id": "tonbokiri", "name": "蜻蛉切", "type": "槍", "rarity": 3}, {"id": "otokine", "name": "御手杵", "type": "槍", "rarity": 3}, {"id": "nihongo", "name": "日本号", "type": "槍", "rarity": 4}, {"id": "hakusan", "name": "白山吉光", "type": "剣", "rarity": 4}];
+const $=id=>document.getElementById(id), sword=id=>SWORDS.find(x=>x.id===id), rand=a=>a[Math.floor(Math.random()*a.length)], clamp=n=>Math.max(0,Math.min(100,n));
+// 仮の固定編成。正式な刀剣一覧が決まったらここだけ差し替える。
+const FIXED_NAMES=['歌仙兼定','加州清光','蜂須賀虎徹','陸奥守吉行','山姥切国広','和泉守兼定','大和守安定','へし切長谷部','一期一振','堀川国広','骨喰藤四郎','鯰尾藤四郎','薬研藤四郎','宗三左文字','前田藤四郎','秋田藤四郎','乱藤四郎','今剣','岩融','獅子王'];
+const FIXED=FIXED_NAMES.map(n=>SWORDS.find(s=>s.name===n)?.id).filter(Boolean);
+// 選択肢の表示順専用。イベント優先順位や抽選順には影響しない。
+const DISPLAY_BOOK_ORDER=['iwatooshi','imano_tsurugi','ichigo_hitofuri','namazuo','honebami','maeda','akita','midare','yagen','souza_samonji','kashuu','yamatonomakami','izuminokami','mutsunokami','yamanbagiri_kunihiro','horikawa','hachiuka','heshikiri_hasebe','shishiou'];
+function sortChoiceSwords(ids){return [...ids].sort((a,b)=>a==='kasen'?-1:b==='kasen'?1:DISPLAY_BOOK_ORDER.indexOf(a)-DISPLAY_BOOK_ORDER.indexOf(b));}
+
+let state=null,pending=null,timer=null;
+function setup(){
+ $('startBtn').onclick=start;
+ $('newBtn').onclick=()=>{stopAuto();$('setupOverlay').classList.remove('hidden')};
+ $('step').onclick=advance;
+ $('auto').onclick=()=>timer?stopAuto():startAuto();
+ $('speed').onchange=()=>{if(timer)startAuto()};
+ $('save').onclick=save;$('export').onclick=exportText;
+ $('loadBtn').onclick=()=>$('loadFile').click();$('loadFile').onchange=load;
+ $('endExport').onclick=exportText;$('endSave').onclick=saveEndingImage;
+ $('endClose').onclick=()=>$('endOverlay').classList.add('hidden');
+ $('toSetupBtn').onclick=()=>{$('introOverlay').classList.add('hidden');$('setupOverlay').classList.remove('hidden')};
+ controls();
+}
+function start(){
+ const year=2205,name=$('name').value.trim()||'審神者';
+ stopAuto();pending=null;
+ const owned=[...FIXED];
+ state={version:3,name,country:'山城国',year,month:1,starter:SWORDS.find(s=>s.name==='歌仙兼定').id,owned,
+ aff:Object.fromEntries(owned.map(id=>[id,20])),turn:0,log:[],seenEvents:{},rescueUsed:false,rescueHelper:null,severed:[],ended:false,ending:null};
+ $('endOverlay').classList.add('hidden');$('choicePanel').classList.add('hidden');
+ const curtain=$('transitionCurtain');curtain.classList.add('active');
+ setTimeout(()=>{
+   $('setupOverlay').classList.add('hidden');
+   add('着任',`${name}は山城国の特別管理対象本丸に着任した。任期は三十六か月。`);
+   add('着任時の光景','足を踏み入れた途端、二十振り分の瞳が審神者を見る。警戒するもの、値踏みをするようなもの、そして明らかに敵意のこめられた視線。これから三年間を過ごす本丸の、異質さを垣間見た気がした。');
+   render();
+   setTimeout(()=>curtain.classList.remove('active'),420);
+ },500);
+}
+function add(title,body,type='normal'){state.log.push({turn:state.turn,year:state.year,month:state.month,title,body,type})}
+function adjust(id,n,why,record=true){const old=state.aff[id]??50;if(state.severed?.includes(id))return {old,current:old};state.aff[id]=clamp(old+n);if(record)add('関係の変化',`${sword(id).name}：${why}（好感度 ${old} → ${state.aff[id]}）`);return {old,current:state.aff[id]}}
+function choice(title,desc,options){
+ pending={title,desc};stopAuto();$('choiceTitle').textContent=title;$('choiceText').textContent=desc;
+ $('choices').replaceChildren();options.forEach(o=>{const b=document.createElement('button');b.textContent=o.text;b.onclick=()=>{
+ add(title,`${desc}\n選択：${o.text}`,'choice');pending=null;$('choicePanel').classList.add('hidden');o.run();if(!pending&&!state.ended&&state.quarterChoiceDue){state.quarterChoiceDue=false;showQuarterChoice()}if(!pending&&!state.ended&&state.turn>=36)finish();render()};$('choices').append(b)});
+ $('choicePanel').classList.remove('hidden');render();
+}
+// 本編シナリオ未実装につき、以下は進行・好感度表示を確認するための仮イベント。
+// 下降・上昇の6枠は等確率のまま。文章だけ枠内で抽選する。
+const SCENES=[
+ {title:'庭の手入れ',texts:[n=>`${n}が庭の手入れをしていた。しばらくの間、なにげない雑談をした。`,n=>`${n}が庭の手入れをしていた。庭の草花についての話で少し盛り上がった。`,n=>`${n}が庭の手入れをしていた。手際を褒めると少しだけ嬉しそうだった。`],delta:5},
+ {title:'任務の報告',texts:[
+  n=>`急いでいて、${n}の報告を聞き流してしまった。`,
+  n=>`${n}の任務結果について、つい強い言葉を使ってしまった。`,
+  n=>`任務に失敗した${n}は、目に見えて落ち込んでいる。`
+ ],delta:-10,extra:[
+  (a,b)=>`${b}から、${a}への態度について注意された。`,
+  (a,b)=>`${b}から、${a}への態度について心配された。`,
+  (a,b)=>`${b}から、${a}への態度について釘を刺された。`
+ ]},
+ {title:'本丸の見回り',texts:[n=>`${n}と本丸の夜の見回りを行った。特に異常は見つからず、今日の出来事について話した。`,n=>`${n}と本丸の朝の見回りを行った。特に異常は見つからず、今日の予定について話した。`,n=>`${n}と本丸の夕方の見回りを行った。特に異常は見つからず、夕暮れの景色について話した。`],delta:7},
+ {title:'運営方針',texts:[
+  n=>`${n}と本丸の方針について意見が分かれ、口論になってしまった。`,
+  n=>`${n}と本丸の方針について意見が分かれ、${n}から強く諭された。`,
+  n=>`${n}と本丸の方針について意見が分かれ、${n}は審神者の言葉に傷ついた顔をした。`
+ ],delta:-12,extra:[
+  (a,b)=>`${a}から、${b}が審神者を嫌っていたと聞かされた。`,
+  (a,b)=>`${a}から、${b}に気を付けるようにと苦い顔で言われた。`,
+  (a,b)=>`${a}から、${b}と親しくしないでほしいと言われた。`
+ ]},
+ {title:'日々の仕事',texts:[n=>`${n}が難しい仕事の手伝いをしてくれた。`,n=>`${n}が仕事のやり方についての助言をくれた。`,n=>`${n}が書類仕事を終わらせてくれていた。`],delta:2},
+ {title:'対話',texts:[
+  n=>`${n}に話題を振ってみたが、あまり盛り上がらなかった。`,
+  n=>`${n}と話したものの、審神者の知識が足らず、話がかみ合わなかった。`,
+  n=>`${n}と意見が合わず、気まずい空気になってしまった。`
+ ],delta:-7}
+];
+function sceneEvent(scene){
+ const variants=[...scene.texts.map(fn=>({fn,paired:false})),...(scene.extra||[]).map(fn=>({fn,paired:true}))];
+ const variant=rand(variants);
+ if(!variant.paired){const id=rand(state.owned.filter(x=>!state.severed?.includes(x)));return {id,body:variant.fn(sword(id).name),title:scene.title}}
+ const available=state.owned.filter(id=>!state.severed?.includes(id));const a=rand(available),b=rand(available.filter(id=>id!==a));
+ const id=rand([a,b]);
+ return {id,body:variant.fn(sword(a).name,sword(b).name),title:scene.title==='任務の報告'?'助言':scene.title==='運営方針'?'苦言':scene.title};
+}
+function affinityDelta(id,base){const before=state.aff[id]??20;
+ if(base<0&&before<=19)return base-3;
+ if(base>0&&before>=20)return base+3;
+ return base;
+}
+// 試験実装：発生条件を満たす刀剣のうち、歌仙→刀帳番号順で優先する。
+// 特殊イベントは各周回につき原則1回。優先順位で未発生のイベントは、翌月も条件が成立すれば候補に残る。
+const EVENT_ORDER=["kasen","iwatooshi","imano_tsurugi","ichigo_hitofuri","namazuo","honebami","maeda","akita","midare","yagen","souza_samonji","kashuu","yamatonomakami","izuminokami","mutsunokami","yamanbagiri_kunihiro","horikawa","hachiuka","heshikiri_hasebe","shishiou"];
+const LOW=19,HIGH=80, MID_HIGH=51;
+// 試遊用調整：堀川の安全域は30以上、沖田組の高好感度は51以上。
+// 試遊用の仮番号。36枠を完成させる際に番号の並びは再整理する。
+const END_NUMBERS={'夢のまた夢':21,'すべては愛する弟のため':22,'すべては愛する兄のため':23,'僕は全然怒ってない':24,'最高の助手ですからね…':25,'お手のもの':26,'ただ主を思う':27,'ただ貴方を思う':28,'首を差し出せ':36,'覚めない夢':35,'露と消えにし':32,'扱いにくいって言ったでしょ':33,'可愛い子猫ちゃん':34,'杜鵑':29,'菫の毒':30,'葉見ず花見ず':31};
+// 死因29～31：救援を求めた刀剣男士による割り込み死亡。
+const KANJI_DIGITS=['零','一','二','三','四','五','六','七','八','九'];
+const kanjiNumber=n=>n<10?KANJI_DIGITS[n]:n<20?'十'+(n===10?'':KANJI_DIGITS[n%10]):n<30?'二十'+(n===20?'':KANJI_DIGITS[n%10]):'三十'+(n===30?'':KANJI_DIGITS[n%10]);
+const ZERO_ENDINGS={
+ kasen:["手折られた花", "「これは、手向けの花だよ」歌仙兼定は、いつもと変わらない穏やかな声で告げた。審神者がその言葉の意味を理解したのと同時に、暗闇の中にひときわ赤い花が咲いた。"],
+ iwatooshi:["何処吹く風", "「なんだ、そんなところにいたか。小さすぎて気づかなんだ」まるで何の感傷も持ち合わせないように、岩融は言い放った。振るった刃が風とともに刈り取った、審神者の命についてなど。"],
+ imano_tsurugi:["あそびはおしまい", "「もう、おしまいにしましょう」今剣はいつもの軽やかな足取りで審神者に近づき、どこか寂しげに笑った。彼の瞳は、審神者の視界に散った飛沫の向こうで、いつにもまして朱かった。"],
+ ichigo_hitofuri:["夏の虫", "「どうか、お許しください」一期一振は深々と頭を下げた。顔を上げた彼の目は、もはや審神者の知る彼のものではなかった。そうして腹を空かせた捕食者はその正体を現し、審神者の全てを喰らい尽くした。"],
+ namazuo:["喉元過ぎれば", "「まあ、終わったことは仕方ないですよね！」鯰尾藤四郎はいつもの明るい声で笑った。何が終わったのかを尋ねるより先に、焼けるような痛みが走り、審神者の視界は暗く閉ざされていった。"],
+ honebami:["虚を満たすもの", "「……死んでくれ。俺たちのために」骨喰藤四郎は静かに告げた。審神者の言葉はやがて悲鳴に変わり、最後には荒い呼吸音だけが残った。それが途絶え果てるまで、彼は何も言わなかった。"],
+ maeda:["守るべきもの", "「これまで、お仕えできて光栄でした」前田藤四郎は、いつもと変わらず丁寧に頭を下げた。審神者がその言葉を別れの挨拶だと理解したときには、彼の手はすでに刀の柄にかかっていた。"],
+ akita:["閉じた世界", "「僕、もっと見たことのない景色を見てみたいんです」秋田藤四郎は、澄んだ瞳で審神者を見た。続く言葉は、審神者にはもう届かない。——だから、主君の力、僕たちにください。"],
+ midare:["紅をさす", "「あるじさんにとって、ボクってかわいくなかった？」乱藤四郎は、悲しそうに笑った。審神者が答えを返す前に、彼の白い肌に鮮やかな紅色が散らされた。"],
+ yagen:["つける薬", "「悪いな、大将。俺にしてやれるのはこれだけだ」薬研藤四郎は、いつもの落ち着いた声で告げた。審神者が先ほど口にした水に何が混ぜられていたのか理解したときには、すでに意識が遠のき始めていた。"],
+ souza_samonji:["うしろの正面", "「僕を信用していなかったのは、あなたのほうでしょう？」振り返った先にいた宗三左文字は、静かに微笑んだ。彼の瞳はもはや何も映していないようで、言葉に答える機会すら、与えてはくれなかった。"],
+ kashuu:["薔薇の枝の花言葉", "「別にいいよ。あんたに可愛がってもらわなくたって」加州清光は、拗ねたように笑った。その手に握られた刀が振り下ろされる瞬間まで、審神者は彼が本気で怒っていることに気づけなかった。"],
+ yamatonomakami:["好奇心", "「僕、怒ってるわけじゃないんだよ。じゃあどうして、って？」大和守安定は、穏やかに首を傾げた。審神者に答えを返す代わりに、彼はその刀を躊躇いなく振り下ろした。"],
+ izuminokami:["藪をつついて", "「おいおい、まさか逃げ切れると思ってんじゃねえよな？」和泉守兼定は、審神者が後ずさった分だけ距離を詰め、そう言って笑った。その目が少しも笑っていないと気づく頃には、刀が振り下ろされていた。"],
+ mutsunokami:["梅のこぼれる", "「……まっこと、残念じゃ」いつもまっすぐに審神者を見つめていた陸奥守吉行は、寂しげに呟いて目を伏せた。そして、静かに銃口を向ける。次の瞬間、乾いた銃声が響き、花が散った。"],
+ yamanbagiri_kunihiro:["茜に染まった", "「……あんたも結局、俺を見なかったな。写しには似合いの結末だ」表情の窺えない山姥切国広が、審神者を見つめる気配だけがした。刃を振るった彼の顔は、赤く染まった布に阻まれ、最後まで見えなかった。"],
+ horikawa:["隙だらけ", "「大丈夫ですよ、主さん。後のことは全部、僕に任せて！」堀川国広はいつもと変わらない笑顔でそう告げた。審神者が異変に気づいたときには、彼の本体はすでに赤く染まっていた。"],
+ hachiuka:["泥中の蓮", "「君を主と認めたことなど、一度もない」蜂須賀虎徹は、冷ややかな眼差しを向けた。美しく磨かれた刀身が光を反射し、審神者の視界を白く染めた。"],
+ heshikiri_hasebe:["貴方の刀になりたかった", "「貴方も結局、俺を捨てるんだ。そうなんでしょう？」へし切長谷部は、縋るような表情で審神者に詰め寄った。彼を納得させられる言葉を探す間に、静かに刀が抜かれていた。"],
+ shishiou:["鵺の鳴く", "「じっちゃんには、こんなところ見せられねえな」獅子王は苦々しく笑い、肩に乗った鵺をそっと下ろした。審神者が最後に見たのは、こちらへまっすぐ向けられた彼の刀だった。"]
+};
+const ZERO_IDS=["kasen","iwatooshi","imano_tsurugi","ichigo_hitofuri","namazuo","honebami","maeda","akita","midare","yagen","souza_samonji","kashuu","yamatonomakami","izuminokami","mutsunokami","yamanbagiri_kunihiro","horikawa","hachiuka","heshikiri_hasebe","shishiou"];
+// 好感度100の内緒話。歌仙・一期を除く18振りが共通対象。
+const SECRET_EXCLUDED=['kasen','ichigo_hitofuri'];
+// 刀帳番号（同値時のみ使用）。長谷部は刀帳番号に関係なく最優先。
+const SECRET_BOOK_ORDER=['iwatooshi','imano_tsurugi','namazuo','honebami','maeda','akita','midare','yagen','souza_samonji','kashuu','yamatonomakami','izuminokami','mutsunokami','yamanbagiri_kunihiro','horikawa','hachiuka','shishiou'];
+function secretPartner(){
+ return state.owned.filter(id=>!SECRET_EXCLUDED.includes(id)).sort((a,b)=>
+  (state.aff[b]??0)-(state.aff[a]??0)||
+  (a==='heshikiri_hasebe'?-1:b==='heshikiri_hasebe'?1:0)||
+  SECRET_BOOK_ORDER.indexOf(a)-SECRET_BOOK_ORDER.indexOf(b))[0];
+}
+function secretEvent(id){
+ const name=sword(id).name,title=id==='ichigo_hitofuri'?'一期一振のもしもの話':`${name}の内緒話`;
+ if(id==='ichigo_hitofuri'){
+  return {id,key:'secret_ichigo_hitofuri',title:'一期一振のもしもの話',desc:'一期一振が控えめに審神者に声をかけてきた。「もしも、の話です。この本丸に……いえ。私が、刀剣男士に成りすました化け物だったとしたら、主は……どうされますか」',options:[
+   {text:'一期一振は一期一振だと思う',run:()=>add(title,'「私は私、ですか」考える表情を見せた一期一振に、審神者は、自分はここにいる一期一振しか知らないから、正体が何だろうと一期一振への気持ちは変わらないと伝えた。「……ありがとうございます。そのお言葉、きっといつまでも忘れません」')},
+   {text:'悲しいと思う',run:()=>add(title,'「悲しい……ですか？」騙されていたことがかと問う一期一振に、化け物は、ありのままでは生きられないのかもしれない。それが悲しいと伝えると、「化け物にやるには、勿体ないお心遣いですな」苦笑した一期一振は、それでもどこか嬉しそうに見えた。')},
+   {text:'強そうだと思う',run:()=>add(title,'「強そう？」一期一振は、ぽかんと口を開けていた。刀剣男士に成りすませるほど強い化け物なら、いっそ頼もしいと思う。そう伝えると、「あっははは……。これは、一本取られましたな」おかしそうに笑う一期一振の表情は、化け物なんかには見えなかった。')},
+   {text:'一期一振はどう思うのか尋ねる',run:()=>add(title,'「私は……」一期一振は僅かな逡巡の後、「そんなこと、到底許されるべきではない。……ですが同時に、考えてしまいます。化け物は、幸福を望むことさえ許されぬのかと」例え話なのですがねと、微笑んだ一期一振が普段より少しだけ遠い存在に見えた。')}
+  ]};
+ }
+ if(id==='kasen'){
+  const other=sword(secretPartner()).name;
+  return {id,key:'secret_kasen',title,desc:`近頃、${other}と仲が良いように見えると歌仙兼定から話を振られる。`,options:[
+   {text:'肯定する',run:()=>add(title,`審神者が肯定すると、歌仙兼定は一瞬だけその瞳にほの暗い色を宿し、「なら、もうあのことも聞いたのかな」と問うた。心当たりがないという審神者の反応を見て、歌仙兼定は満足げに笑った。「何も知らないのなら、それが一番いい。きみはどうか、そのままでいておくれ」`)},
+   {text:'仲が良いのは歌仙兼定だと答える',run:()=>add(title,'審神者が答えると、歌仙兼定は一瞬呆気にとられたような表情をしたあと、花が綻ぶように笑った。この本丸で過ごしてきた日々で、まだ見たことのない笑顔だった。「これは参ったね。きみは僕が思っているよりもずっと、僕を喜ばせるのが上手いようだ」')}
+  ]};
+ }
+ return {id,key:`secret_${id}`,title,desc:`${name}から、審神者に大切な話がある。ただし、知ればこの本丸から帰すことができなくなる。それでも聞いてくれるか、と問われた。`,options:[
+  {text:'それでも聞く',run:()=>{
+   const story=`${name}は、静かに語った。彼もすべてを知るわけではないが、審神者がこの本丸に送られたのは、審神者として役目を果たすためではない。任期を終えての退任など見込まれていない、生贄のようなものである、と。他の刀に審神者の命を摘む役目を任せるくらいなら、せめて自分が引き受けたいと。`;
+   choice(title,story,[{text:'頷く',run:()=>deadEnd('露と消えにし',`その晩、${name}と審神者は二人で語らった。涙雨の降る夜更け頃、${name}は優しい表情で審神者に手を伸ばした。その手の確かな温もりを感じながら、審神者は眠るように瞼を閉じる。朝が来ても、審神者が目覚めることはなかった。`)}]);
+  }},
+  {text:'聞かない',run:()=>add(title,`審神者が断ると、${name}は安堵と寂しさの入り混じったような表情を浮かべた。ゆっくりと頷き、それなら何も知らないままでいいと告げる。それ以上は何も語らず、${name}は静かに話を切り上げた。`)}
+ ]};
+}
+function eventCandidate(){
+ const a=id=>state.aff[id]??20,low=id=>a(id)<=LOW,high=id=>a(id)>=HIGH;
+ const brothers=['maeda','akita','midare','yagen','namazuo','honebami'].filter(id=>state.owned.includes(id)&&low(id));
+ const candidates=[];
+ // 最大好感度イベントは既存の特殊イベントより先に確認する。
+ const secretIds=state.owned.filter(id=>!state.severed?.includes(id)&&(state.aff[id]??0)===100&&!state.seenEvents?.[`secret_${id}`]);
+ if(secretIds.length){
+  const first=secretIds.sort((a,b)=>EVENT_ORDER.indexOf(a)-EVENT_ORDER.indexOf(b))[0];
+  return secretEvent(first);
+ }
+ const kasenQuestion='歌仙兼定が、ふと審神者に尋ねた。「きみは、僕のことをどう思っているんだい？」';
+ if(low('kasen'))candidates.push({id:'kasen',key:'kasenLow',title:'歌仙兼定からの問い',desc:kasenQuestion,options:[
+  {text:'好きだと答える',run:()=>deadEnd('首を差し出せ','審神者が好きだと答えると、「嬉しいことを言ってくれるね。けれど、少し驚いたよ。きみは好いた相手に、あんな態度を取るものなのかい？」歌仙兼定はそう言い、静かに刀を抜いた。「そう言うのなら、きちんと示してほしいものだね。例えば、こんなふうに」審神者の首に、冷たい刃が触れた。')},
+  {text:'好きではないと答える',run:()=>add('歌仙兼定からの問い','審神者が好きではないと答えると、歌仙兼定は苦笑を浮かべた。「そうだろうね。その素直さには、感心するよ」')}
+ ]});
+ if(a('kasen')>=MID_HIGH)candidates.push({id:'kasen',key:'kasenHigh',title:'歌仙兼定からの問い',desc:kasenQuestion,options:[
+  {text:'好きだと答える',run:()=>{const change=adjust('kasen',15,'返答を喜んだ',false);const diff=change.current-change.old;add('歌仙兼定からの問い',`審神者が好きだと答えると、歌仙兼定は満足そうに微笑んだ。「嬉しいことを言ってくれるね」\n歌仙兼定：好感度 ${change.old} → ${change.current}（${diff>=0?'+':''}${diff}）`);}},
+  {text:'好きではないと答える',run:()=>deadEnd('覚めない夢','審神者が好きではないと答えると、歌仙兼定は「おや、それは残念だ」と呟き、ゆっくりと歩み寄ってきた。「僕はこれでも、きみのことを好いていたのだけどね。夢と知りせば、といったところかな」冷たい手が触れ、視界が黒く染まった。')}
+ ]});
+ if(low('heshikiri_hasebe'))candidates.push({id:'heshikiri_hasebe',key:'hasebeLow',title:'へし切長谷部からの問い',desc:'なにやら思いつめた様子のへし切長谷部から声をかけられた。大切に思う刀はいるかと問われる。',options:[{text:'へし切長谷部だと答える',run:()=>deadEnd('ただ主を思う','審神者の答えに、へし切長谷部は「優しいんですね。それとも、嘘がお上手なのか」と返した。整った笑みを浮かべる彼を見たのを最後に、審神者の意識は途切れ、二度と戻ることはなかった。')},{text:'それ以外の返答をする',run:()=>add('へし切長谷部からの問い','へし切長谷部は審神者の答えに頷き、何か思案しながらその場を去った。')}]});
+ if(low('horikawa'))candidates.push({id:'horikawa',key:'horikawaLow',title:'彼らの賭け',desc:'和泉守兼定と堀川国広が話している場面に出くわした。賭けでもしているのか勝敗について意見を交わしている。',options:[{text:'和泉守兼定の勝ちだと思う',run:()=>deadEnd('僕は全然怒ってない','審神者の答えを聞いて、支持されたはずの和泉守兼定は、憐れむような表情をした。「ほら、兼さん。僕の言った通りだったでしょ？」そんな声とともに、なにかが風を切る音。「今回は僕の勝ちだね」返り血を浴びた堀川国広が、閉ざされていく視界の中で笑った。')},{text:'堀川国広の勝ちだと思う',run:()=>add('彼らの賭け','堀川国広は笑顔で「ありがとうございます」と言った。和泉守兼定も審神者の言葉には納得したのか、二人の話し合いは穏便に終わった。')}]});
+ if(low('ichigo_hitofuri'))candidates.push({id:'ichigo_hitofuri',key:'ichigoLow',title:'弟たちの相談',desc:'廊下の向こうから、一期一振の弟たちが小声で話し合うのが聞こえた。審神者に気づくと、彼らは口をつぐんだ。',options:[{text:'何を話していたのか尋ねる',run:()=>deadEnd('すべては愛する兄のため','一期一振は何も命じていなかった。それでも弟たちは、兄の沈んだ表情を見逃さなかった。兄が審神者の前では決して見せない苦悩も、弟たちには隠しきれなかったのだろう。ある夜、審神者の部屋の前に、いくつもの小さな足音が集まった。翌朝、一期一振はいつものように審神者を迎えに訪れたが、返事が返ってくることはなかった。')},{text:'詮索せずに立ち去る',run:()=>add('弟たちの相談','弟たちは審神者が去るのを、黙って見送った。')}]});
+ if(low('izuminokami')&&a('horikawa')<=29)candidates.push({id:'horikawa',key:'horikawa',title:'堀川国広の提案',desc:'堀川国広から声をかけられた。「主さん、少しお話があるんです。今すぐじゃなくてもいいんだけど、二人きりで話せますか？」',options:[{text:'了承する',run:()=>deadEnd('最高の助手ですからね…','和泉守兼定について伝えたいことがある、と呼び出された審神者が堀川国広の待つ場所に向かうと、彼は審神者を見るなり笑顔を浮かべ刃を振るった。意識を手放す間際、彼が虚ろに呟く声が聞こえた。')},{text:'断る',run:()=>deadEnd('お手のもの','審神者が断ると、堀川国広は「忙しいんだったら仕方ないね」と微笑み、あっさり引き下がった。その晩、音も気配もなく忍び寄った何かが、審神者の命を散らした。誰が審神者を葬ったのか、政府の調査記録に記される日はついぞ来なかった。')}]});
+ if(brothers.length>=3)candidates.push({id:'ichigo_hitofuri',key:'ichigo',dead:['すべては愛する弟のため','弟たちの変化を、一期一振は見逃さなかった。審神者に何かを訴えるでもなく、彼は普段どおりに振る舞い、そして穏やかに微笑んだ。「すべては弟たちのためなのです」その言葉の意味を問い返す間もなく、審神者の体から力が抜ける。生きたまま喰われていく苦しみの果て、そこに審神者がいた痕跡はもう何も残っていなかった。']});
+ if(a('heshikiri_hasebe')>=MID_HIGH)candidates.push({id:'heshikiri_hasebe',key:'hasebeHigh',title:'へし切長谷部の気遣い',desc:'へし切長谷部が審神者の相談に乗ってくれた。審神者のことを心配し、気にかけてくれているのが伝わってくる。',options:[{text:'気丈に答える',run:()=>add('へし切長谷部の気遣い','審神者が気丈に答える姿を見たへし切長谷部は、余計なことを聞いたと謝罪したが、その表情は心から安堵したようだった。')},{text:'思わず弱音を吐く',run:()=>deadEnd('ただ貴方を思う','審神者が弱音をこぼす姿を見たへし切長谷部は、「申し訳ございません。もっと早くに、俺が決心すればよかった」と言った。彼が浮かべた笑みはどこか歪んでいて、それが暗い感情ではなく悲しみの表情だと理解できたのに、理由を問う声はもう出せなかった。')}]});
+ if(!state.severed?.some(id=>id==='kashuu'||id==='yamatonomakami')&&low('kashuu')&&a('yamatonomakami')>=MID_HIGH)candidates.push({id:'kashuu',key:'kashuu',dead:['扱いにくいって言ったでしょ','最近、大和守安定は審神者とよく話すようになった。以前よりも楽しそうに笑う姿を、加州清光は黙って見ていた。自分と同じように、何も期待せずに過ごしていたはずなのに。「あいつ、変わっちゃったよね」ぽつりと呟いた加州清光は、審神者に向き直って笑った。「俺、扱いにくいって言ったでしょ？」その笑顔が消えるよりも早く、審神者の体を刃が貫いた。']});
+ if(!state.severed?.some(id=>id==='kashuu'||id==='yamatonomakami')&&low('yamatonomakami')&&a('kashuu')>=MID_HIGH)candidates.push({id:'yamatonomakami',key:'yamatonomakami',dead:['可愛い子猫ちゃん','近頃、加州清光は審神者の前でよく笑うようになった。身なりを整え、何かにつけて審神者の気を引こうとする。あんなに諦めきっていたあいつが、今さら誰かに愛されようとしている。そのことが、大和守安定にはどうしても許せなかった。「ほんと変な奴だよね」そう言って笑った彼の手には、いつの間にか抜き身の刀が握られていた。']});
+ return candidates.filter(e=>!state.seenEvents?.[e.key]&&!state.severed?.includes(e.id)).sort((x,y)=>EVENT_ORDER.indexOf(x.id)-EVENT_ORDER.indexOf(y.id))[0]||null;
+}
+function deadEnd(title,body,number){
+ if(state.ended)return;
+ stopAuto();state.ended=true;const no=number??END_NUMBERS[title];state.ending={title:(no?'死因その'+kanjiNumber(no)+'「':'死因「')+title+'」',body};
+ add('死亡',body,'choice');showEnding();render();
+}
+// 好感度0の襲撃に対する、一周回一度限りの救援分岐。
+const RESCUE_GROUPS={
+ strong:['kasen','iwatooshi','imano_tsurugi','namazuo','kashuu','izuminokami','horikawa'],
+ gentle:['ichigo_hitofuri','midare','akita','souza_samonji','yamatonomakami','yamanbagiri_kunihiro','heshikiri_hasebe'],
+ resolve:['mutsunokami','hachiuka','yagen','honebami','shishiou','maeda']
+};
+function rescueGroup(id){return Object.keys(RESCUE_GROUPS).find(k=>RESCUE_GROUPS[k].includes(id))}
+function rescueText(group,helper,attacker,saved){
+ const opening=`${helper}の名を呼ぶと、審神者と${attacker}の間に${saved?'光が駆ける':'影が割り込む'}。${helper}だった。`;
+ if(attacker==='一期一振'){
+  const reaction={strong:'牽制するように刀を抜く姿を見て、',gentle:'訴えかけるような視線を受け、',resolve:'諭すような言葉を聞き、'}[group];
+  const intro=opening+reaction+`一期一振は${helper}を見つめ、それから意味ありげに微笑んで背を向けた。`;
+  if(saved){
+   if(group==='strong')return intro+`……助かった、そう理解して力が抜けた審神者の体を力強く抱き止め、${helper}は自分が来たからもう大丈夫と笑った。`;
+   if(group==='gentle')return intro+`……助かった、そう理解して力が抜けた審神者の体をしっかりと支え、${helper}は間に合ってよかったと微笑む。一期一振のそれとは違う、優しい笑みだ。`;
+   return intro+`……助かった、そう理解して力が抜けた審神者の腕をそっと引き、${helper}は怪我はないかと案じてくれた。`;
+  }
+  if(group==='strong')return intro+`……助かった、そう思った次の瞬間。審神者を抱き寄せ、躊躇なく刃で貫いた${helper}は、危ないところだった、審神者は自分の獲物なのだからと言って嬉しそうに笑った。`;
+  if(group==='gentle')return intro+`……助かった、そう思った次の瞬間。審神者に歩み寄り、優しくしかし確実に切り伏せた${helper}は、審神者を誰にも渡したくないと気づいた、だから、と苦い笑みを浮かべた。`;
+  return intro+`……助かった、そう思った次の瞬間。審神者の腕を引きその体を支えた${helper}は、どうせ結果が同じなら、自分が終わらせる、と告げた。意志の強い瞳と静かな一撃が、審神者を射抜いた。`;
+ }
+
+ if(saved){
+  if(group==='strong')return opening+`牽制するように刀を抜く姿を見て、${attacker}は踵を返す。……助かった、そう理解して力が抜けた審神者の体を力強く抱き止め、${helper}は自分が来たからもう大丈夫と笑った。`;
+  if(group==='gentle')return opening+`訴えかけるような視線に、${attacker}は踵を返す。……助かった、そう理解して力が抜けた審神者の体をしっかりと支え、${helper}は間に合ってよかったと微笑んだ。`;
+  return opening+`諭すような言葉に、${attacker}は踵を返す。……助かった、そう理解して力が抜けた審神者の腕をそっと引き、${helper}は怪我はないかと案じてくれた。`;
+ }
+ if(group==='strong')return opening+`牽制するように刀を抜く姿を見て、${attacker}は首を横に振り踵を返す。……助かった、そう思った次の瞬間。審神者を抱き寄せ、躊躇なく刃で貫いた${helper}は、危ないところだった、審神者は自分の獲物なのだからと言って嬉しそうに笑った。`;
+ if(group==='gentle')return opening+`訴えかけるような視線に、${attacker}は何か察したように踵を返す。……助かった、そう思った次の瞬間。審神者に歩み寄り、優しくしかし確実に切り伏せた${helper}は、審神者を誰にも渡したくないと気づいた、だから、と苦い笑みを浮かべた。`;
+ return opening+`諭すような言葉に、${attacker}は口を噤んで踵を返す。……助かった、そう思った次の瞬間。審神者の腕を引きその体を支えた${helper}は、どうせ結果が同じなら、自分が終わらせる、と告げた。意志の強い瞳と静かな一撃が、審神者を射抜いた。`;
+}
+function zeroDeath(id){
+ const [title,detail]=ZERO_ENDINGS[id]||['最後の一太刀','その刀剣男士は、もう審神者の言葉を聞かなかった。'];
+ deadEnd(title,detail,ZERO_IDS.indexOf(id)+1);
+}
+function zeroEncounter(id){
+ const attacker=sword(id).name;
+ const eligible=state.rescueUsed?[]:state.owned.filter(x=>x!==id&&!state.severed?.includes(x)&&(state.aff[x]??0)>=60);
+ const options=[{text:'声をかける',run:()=>zeroDeath(id)}];
+ if(eligible.length)options.push({text:'助けを求める',run:()=>{
+  choice('刀剣男士の名を呼ぶ','誰の名を呼ぼうか？',sortChoiceSwords(eligible).map(helperId=>({text:sword(helperId).name,run:()=>{
+   state.rescueUsed=true;
+   const group=rescueGroup(helperId),helper=sword(helperId).name;
+   const saved=(state.aff[helperId]??0)>=80;
+   const body=rescueText(group,helper,attacker,saved);
+   if(!saved){const titles={strong:'杜鵑',gentle:'菫の毒',resolve:'葉見ず花見ず'};deadEnd(titles[group],body);return}
+   state.aff[id]=1;
+   state.rescueHelper=helperId;
+   state.severed??=[];if(!state.severed.includes(id))state.severed.push(id);
+   choice('差した光',body,[{text:'先へ進む',run:()=>{}}]);
+  }})));
+ }});
+ choice('不穏な気配',`ふと視線を感じて振り向くと、${attacker}がそこに立っていた。ただならぬ殺気めいたものを感じる。`,options);
+}
+function processEvents(){
+ // 好感度0の汎用死亡判定。通常イベントでの変動後に確認する。
+ const zero=state.owned.filter(id=>(state.aff[id]??20)<=0)
+  .sort((a,b)=>EVENT_ORDER.indexOf(a)-EVENT_ORDER.indexOf(b))[0];
+ if(zero){zeroEncounter(zero);return true}
+ const e=eventCandidate();
+ if(!e){return false}
+ if(state.seenEvents?.[e.key])return false;
+ state.seenEvents??={};state.seenEvents[e.key]=true;
+ if(e.dead){deadEnd(...e.dead);return true}
+ choice(e.title,e.desc,e.options);return true;
+}
+function advance(){
+ if(!state||pending||state.ended)return;
+ state.turn++;state.month++;if(state.month>12){state.month=1;state.year++}
+ // 一年目・二年目の終わりを振り返るイベントは、翌年1月の通常イベントに先行する。
+ if(state.turn===12||state.turn===24){
+  const bonus=state.turn===12?5:10;
+  const options=sortChoiceSwords(state.owned.filter(id=>!state.severed?.includes(id))).map(id=>({text:sword(id).name,run:()=>{
+   const name=sword(id).name;
+   const texts=[`${name}から、一年間の仕事ぶりについて良い評価をもらった。`,`${name}と、この一年で思い出に残ったことについて話した。`,`${name}が、この一年で審神者について思ったことを伝えてくれた。`];
+   const change=adjust(id,bonus,'一年を振り返った',false);
+   const diff=change.current-change.old;
+   add('一年の終わりに',`${rand(texts)}\n${name}：好感度 ${change.old} → ${change.current}（${diff>=0?'+':''}${diff}）`);
+   monthlyEvent();
+  }}));
+  choice('一年の終わりに','一年を振り返って、誰かとゆっくり話をしてみようか。',options);
+  return;
+ }
+ monthlyEvent();
+}
+function monthlyEvent(){
+ const scene=state.turn<=3?rand(SCENES.filter(x=>x.delta<0)):rand(SCENES);
+ const {id,body,title}=sceneEvent(scene);
+ const change=adjust(id,affinityDelta(id,scene.delta),scene.delta>0?'関係が改善した':'関係が悪化した',false);
+ add(title,`${body}\n${sword(id).name}：好感度 ${change.old} → ${change.current}（${change.current-change.old>=0?'+':''}${change.current-change.old}）`);
+ state.quarterChoiceDue=state.turn%3===0&&state.turn<36;
+ if(processEvents())return;
+ if(state.quarterChoiceDue){state.quarterChoiceDue=false;showQuarterChoice()}
+ if(state.turn>=36&&!pending&&!state.ended)finish();render();
+}
+function showQuarterChoice(){
+ if(state.ended||pending)return;
+ if(state.turn%3===0&&state.turn<36){const target=rand(state.owned.filter(id=>!state.severed?.includes(id)));choice('本丸の方針','今月の運営方針を選ぶ。',[
+ {text:`${sword(target).name}を近侍にする`,run:()=>{const change=adjust(target,affinityDelta(target,8),'近侍として共に過ごした',false);const diff=change.current-change.old;add('本丸の方針',`近侍として${sword(target).name}と普段よりも長く共に過ごした。\n${sword(target).name}：好感度 ${change.old} → ${change.current}（${diff>=0?'+':''}${diff}）`);processEvents()}},
+ {text:'近侍は日替わりにする',run:()=>{state.owned.filter(x=>!state.severed?.includes(x)).forEach(x=>state.aff[x]=clamp(state.aff[x]+affinityDelta(x,1)));add('本丸の方針','日替わりで近侍を入れ替え、多くの刀剣男士たちと交流をした。');processEvents()}}
+ ]);return}
+}
+// 仮の生存エンド。死亡エンドと区別して記録する。
+function surviveEnd(title,body){
+ if(state.ended)return;
+ stopAuto();state.ended=true;
+ state.ending={title,body};
+ add('任務終了',body,'choice');showEnding();render();
+}
+const END04_BODY='審神者が断ると、歌仙兼定は少し残念そうにした。「そうかい。けれど、きみはもう、この本丸に欠かせない存在だ。これからも、僕たちと共に過ごしてほしい」そう言って、歌仙兼定は審神者の手を取った。触れた彼の手は、ひどく冷たかった。彼も、他の刀剣男士たちも、審神者を本丸から出してくれることはついになかった。';
+function finishEnd04(){
+ const eligible=state.owned.filter(id=>id!=='kasen'&&id!=='ichigo_hitofuri'&&(state.aff[id]??0)>=51);
+ if(!eligible.length){surviveEnd('任務完了記録04「露と落ち」',END04_BODY);return;}
+ const opts=sortChoiceSwords(eligible).map(id=>({text:sword(id).name,run:()=>{
+  const name=sword(id).name;
+  const intro=`${name}に別れの挨拶をすると、寂しそうな表情をしたあと、真剣な様子で審神者に告げる。皆はきっと審神者を帰すつもりがない、と。だが自分の言うとおりにすれば問題ない、とも。`; 
+  if((state.aff[id]??0)>=80){surviveEnd('任務完了記録07「千歳を共に」',intro+'……彼の言葉は事実だった。審神者は無事に本丸から逃げ出すことができた。どこまでも一緒に行くと、そう言ってくれた彼とともに。行き先が果たしてどこかも、そこに待つ結末も、あとは二人だけが知ることだ。');}
+  else{surviveEnd('任務完了記録06「菊の白露」',intro+'……彼の言葉は事実だった。審神者は無事に本丸を退任した。どうか幸せになってほしいという言葉をくれた彼を、あの本丸に残して。');}
+ }}));
+ opts.push({text:'誰にも声をかけない',run:()=>surviveEnd('任務完了記録04「露と落ち」',END04_BODY)});
+ choice('本丸を去る前に','本丸を去る前に、誰に声をかけようか？',opts);
+}
+const END03_BODY='審神者が本丸に残ることを決めると、一期一振が静かに声をかけてきた。彼は審神者の選択に感謝を述べると、この本丸について、これまで語られなかったことを話してくれた。すべてを聞き終えた審神者に、一期一振は深く頭を下げた。「これからも、どうぞよろしくお願いいたします」';
+function finishEnd03(){
+ const eligible=state.owned.filter(id=>(state.aff[id]??0)>=51);
+ if(!eligible.length){surviveEnd('任務完了記録03「祝福」',END03_BODY);return}
+ const opts=sortChoiceSwords(eligible).map(id=>({text:sword(id).name,run:()=>{
+  const name=sword(id).name;
+  surviveEnd('任務完了記録05「暦はもういらない」',`審神者は、この本丸に残ることを決めた。そして、これからも共に過ごしたい相手として、${name}の名を告げる。彼は少し驚いた表情を見せたあと、自分も審神者と共にありたいと思っていたと、嬉しそうに答えた。こうして審神者は、任期を終えたあとも本丸に留まることとなった。もう帰れるまでの日数を数える必要はない。これから先もずっと、彼と同じ時を過ごしていけるのだから。`);
+ }}));
+ opts.push({text:'誰にも伝えない',run:()=>surviveEnd('任務完了記録03「祝福」',END03_BODY)});
+ choice('これからの話','本丸に残ることを決めたと、これからも共に過ごしたいと思う誰かに伝えようか？',opts);
+}
+function finish(){
+ if(state.ended||pending)return;
+ // 全20振りの信頼を最優先し、個別任期満了イベントは一期、歌仙の順に判定する。
+ if(state.owned.length===20&&state.owned.every(id=>(state.aff[id]??0)>=30)){
+  choice('歌仙兼定からの提案','任期を終え、本丸を去ることになる審神者に、歌仙兼定から声がかかる。「少し、考えてみてほしいことがあるんだ。きみさえよければ、これからもこの本丸に残ってはくれないかな。僕だけではなく、みんなもそう望んでいるんだよ」',[
+   {text:'了承する',run:finishEnd03},
+   {text:'断る',run:finishEnd04}
+  ]);return;
+ }
+ if((state.aff.ichigo_hitofuri??0)>=80){
+  choice('一期一振との別れ','任期の終わりに、一期一振が静かに尋ねた。「この本丸を去られても、私のことを忘れずいてくれますか」',[
+   {text:'ずっと忘れない',run:()=>deadEnd('夢のまた夢','審神者の答えに、一期一振は微笑んだ。「嬉しいです。だというのに、なぜでしょうね。……そのお言葉だけでは、この腹は満たせぬようです」彼の姿が、ゆらりと揺らぐ。確かに一期一振の面影を残した、異形のなにかがそこにいた。炎を纏ったそれは、審神者をそっと抱きしめた。燃え落ちていく意識の中、目に焼き付いたのは、彼の悲しそうな笑顔だった。')},
+   {text:'これからも、ここにいる',run:()=>surviveEnd('任務完了記録02「露の色」','審神者の答えに、一期一振は驚いた顔をした。「……それは」言葉に詰まる彼の姿が揺らぎ、なにか恐ろしいものの影がちらついた気がした。「この本丸が普通ではないことは、もうおわかりでしょう。それでも、ここにいてくださると？」審神者が頷いて顔を上げれば、審神者のよく知る一期一振が、泣きそうな、でも幸せな笑顔を浮かべていた。')}
+  ]);return;
+ }
+ if((state.aff.kasen??0)>=80){
+  choice('歌仙兼定との最後の夜','任期満了を翌日に控えた審神者に、歌仙兼定が普段と変わらない様子で尋ねた。「本当に、明日でいなくなってしまうのかい？」',[
+   {text:'この本丸に残る',run:()=>surviveEnd('任務完了記録08「永久に共に」','「きみならそう言ってくれると思っていたよ」歌仙兼定は満足そうに微笑んだ。ようやっと自分の意志で動くようになった喉で、彼に抗議をする気にはもはやならなかった。歌仙兼定は審神者の手を取り、これからの暮らしについて幸せそうに語り始める。その話のどこにも、審神者が本丸の外へ出る未来はなかった。')},
+   {text:'この本丸に残る',run:()=>surviveEnd('任務完了記録08「永久に共に」','「きみならそう言ってくれると思っていたよ」歌仙兼定は満足そうに微笑んだ。ようやっと自分の意志で動くようになった喉で、彼に抗議をする気にはもはやならなかった。歌仙兼定は審神者の手を取り、これからの暮らしについて幸せそうに語り始める。その話のどこにも、審神者が本丸の外へ出る未来はなかった。')}
+  ]);return;
+ }
+ finishEnd01();
+}
+
+// 救援成功者がいる場合だけ、生還01の直前に「はなむけ」を挟む。
+// 一期一振が救援者でも、共通の生還01本文で最後の挨拶を行う。
+const END01_BODY='審神者は三年間の任務を終え、無事に本丸を退任することとなった。一期一振は見送りの最後に、これまでの審神者の働きを労う言葉をかけてくれた。「貴方のような審神者が来てくださってよかった。いつまでも、お元気で」こうして審神者は、三年間を過ごした本丸をあとにした。';
+function farewellText(id){
+ const name=sword(id).name;
+ if(id==='kasen')return '「本当に、今日でいなくなってしまうんだね」と歌仙兼定は少し名残惜しそうにした。それでも最後には、「きみが無事に帰れるのなら、それが何よりだ。どうかこれからも健やかに。もう、危ない目に遭わないようにね」と笑顔で審神者を送り出してくれた。';
+ switch(rescueGroup(id)){
+  case 'strong':return `いよいよお別れか、と${name}は少し名残惜しそうにした。それでも最後には、これからも元気で、もう危ない目に遭わないように、と笑顔で審神者を送り出してくれた。`;
+  case 'gentle':return `どうか帰っても元気でと、${name}は穏やかに微笑んだ。審神者が礼を言うと、少し寂しそうに目を伏せ、審神者のこれからが、穏やかなものであるように、と優しく見送ってくれた。`;
+  case 'resolve':return `これで任務も終わりかと、${name}は言った。頷くと、${name}も静かに頷き返す。あまり長居はせず帰れ、どうか達者で、そんな言葉に背中を押されるように、審神者は歩き出した。`;
+ }
+ return null;
+}
+function finishEnd01(){
+ const helper=state.rescueHelper;
+ if(!helper||!state.owned.includes(helper)){
+  surviveEnd('任務完了記録01「去るもの」',END01_BODY);return;
+ }
+ if(helper==='ichigo_hitofuri'){
+  choice('一期一振のはなむけ','本来、貴方を帰すことは本丸のためにならないのです、と一期一振は静かに告げた。それでも無事を願ってしまったのだと、少し困ったように微笑む。「どうか何も聞かず、このまま旅立ってほしい」そう言って、一期一振は審神者を穏やかに見送ってくれた。',[{text:'先へ進む',run:()=>surviveEnd('任務完了記録01「去るもの」',END01_BODY)}]);return;
+ }
+ const body=farewellText(helper);
+ if(!body){surviveEnd('任務完了記録01「去るもの」',END01_BODY);return;}
+ choice(`${sword(helper).name}のはなむけ`,body,[{text:'先へ進む',run:()=>surviveEnd('任務完了記録01「去るもの」',END01_BODY)}]);
+}
+function showEnding(){if(!state?.ending)return;$('ending').replaceChildren();
+ const h=document.createElement('h3');h.textContent=state.ending.title;
+ const p=document.createElement('p');p.textContent=state.ending.body;
+ $('ending').append(h,p);$('endOverlay').classList.remove('hidden');}
+function stopAuto(){if(timer)clearInterval(timer);timer=null;controls()}
+function startAuto(){if(!state||state.ended||pending)return;stopAuto();timer=setInterval(advance,Number($('speed').value));controls()}
+function controls(){const active=!!state&&!state.ended;
+ ['step','auto'].forEach(id=>$(id).disabled=!active||!!pending);
+ $('save').disabled=!state||!!pending;
+ $('export').disabled=!state;
+ $('auto').textContent='自動進行：'+(timer?'ON':'OFF');
+ $('status').textContent=!state?'未開始':state.ended?(state.ending?.title?.startsWith('死因')?'死亡':'任務終了'):pending?'選択待ち':timer?'自動進行中':'手動進行中';}
+function render(){controls();if(!state)return;
+ $('clock').textContent=`${state.year}年${state.month}月`;
+ const left=Math.max(0,36-state.turn);
+ const death=state.ended&&!!state.ending?.title?.startsWith('死因');
+ document.querySelector('.preview').classList.toggle('deadline-death',death);
+ $('remain').textContent=death?'任務終了':`あと${left}か月`;
+ $('deadlineDesc').textContent=death?'対象の死亡をもって任務を終了しました。':state.ended?'三十六か月の任務が完了しました。':`着任から${state.turn}か月が経過。残り${left}か月。`;
+ $('profile').replaceChildren();
+ const name=document.createElement('div');name.className='profile-name';name.textContent=state.name;$('profile').append(name);
+ for(const [k,v] of [['所属','山城国'],['初期刀','歌仙兼定'],['任務期間','36か月']]){
+ const d=document.createElement('div');d.className='profile-meta';d.textContent=`${k}：${v}`;$('profile').append(d)}
+
+ $('ownedCount').textContent=state.owned.length+'振り';$('romance').replaceChildren();
+ sortChoiceSwords(state.owned).forEach(id=>{
+ const card=document.createElement('div');card.className='romance-card';
+ const strong=document.createElement('strong');strong.textContent=sword(id).name;
+ const sub=document.createElement('div');sub.className='muted';sub.textContent=`好感度 ${state.aff[id]??0}`;
+ const meter=document.createElement('div');meter.className='meter';const bar=document.createElement('span');bar.style.width=(state.aff[id]??0)+'%';meter.append(bar);
+ card.append(strong,sub,meter);$('romance').append(card)});
+ $('count').textContent=state.log.length+'件';$('log').replaceChildren();
+ [...state.log].reverse().forEach(e=>{const article=document.createElement('article');article.className='entry '+(e.type==='choice'?'choice':'');
+ const date=document.createElement('div');date.className='date';date.textContent=`${e.year}年 ${e.month}月`;
+ const strong=document.createElement('strong');strong.textContent=e.title;
+ const body=document.createElement('div');body.textContent=e.body;article.append(date,strong,body);$('log').append(article)});
+}
+function download(filename,content,mime){
+ const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+ // Keep object URL alive long enough for mobile browsers to begin downloading.
+ setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+function save(){if(!state||pending)return;download('露と消えにし_途中保存.json',JSON.stringify({app:'tsuyu-honmaru',state},null,2),'application/json')}
+function exportText(){if(!state)return;download('露と消えにし_運営記録.txt',[`露と消えにし`,`${state.name}／山城国`,`初期刀：歌仙兼定`,'',...state.log.map(e=>`【${e.year}年${e.month}月｜${e.title}】${e.body}`)].join('\n'),'text/plain;charset=utf-8')}
+async function load(ev){const file=ev.target.files[0];if(!file)return;try{
+ const data=JSON.parse(await file.text()),s=data.state;
+ if(data.app!=='tsuyu-honmaru'||!s||!Array.isArray(s.owned)||!Array.isArray(s.log)||!s.owned.length||!s.owned.every(id=>!!sword(id))||!Number.isInteger(s.turn)||s.turn<0||s.turn>36||!s.aff)throw Error('保存形式が一致しません');
+ stopAuto();state=s;pending=null;$('setupOverlay').classList.add('hidden');$('introOverlay').classList.add('hidden');$('choicePanel').classList.add('hidden');$('endOverlay').classList.add('hidden');
+ if(state.ended)showEnding();render();
+ }catch(e){alert('読み込みに失敗しました：'+e.message)}finally{ev.target.value=''}}
+setup();
+
+/* Ending image export: 960x540, inspired by Kuruizaki's canvas and mobile workflow. */
+let tsuyuImageUrl='';
+function tsuyuCloseImage(){const m=document.getElementById('tsuyuImageModal');if(m)m.classList.add('hidden');if(tsuyuImageUrl){URL.revokeObjectURL(tsuyuImageUrl);tsuyuImageUrl='';}}
+const tsuyuDeathBackground=new Image();
+tsuyuDeathBackground.src='data:image/png;base64,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';
+function tsuyuMakeImageCanvas(){
+ if(!state?.ending)return null;
+ const c=document.createElement('canvas');c.width=960;c.height=540;
+ const x=c.getContext('2d');
+ if(state.ending.title.startsWith('死因')){
+  x.drawImage(tsuyuDeathBackground,0,0,960,540);
+ }else{
+ x.fillStyle='#160b0d';x.fillRect(0,0,960,540);
+ const grad=x.createLinearGradient(0,0,960,540);grad.addColorStop(0,'#301419');grad.addColorStop(.55,'#190b0e');grad.addColorStop(1,'#0c0709');x.fillStyle=grad;x.fillRect(0,0,960,540);
+ x.strokeStyle='#7a3e46';x.lineWidth=2;x.strokeRect(30,28,900,484);
+ x.strokeStyle='#4b282f';x.lineWidth=1;x.strokeRect(41,39,878,462);
+ x.fillStyle='#8d454c';x.fillRect(0,0,960,8);
+ }
+ x.textAlign='center';x.fillStyle='#d1aaa7';x.font='400 22px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText('露と消えにし',480,113);
+ x.strokeStyle='#76434a';x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();
+ const title=String(state.ending.title||'');
+ const match=title.match(/^(死因その[^「]+|任務完了記録\s*\d+)「(.+)」$/);
+ const category=match?match[1]:(title.startsWith('死因')?'死因':'任務完了記録');
+ const name=match?match[2]:title;
+ x.fillStyle='#c8a29e';x.font='500 25px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText(category,480,216);
+ let fontSize=52;const font=(size)=>'500 '+size+'px "Yu Mincho","Hiragino Mincho ProN",serif';
+ x.font=font(fontSize);while(x.measureText(name).width>785&&fontSize>25){fontSize-=2;x.font=font(fontSize)}
+ x.fillStyle='#f4e6df';x.fillText(name,480,325);
+ x.strokeStyle='#76434a';x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();
+ x.fillStyle='#9c7776';x.font='500 14px "Asap Sharp",sans-serif';
+ const footer='UNOFFICIAL FAN-MADE';
+ const letterSpacing=1.55;
+ const widths=[...footer].map(ch=>x.measureText(ch).width);
+ let tx=480-(widths.reduce((a,b)=>a+b,0)+letterSpacing*(widths.length-1))/2;
+ x.textAlign='left';for(let i=0;i<footer.length;i++){x.fillText(footer[i],tx,468);tx+=widths[i]+letterSpacing;}
+ return c;
+}
+async function saveEndingImage(){
+ try{await document.fonts.load('500 14px "Asap Sharp"');}catch(e){console.warn('Asap Sharp font load failed',e)}
+ if(state?.ending?.title?.startsWith('死因')){try{await tsuyuDeathBackground.decode();}catch(e){alert('背景画像の読み込みに失敗しました。');return}}
+ const c=tsuyuMakeImageCanvas();if(!c)return;
+ c.toBlob(blob=>{
+  if(!blob){alert('画像の生成に失敗しました。');return}
+  const title=String(state.ending.title||'結末').replace(/[\\/:*?"<>|]/g,'_');
+  const filename='露と消えにし_'+title+'.png';
+  const touch=(navigator.maxTouchPoints||0)>0||(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches);
+  if(!touch){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);return}
+  if(tsuyuImageUrl)URL.revokeObjectURL(tsuyuImageUrl);tsuyuImageUrl=URL.createObjectURL(blob);
+  document.getElementById('tsuyuImagePreview').src=tsuyuImageUrl;
+  const link=document.getElementById('tsuyuImageDownload');link.href=tsuyuImageUrl;link.download=filename;
+  const share=document.getElementById('tsuyuImageShare');let file=null;
+  try{file=new File([blob],filename,{type:'image/png'});}catch(e){}
+  const canShare=!!(file&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}));
+  share.style.display=canShare?'inline-block':'none';
+  share.onclick=async()=>{try{await navigator.share({files:[file],title:'露と消えにし'});}catch(e){if(e.name!=='AbortError')console.warn(e)}};
+  document.getElementById('tsuyuImageModal').classList.remove('hidden');
+ },'image/png');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')tsuyuCloseImage()});
+</script><div aria-hidden="true" id="transitionCurtain"></div><div class="tsuyu-image-modal hidden" id="tsuyuImageModal" onclick="if(event.target===this)tsuyuCloseImage()"><div class="tsuyu-image-dialog" role="dialog" aria-modal="true" aria-label="結果画像を保存"><h3>結果画像を保存・共有</h3><img id="tsuyuImagePreview" alt="生成したエンディング画像"><div class="tsuyu-image-actions"><button id="tsuyuImageShare" type="button">画像を共有</button><a id="tsuyuImageDownload" href="#" download>画像をダウンロード</a><button type="button" onclick="tsuyuCloseImage()">閉じる</button></div><p class="tsuyu-image-help">スマートフォンで直接保存できない場合は、画像を長押しして保存してください。</p></div></div></body></html>
