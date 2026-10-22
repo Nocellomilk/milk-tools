@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>対象本丸関連資料｜H-44S-0015136</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{--bg:#e7e9ea;--paper:#f8f8f7;--ink:#252b2e;--muted:#687176;--line:#c5c9cb;--line2:#d9dcde;--navy:#3f5662;--soft:#f0f1f1}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}
+.wrap{width:min(980px,95%);margin:30px auto 64px}
+.topline{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:12px;font-size:11px;color:#68747a}
+.topline a{color:#435f6d;text-decoration:none;border-bottom:1px solid #8b9ca4}
+.system{border:1px solid #bfc4c7;background:#f4f5f5}
+.system-head{padding:20px 24px 18px;border-bottom:1px solid #bfc4c7;background:#eceeef}
+.system-code{font:10px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;color:#6d777c;margin-bottom:7px}
+h1{font-size:21px;letter-spacing:.08em;margin:0 0 9px;font-weight:600}.lead{font-size:12px;line-height:1.85;color:#626d72;margin:0}
+.system-meta{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #cbd0d2;background:#f8f8f7}
+.system-meta div{padding:10px 14px;border-right:1px solid #d5d9db;font-size:10px;line-height:1.6;color:#657076}.system-meta div:last-child{border-right:0}.system-meta b{font-weight:600;color:#3f4d54;margin-right:6px}
+.archive{padding:0 22px 24px}
+.archive-head{display:grid;grid-template-columns:90px 1fr 92px;gap:12px;padding:13px 10px 9px;border-bottom:2px solid #9fa8ad;color:#667177;font:10px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em}
+.record-row{display:grid;grid-template-columns:90px 1fr 92px;gap:12px;align-items:center;padding:13px 10px;border-bottom:1px solid #d3d7d9;background:transparent;cursor:pointer;transition:.12s}
+.record-row:hover{background:#f3f4f4}.record-row.locked{cursor:pointer}.doc-id{font:11px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#56636a}.doc-title{font-size:12px;line-height:1.65;color:#303b40}.status{justify-self:start;font:10px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#52656e}.status.lock{color:#71787c}
+.doc{display:none;padding:22px 24px 26px;border-bottom:1px solid #c8cdcf;background:var(--paper)}.doc.open{display:block}
+.doc-header{display:grid;grid-template-columns:1fr 1fr;gap:5px 26px;padding-bottom:13px;margin-bottom:19px;border-bottom:1px solid #cfd3d5;font:10px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#626d72}.doc-header b{color:#3d494f;font-weight:600}
+.doc h2{font-size:15px;letter-spacing:.04em;margin:20px 0 9px;font-weight:600}.doc p{font-size:12px;line-height:1.95;color:#4f5b60;margin:8px 0}.doc .small{font-size:9.5px;line-height:1.8;color:#747e83}
+.data-table{width:100%;border-collapse:collapse;margin:13px 0 11px;font-size:10.5px;background:#fbfbfa}.data-table th,.data-table td{border:1px solid #c9ced0;padding:8px 9px;text-align:left}.data-table th{background:#eceeef;color:#47545a;font-weight:600}.data-table td.num{text-align:right;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.data-table td.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#53636b}
+.case-list{margin:14px 0;border-top:1px solid #c8cdcf}.case{padding:13px 2px 14px;border-bottom:1px solid #d6dadd}.case-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;margin-bottom:5px}.case-name{font-size:12px;font-weight:600;color:#33434b}.case-code,.case-values{font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#657178}.case p{margin:4px 0;font-size:11px;line-height:1.9;color:#536066}.quote{margin-top:7px;padding-left:13px;border-left:2px solid #9ca8ad;color:#48575e;font-size:11px;line-height:1.85}.quote .src{display:block;margin-top:3px;font-size:9px;color:#7a8489}
+.extract{margin:14px 0;padding:12px 14px;border:1px solid #c8cdcf;background:#f0f1f1;font:10.5px/1.85 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#4e5a60}.extract b{color:#2f3d43}.redact{display:inline-block;background:#363b3e;color:#363b3e;padding:0 .18em;user-select:none}
+.denied{display:none;padding:18px 24px 22px;border-bottom:1px solid #c8cdcf;background:#f2f3f3}.denied.open{display:block}.denied-line{font:11px/1.9 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#515d62}.denied-line strong{font-weight:600;color:#333f44}.denied-note{margin-top:8px;font-size:10px;line-height:1.8;color:#747e82}
+.unofficial{margin:20px 22px 0;padding:12px 14px;border-top:1px solid #ccd1d3;color:#6f797e;font-size:9.5px;line-height:1.8}.footer{text-align:right;color:#8a9296;font:9px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;margin-top:10px}
+@media(max-width:700px){.wrap{margin:14px auto 46px}.topline{align-items:flex-start;flex-direction:column;gap:4px}.system-head{padding:17px 16px}.system-meta{grid-template-columns:1fr}.system-meta div{border-right:0;border-bottom:1px solid #d5d9db}.system-meta div:last-child{border-bottom:0}.archive{padding:0 10px 18px}.archive-head,.record-row{grid-template-columns:72px 1fr}.archive-head div:last-child{display:none}.status{grid-column:2}.doc{padding:18px 14px 22px}.doc-header{grid-template-columns:1fr}.data-table{font-size:9.5px}.data-table th,.data-table td{padding:7px 6px}.case-head{gap:4px 10px}}
+
+/* 既存の意匠は維持し、可読性に関わる文字サイズのみ調整 */
+.doc-title{font-size:14px}
+.doc p{font-size:14px}
+.doc .small{font-size:11.5px}
+.doc .case p{font-size:13px}
+.doc .quote{font-size:13px}
+.doc .extract{font-size:12px}
+.doc h2{font-size:16px}
+.doc .redact{background:#363b3e;color:#363b3e;user-select:none}
+@media(max-width:700px){.doc-title{font-size:13px}.doc p{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topline"><a href="tsuyu_pre_release.html">← 戻る</a><span>閲覧セッション / 職員（一般）</span></div>
+<main class="system">
+<header class="system-head">
+<h1>関連資料閲覧</h1>
+<p class="lead">検索条件に一致する資料を表示しています。資料ごとの公開区分は、現在の閲覧権限に基づきます。</p>
+</header>
+<div class="system-meta">
+<div><b>資料群</b>H-44S-0015136</div><div><b>閲覧権限</b>職員（一般）</div><div><b>表示形式</b>記録抜粋</div>
+</div>
+<div class="archive"><div class="archive-head"><div>資料番号</div><div>資料名</div><div>公開区分</div></div><div class="record-row" onclick="toggleDoc('doc01')"><div class="doc-id">HCR-01</div><div class="doc-title">特定審神者の言動に関する報告</div><div class="status">公開</div></div>
+<section class="doc" id="doc01"><div class="doc-header"><div><b>資料番号</b> HCR-01</div><div><b>資料区分</b> 内部報告書</div><div><b>記録部門</b> 総務部 文書課</div><div><b>公開区分</b> 職員（一般）</div><div><b>対象本丸</b> H-44S-0015136</div><div><b>対象審神者</b> 津々見<span class="redact">■■</span></div></div>
+<h2>概要</h2>
+<p>対象審神者について、政府施設内での不適切な発言および行動が複数回報告されている。</p>
+<p>当該審神者は、刀剣男士の顕現に際し、「真っ白い太刀」を強く希望しており、希望する刀剣男士が得られないことに対して、担当職員への執拗な要求や、施設内での秩序を乱す行為が確認されている。</p>
+<p>職員からは、顕現する刀剣男士を任意に指定することはできない旨を繰り返し説明しているが、当該審神者の要求に変化は見られない。</p>
+<h2>対応上の留意事項</h2>
+<p>当該審神者は、これまで多数の審神者を輩出してきた津々見家の出身である。</p>
+<p>同家との関係を考慮し、今後の対応においては、不必要な対立を避けるとともに、問題となる言動および対応経過を継続して記録することが望ましい。</p></section><div class="record-row" onclick="toggleDoc('doc02')"><div class="doc-id">HCR-04</div><div class="doc-title">不審事案の報告</div><div class="status">公開</div></div>
+<section class="doc" id="doc02"><div class="doc-header"><div><b>資料番号</b> HCR-04</div><div><b>資料区分</b> 内部報告書</div><div><b>記録部門</b> 総務部 文書課</div><div><b>公開区分</b> 職員（一般）</div><div><b>対象本丸</b> H-44S-0015136</div><div><b>対象審神者</b> 津々見<span class="redact">■■</span></div></div>
+<h2>概要</h2>
+<p>政府施設内において、対象審神者が一期一振を同行させているところを職員が確認した。</p>
+<p>当該本丸の顕現記録および所属刀剣男士の登録情報には、一期一振に該当する個体が確認されていない。このため、職員が当該審神者に対して所属および同行の経緯について確認を求めた。</p>
+<p>これに対し、当該審神者は職員を威圧する言動を示し、説明に応じることなく、一期一振を伴って本丸へ帰還した。</p>
+<h2>対応状況</h2>
+<p>当該個体の所属および顕現経緯については、現時点で確認が取れていない。</p>
+<p>対象本丸の登録情報との不一致について、引き続き確認を行う。</p></section><div class="record-row" onclick="toggleDoc('doc03')"><div class="doc-id">HCR-06</div><div class="doc-title">対象本丸の現地調査に関する報告</div><div class="status">公開</div></div>
+<section class="doc" id="doc03"><div class="doc-header"><div><b>資料番号</b> HCR-06</div><div><b>資料区分</b> 内部報告書</div><div><b>記録部門</b> 生活環境部 本丸管理課</div><div><b>公開区分</b> 職員（一般）</div><div><b>対象本丸</b> H-44S-0015136</div><div><b>対象審神者</b> 津々見<span class="redact">■■</span></div></div>
+<h2>概要</h2>
+<p>対象本丸について、審神者本人との連絡が取れない状態が継続している。</p>
+<p>従来より政府との連絡窓口を務めている初期刀・歌仙兼定との通信は成立しているものの、同個体からは、審神者本人が政府職員との面会および直接の連絡を拒否している旨の回答があった。</p>
+<p>その後も審神者本人による応答が確認されないまま数日が経過したため、職員を派遣し、現地確認を実施した。</p>
+<h2>現地確認結果</h2>
+<p>派遣職員により、対象本丸内の霊力に通常とは異なる観測値が確認された。</p>
+<p>また、審神者本人との面会を求めたところ、へし切長谷部から「主に会わせることはできない」との回答があった。</p>
+<p>その後、抜刀状態の加州清光が職員に接近したため、職員は身の危険を感じ、確認作業を中断して現地から退避した。</p>
+<h2>対応状況</h2>
+<p>審神者本人の所在および健康状態については、現時点で確認できていない。</p>
+<p>対象本丸内の霊力異常と所属刀剣男士の対応を踏まえ、通常の連絡および現地確認による状況把握は困難と判断する。</p></section><div class="record-row" onclick="toggleDoc('doc04')"><div class="doc-id">HCR-09</div><div class="doc-title">対象本丸への調査部隊派遣に関する報告</div><div class="status">公開</div></div>
+<section class="doc" id="doc04"><div class="doc-header"><div><b>資料番号</b> HCR-09</div><div><b>資料区分</b> 内部報告書</div><div><b>記録部門</b> 特別派遣管理部 調査課</div><div><b>公開区分</b> 職員（一般）</div><div><b>対象本丸</b> H-44S-0015136</div><div><b>対象審神者</b> 津々見<span class="redact">■■</span></div></div>
+<h2>概要</h2>
+<p>対象本丸<span class="redact">に</span>おいて、<span class="redact">審神者本人との</span><span class="redact">連絡途絶</span>、霊力の異常値および<span class="redact">所属刀剣男士による</span><span class="redact">現地確認</span>の妨害<span class="redact">が</span><span class="redact">確認されたことを</span>受け、政府は<span class="redact">当該本丸への</span>調査部隊派遣を決定した。</p>
+<p><span class="redact">派遣部隊は</span>、<span class="redact">実戦経験を</span>有する<span class="redact">審神者一名</span>、<span class="redact">同審神者の</span>指揮下にある<span class="redact">刀剣男士一部隊</span>、および<span class="redact">政府職員</span>で構成された。</p>
+<div class="extract"><b>派遣部隊構成</b><br/>審神者：<span class="redact">████████</span><br/>第一部隊<br/>部隊長：<span class="redact">████████</span><br/>隊員：<span class="redact">████████</span><br/>隊員：<span class="redact">████████</span><br/>隊員：<span class="redact">████████</span><br/>隊員：<span class="redact">████████</span><br/>隊員：<span class="redact">████████</span><br/>同行職員：氏名記載省略</div>
+<p>派遣部隊から<span class="redact">は</span>、<span class="redact">対象本丸到着後の</span><span class="redact">定時連絡</span>において、初期刀・歌<span class="redact">仙兼定</span>が応対したこと、<span class="redact">および</span><span class="redact">対象審神者本人との</span>面会には至っていないことが<span class="redact">報告された</span>。</p>
+<p>その後、<span class="redact">予定されていた</span>連絡時刻を<span class="redact">過ぎても</span>部隊からの<span class="redact">応答はなく</span>、<span class="redact">政府側からの</span><span class="redact">通信にも</span>応答が得られなかった。<span class="redact">以降</span>、連絡は回復せ<span class="redact">ず</span>、<span class="redact">派遣された全員の</span>消息が不明となった。</p>
+<h2>後続調査結果</h2>
+<p><span class="redact">派遣部隊の</span><span class="redact">消息途絶</span><span class="redact">を</span>受け、政府は<span class="redact">後続調査員による</span>対象本丸<span class="redact">周辺の</span>調査を<span class="redact">実施した</span>。</p>
+<p>調査<span class="redact">の</span>結果、<span class="redact">派遣された</span>刀剣男士の<span class="redact">一部について</span>、破壊されたと判断できる<span class="redact">痕跡が</span>確認され、<span class="redact">残骸の回収</span><span class="redact">が</span>行われた。</p>
+<p><span class="redact">確認された</span><span class="redact">破壊痕跡の</span><span class="redact">一部には</span>、<span class="redact">対象本丸に所属する</span>脇差・堀<span class="redact">川国広</span><span class="redact">との交戦</span>、<span class="redact">ま</span>たは<span class="redact">同個体による</span>奇襲を受けた可能性を示す<span class="redact">特徴が</span>認められた。</p>
+<p>堀<span class="redact">川国広</span><span class="redact">は</span>対象本丸に所属する<span class="redact">脇差の中で</span><span class="redact">最も練度が高い</span>個体と<span class="redact">し</span>て<span class="redact">登録されている</span>。ただし、<span class="redact">当該個体が</span>派遣部隊と<span class="redact">交戦した場面は</span><span class="redact">確認されておらず</span>、関与については<span class="redact">推定の域を出ない</span>。</p>
+<p><span class="redact">一方</span>、<span class="redact">残る刀剣男士については</span>、<span class="redact">破壊の有無を</span><span class="redact">確認できる</span>痕跡が発見されず、<span class="redact">所在は不明</span>のままである。また、<span class="redact">同行した</span>審神者および<span class="redact">政府職員についても</span>、遺体の発見<span class="redact">に</span>は至っていない。</p>
+<p><span class="redact">現時点で</span><span class="redact">回収できた</span>残骸<span class="redact">は</span><span class="redact">一部に限られ</span>、<span class="redact">派遣部隊の大半については</span>、<span class="redact">遺体または</span>刀剣の残骸を含<span class="redact">め</span>、<span class="redact">その所在を</span>確認できていない。</p>
+<p><span class="redact">調査継続中</span>、<span class="redact">対象本丸所属の</span>大和<span class="redact">守安定</span>が<span class="redact">後続調査員に</span>接近し、<span class="redact">これ以上の</span>調査を<span class="redact">継続しないよう</span>勧める<span class="redact">趣旨の発言</span>を行っ<span class="redact">た</span>。</p>
+<p><span class="redact">その後</span>、<span class="redact">同個体が</span>抜刀したため、<span class="redact">調査員は</span><span class="redact">安全の確保が</span>困難と判断し、<span class="redact">その時点で</span>調査を中断して<span class="redact">退避した</span>。</p>
+<h2>対応状況</h2>
+<p><span class="redact">派遣部隊が</span><span class="redact">消息を絶つに至った</span>経緯、<span class="redact">お</span>よび<span class="redact">対象本丸内で</span>発生した事象の詳細<span class="redact">に</span>ついては、<span class="redact">現時点で</span><span class="redact">確認できていない</span>。</p>
+<p><span class="redact">対象本丸への</span><span class="redact">通常の立ち入り</span>および<span class="redact">調査活動には</span><span class="redact">重大な危険</span>が伴う<span class="redact">と</span>判断し、<span class="redact">今後の対応について</span>関係部署間で<span class="redact">協議を行う</span>。</p></section></div>
+<div class="unofficial">このページは『刀剣乱舞ONLINE』を題材とした非公式のファンメイド資料です。記載される研究記録・観測値・個体事例・本丸管理番号はすべて本コンテンツ独自の創作設定であり、『刀剣乱舞ONLINE』の公式設定・運営・関係各社とは一切関係ありません。</div>
+</main>
+<div class="footer">RESEARCH ARCHIVE / ver.1.0</div>
+</div>
+<script>
+function toggleDoc(id){document.getElementById(id).classList.toggle('open');}
+function toggleDenied(id){document.getElementById(id).classList.toggle('open');}
+</script>
+</body>
+</html>
