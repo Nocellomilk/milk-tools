@@ -950,6 +950,7 @@ function finishCommonIntervention(id){
 }
 function finishIntervention(id){
  if(id==='heshikiri_hasebe'){
+  if((state.aff[id]??0)===100){finishCommonIntervention(id);return;}
   surviveEnd('任務完了記録14「貴方の刀であれてよかった」','へし切長谷部の名を呼ぶと、それまで言葉がつかえたように出なかった喉が動いた。「走りますよ」いつの間にか傍にいたへし切長谷部に、しっかりと手を引かれ、自然とそれに合わせて足が動いた。あと一歩踏み出せば、本丸を出られる。「俺がお供できるのはここまでです」背を優しく、けれど力強く押され政府の施設に降り立った審神者の耳に、彼の声だけが残る。——最後まで、');return;
  }
  const pair=interventionPair(id);
