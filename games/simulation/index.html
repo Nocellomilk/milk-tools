@@ -454,7 +454,7 @@ function sortChoiceSwords(ids){return [...ids].sort((a,b)=>a==='kasen'?-1:b==='k
 let state=null,pending=null,timer=null;
 // 現在公開されているゲームページのURLを共有する（ローカル実行時はURLを添付しない）。
 function shareOnX(){
- const message='【刀剣乱舞・非公式ファンメイド】暗黒本丸運営シミュレーション\n露と消えにし\n対象本丸：H-44S-0015136 での任務を終了しました。\n#露消え https://milk-tools.com/games/simulation';
+ const message='【刀剣乱舞・非公式ファンメイド】暗黒本丸運営シミュレーション「露と消えにし」\n対象本丸：H-44S-0015136 での任務を終了しました。\n#露消え https://milk-tools.com/games/simulation';
  const params=new URLSearchParams({text:message});
  window.open('https://twitter.com/intent/tweet?'+params.toString(),'_blank','noopener,noreferrer');
 }
