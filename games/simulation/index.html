@@ -477,7 +477,7 @@ function start(){
  stopAuto();pending=null;
  const owned=[...FIXED];
  state={version:3,name,country:'山城国',year,month:1,starter:SWORDS.find(s=>s.name==='歌仙兼定').id,owned,
- aff:Object.fromEntries(owned.map(id=>[id,20])),turn:0,log:[],seenEvents:{},awataFirst:null,rescueUsed:false,rescueHelper:null,severed:[],ended:false,ending:null};
+ aff:Object.fromEntries(owned.map(id=>[id,20])),turn:0,log:[],seenEvents:{},awataFirst:null,rescueUsed:false,rescueHelper:null,ichigoRescued:false,severed:[],ended:false,ending:null};
  $('endOverlay').classList.add('hidden');$('choicePanel').classList.add('hidden');
  const curtain=$('transitionCurtain');curtain.classList.add('active');
  setTimeout(()=>{
@@ -808,7 +808,7 @@ function zeroDeath(id){
 function zeroEncounter(id){
  const attacker=sword(id).name;
  const eligible=state.rescueUsed?[]:state.owned.filter(x=>x!==id&&!state.severed?.includes(x)&&(state.aff[x]??0)>=60);
- const options=[{text:'声をかける',run:()=>zeroDeath(id)}];
+ const options=[{text:'声をかける',run:()=>id==='kasen'&&state.ichigoRescued&&state.rescueHelper?kasenInvitation():zeroDeath(id)}];
  if(eligible.length)options.push({text:'助けを求める',run:()=>{
   choice('刀剣男士の名を呼ぶ','誰の名を呼ぼうか？',sortChoiceSwords(eligible).map(helperId=>({text:sword(helperId).name,run:()=>{
    state.rescueUsed=true;
@@ -818,6 +818,7 @@ function zeroEncounter(id){
    if(!saved){const titles={strong:'杜鵑',gentle:'菫の毒',resolve:'葉見ず花見ず'};deadEnd(titles[group],body);return}
    state.aff[id]=1;
    state.rescueHelper=helperId;
+   if(id==='ichigo_hitofuri')state.ichigoRescued=true;
    // 救援時の順位を固定。好感度同値は対象外、一期は嫉妬役から除外。
    const rivals=state.owned.filter(x=>x!==helperId&&x!=='ichigo_hitofuri'&&!state.severed?.includes(x)&&(state.aff[x]??0)>=80&&(state.aff[x]??0)>(state.aff[helperId]??0));
    state.lightShadowRival=rivals.sort((a,b)=>(state.aff[b]??0)-(state.aff[a]??0)||FIXED.indexOf(a)-FIXED.indexOf(b))[0]||null;
@@ -827,6 +828,39 @@ function zeroEncounter(id){
   }})));
  }});
  choice('不穏な気配',`ふと視線を感じて振り向くと、${attacker}がそこに立っていた。ただならぬ殺気めいたものを感じる。`,options);
+}
+// 隠し任務完了21・22：一期一振の襲撃から救援された後、歌仙兼定の襲撃を受ける。
+const LAST_SUPPER_BODY='狂ってしまいそうなほどの空腹感、飢餓感が審神者を襲う。「きみもこれから、僕たちと同じになるんだ。霊力が足らなくて苦しいだろう。ほら、お食べ」そう言って、審神者の前に転がされたのは、弱弱しく呼吸をする○○だった。';
+const END21_BODY='いつの間にか、歌仙兼定が審神者の肌を拭っていた。汚れるような出来事が何かあっただろうか、もう思い出せはしない。あるのは、幸福感と、腹が満たされた充足感だけだった。いや、違う。そこにいるのはもはや、一匹の怪異。怪異巣食うこの本丸に、また新たに一匹が生まれ、古いものがその腹を満たしてやった。きっと、それだけのことなのだろう。見下ろしてくる一期一振の瞳と目が合い、かつて審神者だったものは虚ろな笑顔を浮かべた。';
+function end22(ownerId){
+ const owner=sword(ownerId).name;
+ let body='一期一振がただの刀剣男士ではないからできたことなのだろう。';
+ body+=(ownerId==='kasen'||ownerId==='ichigo_hitofuri')?'彼の手が触れると体が熱を帯び、刻印が審神者に刻まれた。':'伸びてきた手が触れると体が熱を帯び、刻印が審神者に刻まれた。';
+ body+=`そして審神者は、${owner}の所有物へと成り果てた。彼の言葉に従わなければ激しい苦痛が襲い、言うことを聞ければ甘美な多幸感に包まれる。`;
+ if(ownerId==='kasen')body+='審神者は幸せだ。あなたは幸せだ。「きみは本当によくできた子だ」優しく囁く彼の従順な道具として、これからずっと生きていけるのだから。';
+ else if(ownerId==='ichigo_hitofuri')body+='審神者は幸せだ。あなたは幸せだ。「貴方はもう、何も考えなくていいのです」優しく囁く彼の従順な道具として、これからずっと生きていけるのだから。';
+ else body+='それを'+owner+'はどう思うだろう。思い通りになる審神者を、彼はどう扱うだろう。だがそんなこと、審神者には関係なかった。あなたは、これからずっと幸せなのだから。';
+ surviveEnd(`任務完了記録22「すべては愛する${owner}のため」`,body);
+}
+function kasenInvitation(){
+ const helperId=state.rescueHelper,helper=sword(helperId).name;
+ const intro='「これは、手向けの花だよ」歌仙兼定は、いつもと変わらない穏やかな声で告げ、審神者に歩み寄ってきた。そうして、彼の持っていた花を渡された。ふわりと、危険な甘い香りが漂う。嗅いでいると、だんだんと意識が遠くなる。「そろそろ、思うままになる審神者が欲しかったところでね」';
+ const obey=()=>choice('歌仙兼定の誘い','従順になった審神者を歌仙兼定は満足げに見た。言われるがまま動く人形のような審神者を、彼はまず一期一振の元へと連れて行った。「……成功、されたのですな」一期一振は僅かに眉を下げるも、審神者にかける情はさほど残ってはいない様子だった。「どうぞ、こちらへ」歌仙兼定に背を押される。',[{text:'歌仙兼定に従う',run:()=>end22('kasen')}]);
+ const ichigo=()=>choice('歌仙兼定の誘い','歌仙兼定は、興味深いものを見るような目で審神者を見た。「すぐに会えるよ」彼は審神者を一期一振の元へと連れて行った。歌仙兼定は言う。「きみを呼んでいたようだけれど」一期一振はどこか申し訳なさそうに笑った。「こんな化け物に騙されてしまう貴方は、きっと悪人ではないのでしょうね」手が伸びる。',[{text:'全てを受け入れる',run:()=>end22('ichigo_hitofuri')}]);
+ const helperResponse=()=>{
+  const group=rescueGroup(helperId);
+  const texts={
+   strong:`${helper}は苦い顔で悪趣味だ、と口にしたあと、覚悟を決めたように頷いた。そして、歌仙兼定がそんな表情をしているということは、別に審神者を思い通りにさえできれば主人とやらは誰でも……そう、自分でもいいのだろう、と強気に言った。`,
+   gentle:`${helper}は困惑あるいは嫌悪の表情を浮かべ、真剣に目を伏せ考え込む。そして、歌仙兼定がわざわざ説明を自分に聞かせたということは、別に審神者を思い通りにさえできれば主人とやらは誰でも……そう、自分でもいいのだろう、と顔を上げた。`,
+   resolve:`${helper}は首を横に振り、騒ぐことなく歌仙兼定をじっと射貫くように見た。そして、歌仙兼定が自分に対して攻撃しないということは、別に審神者を思い通りにさえできれば主人とやらは誰でも……そう、自分でもいいのだろう、と一歩前に出た。`
+  };
+  choice('歌仙兼定の誘い',texts[group]+`歌仙兼定は少しだけ笑い、${helper}と審神者を一期一振の元へ連れて行く。`,[{text:'全てを受け入れる',run:()=>end22(helperId)}]);
+ };
+ const resist=()=>choice('歌仙兼定の誘い',`抵抗する審神者を見て、歌仙兼定はため息をつき、刀を抜いた。審神者を庇うように動いた${helper}が、異常に力強い歌仙兼定の一撃で深い傷を負い、倒れる。「きみが大人しくしていてくれれば、こんな必要もなかったのだけどね。まあ、いい。少し試してみようか」歌仙兼定の言葉に勝手に体が動く。`,[0,1].map(()=>({text:'全てを受け入れる',run:()=>choice('最後の晩餐',LAST_SUPPER_BODY.replaceAll('○○',helper),[{text:'全てを受け入れる',run:()=>surviveEnd('任務完了記録21「露と堕ち」',END21_BODY)}])})));
+ const helperDecision=()=>choice('歌仙兼定の誘い',`甘い香りで思考が揺れ、審神者の口は淡々と語る。自分は歌仙兼定の妖術の影響を受けており、彼の操り人形同然で、逆らい続ければ苦しみの果てに死ぬだけであること。今は歌仙兼定が仮の主人だが、この本丸の真の主によってこれから主人を決め、その身に刻むこと。それが一生、消えることはないこと。`,[{text:`${helper}の反応を待つ`,run:helperResponse},{text:'苦痛を無視して暴れる',run:resist}]);
+ const callHelper=()=>choice('歌仙兼定の誘い',`「そうか。きみは彼と仲が良かったね。僕も無闇に引き裂こうなどとは思っていないよ」駆け付けた${helper}と審神者を見、歌仙は上品なのに、見ていて恐ろしくなるような笑みを浮かべた。「まずは、自分の口で説明してごらん」`,[0,1].map(()=>({text:'説明する',run:helperDecision})));
+ const options=sortChoiceSwords(state.owned).map(id=>({text:id==='ichigo_hitofuri'?'一期一振の名を呼ぶ':id===helperId?`${helper}の名を呼ぶ`:'歌仙兼定に従う',run:id==='ichigo_hitofuri'?ichigo:id===helperId?callHelper:obey}));
+ choice('歌仙兼定の誘い',intro,options);
 }
 function processEvents(){
  // 好感度0の汎用死亡判定。通常イベントでの変動後に確認する。
@@ -1177,6 +1211,11 @@ const tsuyuSpecialCardColors={
  '白詰草の約束':{bg:'#f7f7ef',ink:'#365d43',blood:false},
  '露と消ゆとも':{bg:'#e7f8f7',ink:'#308f9a',blood:false}
 };
+// Special survival card palettes, matched to the approved sample (no blood).
+const tsuyuSurvivalCardColors={
+  21:{stops:['#061832','#2250a2','#7134b6'],ink:'#e3e0ff',edge:'#b7e647',line:'#9d80ef'},
+  22:{stops:['#7c074e','#f0008c','#ff4bbb'],ink:'#fff1f9',edge:'#ff8bd0',line:'#ffb1df'}
+};
 function tsuyuMakeImageCanvas(){
  if(!state?.ending)return null;
  const c=document.createElement('canvas');c.width=960;c.height=540;
@@ -1186,7 +1225,19 @@ function tsuyuMakeImageCanvas(){
  const category=match?match[1]:(title.startsWith('死因')?'死因':'任務完了記録');
  const name=match?match[2]:title;
  const special=title.startsWith('死因')?tsuyuSpecialCardColors[name]:null;
- if(special){
+ const survivalSpecial=title.startsWith('任務完了記録')?tsuyuSurvivalCardColors[Number((category.match(/\d+/)||[])[0])]:null;
+ if(survivalSpecial){
+  const p=survivalSpecial;
+  const grad=x.createLinearGradient(0,0,960,540);
+  grad.addColorStop(0,p.stops[0]);grad.addColorStop(.55,p.stops[1]);grad.addColorStop(1,p.stops[2]);
+  x.fillStyle=grad;x.fillRect(0,0,960,540);
+  const shine=x.createLinearGradient(0,0,960,540);
+  shine.addColorStop(0,'rgba(255,255,255,.15)');shine.addColorStop(1,'rgba(0,0,0,.08)');
+  x.fillStyle=shine;x.fillRect(0,0,960,540);
+  x.strokeStyle=p.line;x.globalAlpha=.75;x.lineWidth=2;x.strokeRect(30,28,900,484);
+  x.globalAlpha=.45;x.lineWidth=1;x.strokeRect(41,39,878,462);
+  x.globalAlpha=.9;x.fillStyle=p.edge;x.fillRect(0,0,960,8);x.globalAlpha=1;
+ }else if(special){
   x.fillStyle=special.bg;x.fillRect(0,0,960,540);
   const grad=x.createLinearGradient(0,0,960,540);
   grad.addColorStop(0,'rgba(255,255,255,.18)');grad.addColorStop(1,'rgba(0,0,0,.035)');
@@ -1207,15 +1258,15 @@ function tsuyuMakeImageCanvas(){
   x.strokeStyle='#4b282f';x.lineWidth=1;x.strokeRect(41,39,878,462);
   x.fillStyle='#8d454c';x.fillRect(0,0,960,8);
  }
- const ink=special?.ink;
+ const ink=survivalSpecial?.ink||special?.ink;
  x.textAlign='center';x.fillStyle=ink||'#d1aaa7';x.font='400 22px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText('露と消えにし',480,113);
- x.strokeStyle=ink||'#76434a';if(special)x.globalAlpha=.6;x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();x.globalAlpha=1;
+ x.strokeStyle=ink||'#76434a';if(special||survivalSpecial)x.globalAlpha=.6;x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();x.globalAlpha=1;
  x.fillStyle=ink||'#c8a29e';x.font='500 25px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText(category,480,216);
  let fontSize=52;const font=(size)=>'500 '+size+'px "Yu Mincho","Hiragino Mincho ProN",serif';
  x.font=font(fontSize);while(x.measureText(name).width>785&&fontSize>25){fontSize-=2;x.font=font(fontSize)}
  x.fillStyle=ink||'#f4e6df';x.fillText(name,480,325);
- x.strokeStyle=ink||'#76434a';if(special)x.globalAlpha=.6;x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();x.globalAlpha=1;
- x.fillStyle=ink||'#9c7776';if(special)x.globalAlpha=.8;x.font='500 14px "Asap Sharp",sans-serif';
+ x.strokeStyle=ink||'#76434a';if(special||survivalSpecial)x.globalAlpha=.6;x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();x.globalAlpha=1;
+ x.fillStyle=ink||'#9c7776';if(special||survivalSpecial)x.globalAlpha=.8;x.font='500 14px "Asap Sharp",sans-serif';
  const footer='UNOFFICIAL FAN-MADE';const letterSpacing=1.55;
  const widths=[...footer].map(ch=>x.measureText(ch).width);
  let tx=480-(widths.reduce((a,b)=>a+b,0)+letterSpacing*(widths.length-1))/2;
