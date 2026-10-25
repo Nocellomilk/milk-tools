@@ -738,10 +738,10 @@ function eventCandidate(){
   {text:'そのまま食べる',run:()=>{const k=adjust('kashuu',5,'おやつを食べる様子を見た',false),y=adjust('yamatonomakami',5,'おやつを食べる様子を見た',false);add('彼らの休息',`「えー、俺にくれないの？」加州清光から声がかかるが、すでに審神者はおやつを食べてしまった後だった。大和守安定は「主って、そういうところあるよね。恐れを知らないっていうか、なんていうか……」と苦笑していた。\n加州清光：好感度 ${k.old} → ${k.current}（+${k.current-k.old}）\n大和守安定：好感度 ${y.old} → ${y.current}（+${y.current-y.old}）`);}}
  ]});
  // 沖田組・双方低好感度イベント。高低差イベントとは独立して一周回一度のみ。
- if(!state.severed?.some(id=>id==='kashuu'||id==='yamatonomakami')&&low('kashuu')&&low('yamatonomakami'))candidates.push({id:'kashuu',key:'okitaBothLow',title:'椿油と花の露',desc:'加州清光と大和守安定がいつものように口喧嘩をしている場面に出くわした。',options:[
-  {text:'加州清光を支持',run:()=>choice('椿油と花の露','「相手が僕で良かったね……。他の刀だったらもっと酷い目に遭ってたかもしれないよ？」大和守安定は苦笑した。',[{text:'返事をする',run:()=>deadEnd('椿油と花の露',OKITA_LOW_DEATH_BODY)}])},
-  {text:'大和守安定を支持',run:()=>choice('椿油と花の露','「えー、そういうこと言っちゃうんだ。俺の扱いわかんない感じ？」加州清光はむすっとした表情になった。',[{text:'返事をする',run:()=>deadEnd('椿油と花の露',OKITA_LOW_DEATH_BODY)}])},
-  {text:'自分のために争わないでと言う',run:()=>add('椿油と花の露','「へー。ちょっとだけ見直した」と加州清光が言う。大和守安定も「分かってたんだね、自分が火種だって」と続いた。最後に「まあ、俺たちの決着がついて殺されるまでは精々頑張って生きなよ？」と、加州清光は笑っていた。')}
+ if(!state.severed?.some(id=>id==='kashuu'||id==='yamatonomakami')&&low('kashuu')&&low('yamatonomakami'))candidates.push({id:'kashuu',key:'okitaBothLow',title:'彼らの喧嘩',desc:'加州清光と大和守安定がいつものように口喧嘩をしている場面に出くわした。',options:[
+  {text:'加州清光を支持',run:()=>choice('彼らの喧嘩','「相手が僕で良かったね……。他の刀だったらもっと酷い目に遭ってたかもしれないよ？」大和守安定は苦笑した。',[{text:'返事をする',run:()=>deadEnd('椿油と花の露',OKITA_LOW_DEATH_BODY)}])},
+  {text:'大和守安定を支持',run:()=>choice('彼らの喧嘩','「えー、そういうこと言っちゃうんだ。俺の扱いわかんない感じ？」加州清光はむすっとした表情になった。',[{text:'返事をする',run:()=>deadEnd('椿油と花の露',OKITA_LOW_DEATH_BODY)}])},
+  {text:'自分のために争わないでと言う',run:()=>add('彼らの喧嘩','「へー。ちょっとだけ見直した」と加州清光が言う。大和守安定も「分かってたんだね、自分が火種だって」と続いた。最後に「まあ、俺たちの決着がついて殺されるまでは精々頑張って生きなよ？」と、加州清光は笑っていた。')}
  ]});
  if(!state.severed?.some(id=>id==='kashuu'||id==='yamatonomakami')&&low('kashuu')&&a('yamatonomakami')>=MID_HIGH)candidates.push({id:'kashuu',key:'kashuu',dead:['扱いにくいって言ったでしょ','最近、大和守安定は審神者とよく話すようになった。以前よりも楽しそうに笑う姿を、加州清光は黙って見ていた。自分と同じように、何も期待せずに過ごしていたはずなのに。「あいつ、変わっちゃったよね」ぽつりと呟いた加州清光は、審神者に向き直って笑った。「俺、扱いにくいって言ったでしょ？」その笑顔が消えるよりも早く、審神者の体を刃が貫いた。']});
  if(!state.severed?.some(id=>id==='kashuu'||id==='yamatonomakami')&&low('yamatonomakami')&&a('kashuu')>=MID_HIGH)candidates.push({id:'yamatonomakami',key:'yamatonomakami',dead:['可愛い子猫ちゃん','近頃、加州清光は審神者の前でよく笑うようになった。身なりを整え、何かにつけて審神者の気を引こうとする。あんなに諦めきっていたあいつが、今さら誰かに愛されようとしている。そのことが、大和守安定にはどうしても許せなかった。「ほんと変な奴だよね」そう言って笑った彼の手には、いつの間にか抜き身の刀が握られていた。']});
