@@ -1010,7 +1010,7 @@ function tryDeath43(){
  const low=living.filter(id=>(state.aff[id]??0)>=1&&(state.aff[id]??0)<=9);
  if(!low.length)return false;
  const attacker=sortChoiceSwords(low).reduce((best,id)=>(state.aff[id]??0)<(state.aff[best]??0)?id:best);
- const highest=living.reduce((best,id)=>!best||(state.aff[id]??0)>(state.aff[best]??0)?id:best,null);
+ const highest=sortChoiceSwords(living).reduce((best,id)=>!best||(state.aff[id]??0)>(state.aff[best]??0)?id:best,null);
  if((state.aff[attacker]??0)!==4||attacker==='ichigo_hitofuri'||!highest||highest==='ichigo_hitofuri'||highest===attacker||(state.aff[highest]??0)<80)return false;
  death43(highest,attacker);
  return true;
