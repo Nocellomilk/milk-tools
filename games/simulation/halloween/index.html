@@ -2400,24 +2400,26 @@ function tsuyuMakeImageCanvas(){
  const name=hwMatch?hwMatch[2]:(match?match[2]:title);
  // 甘露と消えにし：職員モードv29に合わせた共通カード配色。
  // 旧作の血飛沫・特殊色は画像生成には使用しない。
- const ink='#f4e6dc';
+ const isMaou32=hwMatch&&hwMatch[1]==='32';
+ const ink=isMaou32?'#f4d78b':'#f4e6dc';
  const grad=x.createLinearGradient(0,0,960,540);
- grad.addColorStop(0,'#32142b');grad.addColorStop(.52,'#1a0c1c');grad.addColorStop(1,'#0d0913');
+ if(isMaou32){grad.addColorStop(0,'#39264f');grad.addColorStop(.52,'#261735');grad.addColorStop(1,'#130d20');}
+ else{grad.addColorStop(0,'#32142b');grad.addColorStop(.52,'#1a0c1c');grad.addColorStop(1,'#0d0913');}
  x.fillStyle=grad;x.fillRect(0,0,960,540);
  const glow=x.createRadialGradient(760,80,0,760,80,640);
- glow.addColorStop(0,'#70204a66');glow.addColorStop(1,'#70204a00');
+ glow.addColorStop(0,isMaou32?'#8764b266':'#70204a66');glow.addColorStop(1,isMaou32?'#8764b200':'#70204a00');
  x.fillStyle=glow;x.fillRect(0,0,960,540);
- x.strokeStyle='#94345f';x.lineWidth=2;x.strokeRect(30,28,900,484);
- x.strokeStyle='#653052';x.lineWidth=1;x.strokeRect(41,39,878,462);
- x.fillStyle='#ff8528';x.fillRect(0,0,960,8);
- x.textAlign='center';x.fillStyle='#e8cdbd';x.font='400 22px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText('甘露と消えにし',480,113);
- x.strokeStyle='#ff8528';x.globalAlpha=.85;x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();x.globalAlpha=1;
- x.fillStyle='#e7b6cf';x.font='500 25px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText(category,480,216);
+ x.strokeStyle=isMaou32?'#d4aa50':'#94345f';x.lineWidth=2;x.strokeRect(30,28,900,484);
+ x.strokeStyle=isMaou32?'#8e7049':'#653052';x.lineWidth=1;x.strokeRect(41,39,878,462);
+ x.fillStyle=isMaou32?'#d4aa50':'#ff8528';x.fillRect(0,0,960,8);
+ x.textAlign='center';x.fillStyle=isMaou32?'#e8c99a':'#e8cdbd';x.font='400 22px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText('甘露と消えにし',480,113);
+ x.strokeStyle=isMaou32?'#d4aa50':'#ff8528';x.globalAlpha=.85;x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();x.globalAlpha=1;
+ x.fillStyle=isMaou32?'#e8c66a':'#e7b6cf';x.font='500 25px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText(category,480,216);
  let fontSize=52;const font=(size)=>'500 '+size+'px "Yu Mincho","Hiragino Mincho ProN",serif';
  x.font=font(fontSize);while(x.measureText(name).width>785&&fontSize>25){fontSize-=2;x.font=font(fontSize)}
  x.fillStyle=ink;x.fillText(name,480,325);
- x.strokeStyle='#ff8528';x.globalAlpha=.85;x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();x.globalAlpha=1;
- x.fillStyle='#b99eae';x.globalAlpha=.9;x.font='500 14px "Asap Sharp",sans-serif';
+ x.strokeStyle=isMaou32?'#d4aa50':'#ff8528';x.globalAlpha=.85;x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();x.globalAlpha=1;
+ x.fillStyle=isMaou32?'#c4acba':'#b99eae';x.globalAlpha=.9;x.font='500 14px "Asap Sharp",sans-serif';
  const footer='UNOFFICIAL FAN-MADE';const letterSpacing=1.55;
  const widths=[...footer].map(ch=>x.measureText(ch).width);
  let tx=480-(widths.reduce((a,b)=>a+b,0)+letterSpacing*(widths.length-1))/2;
