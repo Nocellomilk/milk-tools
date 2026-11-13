@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>露と消えにし</title>
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>甘露と消えにし</title>
 <style>
 :root{color-scheme:dark;--bg:#101b29;--panel:#1c2a3b;--panel2:#142131;--gold:#e8c784;--ink:#edf1f4;--muted:#a9b8c7;--line:#405168;--green:#9bd6c0}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#273a4d,var(--bg) 65%);color:var(--ink);font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",sans-serif;line-height:1.6}header{border-bottom:1px solid #53637a;background:#111d2bde;padding:16px 20px;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;margin:0;color:var(--gold)}h1{font-size:1.55rem}h2{font-size:1.28rem;margin-bottom:12px}h3{font-size:1.05rem;margin-bottom:10px}.sub,.muted{color:var(--muted);font-size:.85rem}.wrap{max-width:1180px;margin:auto}.layout{display:grid;grid-template-columns:minmax(280px,370px) minmax(0,1fr);gap:18px;padding:20px}.panel{background:#1b2b3bdc;border:1px solid var(--line);border-radius:13px;padding:18px;margin-bottom:16px;box-shadow:0 7px 22px #0002}.stack{display:grid;gap:10px}.flex{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{justify-content:space-between}button,input,select,textarea{font:inherit}button{border:1px solid #7d735d;background:#334356;color:#f8f1df;padding:9px 12px;border-radius:8px;cursor:pointer}button:hover{background:#475d70}button.primary{background:#9b7744;border-color:#d6b777;color:#fff}button.primary:hover{background:#b18c56}button:disabled{opacity:.45;cursor:not-allowed}button.small{padding:5px 9px;font-size:.83rem}input,select,textarea{background:#101e2d;border:1px solid #617086;color:var(--ink);padding:9px;border-radius:7px;width:100%;min-width:0}label{display:grid;gap:5px;font-size:.89rem}fieldset{border:1px solid var(--line);border-radius:10px;padding:12px}legend{color:var(--gold);padding:0 6px}input[type=checkbox],input[type=radio]{width:auto;accent-color:#d5b57d}.radio{display:flex;align-items:center;gap:7px;cursor:pointer}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.stat{background:var(--panel2);border:1px solid #344a61;border-radius:8px;padding:8px}.stat b{display:block;color:var(--gold);font-size:1.1rem}.tags{display:flex;gap:6px;flex-wrap:wrap}.tag{background:#30455a;border:1px solid #4a637a;border-radius:20px;padding:3px 9px;font-size:.79rem}.log{max-height:610px;overflow:auto;display:grid;gap:10px}.entry{background:#142234;border-left:3px solid #647a8c;border-radius:6px;padding:11px 13px}.entry.choice{border-color:#e8c784}.entry.join{border-color:#9bd6c0}.entry .date{font-size:.78rem;color:var(--muted)}.entry strong{color:#f0d5a0}.choiceBox{border:1px solid #b89b65;background:#2a2c33;border-radius:12px;padding:17px;margin-bottom:16px}.choiceBox p{margin:6px 0 13px}.choiceButtons{display:grid;gap:8px}.choiceButtons button{text-align:left}.roster{max-height:225px;overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;border:1px solid var(--line);padding:10px;border-radius:8px}.roster label{display:flex;gap:7px;align-items:center;font-size:.82rem}.overlay{position:fixed;inset:0;background:#08111de9;z-index:20;display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:25px 12px}.setup{width:min(690px,100%);background:#1d2b3b;border:1px solid #a28b60;border-radius:14px;padding:23px}.hidden{display:none!important}.pill{font-size:.8rem;background:#3e4c5e;padding:4px 9px;border-radius:20px}.note{font-size:.83rem;color:#b9c8d6}.footer{max-width:1180px;margin:0 auto 30px;padding:0 20px;color:#9bacbd;font-size:.77rem}.scroll{max-height:240px;overflow:auto}.wide{width:100%}@media(max-width:760px){.layout{grid-template-columns:1fr;padding:12px}.grid2{grid-template-columns:1fr}.roster{grid-template-columns:1fr 1fr}header{position:static}}
 
@@ -255,7 +255,7 @@ input[type=checkbox],input[type=radio]{accent-color:#9b2a26}
 @media(max-width:760px){.layout{padding:12px;gap:12px}.panel{padding:16px}}
 </style><style>
 /* 露と消えにし：政府書類から本丸への切替 */
-#transitionCurtain{position:fixed;inset:0;background:#030303;opacity:0;pointer-events:none;z-index:9999;transition:opacity .42s linear}
+#transitionCurtain{position:fixed;inset:0;background:#0d061a;opacity:0;pointer-events:none;z-index:9999;transition:opacity .42s linear}
 #transitionCurtain.active{opacity:1;pointer-events:auto}
 #introOverlay,#setupOverlay{z-index:100}
 #profile .profile-name{font-family:"Zen Old Mincho",serif;font-size:1.55rem;color:#f0e7e3;letter-spacing:.06em;margin-bottom:7px}
@@ -384,27 +384,442 @@ input,select,textarea{background:#0d0404!important;border-color:#861b17!importan
 @media(max-width:480px){#setupOverlay .gov-registration-info{grid-template-columns:1fr}#setupOverlay .gov-registration-info>div{border-right:0!important;border-bottom:1px solid #bbb!important}#setupOverlay .gov-registration-info>div:last-child{border-bottom:0!important}}
 .records-section{border-top:1px solid #777;margin-top:18px;padding-top:13px}.records-heading{font-size:12px;color:#444!important;margin:0 0 9px;font-weight:600;letter-spacing:.08em}.records-link{display:block;margin:9px 0 17px;padding:12px 16px;border:1px solid #333;background:#f7f7f7;color:#111!important;text-align:center;text-decoration:none;font:600 13px/1.7 'Noto Serif JP',serif;letter-spacing:.04em}
 .records-link:hover,.records-link:focus-visible{background:#e9e9e9;outline:1px solid #333}
+</style><style id="halloween-visual-theme">
+/* Halloween bone-and-pumpkin horror palette trial. Existing game logic and government paperwork are unchanged. */
+:root{--bg:#090710;--panel:#160e19;--panel2:#25131f;--line:#71283f;--ink:#ead8b5;--muted:#a9a0a6;--gold:#e0a900;--green:#71858b}
+body{background:radial-gradient(ellipse 55% 38% at 88% 2%,#3d1227 0%,transparent 82%),radial-gradient(ellipse 60% 65% at 4% 85%,#220d1b 0%,transparent 78%),linear-gradient(125deg,#07060b,#1a0b17 53%,#080710)!important;color:#ead8b5}
+body:before{content:''!important;display:block!important;position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.24!important;background-image:radial-gradient(#e8c5a5 0.7px,transparent 1px),repeating-linear-gradient(135deg,transparent 0 39px,#f4c8a70a 40px 41px)!important;background-size:34px 34px,auto!important}
+header{background:linear-gradient(95deg,#0c0711,#4b102b 48%,#0c0711)!important;border-bottom:2px solid #ae3b20!important;box-shadow:0 7px 34px #0009!important}
+header h1{color:#ead8b5!important;text-shadow:0 0 18px #dd8e7a33!important}
+header .sub{color:#b5a2a6!important}
+.layout:before{background:linear-gradient(90deg,transparent,#ae3b20,transparent)!important}
+.panel{background:linear-gradient(145deg,#25101e,#160c18 58%,#0d0a12)!important;border:1px solid #64203b!important;border-top:3px solid #ae3b20!important;box-shadow:0 10px 34px #0007,inset 0 1px 0 #f2b98c18!important}
+.panel h2{color:#ead8b5!important;border-bottom:1px solid #61253e!important;text-shadow:none!important}
+.panel h2:after{background:linear-gradient(90deg,#e0a900,transparent)!important}
+.panel h3{color:#e0d0c0!important}
+.hero{background:radial-gradient(circle at 50% 18%,#e0a90018 0 8%,transparent 29%),radial-gradient(ellipse at 50% -30%,#47152e 0%,transparent 70%),linear-gradient(135deg,#2c1025,#110a17 65%,#200d1c)!important;border:1px solid #7a2745!important;border-top:4px solid #e0a900!important;box-shadow:0 14px 40px #0008,inset 0 0 45px #e0a17a0d!important;position:relative;isolation:isolate}
+.hero:before{content:'☾'!important;display:block!important;position:absolute;top:4px!important;right:5%!important;left:auto!important;bottom:auto!important;width:auto!important;height:auto!important;border:0!important;transform:none!important;font-family:Georgia,serif;font-size:88px!important;line-height:1;opacity:.23!important;color:#e0a900!important;pointer-events:none}
+.hero:after{content:'✦  ✧  ✦'!important;display:block!important;position:absolute;left:5%!important;right:auto!important;top:15px!important;bottom:auto!important;width:auto!important;height:auto!important;border:0!important;transform:none!important;font-size:22px!important;letter-spacing:.6em;opacity:.3!important;color:#71858b!important;pointer-events:none}
+.hero h2{color:#ead8b5!important;text-shadow:0 0 24px #d38ca944!important}
+.hero p{color:#b7a5ac!important}
+.preview{background:linear-gradient(115deg,#1a101b,#100d16 55%,#0d0b11)!important;border:1px solid #6c3249!important;border-left:4px solid #e0a900!important;box-shadow:0 5px 20px #0005!important}
+.preview h3{color:#ead8b5!important;text-shadow:none!important}
+.preview .note,#deadlineDesc{color:#b5a5aa!important}
+#remain{background:#271421!important;border:1px solid #e0a900!important;color:#ead8b5!important;box-shadow:0 0 12px #e0a36a24!important}
+#clock{background:#321327!important;border:1px solid #ae3b20!important;color:#ead8b5!important;box-shadow:none!important}
+button,.choiceButtons button{background:linear-gradient(145deg,#35152b,#1a101e)!important;border:1px solid #8e3a50!important;color:#ead8b5!important;box-shadow:none!important}
+button:hover,.choiceButtons button:hover{background:linear-gradient(145deg,#4d1834,#301326)!important;border-color:#e0a900!important}
+button.primary{background:linear-gradient(135deg,#ae3b20,#711735)!important;border:1px solid #e0a900!important;color:#fff0d5!important;box-shadow:0 0 16px #cf82502c!important}
+button.primary:hover{background:linear-gradient(135deg,#cb4d25,#91183e)!important}
+input,select,textarea{background:#0e0b13!important;border:1px solid #76364c!important;color:#ead8b5!important}
+fieldset,.roster{border-color:#64243f!important;background:#160e19!important}
+legend{color:#e0c596!important}
+.pill,.tag{background:linear-gradient(110deg,#3a142a,#1c101d)!important;border:1px solid #78344e!important;color:#ead8b5!important}
+.owned-details>summary{background:linear-gradient(110deg,#35162b,#180d1a)!important;border-bottom:1px solid #7e2a46!important;color:#ead8b5!important}
+.owned-title{color:#ead8b5!important}
+.owned-details>summary:hover{background:#44152f!important}
+.compact-romance{background:#100b14!important}
+.romance-card,.stat{background:linear-gradient(145deg,#2c1426,#180f1d)!important;border:1px solid #6f2947!important;box-shadow:none!important}
+.romance-card strong,.stat b{color:#ead8b5!important}
+.compact-romance .muted{color:#a9a1a8!important}
+.meter{background:#0d0a11!important;border:1px solid #6d2642!important}
+.meter span{background:linear-gradient(90deg,#92183e,#ae3b20,#e0a900)!important;box-shadow:0 0 10px #e7a37a30!important}
+.log{background:linear-gradient(120deg,#100b14,#0b0910)!important;border-left:2px solid #92183e!important}
+.entry{background:linear-gradient(105deg,#281223,#140c18 70%)!important;border-left:3px solid #92183e!important;border-bottom:1px solid #512038!important}
+.entry:nth-child(even){background:linear-gradient(105deg,#211020,#100b14)!important}
+.entry.choice{background:linear-gradient(105deg,#3c102a,#1a0b19)!important;border-left:4px solid #e0a900!important}
+.entry.join{background:linear-gradient(105deg,#20242a,#10151c)!important;border-left-color:#71858b!important}
+.entry .date{color:#b4a0aa!important}
+.entry strong{color:#ead8b5!important}
+.choiceBox{background:linear-gradient(125deg,#3c152d,#190e1a)!important;border:2px solid #ae3b20!important;box-shadow:0 0 24px #92183e22!important}
+.choiceButtons button{border-left:4px solid #e0a900!important}
+.footer{color:#a89ca3!important}
+#endOverlay{background:#060409f5!important}
+#endOverlay .setup{background:linear-gradient(145deg,#231020,#0d0912)!important;border:2px solid #ae3b20!important;color:#ead8b5!important}
+#endOverlay h2{color:#ead8b5!important}
+/* Government screens deliberately retain their original black-and-white document treatment. */
+#introOverlay,#setupOverlay{background:#fff!important;color:#111!important}
+#introOverlay .setup,#setupOverlay .setup{background:#fff!important;color:#111!important;border:2px solid #161616!important;box-shadow:none!important}
+#introOverlay h2,#setupOverlay h2,#introOverlay h3,#setupOverlay h3{color:#111!important;text-shadow:none!important}
+#introOverlay button,#setupOverlay button{background:#e6e6e6!important;color:#111!important;border:1px solid #333!important;box-shadow:none!important}
+#introOverlay button.primary,#setupOverlay button.primary{background:#171717!important;color:#fff!important;border-color:#171717!important;box-shadow:none!important}
+#setupOverlay input,#setupOverlay select{background:#fff!important;color:#111!important;border:1px solid #555!important}
+#setupOverlay .roster{background:#f5f5f5!important;color:#111!important;border:1px solid #444!important}
+#setupOverlay .roster label{background:#fff!important;color:#111!important}
+@media(max-width:760px){.hero:before{font-size:56px!important;right:3%!important}.hero:after{font-size:14px!important;left:3%!important}.panel{box-shadow:0 6px 18px #0005!important}}
+
+/* Halloween palette finishing touches: bone, candlelight, dried blood and cold spectral blue. */
+.hero{box-shadow:0 16px 45px #000c,inset 0 0 50px #08040a88!important}
+.hero:before{opacity:.14!important;filter:drop-shadow(0 0 10px #e0a90055)}
+.hero:after{opacity:.22!important}
+.panel{box-shadow:0 12px 32px #000a,inset 0 1px 0 #e0a9000c!important}
+.entry.join{border-left-color:#71858b!important}
+.entry.join .date{color:#9baeb4!important}
+.choiceBox{box-shadow:0 0 25px #92183e30!important}
+button:focus-visible{outline:2px solid #e0a900!important;outline-offset:2px}
+#endOverlay .setup{box-shadow:0 0 48px #92183e28!important}
+</style>
+<style id="halloween-vivid-clean-trial">
+/* v5 visual-only experiment: remove decorative moon/stars/speckles; lift festive accents */
+:root{--gold:#ffcf22!important;--line:#a23c65!important;--ink:#fff0d4!important}
+body{background:radial-gradient(ellipse 58% 43% at 85% 0%,#59123e 0%,transparent 82%),radial-gradient(ellipse 55% 70% at 0% 85%,#371025 0%,transparent 78%),linear-gradient(125deg,#090710,#210b1d 53%,#090710)!important}
+body:before{content:none!important;display:none!important;background-image:none!important}
+.hero:before,.hero:after{content:none!important;display:none!important}
+header{background:linear-gradient(95deg,#13091b,#681044 48%,#13091b)!important;border-bottom-color:#ff8b26!important}
+.panel{border-color:#94345f!important;border-top-color:#ff8528!important}
+.panel h2:after{background:linear-gradient(90deg,#ffcf22,transparent)!important}
+.hero{background:radial-gradient(ellipse at 50% -30%,#71214c 0%,transparent 72%),linear-gradient(135deg,#42122f,#170b1c 65%,#321027)!important;border-color:#a0396a!important;border-top-color:#ffcf22!important}
+.hero h2{color:#fff0d4!important}
+.preview{border-color:#a43e72!important;border-left-color:#ffcf22!important}
+#remain{border-color:#ffcf22!important;color:#fff1b3!important}
+#clock{border-color:#ff8528!important}
+button,.choiceButtons button{border-color:#b44c7a!important}
+button:hover,.choiceButtons button:hover{background:linear-gradient(145deg,#77204f,#3f1534)!important;border-color:#ffcf22!important}
+button.primary{background:linear-gradient(135deg,#f46c25,#a71b65)!important;border-color:#ffcf22!important;box-shadow:0 0 17px #ff7c343d!important}
+button.primary:hover{background:linear-gradient(135deg,#ff8d2d,#d62d83)!important}
+.tag,.pill{border-color:#a63f70!important}
+.meter span{background:linear-gradient(90deg,#e12c83,#ff8c2a,#ffcf22)!important;box-shadow:0 0 10px #f45c8b55!important}
+.entry.choice{border-left-color:#ffcf22!important}
+.choiceBox{border-color:#f06b36!important}
+.choiceButtons button{border-left-color:#ffcf22!important}
+#endOverlay .setup{border-color:#f06b36!important}
+button:focus-visible{outline-color:#ffcf22!important}
+</style>
+<style id="halloween-v6-refinement">
+/* Restore restrained dark header/title backgrounds, retain vivid accent strokes. */
+header{background:linear-gradient(95deg,#0c0711,#4b102b 48%,#0c0711)!important}
+.hero{background:radial-gradient(circle at 50% 18%,#e0a90018 0 8%,transparent 29%),radial-gradient(ellipse at 50% -30%,#47152e 0%,transparent 70%),linear-gradient(135deg,#2c1025,#110a17 65%,#200d1c)!important}
+/* Brighter toxic pink affection bars, with no orange/yellow gradient. */
+.meter span{background:linear-gradient(90deg,#f725a1,#ff39c1)!important;box-shadow:0 0 10px #ff28ac77!important}
+/* Match status separators to the surrounding plum/pink borders. */
+#profile .profile-meta{border-top-color:#94345f!important}
+</style>
+<style id="halloween-v7-targeted-fixes">
+/* All sword affection bars, including the compact roster's higher-specificity rule. */
+.compact-romance .meter span, .meter span {background:linear-gradient(90deg,#f725a1,#ff39c1)!important;box-shadow:0 0 10px #ff28ac77!important}
+/* Keep the day-advance action prominent without the overly bright orange. */
+#step.primary {background:linear-gradient(135deg,#642044,#351329)!important;border-color:#b44c7a!important;box-shadow:0 0 10px #8d2d6a22!important;color:#fff0d9!important}
+#step.primary:hover {background:linear-gradient(135deg,#812753,#4b1837)!important;border-color:#ff39c1!important}
+</style>
+<style id="halloween-v13-palette">
+/* 固定済みのタイトル背景。試作切替は廃止。 */
+.hero{background:radial-gradient(ellipse at 50% -30%,#36112d 0%,transparent 72%),linear-gradient(135deg,#230e23,#0c0812 65%,#1c0b20)!important}
+</style>
+
+<style>
+
+/* 職員・審神者共通の丸角デザイン。ゲームロジックには変更なし。 */
+body{
+ background:radial-gradient(ellipse at 12% 0%,#40203b85 0,transparent 45%),
+ radial-gradient(ellipse at 90% 78%,#34132685 0,transparent 45%),
+ repeating-linear-gradient(135deg,#100b13 0 19px,#19101c 19px 38px)!important;
+}
+body header{
+ background:linear-gradient(105deg,#120b15,#342033 55%,#140c18)!important;
+ border-bottom:3px solid #846278!important;
+ box-shadow:0 6px 0 #09070b8c,0 10px 28px #0008!important;
+}
+body header h1{
+ text-shadow:2px 2px 0 #3b2238,0 0 18px #865a7890!important;
+}
+body .panel{
+ background:linear-gradient(145deg,#281a2c,#110e17 76%)!important;
+ border:2px solid #79596f!important;border-radius:16px!important;
+ box-shadow:5px 7px 0 #09070d,0 15px 30px #0009,inset 0 1px 0 #b69baa26!important;
+}
+body .panel{position:relative}
+body .panel:not(.roster-panel)::before{
+ content:"✦";position:absolute;top:9px;right:13px;font-size:15px;color:#ae839d;pointer-events:none;
+}
+body :is(header, main, #endOverlay) button{
+ border-radius:11px!important;border:2px solid #8e7186!important;
+ box-shadow:2px 3px 0 #09070d!important;
+}
+body :is(header, main, #endOverlay) button.primary,
+body #step.primary{
+ background:linear-gradient(135deg,#6f425e,#48273f)!important;
+ border-color:#b08ca5!important;color:#fff3f8!important;
+}
+body :is(header, main, #endOverlay) button:hover:not(:disabled){filter:brightness(1.15);transform:translateY(-1px)}
+body .choiceBox{
+ background:linear-gradient(130deg,#312034,#17111d)!important;
+ border:2px solid #97778c!important;border-radius:15px!important;
+ box-shadow:4px 5px 0 #09070d!important;
+}
+body .stat,
+body .entry,
+body .tag,
+body .preview,
+body .preview-cell,
+body .roster,
+body .romance-card{
+ border-radius:11px!important;
+}
+body .entry{border-left:4px solid #8d637e!important}
+body .pill,
+body .ribbon{
+ border-radius:999px!important;
+}
+body :is(header, main, #endOverlay) input,
+body :is(header, main, #endOverlay) select,
+body :is(header, main, #endOverlay) textarea{
+ border-radius:9px!important;
+}
+body .hero{
+ border-radius:17px!important;
+ box-shadow:5px 7px 0 #09070d,0 14px 25px #0008!important;
+}
+body .owned-details>summary{border-radius:14px}
+@media(max-width:700px){body .panel{box-shadow:3px 4px 0 #09070d!important}}
+
+</style>
+
+<style id="government-paperwork-restore">
+/* 事前通知・登録画面だけを従来の白黒書類へ戻す。本編の丸角デザインには触れない。 */
+body #introOverlay,body #setupOverlay{
+  background:#fff!important;color:#111!important;
+}
+body #introOverlay .setup,body #setupOverlay .setup{
+  background:#fff!important;background-image:none!important;
+  color:#111!important;border:2px solid #161616!important;
+  border-radius:0!important;box-shadow:none!important;
+}
+body #introOverlay h2,body #setupOverlay h2,
+body #introOverlay h3,body #setupOverlay h3{
+  color:#111!important;text-shadow:none!important;
+}
+body #introOverlay p,body #setupOverlay p,
+body #introOverlay label,body #setupOverlay label,
+body #introOverlay .gov-confirm,body #setupOverlay .gov-small{
+  color:#111!important;
+}
+body #introOverlay .gov-head,body #setupOverlay .gov-head{
+  color:#111!important;border-bottom-color:#222!important;
+}
+body #introOverlay .gov-band,body #setupOverlay .gov-band{
+  background:#111!important;color:#fff!important;
+}
+body #introOverlay .gov-info,body #setupOverlay .gov-registration-info{
+  background:#f7f7f7!important;color:#111!important;border-color:#333!important;
+}
+body #introOverlay .gov-warning,body #introOverlay .gov-disclosure{
+  color:#111!important;border-color:#333!important;
+}
+body #introOverlay .gov-disclosure summary{
+  background:#f0f0f0!important;color:#111!important;
+}
+body #introOverlay .gov-disclosure-body,
+body #introOverlay .gov-disclosure-body li,
+body #setupOverlay .gov-registration-info span,
+body #setupOverlay .gov-registration-info strong{
+  color:#111!important;
+}
+body #introOverlay button,body #setupOverlay button{
+  background:#e6e6e6!important;background-image:none!important;
+  color:#111!important;border:1px solid #333!important;
+  border-radius:0!important;box-shadow:none!important;
+  filter:none!important;transform:none!important;
+}
+body #introOverlay button.primary,body #setupOverlay button.primary{
+  background:#171717!important;background-image:none!important;
+  color:#fff!important;border-color:#171717!important;
+}
+body #setupOverlay input,body #setupOverlay select{
+  background:#fff!important;background-image:none!important;
+  color:#111!important;border:1px solid #555!important;
+  border-radius:0!important;box-shadow:none!important;
+}
+body #setupOverlay .roster{
+  background:#f5f5f5!important;color:#111!important;border-color:#444!important;
+}
+</style>
+
+<style id="kanro-government-purple-trial">
+/* 露消えの政府書類を基に、事前二画面だけ白地×紫の配色を試す。 */
+body #introOverlay,body #setupOverlay{background:#fff!important;color:#643080!important}
+body #introOverlay .setup,body #setupOverlay .setup{
+ background:#fff!important;background-image:none!important;color:#643080!important;
+ border:2px solid #71369a!important;border-radius:0!important;box-shadow:none!important;
+ max-width:850px;max-height:92vh;overflow:auto;padding:clamp(18px,3vw,36px)!important
+}
+body #introOverlay *,body #setupOverlay *{text-shadow:none!important;box-shadow:none!important}
+body #introOverlay h2,body #setupOverlay h2{
+ color:#6b298d!important;border-bottom:3px double #7836a2!important;
+ font-family:'Zen Old Mincho',serif;font-size:clamp(24px,3vw,33px);
+ padding-bottom:12px;letter-spacing:.08em
+}
+body #introOverlay h3,body #setupOverlay h3{color:#6b298d!important;border-bottom:1px solid #9152ad!important}
+body #introOverlay p,body #setupOverlay p,
+body #introOverlay label,body #setupOverlay label,
+body #introOverlay .gov-confirm{color:#643080!important}
+body #introOverlay .gov-head,body #setupOverlay .gov-head{
+ color:#6b298d!important;border-bottom:1px solid #7836a2!important
+}
+body #introOverlay .gov-band,body #setupOverlay .gov-band{
+ background:#743399!important;color:#fff!important
+}
+body #introOverlay .gov-info,body #setupOverlay .gov-registration-info{
+ background:#faf5fd!important;border-color:#9152ad!important;color:#643080!important
+}
+body #introOverlay .gov-warning{border-color:#7836a2!important;color:#643080!important}
+body #introOverlay .gov-warning > strong,body #introOverlay .gov-warning p > strong{color:#643080!important}
+body #introOverlay .gov-disclosure{border-color:#9152ad!important;color:#643080!important}
+body #introOverlay .gov-disclosure summary{background:#f4e7fa!important;color:#643080!important}
+body #introOverlay .gov-disclosure-body,body #introOverlay .gov-disclosure-body li,
+body #setupOverlay .gov-registration-info span,body #setupOverlay .gov-registration-info strong,
+body #introOverlay .gov-small,body #setupOverlay .gov-small{color:#643080!important}
+body #introOverlay button,body #setupOverlay button{
+ background:#f4e9fa!important;background-image:none!important;color:#6b298d!important;
+ border:1px solid #9152ad!important;border-radius:0!important;box-shadow:none!important;
+ filter:none!important;transform:none!important;padding:10px 17px!important
+}
+body #introOverlay button.primary,body #setupOverlay button.primary{
+ background:#743399!important;background-image:none!important;
+ color:#fff!important;border:1px solid #743399!important
+}
+body #introOverlay button:hover,body #setupOverlay button:hover{background:#e9d1f4!important}
+body #introOverlay button.primary:hover,body #setupOverlay button.primary:hover{background:#873bb1!important}
+body #setupOverlay input,body #setupOverlay select{
+ background:#fff!important;background-image:none!important;color:#643080!important;
+ border:1px solid #9152ad!important;border-radius:0!important;box-shadow:none!important;
+ accent-color:#7836a2
+}
+body #setupOverlay .roster{background:#faf5fd!important;border-color:#9152ad!important}
+body #setupOverlay .gov-registration-info>div{border-color:#d6b3e5!important}
+body #setupOverlay .hw-mode-intro{color:#643080!important}
+body #setupOverlay .hw-mode-intro p{margin:7px 0 10px}
+body #setupOverlay .hw-mode-intro label{display:block;margin-top:15px;font-weight:400}
+body #setupOverlay #hwMode{display:block;width:100%;margin-top:7px;padding:10px}
+body #setupOverlay #hwModeDescription{
+ margin:10px 0 16px;padding:12px 14px;background:#faf5fd!important;
+ border:1px solid #d6b3e5!important;color:#643080!important;font-size:13px;line-height:1.8
+}
+
+/* 政府側ボタンは本編のstaff試作ルールより優先させる。 */
+body #introOverlay button,
+body #setupOverlay button{
+ border-radius:0!important;box-shadow:none!important;border:1px solid #9152ad!important;
+ background:#f4e9fa!important;background-image:none!important;color:#6b298d!important;
+ filter:none!important;transform:none!important
+}
+body #introOverlay button.primary,
+body #setupOverlay button.primary{
+ background:#743399!important;background-image:none!important;color:#fff!important;border-color:#743399!important
+}
+body #setupOverlay select,
+body #setupOverlay input{border-radius:0!important;box-shadow:none!important}
+</style>
+<style id="staff-v29-targeted-palette">
+/* v29: 職員モード限定。既存の背景・グラデーション構造を変更しない。 */
+/* 指定された黄色アクセントのみ、v20の日付枠と同じ橙に。 */
+body .hero{border-top-color:#ff8528!important}
+body .panel h2:after{background:linear-gradient(90deg,#ff8528,transparent)!important}
+body #remain{border-color:#ff8528!important}
+body .entry.choice{border-left-color:#ff8528!important}
+/* 任務期限左側の黄色ライン（.preview）は変更しない。 */
+/* v28で好評だった紫系のボタン・パネル・一覧・ゲージを保持。 */
+body .panel{border-color:#963c72!important}
+body .choiceBox{border-color:#b75a88!important}
+body :is(header,main,#endOverlay) button{background:linear-gradient(145deg,#4c1c40,#261125)!important;border-color:#b34f86!important;color:#fff0e1!important}
+body :is(header,main,#endOverlay) button.primary,
+body #step.primary{background:linear-gradient(135deg,#852c67,#4b194b)!important;border-color:#d16c9b!important;color:#fff2e7!important}
+body :is(header,main,#endOverlay) button:hover:not(:disabled){background:linear-gradient(145deg,#71305d,#3e1a3c)!important}
+body :is(header,main,#endOverlay) button.primary:hover:not(:disabled){background:linear-gradient(135deg,#a33a7c,#67245d)!important}
+body .tag,
+body .pill{border-color:#a7467c!important}
+body .meter span{background:linear-gradient(90deg,#d72d87,#f57a3a,#ffad52)!important}
+</style>
+<style id="saniwa-ten-palettes">
+/* v41 落ち着いた配色比較。職員モードのグラデーション方向・停止位置・層構造を踏襲。 */
+body.saniwa-color-preview{color-scheme:dark;--bg:var(--p-bg);--panel:var(--p-panel);--panel2:var(--p-panel);--gold:var(--p-accent);--ink:var(--p-ink);--muted:color-mix(in srgb,var(--p-ink) 70%,var(--p-bg));--line:var(--p-accent);--green:var(--p-pop);color:var(--p-ink)!important;background:radial-gradient(ellipse at 12% 0%,color-mix(in srgb,var(--p-panel) 45%,transparent) 0,transparent 45%),radial-gradient(ellipse at 90% 78%,color-mix(in srgb,var(--p-panel) 32%,transparent) 0,transparent 45%),repeating-linear-gradient(135deg,var(--p-bg) 0 19px,var(--p-stripe) 19px 38px)!important}
+body.saniwa-color-preview header{background:linear-gradient(105deg,var(--p-bg),var(--p-panel) 55%,var(--p-bg))!important;border-bottom-color:var(--p-pop)!important}
+body.saniwa-color-preview header h1,body.saniwa-color-preview h1,body.saniwa-color-preview h2,body.saniwa-color-preview h3,body.saniwa-color-preview .hero h2{color:var(--p-ink)!important;text-shadow:none!important}
+body.saniwa-color-preview :is(.sub,.muted,.note,.footer,.entry .date,.hero p,.hero .eyebrow,.owned-toggle){color:color-mix(in srgb,var(--p-ink) 75%,var(--p-bg))!important}
+body.saniwa-color-preview .panel{background:linear-gradient(145deg,var(--p-panel),var(--p-bg) 76%)!important;border-color:var(--p-accent)!important}
+body.saniwa-color-preview .panel:not(.roster-panel)::before{color:var(--p-pop)!important}
+body.saniwa-color-preview .panel h2{border-bottom-color:var(--p-accent)!important}
+body.saniwa-color-preview .panel h2:after{background:linear-gradient(90deg,var(--p-pop),transparent)!important}
+body.saniwa-color-preview :is(header,main,#endOverlay) button{background:linear-gradient(145deg,var(--p-button),var(--p-bg))!important;border-color:var(--p-accent)!important;color:var(--p-ink)!important}
+body.saniwa-color-preview :is(header,main,#endOverlay) button.primary,body.saniwa-color-preview #step.primary{background:linear-gradient(135deg,var(--p-accent),var(--p-button))!important;border-color:var(--p-pop)!important;color:var(--p-ink)!important}
+body.saniwa-color-preview :is(header,main,#endOverlay) button:hover:not(:disabled){background:linear-gradient(145deg,var(--p-button),var(--p-panel))!important}
+body.saniwa-color-preview .choiceBox{background:linear-gradient(130deg,var(--p-panel),var(--p-bg))!important;border-color:var(--p-pop)!important;color:var(--p-ink)!important}
+body.saniwa-color-preview :is(.stat,.preview,.preview-cell,.romance-card,.roster,.entry){background:color-mix(in srgb,var(--p-panel) 83%,var(--p-bg))!important;border-color:var(--p-accent)!important;color:var(--p-ink)!important}
+body.saniwa-color-preview .entry{border-left-color:var(--p-pop)!important}
+body.saniwa-color-preview .entry.choice{border-left-color:var(--p-pop)!important}
+body.saniwa-color-preview :is(.stat b,.preview-cell b,.romance-card strong,.entry strong,.owned-details>summary){color:var(--p-ink)!important}
+body.saniwa-color-preview :is(.tag,.pill,.ribbon){background:var(--p-panel)!important;border-color:var(--p-pop)!important;color:var(--p-ink)!important}
+body.saniwa-color-preview .meter{background:var(--p-bg)!important}
+body.saniwa-color-preview .meter span{background:linear-gradient(90deg,var(--p-accent),var(--p-pop),var(--p-highlight))!important}
+body.saniwa-color-preview .hero{background:radial-gradient(ellipse at 50% -30%,var(--p-panel) 0%,transparent 72%),linear-gradient(135deg,var(--p-panel),var(--p-bg) 65%,var(--p-button))!important;border-color:var(--p-accent)!important}
+body.saniwa-color-preview .hero:before,body.saniwa-color-preview .hero:after{color:var(--p-pop)!important}
+body.saniwa-color-preview #remain{border-color:var(--p-pop)!important}
+body.saniwa-color-preview :is(header,main,#endOverlay) input,body.saniwa-color-preview :is(header,main,#endOverlay) select,body.saniwa-color-preview :is(header,main,#endOverlay) textarea{background:var(--p-bg)!important;color:var(--p-ink)!important;border-color:var(--p-accent)!important}
+body.saniwa-color-preview .owned-details>summary:hover{background:var(--p-panel)!important}
+/* 比較操作は審神者モードのプレイ中だけ表示 */
+
+body.saniwa-color-preview :is(header,main,#endOverlay) button.primary:hover:not(:disabled),body.saniwa-color-preview #step.primary:hover:not(:disabled){background:linear-gradient(135deg,var(--p-accent),var(--p-button))!important}
+</style>
+
+<style id="saniwa-03-fixed-palette">
+/* 03「仮面の裏の嘘」を暗めに。ピンクは維持。タイトル背景のグラデ形状はv39最終職員モードと同一。 */
+body.saniwa-color-preview{
+ --p-bg:#0c0c0c;--p-panel:#1b1b1b;--p-accent:#454545;
+ --p-ink:#f0f2ef;--p-pop:#f50053;--p-highlight:#b9c6bc;
+ --p-button:#262626;--p-stripe:#141414;
+}
+/* v50: 審神者モードの年代記のみ。職員モードの記録表示を参照して調整。 */
+body.saniwa-color-preview .log .entry{
+ background:linear-gradient(105deg,#171717,#0e0e0e 70%)!important;
+}
+body.saniwa-color-preview .log .entry:nth-child(even){
+ background:linear-gradient(105deg,#141414,#0b0b0b 70%)!important;
+}
+body.saniwa-color-preview .log .entry.choice{
+ background:linear-gradient(105deg,#23141a,#100d0f 70%)!important;
+}
+body.saniwa-color-preview .log .entry strong{
+ color:#f50053!important;
+}
+</style>
+<style id="hw-v60-staff-deadline-and-meter">
+/* v37の職員ゲージを復元。審神者モードの専用配色には干渉しない。 */
+body:not(.saniwa-color-preview) .compact-romance .meter span,
+body:not(.saniwa-color-preview) .meter span{background:linear-gradient(90deg,#d72d87,#f57a3a,#ffad52)!important}
+/* 職員モード：帰還・追い出し時のみ期限欄を落ち着いた色へ。 */
+body .preview.hw-deadline-muted{background:linear-gradient(115deg,#211b25,#15131b 55%,#111016)!important;border-color:#574c5a!important;border-left-color:#756d79!important;box-shadow:0 5px 20px #0004!important}
+body .preview.hw-deadline-muted h3{color:#bdb4be!important}
+body .preview.hw-deadline-muted .note,body .preview.hw-deadline-muted #deadlineDesc{color:#9e929e!important}
+body .preview.hw-deadline-muted #remain{background:#28232d!important;border-color:#776c7c!important;color:#c9bdc9!important;box-shadow:none!important}
+/* 永遠のハロウィーン：任務完了表示だけが不自然に毒々しく残る。 */
+body .preview.hw-deadline-forever{background:linear-gradient(115deg,#8c2259,#5b173d 55%,#36132c)!important;border-color:#e36b93!important;border-left-color:#ff944e!important;box-shadow:inset 0 0 20px #ffad5230,0 5px 20px #0006!important}
+body .preview.hw-deadline-forever h3{color:#ffe3d6!important}
+body .preview.hw-deadline-forever #remain{background:#c52d6b!important;border-color:#ff9b59!important;color:#fff0dd!important;box-shadow:0 0 13px #ffad5240!important}
+</style>
+<style>/* 公開前調整：ヘッダー直下の細線のみ非表示 */
+.layout:before{display:none!important}
 </style></head><body>
-<header><div class="wrap flex between"><div><h1>露と消えにし</h1><div class="sub">本丸運営死ミュレーション</div></div><div class="flex"><span class="pill" id="clock">未開始</span><button class="small" id="newBtn">新しく始める</button></div></div></header>
+<header><div class="wrap flex between"><div><h1>甘露と消えにし</h1><div class="sub">暗黒本丸お祭りシミュレーション</div></div><div class="flex"><span class="pill" id="clock">未開始</span><button class="small" id="newBtn">新しく始める</button></div></div></header>
 <div class="overlay" id="introOverlay"><section class="setup stack">
-<div class="gov-head"><span>歴防本部 特別派遣管理部</span><span class="gov-no">文書番号：特派第036号<br>登録手続：01 / 02</span></div>
+<div class="gov-head"><span>歴防本部 特別派遣管理部</span><span class="gov-no">文書番号：特派第044号<br>登録手続：01 / 02</span></div>
 <div class="gov-band">臨時着任に関する通知</div>
 <h2>政府特別派遣通知</h2>
 <p>指定された本丸への臨時着任に先立ち、以下の事項を確認してください。</p>
-<div class="gov-info"><div>任務区分：特別管理対象本丸への派遣</div><div>対象本丸番号：H-44S-0015136</div><div>管理部署：生活環境部 本丸管理課</div><div>任務内容：臨時審神者としての本丸運営</div><div>任務期間：三十六か月</div></div>
+<div class="gov-info"><div>任務区分：特別管理対象本丸への派遣</div><div>対象本丸番号：H-44S-0015136</div><div>管理部署：危機管理部 怪異対策課</div><div>任務期間：三十日間</div></div>
 <div class="gov-warning"><strong>確認事項</strong>
-<p>本コンテンツには、ホラー表現・怪異や怪奇現象などの表現が含まれます。</p>
+<p>本コンテンツは、「露と消えにし」のおまけ作品で、ハロウィーンをテーマとした番外編です（続編ではありません）。<br>ホラー表現・怪異や怪奇現象などの表現が含まれます。<br>また、解釈によっては、刀剣男士との恋愛描写と受け取れる表現が含まれます（プレイヤーキャラクターとなる審神者および政府職員に性別の設定はありません）。</p>
 <p>音声・画像・映像による突然の脅かし表現はありません。<br>短い文章を中心に進行する、読み物形式のコンテンツです。</p>
-<p>謎解き・推理といった要素はほとんどありません。<br>理不尽な難易度や、審神者が簡単に命を落としたりする展開を楽しむことを目的とした作品です。</p>
-<p>また、審神者や本丸に所属する刀剣男士の言動が描写されます。<br>選択肢などによって幅を持たせていますが、ご自身の審神者・刀剣男士の解釈とは大きく異なる描写・展開・結末が含まれる可能性があります。</p>
+<p>謎解き・推理といった要素はありません。<br>プレイヤーキャラクターとなる審神者または政府職員が怖い目に遭ったり、簡単に命を落としたりする展開を楽しむことを目的とした作品です。</p>
+<p>また、プレイヤーキャラクター（審神者または政府職員）や本丸に所属する刀剣男士の言動が描写されます。<br>選択肢などによって幅を持たせていますが、ご自身の解釈とは大きく異なる描写・展開・結末が含まれる可能性があります。</p>
 <p>本作では、セーブ時にゲームの進行状況を記録したJSON形式のファイルがお使いの端末に保存されます。ロード時には、保存したファイルを選択して読み込みます。</p>
 <p>本作はランダム要素が多く、セーブ・ロード機能をある程度活用することを前提とした難易度になっています。</p>
 <p>セーブデータはゲームの進行状況を記録するためのものですが、ファイルの保存・読み込みを不安に思われるかたは、無理にプレイせず、利用をお控えください。</p>
 <p><strong>以上をご了承いただける方のみ、お進みください。</strong></p></div>
 <details class="gov-disclosure"><summary>含まれる表現について確認する</summary>
 <div class="gov-disclosure-body"><h3>含まれる表現</h3><ul>
-<li>プレイヤーである審神者の死亡に関する表現</li>
-<li>プレイヤーである審神者の命が軽く扱われる表現</li>
+<li>グロテスクな描写（捕食、吸血など）</li>
+<li>審神者、政府職員の死亡に関する表現</li>
+<li>審神者、政府職員の命が軽く扱われる表現</li>
+ <li>刀剣男士との恋愛描写と解釈することもできる表現</li>
 <li>刀剣破壊、それに類する表現</li>
 <li>怪異・狂気・闇堕ちなどのホラー表現</li>
 <li>刀剣男士に嫌われる・悪意を向けられる表現</li>
@@ -412,7 +827,7 @@ input,select,textarea{background:#0d0404!important;border-color:#861b17!importan
 <li>事態が解決しない・救われないと感じる展開や結末</li>
 <li>バッドエンド・メリーバッドエンド</li>
 </ul><h3>含まれない表現</h3><ul>
-<li>グロテスクな描写（血、負傷、死亡などについて、簡潔な描写は含まれます）</li>
+
 <li>性的な描写</li>
 <li>音声・画像・映像による突然の脅かし</li>
 <li>大団円のハッピーエンド</li>
@@ -420,24 +835,30 @@ input,select,textarea{background:#0d0404!important;border-color:#861b17!importan
 <div class="flex between"><span class="gov-confirm">上記内容を必ず確認してください。</span><button class="primary" id="toSetupBtn" type="button">内容を確認し、着任手続へ進む　›</button></div>
 </section></div><div class="overlay hidden" id="setupOverlay"><section class="setup stack">
 <div class="gov-head"><span>歴防本部 特別派遣管理部</span><span class="gov-no">登録手続：02 / 02</span></div>
+<div class="hw-mode-intro">
+<p>本作は難易度の異なる2つのモードから選んで遊ぶことができます。</p>
+<p>辿り着くことのできる結末もモードによって異なります。</p>
+ <p style="font-size:12px;line-height:1.7">※現在は政府職員モードを先行公開中です。臨時審神者モードは追加までしばらくお待ちください。</p>
+<label for="hwMode" class="hw-mode-select-label"><select id="hwMode" aria-label="プレイモード"><option value="staff">政府職員モード</option><option value="saniwa" disabled>臨時審神者モード（準備中）</option></select></label>
+<p id="hwModeDescription" aria-live="polite">刀剣男士たちからの対応が比較的優しく、生還がそこまで難しくないモードです。気軽に遊びたいかたに向いています。</p>
+</div>
 <div class="gov-band">着任者情報登録</div>
-<label>審神者名<input id="name" maxlength="40" value="審神者"/></label>
+<label id="hwNameLabel">職員名<input id="name" maxlength="40" value="職員"/></label>
 <p class="gov-small">※表示にのみ使用します。展開や結末には影響しません。</p>
-<div class="gov-registration-info">
-<div><span>開始年月</span><strong>2205年1月</strong></div>
+<div class="gov-registration-info"><div><span>開始年月</span><strong>2205年11月1日</strong></div>
 <div><span>所属サーバー</span><strong>山城国</strong></div>
-<div><span>任務期間</span><strong>36か月</strong></div>
+<div><span>任務期間</span><strong>30日間</strong></div>
 <div><span>所属刀剣男士</span><strong>20振り</strong></div>
 </div>
-<div><h2>政府特別派遣通知</h2><p>本丸管理番号 H-44S-0015136への臨時着任を命ずる。任期中は所属刀剣男士との関係に留意し、本丸運営を遂行すること。</p></div>
-<div class="flex between"><button id="loadBtn">保存データを読み込む</button><button class="primary" id="startBtn">本丸に向かう</button></div><input accept=".json,application/json" class="hidden" id="loadFile" type="file"/><div class="records-section"><p class="records-heading">関連資料</p><a class="records-link" href="https://milk-tools.com/games/simulation/records">資料を閲覧する（職員向け）　›</a></div>
+<div><h2>政府特別派遣通知</h2><p>本丸管理番号 H-44S-0015136への臨時着任を命ずる。任期中は所属刀剣男士との関係に留意し、必要に応じて菓子類の配布を行うこと。</p></div>
+<div class="flex between"><button id="loadBtn">保存データを読み込む</button><button class="primary" id="startBtn">本丸に向かう</button></div><input accept=".json,application/json" class="hidden" id="loadFile" type="file"/>
 </section></div>
-<div class="overlay hidden" id="endOverlay"><section class="setup stack"><h2>任務の結末</h2><div id="ending"></div><div class="flex"><button id="endExport">年代記を書き出す</button><button id="endSave">結果画像を保存する</button><button id="endShareX" type="button">Xでシェア</button><button id="endClose">画面を閉じる</button></div></section></div>
+<div class="overlay hidden" id="endOverlay"><section class="setup stack"><h2>任務の結末</h2><div id="ending"></div><div class="flex"><button id="endExport">年代記を書き出す</button><button id="endSave">結果画像を保存する</button><button id="endShareX" type="button">Xでシェア</button><button id="endShareImage" type="button">画像付きでシェア</button><button id="endClose">画面を閉じる</button></div></section></div>
 <main class="wrap layout">
-<aside><section class="panel"><h2>審神者と本丸</h2><div class="stack muted" id="profile">着任前</div></section><section class="panel roster-panel"><details class="owned-details"><summary><span class="owned-title">所属刀剣男士</span><span class="owned-summary-right"><span class="pill" id="ownedCount">0振り</span><span class="owned-toggle">一覧を開く</span></span></summary><div class="romance-grid compact-romance" id="romance"></div></details></section></aside>
-<div><div class="hero"><h2>露と消えにし</h2><p>ここは貴方の還る場所？</p></div>
-<section class="preview"><div class="flex between"><h3>任務期限</h3><span class="pill" id="remain">あと36か月</span></div><p class="note" id="deadlineDesc">任務期間と進行は仮仕様です。</p></section>
-<section class="panel"><h2>運営操作</h2><div class="flex"><button class="primary" id="step">1か月進める</button><button id="auto">自動進行：OFF</button><label>速度<select id="speed"><option value="3200">ゆっくり</option><option selected="" value="1600">標準</option><option value="650">速い</option></select></label></div><div class="flex" style="margin-top:12px"><button id="save">途中保存（JSON）</button><button id="export">年代記を書き出す（TXT）</button><span class="note" id="status"></span></div></section>
+<aside><section class="panel"><h2 id="hwProfileHeading">審神者と本丸</h2><div class="stack muted" id="profile">着任前</div></section><section class="panel roster-panel"><details class="owned-details"><summary><span class="owned-title">所属刀剣男士</span><span class="owned-summary-right"><span class="pill" id="ownedCount">0振り</span><span class="owned-toggle">一覧を開く</span></span></summary><div class="romance-grid compact-romance" id="romance"></div></details></section></aside>
+<div><div class="hero"><h2>甘露と消えにし</h2></div>
+<section class="preview"><div class="flex between"><h3>任務期限</h3><span class="pill" id="remain">あと30日</span></div><p class="note" id="deadlineDesc">11月1日から30日間のハロウィーン。</p></section>
+<section class="panel"><h2>運営操作</h2><div class="flex"><button class="primary" id="step">1日進める</button><button id="auto">自動進行：OFF</button><label>速度<select id="speed"><option value="3200">ゆっくり</option><option selected="" value="1600">標準</option><option value="650">速い</option></select></label></div><div class="flex" style="margin-top:12px"><button id="save">途中保存（JSON）</button><button id="export">年代記を書き出す（TXT）</button><span class="note" id="status"></span></div></section>
 <section class="choiceBox hidden" id="choicePanel"><div class="sub">選択イベント</div><h3 id="choiceTitle"></h3><p id="choiceText"></p><div class="choiceButtons" id="choices"></div></section>
 <section class="panel"><div class="flex between"><h2>運営記録</h2><span class="muted" id="count">0件</span></div><div class="log" id="log"></div></section></div></main>
 
@@ -453,13 +874,15 @@ function sortChoiceSwords(ids){return [...ids].sort((a,b)=>a==='kasen'?-1:b==='k
 
 let state=null,pending=null,timer=null;
 // 現在公開されているゲームページのURLを共有する（ローカル実行時はURLを添付しない）。
+const HW_STAFF_SHARE_TEXT='【刀剣乱舞・非公式ファンメイド】暗黒本丸お祭りシミュレーション「甘露と消えにし」\n対象本丸：H-44S-0015136 での特別任務を終了しました。\n#甘露消え https://milk-tools.com/games/simulation/halloween/';
 function shareOnX(){
- const message='【刀剣乱舞・非公式ファンメイド】暗黒本丸運営シミュレーション「露と消えにし」\n対象本丸：H-44S-0015136 での任務を終了しました。\n#露消え https://milk-tools.com/games/simulation';
+ const message=state?.mode==='staff'?HW_STAFF_SHARE_TEXT:'【刀剣乱舞・非公式ファンメイド】暗黒本丸運営シミュレーション「露と消えにし」\\n対象本丸：H-44S-0015136 での任務を終了しました。\\n#露消え https://milk-tools.com/games/simulation';
  const params=new URLSearchParams({text:message});
  window.open('https://twitter.com/intent/tweet?'+params.toString(),'_blank','noopener,noreferrer');
 }
 function setup(){
  $('startBtn').onclick=start;
+
  $('newBtn').onclick=()=>{stopAuto();$('setupOverlay').classList.remove('hidden')};
  $('step').onclick=advance;
  $('auto').onclick=()=>timer?stopAuto():startAuto();
@@ -468,11 +891,12 @@ function setup(){
  $('loadBtn').onclick=()=>$('loadFile').click();$('loadFile').onchange=load;
  $('endExport').onclick=exportText;$('endSave').onclick=saveEndingImage;
  $('endShareX').onclick=shareOnX;
+ $('endShareImage').onclick=shareEndingImage;
  $('endClose').onclick=()=>$('endOverlay').classList.add('hidden');
  $('toSetupBtn').onclick=()=>{$('introOverlay').classList.add('hidden');$('setupOverlay').classList.remove('hidden')};
  controls();
 }
-function start(){
+function legacy_start(){
  const year=2205,name=$('name').value.trim()||'審神者';
  stopAuto();pending=null;
  const owned=[...FIXED];
@@ -875,7 +1299,7 @@ function processEvents(){
  if(e.dead){deadEnd(...e.dead);return true}
  choice(e.title,e.desc,e.options);return true;
 }
-function advance(){
+function legacy_advance(){
  if(!state||pending||state.ended)return;
  state.turn++;state.month++;if(state.month>12){state.month=1;state.year++}
  // 一年目・二年目の終わりを振り返るイベントは、翌年1月の通常イベントに先行する。
@@ -1146,7 +1570,7 @@ function finishEnd01Farewell(){
 function showEnding(){if(!state?.ending)return;$('ending').replaceChildren();
  const h=document.createElement('h3');h.textContent=state.ending.title;
  const p=document.createElement('p');p.textContent=state.ending.body;
- $('ending').append(h,p);$('endOverlay').classList.remove('hidden');}
+ $('ending').append(h,p);$('endOverlay').classList.remove('hidden');$('endOverlay').classList.toggle('hw-bloody-end',!!state.ending.death);}
 function stopAuto(){if(timer)clearInterval(timer);timer=null;controls()}
 function startAuto(){if(!state||state.ended||pending)return;stopAuto();timer=setInterval(advance,Number($('speed').value));controls()}
 function controls(){const active=!!state&&!state.ended;
@@ -1155,7 +1579,7 @@ function controls(){const active=!!state&&!state.ended;
  $('export').disabled=!state;
  $('auto').textContent='自動進行：'+(timer?'ON':'OFF');
  $('status').textContent=!state?'未開始':state.ended?(state.ending?.title?.startsWith('死因')?'死亡':'任務終了'):pending?'選択待ち':timer?'自動進行中':'手動進行中';}
-function render(){controls();if(!state)return;
+function legacy_render(){controls();if(!state)return;
  $('clock').textContent=`${state.year}年${state.month}月`;
  const left=Math.max(0,36-state.turn);
  const death=state.ended&&!!state.ending?.title?.startsWith('死因');
@@ -1164,7 +1588,7 @@ function render(){controls();if(!state)return;
  $('deadlineDesc').textContent=death?'対象の死亡をもって任務を終了しました。':state.ended?'三十六か月の任務が完了しました。':`着任から${state.turn}か月が経過。残り${left}か月。`;
  $('profile').replaceChildren();
  const name=document.createElement('div');name.className='profile-name';name.textContent=state.name;$('profile').append(name);
- for(const [k,v] of [['所属','山城国'],['初期刀','歌仙兼定'],['任務期間','36か月']]){
+ for(const [k,v] of [['モード',state.mode==='saniwa'?'審神者':'職員'],['所属','山城国'],['初期刀','歌仙兼定'],['任務期間','36か月']]){
  const d=document.createElement('div');d.className='profile-meta';d.textContent=`${k}：${v}`;$('profile').append(d)}
 
  $('ownedCount').textContent=state.owned.length+'振り';$('romance').replaceChildren();
@@ -1186,14 +1610,763 @@ function download(filename,content,mime){
  // Keep object URL alive long enough for mobile browsers to begin downloading.
  setTimeout(()=>URL.revokeObjectURL(url),60000);
 }
-function save(){if(!state||pending)return;download('露と消えにし_途中保存.json',JSON.stringify({app:'tsuyu-honmaru',state},null,2),'application/json')}
-function exportText(){if(!state)return;download('露と消えにし_運営記録.txt',[`露と消えにし`,`${state.name}／山城国`,`初期刀：歌仙兼定`,'',...state.log.map(e=>`【${e.year}年${e.month}月｜${e.title}】${e.body}`)].join('\n'),'text/plain;charset=utf-8')}
+function save(){if(!state||pending)return;download('甘露と消えにし_途中保存.json',JSON.stringify({app:'tsuyu-honmaru',state},null,2),'application/json')}
+function exportText(){if(!state)return;download('甘露と消えにし_運営記録.txt',[`甘露と消えにし`,`${state.name}／山城国`,`初期刀：歌仙兼定`,'',...state.log.map(e=>`【${e.year}年${e.month}月｜${e.title}】${e.body}`)].join('\n'),'text/plain;charset=utf-8')}
 async function load(ev){const file=ev.target.files[0];if(!file)return;try{
  const data=JSON.parse(await file.text()),s=data.state;
+ if(s?.mode!=='staff')throw Error('この公開版では政府職員モードのセーブデータのみ読み込めます');
  if(data.app!=='tsuyu-honmaru'||!s||!Array.isArray(s.owned)||!Array.isArray(s.log)||!s.owned.length||!s.owned.every(id=>!!sword(id))||!Number.isInteger(s.turn)||s.turn<0||s.turn>36||!s.aff)throw Error('保存形式が一致しません');
- stopAuto();state=s;pending=null;rememberAwataFirst();$('setupOverlay').classList.add('hidden');$('introOverlay').classList.add('hidden');$('choicePanel').classList.add('hidden');$('endOverlay').classList.add('hidden');
+ stopAuto();state=s;pending=null;
+ // 旧版の保存データにも、今後の分岐で使用する履歴欄を安全に追加する。
+ if(state.halloween){
+  state.hundredAnswers ||= {};state.hundredSeen ||= [];state.hundredCostumesSeen ||= [];state.hundredQueue ||= [];
+  const ichigo=swordByName('一期一振');
+  if(ichigo&&state.costumes?.['一期一振']==='魔王'&&(state.aff[ichigo]??0)===100&&!state.hundredSeen.includes('一期一振')){
+   state.hundredSeen.push('一期一振');
+   if(!state.hundredQueue.includes('一期一振'))state.hundredQueue.push('一期一振');
+  }
+ }
+ rememberAwataFirst();$('setupOverlay').classList.add('hidden');$('introOverlay').classList.add('hidden');$('choicePanel').classList.add('hidden');$('endOverlay').classList.add('hidden');
  if(state.ended)showEnding();render();
  }catch(e){alert('読み込みに失敗しました：'+e.message)}finally{ev.target.value=''}}
+
+// Halloween playtest: endings and original main-story random events are not used.
+const HW_COSTUMES=['狼男','吸血鬼','フランケンシュタインの怪物','白衣','ゾンビ','死神','殺人鬼','悪魔','堕天使','魔女／魔法使い','黒猫','ジャック・オ・ランタン'];
+const HW_COSTUME_PAIRS=[['狼男','狼男'],['吸血鬼','吸血鬼'],['フランケンシュタインの怪物','フランケンシュタインの怪物'],['白衣','白衣'],['ゾンビ','ゾンビ'],['死神','死神'],['殺人鬼','殺人鬼'],['悪魔','堕天使'],['魔女／魔法使い','黒猫'],['ジャック・オ・ランタン','ジャック・オ・ランタン']];
+const HW_WITCH=new Set(['乱藤四郎','加州清光','今剣','和泉守兼定','歌仙兼定','大和守安定','宗三左文字','鯰尾藤四郎','前田藤四郎']);
+const HW_SWEETS=['チョコレート','キャンディ','キャラメル','クッキー','ドーナツ','マシュマロ','パウンドケーキ','マドレーヌ','スナック菓子','和菓子','ポテトチップス','ポップコーン','グミ','カステラ','ビスケット','フィナンシェ','ワッフル','マカロン','ラムネ','ゼリー','おまんじゅう','どら焼き','お団子','いちごチョコレート','ホワイトチョコレート','ビターチョコレート','チョコチップクッキー','チョコレートビスケット','きのこの山','たけのこの里'];
+const HW_FIRST=[(n,c)=>`${c}をあげると、喜んでいた。`,(n,c)=>`${c}をあげると、嬉しそうにその場で開封した。`,(n,c)=>`${c}をあげると、満足げにしていた。`,(n,c)=>`${c}をあげると、好きなものだと言っていた。`,(n,c)=>`${c}をあげると、微笑んだ。`];
+const HW_REPEAT=[c=>`${c}をあげるとすごく喜び、手を握られた。`,c=>`${c}をあげると、すぐに開封しておいしそうに食べていた。`,c=>`${c}をあげると、お礼とかできたらいいのに、と言ってくれた。`,c=>`${c}をあげると気に入った、と言われた。お菓子のことだろうか……？`,c=>`${c}をあげると、笑顔になり、好きだと言っていた。そんなに${c}が好きだったとは。`];
+const HW_REFUSE=[n=>`お菓子がもらえなかった${n}は、拗ねたような表情を見せた。`,n=>`お菓子がもらえなかった${n}は、ちょっと悲しそうにした。`,n=>`お菓子がもらえなかった${n}は、むっとした表情だ。`,n=>`お菓子がもらえなかった${n}は、少し落ち込んだ様子だ。`,n=>`お菓子がもらえなかった${n}は、苦笑いを浮かべた。`];
+const HW_PAIR_FIRST=[c=>`${c}をあげると、二人とも喜んでいた。`,c=>`${c}をあげると、嬉しそうに二人はその場で開封した。`,c=>`${c}をあげると、二人とも満足げにしていた。`,(c,a,b)=>`${c}をあげると、${a}が${b}の好きなものだと言っていた。`,c=>`${c}をあげると、他の刀剣男士たちとお菓子の交換をする相談を始めた。`];
+const HW_PAIR_REFUSE=[(a,b)=>`お菓子がもらえなかった${b}は気まずそうに苦笑を浮かべた。`,(a,b)=>`お菓子がもらえなかった${b}は${a}のお菓子を羨ましそうに見ていた。`,(a,b)=>`お菓子がもらえなかった${b}は${state.mode==='saniwa'?'審神者':'職員'}を睨んでいた。`,(a,b)=>`お菓子がもらえなかった${b}は${a}のお菓子を狙っている様子だ。`,(a,b)=>`お菓子がもらえなかった${b}はため息をつくと、興味なさげに視線を外した。`];
+function hwShuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function hwPairs(){
+ const pairs=[['岩融','今剣'],['鯰尾藤四郎','骨喰藤四郎'],['加州清光','大和守安定']];
+ const alt=Math.random()<.5;
+ if(alt)pairs.push(['堀川国広','山姥切国広'],['和泉守兼定','歌仙兼定']);
+ else pairs.push(['堀川国広','和泉守兼定']);
+ const awa=hwShuffle(['一期一振','前田藤四郎','秋田藤四郎','乱藤四郎','薬研藤四郎']);
+ pairs.push(awa.slice(0,2),awa.slice(2,4));
+ const rest=hwShuffle([...(!alt?['山姥切国広','歌仙兼定']:[]),'蜂須賀虎徹','陸奥守吉行','宗三左文字','へし切長谷部','獅子王',awa[4]]);
+ for(let i=0;i<rest.length;i+=2)pairs.push(rest.slice(i,i+2));
+ // ペアの組み合わせ確定後、各ペアの名前順を周回ごとに独立して50:50で決定する。
+ pairs.forEach(pair=>{if(pair.length===2&&Math.random()<.5)pair.reverse()});
+ const costumes=hwShuffle(HW_COSTUME_PAIRS).map(set=>Math.random()<.5?[...set].reverse():[...set]);
+ const dressed={};pairs.forEach((pair,i)=>pair.forEach((name,j)=>{let c=costumes[i][j];if(c==='白衣'&&name==='乱藤四郎')c='ナース';if(c==='魔女／魔法使い')c=name==='一期一振'?'魔王':HW_WITCH.has(name)?'魔女':'魔法使い';dressed[name]=c}));
+ return {pairs,dressed};
+}
+function hwDate(){return new Date(2205,10,1+state.turn)}
+function hwTextDate(){const d=hwDate();return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`}
+function hwRecord(title,body,type='normal'){if(title==='結末')type='choice';if(title!=='好感度の変化')state.hwAffBatch=false;state.log.push({turn:state.turn,year:2205,month:11,day:1+state.turn,title,body,type})}
+function hwAff(n,delta){const id=swordByName(n);if(!id)return;const old=state.aff[id];state.aff[id]=Math.max(state.mode==='saniwa'?0:1,Math.min(100,old+delta));const line=`${n}：${delta>=0?'+':''}${delta}（${old} → ${state.aff[id]}）`;const last=state.log[state.log.length-1];if(state.hwAffBatch&&last?.title==='好感度の変化'&&last.turn===state.turn)last.body+='\n'+line;else hwRecord('好感度の変化',line);state.hwAffBatch=true;hwHundredReached(n,old)}
+function swordByName(n){return FIXED.find(id=>sword(id).name===n)}
+function hwCostume(n){return state.costumes[n]}
+function hwWhiteCostume(c){return c==='白衣'?'血まみれの白衣':c}
+function hwAsk(title,desc,options){pending={title,desc};stopAuto();$('choiceTitle').textContent=title;$('choiceText').textContent=desc;$('choices').replaceChildren();options.forEach(o=>{const b=document.createElement('button');b.textContent=o.text;b.onclick=()=>{hwRecord(title,`${desc}\n選択：${o.text}`,'choice');pending=null;$('choicePanel').classList.add('hidden');o.run();if(!pending)hwRunNext();render()};$('choices').append(b)});$('choicePanel').classList.remove('hidden');render()}
+function hwGive(n,first,pair=false){state.candy=Math.max(0,state.candy-1);state.given[n]=true;state.lastCandyRecipient=n;if(!first)hwAff(n,pair?30:20)}
+function hwDecline(n,alone=false){hwAff(n,alone?-17:-13);return rand(HW_REFUSE)(n)}
+function hwDanger(){
+ if(state.mode==='saniwa'&&state.saniwaCostumeQuestionUsed)return false;
+ const eligible=hwOrderedNames().filter(n=>state.aff[swordByName(n)]<=9&&!state.warned[n]);
+ if(!eligible.length)return false;
+ const danger=state.mode==='saniwa'&&eligible.includes('歌仙兼定')?'歌仙兼定':eligible[0];
+ state.warned[danger]=true;
+ if(state.mode==='saniwa')state.saniwaCostumeQuestionUsed=true;
+ hwAsk('仮装についての問い',`${danger}が、自分の仮装は似合っていると思うかと尋ねてきた。`,[
+  {text:'似合っていると思う',run:()=>{if(state.mode==='saniwa')hwAff(danger,13);hwRecord('仮装についての問い',rand([`${danger}はそれを聞いて、多少機嫌を直したようだ。`,`${danger}はそれを聞いて、安心したようにしていた。`,`${danger}はそれを聞いて、ならいいけど、という風に言って去っていった。`]))}},
+  {text:'似合っていないと思う',run:()=>{if(state.mode==='saniwa'){hwPrankOne(danger)}else{hwAff(danger,-5);hwRecord('仮装についての問い',`${danger}は何も言わずに職員を見つめた。`)}}}
+ ]);
+ return true;
+}
+function hwHorikawaCannon(){
+ if(state.mode!=='saniwa'||state.given['和泉守兼定']||state.ended)return false;
+ const n='堀川国広';
+ hwAsk('堀川国広',`お菓子を受け取った堀川国広が、ふと尋ねた。「主さん、兼さんにはもうお菓子をあげましたか？」
+まだだと答えると、堀川はにっこり笑った。「それなら、ちょうどいいですね。兼さんのところへ行きましょう」`,[
+  {text:'堀川についていく',run:()=>{
+   const title='END：堀川国広（仮）';
+   const body='堀川国広に連れられて和泉守兼定の部屋へ入ると、彼は扉を閉めた。「兼さん、ハロウィーンのお菓子を持ってきたよ」そう言って、堀川は審神者／職員の背を押す。和泉守兼定の目がこちらを向いた。堀川が差し出したのは、お菓子ではなく、審神者／職員自身だった。逃げようとしたときには、もう遅かった。'.replaceAll('審神者／職員',state.mode==='saniwa'?'審神者':'職員');
+   state.ending={title,body,death:true};state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',`${title}\n${body}`);showEnding();
+  }}]);return true;
+}
+function hwAfter(body,horikawaSolo=false){hwRecord('お菓子の時間',body);if(horikawaSolo&&hwHorikawaCannon())return;if(hwCheckImmediateEnding())return;if(hwDanger())return;if(hwRunHundredPending())return;if(!pending)hwRunNext()}
+function hwVisit(){if(state.candy===0){hwCheckImmediateEnding();return}const pair=Math.random()<.25;const group=rand(state.pairs);if(pair&&state.candy>=2){const [a,b]=group,fa=!state.given[a],fb=!state.given[b],ca=hwCostume(a),cb=hwCostume(b),same=ca===cb;const intro=`${a}と${b}がやってきた。${same?`${ca==='白衣'?'血まみれの白衣を着ているようだ。':`${ca}の仮装をしているようだ。`}`:`${a}は${hwWhiteCostume(ca)}の、${b}は${hwWhiteCostume(cb)}の仮装をしているようだ。`}`;
+ if(fa&&fb){const c=rand(HW_SWEETS);hwGive(a,true);hwGive(b,true);const fn=rand(HW_PAIR_FIRST);const names=Math.random()<.5?[a,b]:[b,a];hwAfter(intro+'\n'+fn(c,...names));return}
+ const options=[];
+ const handle=(giveA,giveB)=>{let text=intro+'\n';const c=rand(HW_SWEETS);if(giveA&&giveB){hwGive(a,fa,true);hwGive(b,fb,true);const names=Math.random()<.5?[a,b]:[b,a];text+=rand(HW_PAIR_FIRST)(c,...names)}else if(giveA||giveB){const receiver=giveA?a:b,other=giveA?b:a,first=giveA?fa:fb;hwGive(receiver,first,true);hwDecline(other,true);text+=`${receiver}に${c}をあげると、${rand(HW_FIRST)(receiver,c).replace(/^.+?をあげると、/,'')}\n`+rand(HW_PAIR_REFUSE)(receiver,other)}else{hwDecline(a);hwDecline(b);text+=`お菓子がもらえなかった${a}と${b}は、`+rand(HW_REFUSE)('仮名').replace(/^お菓子がもらえなかった仮名は、/,'')}hwAfter(text)};
+ if(fa!==fb){const newOne=fa?a:b,repeat=fa?b:a;options.push({text:`${repeat}にもあげる`,run:()=>handle(true,true)},{text:`${repeat}にはあげない`,run:()=>handle(fa,!fa)})}
+ else options.push({text:'二人ともにあげる',run:()=>handle(true,true)},{text:`${a}にあげる`,run:()=>handle(true,false)},{text:`${b}にあげる`,run:()=>handle(false,true)},{text:'どちらにもあげない',run:()=>handle(false,false)});
+ hwAsk('お菓子の時間',intro,options);return}
+ const n=state.candy===1?rand(hwOrderedNames().filter(name=>name!=='歌仙兼定'&&name!=='一期一振')):rand(group),first=!state.given[n],c=rand(HW_SWEETS),costume=hwCostume(n);
+ if(first){hwGive(n,true);hwAfter(`${costume==='白衣'?'血まみれの白衣を着た':`${costume}の仮装をした`}${n}がやってきた。\n${rand(HW_FIRST)(n,c)}`,n==='堀川国広');return}
+ const intro=`${costume==='白衣'?'血まみれの白衣の男':costume==='ナース'?'血まみれのナース':costume}……ではなく${n}が再びお菓子をもらいに来た。`;
+ hwAsk('お菓子の時間',intro,[{text:'お菓子をあげる',run:()=>{hwGive(n,false);hwAfter(intro+'\n'+rand(HW_REPEAT)(c),n==='堀川国広')}},{text:'お菓子をあげない',run:()=>{const response=hwDecline(n);hwAfter(intro+'\n'+response)}}]);
+}
+// 11月の固定交流・三日おきの小イベント。エンディングはこの試作では未実装。
+const HW_THREE=[
+
+ [4,null,(n)=>`庭の蜘蛛の巣に蝶がかかっているのを、${n}がじっと見つめていたが、${state.mode==='saniwa'?'審神者':'職員'}の存在に気づくと何事もなかったように笑った。`],
+ [4,null,(n,m)=>`${n}と${m}がお菓子の好みについて議論していたので、第三勢力として参加し驚かせた。`],
+ [4,null,n=>`${n}の目の前で派手にずっこけてしまい、新手の悪戯かと思ったと微笑まれた。`],
+ [4,['ゾンビ'],n=>`本物のゾンビも人間ではなくお菓子を食べたらいいのかも、とゾンビの仮装をした${n}とお茶を飲みながら話した。`],
+ [4,['死神'],n=>`${n}が、自分が本当に人間の魂を好きにできる死神だったなら、${state.mode==='saniwa'?'審神者':'職員'}の魂はとっくに自分のものにしたと冗談を言ってきた。`],
+ [4,['殺人鬼'],n=>`${n}が、どうせ殺人鬼の仮装なら本体を持ちたかったが、危ないからこれになったと作り物の凶器を見せてくれた。`],
+ [13,null,n=>`${n}がかぼちゃのランタンを作る準備をしていたので、手伝った。`],
+ [13,null,n=>`${n}が空を見上げていたのでつられて見ると、不気味な色の流星が流れていた。少し恐ろしかったが、綺麗だと思った。`],
+ [13,null,n=>`${n}と本丸の見回りを行った。特に異常は見つからず、夜が明けることもまたない。`],
+ [13,['狼男'],n=>`${n}が本当の狼男のように空を見上げていたのでつられて見ると、満月が真っ赤に染まっていた。恐ろしいのに、美しかった。`],
+ [13,['フランケンシュタインの怪物'],n=>`フランケンシュタインの怪物の仮装をした${n}が、装飾品が外れてしまったというので手伝うと、ふと彼の手に触れた。その手はとても冷たかった。`],
+ [13,['悪魔','堕天使'],n=>`背中を飾る${hwCostume(n)}の羽を見て、本当に自分が飛べたら${state.mode==='saniwa'?'審神者':'職員'}を連れてどこにでも行ってやるのにと、${n}は冗談めかして笑った。`],
+ [20,null,n=>`${n}が不思議な色のジュースをおいしそうに飲んでいたので、一口だけ分けてもらった。味も不思議だった。`],
+ [20,null,n=>`${n}が庭の手入れをしていた。手伝おうとすると、触れると危険な草花について教えてくれた。`],
+ [20,null,n=>`音色につられて部屋を覗くと、${n}が古びたおもちゃのピアノを弾いていた。褒めると少し嬉しそうにしていた。`],
+ [13,['吸血鬼'],n=>`吸血鬼の仮装の${n}が真っ赤な色をしたジュースをおいしそうに飲んでいたので、一口だけ分けてもらった。味の感想は秘密にしようと思った。`],
+ [13,['魔女','魔法使い','黒猫'],n=>`${n}がハロウィーンに合わせた料理を作ったと言って、${hwCostume(n)}の仮装のまま、派手でカラフルな一皿を見せてくれた。一口だけいただくことにした。`],
+ [13,['白衣','ナース'],n=>`血糊まみれの${hwCostume(n)==="ナース"?"ナース服":"白衣"}を着た${n}が、仕事で疲れていないかと心配してくれたが、その仮装だと実験でもされそうだと返すと、笑っていた。`],
+ [20,['魔王'],n=>`一期一振がマントを揺らし、窓から本丸を見下ろしていた。さまになっていると褒めると、困ったような笑顔で「複雑なものですな。……まさか、魔王と呼ばれる日が来ようとは」と言って、夜色をその瞳に映していた。`],
+ [20,['ジャック・オ・ランタン'],n=>`${n}がかぼちゃのランタンを灯して点検していた。そのジャック・オ・ランタンの仮装に夜に浮かび上がる灯りが雰囲気ばっちりで、褒めたら嬉しそうにしていた。`],
+ [0,null,n=>`身だしなみが気になったのか、${n}が鏡をじっと見ていた。一瞬、そこに彼が映っていなかった気がしたのは気のせいだろうか。`],
+ [0,null,n=>`${n}が古びた分厚い本を読んでいた。何の本だか聞くと秘密だと言い、覗いてみると日本語とは思えない文字で綴られていた。`],
+ [0,null,(n,m)=>`${n}と${m}が一日だけと言って仮装を交換していた。なかなか似合っている。`,'different'],
+ [13,null,n=>`折れてしまった花を庭で見つけ、${n}に話したところ、みんなには秘密、と言って${n}がその花に触れると、花はみずみずしさと鮮やかな色を取り戻した。手品なのか、あるいは……。`],
+ [4,['狼男'],n=>`狼男の格好をした${n}が生肉のようなものを食べていたので、何を食べているか聞いたが、教えてはもらえなかった。`],
+ [2,['狼男'],(n,m)=>`2匹の狼男、ではなく${n}と${m}が遠吠えのような声を出していた。仮装に引っ張られているのだろうか、微笑ましい気持ちになる。`,'pair'],
+ [4,['吸血鬼'],n=>`吸血鬼の仮装をした${n}がワイングラスに赤い液体を揺らしていたので、血なのかと聞くと、次の食事に立候補するのかとからかわれた。`],
+ [2,['吸血鬼'],(n,m)=>`${n}と${m}がより優雅な吸血鬼の振る舞いを目指して勝負しているようだった。微笑ましい気持ちになる。`,'pair'],
+ [4,['フランケンシュタインの怪物'],n=>`フランケンシュタインの怪物……の格好をした${n}が庭の花で花冠を作ろうとしている。不器用なのか歪になってしまっているようで、応援したくなった。`],
+ [2,['フランケンシュタインの怪物'],(n,m)=>`フランケンシュタインの怪物の仮装をした${n}と${m}が腕相撲で勝負をしている。怪物らしさを競っているらしいが、どこで判断するのだろう……。`,'pair'],
+ [13,['ゾンビ'],n=>`ゾンビの仮装をした${n}が得体の知れない肉のようなものを食べていたので、おいしいのか聞いてみると、おいしいが職員のほうがおいしそうだ、と冗談を言われた。`],
+ [2,['ゾンビ'],(n,m)=>`${n}と${m}が体操をしていたので声をかけたところ、ゾンビなので手足がもげたりしないようにやっているらしい。気合が入った仮装だ……。`,'pair'],
+ [13,['死神'],n=>`${n}が部屋に入ってきた蝿を手で払っていたので、死神っぽく倒せないのかと尋ねると、少し考えたあと目にも止まらぬ速さで新聞紙で潰していた。かっこ良い。`],
+ [2,['死神'],(n,m)=>`2匹の死神……ではなく${n}と${m}が何かの美しさと清らかさについて議論している声がした。気を遣って声はかけなかったが、女性の話題だろうか？`,'pair'],
+ [13,['殺人鬼'],n=>`血まみれの殺人鬼……ではなく${n}が血糊を大量に作っていたので、気になって声をかけると、一口舐めさせてくれた。いちごの味がした。`],
+ [2,['殺人鬼'],(n,m)=>`殺人鬼の仮装の${n}と${m}が肉の部位について熱く語っている。${n}は新鮮な内臓が、${m}は若い雌の肉が特に好きだとか。色々な好みがあるようだ。`,'pair'],
+ [4,['悪魔','堕天使'],n=>`${n}が${hwCostume(n)}の羽をぱたぱたと揺らしていたので、じっと見ているとさらに大きく動かしてくれた。どういう仕組みなんだろう。`],
+ [2,['悪魔'],(n,m,t)=>`悪魔の${n}と堕天使の${m}が、とっておきのおやつを食べるか迷っている${t}に悪魔と堕天使の囁きをしているのを見かけた。囁きの内容に違いは……あるんだろうか？`,'devil'],
+ [4,['白衣','ナース'],n=>`${hwCostume(n)==='ナース'?'ナース服を着た':'血染めの白衣を着た'}${n}が怪しい色の液体を混ぜて飲んでいるのを目撃したが、他の刀剣男士たちが言うにはほとんどジュースらしい。`],
+ [2,['白衣','ナース'],(n,m)=>`${hwCostume(n)==='ナース'?'ナース服の':'白衣の'}${n}と${hwCostume(m)==='ナース'?'ナース服の':'白衣の'}${m}が、手術の真似事でもするように、ほつれてしまった古いぬいぐるみを一生懸命縫っていた。改造パーツもたくさん用意されていたのは見なかったことにしておいた。`,'pair'],
+ [4,['魔女','魔法使い','黒猫','魔王'],n=>`${hwCostume(n)}の仮装の${n}が何もないところから現れたように見えたので、今のは魔法かと聞いてみたら、自分は刀剣男士だから……と真面目に返されてしまった。`],
+ [2,['魔女','魔法使い','黒猫','魔王'],(n,m)=>`${n}と${m}が、手品の練習をしているのを見かけた。しかも途轍もなく上手だった。${[hwCostume(n),hwCostume(m)].filter(c=>c!=='黒猫').join('／')}の仮装って大変なんだと尊敬する。`,'magic'],
+ [4,['ジャック・オ・ランタン'],n=>`ジャック・オ・ランタンの仮装をした${n}がかぼちゃのランタンの下準備でかぼちゃの残骸に囲まれていたので、掃除を手伝ってあげた。`],
+ [2,['ジャック・オ・ランタン'],(n,m)=>`ジャック・オ・ランタンの格好の${n}と${m}が、ランタンの灯りについて真剣に話している。色や明るさにも色々とあるようだ。虹色にも光らせられるのかと聞いてみた。`,'pair']
+];
+function hwRunThree(){
+ const all=FIXED.map(id=>sword(id).name);
+ const eligible=HW_THREE.filter(e=>{
+  if(!e[1]||!all.some(n=>e[1].includes(hwCostume(n))))return !e[1];
+  const pool=all.filter(n=>e[1].includes(hwCostume(n)));
+  if(e[3]==='pair')return pool.length>=2;
+  if(e[3]==='devil')return all.some(n=>hwCostume(n)==='悪魔')&&all.some(n=>hwCostume(n)==='堕天使')&&all.length>=3;
+  if(e[3]==='magic')return pool.length>=2&&pool.some(n=>hwCostume(n)!=='黒猫');
+  return true;
+ });
+ const [up,allowed,make,kind]=rand(eligible);
+ const pool=allowed?all.filter(n=>allowed.includes(hwCostume(n))):all;
+ let n=rand(pool),other=rand(all.filter(x=>x!==n)),third=null;
+ if(kind==='different'){
+  const choices=all.filter(x=>x!==n&&hwCostume(x)!==hwCostume(n));
+  if(choices.length)other=rand(choices);
+ }else if(kind==='pair'){
+  other=rand(pool.filter(x=>x!==n));
+ }else if(kind==='devil'){
+  n=rand(all.filter(x=>hwCostume(x)==='悪魔'));
+  other=rand(all.filter(x=>hwCostume(x)==='堕天使'));
+  third=rand(all.filter(x=>x!==n&&x!==other));
+ }else if(kind==='magic'){
+  const candidates=pool.filter(x=>hwCostume(x)!=='黒猫');
+  n=rand(candidates);
+  other=rand(pool.filter(x=>x!==n));
+ }
+ hwRecord('本丸のひととき',make(n,other,third));
+ const affected=kind==='pair'||kind==='devil'||kind==='magic'||make===HW_THREE[1][2]?[n,other]:[n];
+ const changes=[];
+ if(up!==0)for(const name of affected){
+  const id=swordByName(name);
+  if(!id)continue;
+  const before=state.aff[id];
+  state.aff[id]=Math.max(state.mode==='saniwa'?0:1,Math.min(100,before+up));
+  hwHundredReached(name,before);
+  changes.push(`${name}：+${up}（${before} → ${state.aff[id]}）`);
+ }
+ if(changes.length)hwRecord('好感度の変化',changes.join('\n'));
+}
+function hwRunWeekly(){
+ state.weekPairsUsed ||= [];
+ state.weekPraised ||= [];
+ state.weekShown ||= [];
+ const pairOptions=state.pairs.map((pair,i)=>({kind:'pair',pair,i})).filter(o=>!state.weekPairsUsed.includes(o.i));
+ const singleOptions=state.weekPraised.filter(n=>!state.weekShown.includes(n)).map(n=>({kind:'single',n}));
+ const opts=[...pairOptions,...singleOptions];if(!opts.length)return;
+ const picked=rand(opts);
+ if(picked.kind==='single'){
+  const n=picked.n;
+  state.weekShown.push(n);
+  hwAsk('お披露目の時間',`${n}が装飾品と小道具で仮装を少しバージョンアップさせたといって見せに来てくれた。もし外に出られたなら、${state.mode==='saniwa'?'審神者':'職員'}と仮装をしてハロウィーンの催しに行ってみたかったのにと、残念そうに笑っていた。`,[
+   {text:'いつか行こう',run:()=>{hwRecord('お披露目の時間',`${n}は少し驚いた表情をしたあと、ゆっくり頷いた。とても、嬉しそうだった。`);hwAff(n,30)}},
+   {text:'この本丸のハロウィーンも楽しい',run:()=>{hwRecord('お披露目の時間',`${n}は笑顔でその通りだと言って、機嫌よさそうにしていた。`);hwAff(n,30)}}]);
+ }else{
+  state.weekPairsUsed.push(picked.i);
+  const [a,b]=picked.pair;
+  hwAsk('究極の選択？',`${hwCostume(a)}の仮装をした${a}と、${hwCostume(a)===hwCostume(b)?'':`${hwCostume(b)}の仮装をした`}${b}がやってきて、二人のうちどちらのほうが仮装が似合っているかと質問された。`,[
+   {text:`${a}と答える`,run:()=>{hwChoiceReaction(a,b);hwAff(a,20);if(!state.weekPraised.includes(a))state.weekPraised.push(a)}},
+   {text:`${b}と答える`,run:()=>{hwChoiceReaction(b,a);hwAff(b,20);if(!state.weekPraised.includes(b))state.weekPraised.push(b)}},
+   {text:'選べないと答える',run:()=>{hwNoChoiceReaction(a,b);hwAff(a,10);hwAff(b,10)}}]);
+ }
+}
+function hwChoiceReaction(chosen,other){
+ const chosenLine=rand([`${chosen}は嬉しそうにしていた。`,`${chosen}は少し照れた表情をした。`,`${chosen}は自慢げに笑った。`]);
+ const otherLine=rand([`${other}も賛成だというように頷いていた。`,`${other}も${chosen}を褒めていた。`]);
+ hwRecord('究極の選択？',`${chosenLine} ${otherLine}`);
+}
+function hwNoChoiceReaction(a,b){
+ const one=rand([a,b]);
+ const line=rand([
+  `${a}と${b}は顔を見合わせ、嬉しそうに笑った。`,
+  `${a}と${b}は納得が行かないのか、まだ何やら言い合っている。`,
+  `${a}と${b}は、互いに相手が選ばれると思っていたと驚いていた。`,
+  `${one}は、自分を選んでほしかった、と少し残念そうに言った。`,
+  `${one}は、${state.mode==='saniwa'?'審神者':'職員'}は欲張りなんだなと微笑ましそうにしている。`,
+  `${one}は、自信があったのだがと悔しそうにしていた。`
+ ]);
+ hwRecord('究極の選択？',line);
+}
+function hwRunReport(){const all=hwOrderedNames();hwAsk('報告書','調査員として、政府への報告書をまとめなければいけない。印象に残った刀剣男士についての欄がある。ぱっと思いついたのは……。',all.map(n=>({text:n,run:()=>{hwRecord('報告書',`思い浮かべていた${n}が通りかかり、偶然目が合った。こちらの考えが伝わった……などということはありえないはずなのに、${n}はどこか嬉しそうに微笑んで、それから仕事をしているのか、お疲れ様と声をかけてくれた。`);hwAff(n,20)}})))}
+function hwRunCostumeChoice(){
+ const all=hwOrderedNames(),speaker=rand(all);
+ const costumeOrder=['狼男','吸血鬼','ゾンビ','死神','殺人鬼','悪魔','堕天使','白衣','ナース','フランケンシュタインの怪物','魔女','魔法使い','黒猫','魔王','ジャック・オ・ランタン'];
+ const costumes=[...new Set(all.map(n=>hwCostume(n)))].sort((a,b)=>costumeOrder.indexOf(a)-costumeOrder.indexOf(b));
+ // 魔王の周回のみ、通常の魔法使い枠を特殊な選択肢として扱う。
+ const choices=costumes.map(c=>({costume:c,label:c==='魔王'?'一期一振の側近とか…':c}));
+ hwAsk('仮装についての話',`${speaker}から、ずっと思っていたが、${state.mode==='saniwa'?'審神者':'職員'}は仮装をしないのかと尋ねられた。そういう指示は出ていないからと答えると、もしもの話でするとしたら何がいいか、と聞かれる。`,choices.map(({costume,label})=>({text:label,run:()=>{
+  const wearers=all.filter(n=>hwCostume(n)===costume);
+  state.costumeChoice=costume;
+  if(costume==='魔王'){hwRecord('仮装についての話',`「一期一振の側近とか…」と答えた。`)}
+  else if(wearers.includes(speaker)){hwRecord('仮装についての話',`自分とお揃いということか、と${speaker}は少し嬉しそうにしていた。`)}
+  else{hwRecord('仮装についての話',`${wearers.join('と')}みたいな感じが好きなのか、意外だと微笑ましい表情をされた。`)}
+  wearers.forEach(n=>hwAff(n,30));
+ }})));
+}
+// 好感度100イベント。仮装の同文面グループは一周に一度だけ。
+const HW_HUNDRED={
+'狼男':['狼男の問い','○○が、自分の仮装を見ながら、狼男は愛した人すら食べてしまうというが、愛する人に食べられることは幸せだと思うかと尋ねてきた。',[
+['幸せだと思う','じゃあ、もし自分が襲い掛かっても抵抗しないでほしい、と○○が真剣な表情で言う。職員が驚いていると、少しの間をおいて、なかなかの悪戯になっただろうと微笑まれた。'],
+['共に生きるのが幸せ','化け物でしかない狼男と、共に生きようと思える職員はすごい、と○○は感心したように言った。しかし、その瞳は感心というよりは、どこか浮足立った嬉しそうなものにも見えた。']]],
+'吸血鬼':['吸血鬼の問い','○○が、吸血鬼のマントを揺らしながら、もし本当に自分が喉が渇いて苦しんでいると言ったら、血を分けてくれるかと尋ねてきた。',[
+['分けてあげる','ありがとう、と言ってぐい、と引き寄せられ、思わず固まっていると、冗談だ、ひっかかってくれて嬉しいと満面の笑みの○○がそこにいた。……職員が去ったあと、○○はゆっくりと唾を飲み込んでいた。'],
+['断る','○○は、確かに職員はおいしそうだから、つい飲み干してしまうかもしれない、と納得している。分けるだけじゃなかったのかと聞くと、吸血鬼がそんな約束を守るわけがない、と悪戯っぽく笑われた。']]],
+'フランケンシュタインの怪物':['フランケンシュタインの怪物の問い','○○が、怪物の仮装を鏡で見ながら、人間と怪物が仲良くする物語も多くあるが、実際そんなことができるのだろうか、と問いかけてきた。',[
+['できると思う','じゃあ、職員がそうしてくれるのか、と。○○は笑顔なのに、どこか遠くを見るような瞳で職員を見つめ、そのひんやりと冷たい手で職員に触れた。職員が彼の手を握ると、驚いたあと、○○はとても嬉しそうに、ありがとう、と言った。'],
+['難しいと思う','自分もそう思う、と○○は言い、笑顔のまま職員の腕を掴んだ。その手は冷たく、力は強く、もし抵抗しようとしたとしても、びくともしないだろうと思わせるものだった。ぱっと職員を解放し、○○は、怪物にはやはり人間を無理やり攫う、そういう役回りが似合う、と笑った。']]],
+'白衣':['白衣の男の問い','人間には寿命があるが、それを悲しいとか嫌だと思ったことはあるかと、血染めの白衣を着た○○に問いかけられた。',[
+['思ったことがある','それを聞くと○○は笑い、この仮装はきっと悪い医者か狂科学者だから、そういうことを言われると実験台にしたくなる、と言ってきた。冗談だと思った職員も笑う。……職員が去ったあと、○○は、本当になってくれればなとひとり零した。'],
+['思ったことはない','それを聞くと○○は意地悪な笑みを浮かべた。この仮装はきっと悪い医者か狂科学者だから、そういうことを言う人間のことほど研究したくなる。捕まえられてしまうかも……と、脅かされた。職員は冗談として受け取り、話は盛り上がったが、彼のあの目はどこか本気にも見えた。']]],
+'ゾンビ':['ゾンビの問い','ゾンビの仮装をした○○に、もし傷から感染するタイプのゾンビに大切な人が噛まれたら、どうするのかと質問された。',[
+['それでも寄り添う','職員は優しい、でもゾンビは愛した人だから噛まないなんてできない、むしろ愛しているからこそ噛んでしまうかもしれない。一緒にゾンビになる気なのかと、○○は少し悲しげにしたが、職員が頷くと、それだけ愛されるゾンビになってみたいと微笑んだ。'],
+['とどめを刺す','職員のそういうところも好きだと○○は褒めてくれた。しかしその後、ニヤッと笑うと、自分がもしそんな状況になったら、きっと殺される前になんとか職員を噛んで、こちらに引きずり込もうとしてしまう、職員を離したくないから、と言われた。真剣に見えたが、冗談だろうか…。']]],
+'死神':['死神の問い','○○が、仮装用の鎌を見ながら、死神として魂を回収しなきゃいけないというのは大変そうだ。もし死神が実在したとして、職員はその仕事をやってみたいと思うか、と質問してきた。',[
+['やってみたい','その返事を聞くと、○○は何故か表情が明るくなった。理由を尋ねると、自分が死神の仮装をしていてそう言ってくれるのだから、死神としても一緒に働いてくれるという意味かと思って嬉しかった、と死神にしては優しい笑顔を見せてくれた。'],
+['やってみたくない','○○は、自分もそう思うと頷いた。ただ、魂を自由に扱えるなら、職員の魂を自分のものにできるかも。それなら死神も捨てたものではないと言うので、魂がどうして欲しいのかと聞くと、生まれ変わりもせずずっと手元にいてくれたら嬉しいから、と真剣に言われ、少しだけ怖かった。']]],
+'殺人鬼':['殺人鬼の問い','○○が、作り物の血染めの凶器を見せびらかしつつ、もし自分が本当に殺人鬼だったら怖いと思うか、と質問してきた。',[
+['怖い','○○は一瞬、驚いた表情をしたが、そのあと嬉しそうに笑った。本当に怖がってくれてるとは思っていなかった。そう思うと嬉しい、もっと怖がってもらえるように頑張る、と言う。微笑ましく見ていると、折角の仮装だから頑張るが、本気で怖がって逃げられたら寂しい、と眉を下げて付け足された。'],
+['怖くない','○○はにこやかに頷いて、そう言われると思った、と言って立ち上がると、目にも止まらぬ速さで本体を職員の首すれすれに突き付けた。怖い殺人鬼っていうなら、やっぱり自分たちはこうだろう、本当に職員を殺すとしてもこうすると、固まる職員の反応に満足そうにして、本体をしまった。']]],
+'悪魔':['悪魔の問い','悪魔の羽を揺らしながら、○○が話しかけてきた。悪魔は人間を誘惑したりするらしいが、自分が誘惑したら乗ってくれるか？　と聞いてくる。',[
+['乗ってあげる','嬉しい、と笑っていた○○は、嬉しいことを言ってもらったお礼だと言って、耳打ちをしてきた。……乗ってあげるとかそんな風に思っていたら足元を掬われて、あっというまに自分のものにされてしまうと思うよ、と。職員が咄嗟に反応できずにいると、忠告はしたのでと笑ってどこかに行ってしまった。'],
+['内容による','くすくすと笑った○○は、それは一番悪魔に付け入られやすいパターンだから、気を付けたほうがいいと忠告してくれた。職員が素直に頷くと、まあもうこのアドバイスを悪魔にされている時点で手遅れなのだから諦めましょうとも言われる。悪いようにはしないからと言った○○の目が、普段よりも暗く妖しく見えた気がした。']]],
+'堕天使':['堕天使の問い','黒い羽を揺らしながら、○○が話しかけてきた。堕天使は天使の堕落してしまった存在らしいが、天使と堕天使ならどっちが自分に似合うか？　と聞いてくる。',[
+['天使','○○は、天使みたいなほうが好きか。それなら、職員もまた天使なんだろうな、と言って、それから距離を詰めてきた。どうしたのかと問うと、堕天使として天使を堕落させようと思った……はいいが何をすればいいか分からなかったと照れたように笑っていた。羽でも生えていれば毟ってやったのだが、と。'],
+['堕天使','○○は、褒めてもらえているのか迷うが、今している仮装だから褒められたと信じる、と前置きしてから、つまり堕落した自分のほうが職員は喜んでくれるということか。と頷いて、歩み寄ってきた。そっと職員の頬を撫でて、それからドキドキしたかと聞いてくる。……堕天使って果たしてこういうものだろうか？']]],
+'ジャック・オ・ランタン':['ジャック・オ・ランタンの問い','○○が、自分の仮装を見ながら、このジャック・オ・ランタンという存在の元ネタは、生前の行いのせいで天国にも地獄にも行けなかった魂らしい、と話してくれた。',[
+['可哀想だ','○○は頷いた。自業自得とはいえずっと彷徨うのは可哀想だと思う、ただ、利点もありそうだと続ける。天国と地獄で分かれたらもう会えなさそうだが、大事な相手と自分どちらもジャック・オ・ランタンになったら、ずっと二人でいられるのでは、と。例え話だと分かりつつ、どこかその瞳は本気のものにも見えた。'],
+['○○はどう思う？','彼は、少し考えてから、刀剣男士も主が天国に行くのか地獄に行くのか分からない、地獄でもついて行くのにと思っても、それは叶わない刀がほとんどだろう。自分なら、刀剣男士ではない形なら死んでしまった大切な相手に寄り添えるなら、それも悪くないと思う、と真剣に語ってくれた。']]],
+'魔女':['魔女の問い','○○は、魔女の杖を手にして、職員はもし魔法というものが実在したら嬉しいかと聞いてきた。',[
+['嬉しい','彼はそれを聞いて、刀剣男士なら、魔女ほどではなくても、不可思議な力を扱える。自分にできることなら本当に叶えてもいい。ただ、魔法に魔力だのが必要なように、刀剣男士だって代償をもらう、それでも自分を頼ってくれるか、と問うた。職員が答えに困っていると、○○は、冗談だと笑い、……今は、と付け加えた。'],
+['興味がない','答えを聞くと彼は笑顔を見せた。そういう人間を引きずり込んでこそ、悪の魔女って感じがすると、何故か張り切っている。職員が、○○をそもそも悪なんて思っていないと言うと、彼はなんだかんだ嬉しそうに笑っていた。……そうして職員が去ったあと。呪文、効いたなと、○○は一人呟いた。']]],
+'黒猫':['黒猫の問い','黒猫の耳を揺らしながら○○が歩いてきて、この黒猫とはなんなのだろうと話を振られた。本当にただの猫なのか。魔女や魔法使いの使い魔なのか。もっと恐ろしい存在の仮の姿だったりするのだろうか？',[
+['可愛い猫','猫の仮装をしているときに言われる言葉としては誉め言葉だと分かっていても、なんだか気恥ずかしいと○○は照れたようにしている。今はこんな風で、仮装が猫でも、刀剣男士をやめたつもりはないから、何かあったときは頼ってほしい。猫でも敵の首くらい落とせると、胸を張られてしまった。'],
+['怖い存在かも','怖いって例えばなんだろう、としばらく二人で話す。悪魔だとすると○○（この周で悪魔仮装の刀名）と被るけど、使い魔の猫の正体が実は……というのはありそう。それか、もっと強い……邪神のようなものとか、と笑った○○の瞳の奥に、見たことのない妖しげな輝きを見たことを、職員は誰にも言えなかった。']]]
+};
+HW_HUNDRED['魔王']=['魔王の問い','立派な魔王の仮装をした一期一振がおやつを食べているところに出くわした。魔王もおやつの時間なのかと指摘すると、「魔王……と呼ばれるのは、仮装と分かっていてもやはり何とも言えぬ心地です。貴方の目には、私はどう映っていますか」と尋ねられた。',[
+['かっこ良い','一期一振は少し驚いたように目を瞬かせ、それから嬉しそうに微笑んだ。「それは光栄ですな。せっかくの仮装ですから、そう言っていただけるのは嬉しいものです」そう言うと、おやつを勧めてくれた。魔王と並んで、穏やかなおやつの時間を過ごした。'],
+['少し怖い','一期一振は僅かに目を伏せたが、すぐに悪戯っぽく口元を歪めた。「それならば、あまり近づかぬほうがよいでしょう。魔王に何をされてしまうか分かりませんからな」言いながら、おやつをこちらに差し出してくる。恐ろしい魔王にも客をもてなす心はあるのか、それとも、何かの罠だろうか……。'],
+['別の仮装のほうが似合う','一期一振は納得したように頷いた。「なるほど。私も、この姿が自分に似合っているのか、少々疑問に思っておったのです」それならば、どのような仮装が似合うだろうかと尋ねられ、おやつを勧められた。二人で菓子をつまみながら、あれこれと仮装の案を出し合った。'],
+['そんな一期一振も好き','一期一振は不意を突かれたように言葉を止め、少し照れたように微笑んだ。「……そのようなことを、魔王に軽々しく仰ってはいけませんな。気に入られて、攫われてしまうかもしれません」冗談めかした口調だったが、その眼差しはどこか優しかった。こちらが笑い返すと、一期一振もまた、嬉しそうに目を細めた。']]];
+HW_HUNDRED['魔法使い']=['魔法使いの問い',HW_HUNDRED['魔女'][1].replaceAll('魔女','魔法使い'),HW_HUNDRED['魔女'][2].map(([a,b])=>[a,b.replaceAll('魔女','魔法使い')])];
+HW_HUNDRED['ナース']=['ナースの問い',HW_HUNDRED['白衣'][1].replace('血染めの白衣','血染めのナース服'),HW_HUNDRED['白衣'][2].map(([a,b])=>[a,b.replaceAll('医者','看護師')])];
+const HW_HUNDRED_SHARED=new Set(['狼男','吸血鬼','フランケンシュタインの怪物','白衣','ナース','ゾンビ','死神','殺人鬼','ジャック・オ・ランタン']);
+function hwHundredKey(c){return c==='ナース'?'白衣':c}
+function hwHundredReached(n,old){
+ if(old>=100||state.aff[swordByName(n)]!==100)return;
+ const c=hwCostume(n);
+ // 未定義の仮装イベントは記録しない。
+ if(!HW_HUNDRED[c])return;
+ state.hundredSeen ||= [];state.hundredCostumesSeen ||= [];state.hundredQueue ||= [];
+ if(state.hundredSeen.includes(n))return;
+ state.hundredSeen.push(n);
+ const key=hwHundredKey(c);
+ if(HW_HUNDRED_SHARED.has(c)&&state.hundredCostumesSeen.includes(key))return;
+ if(HW_HUNDRED_SHARED.has(c))state.hundredCostumesSeen.push(key);
+ state.hundredQueue.push(n);
+}
+function hwRunHundredPending(){
+ // 好感度1/0による結末を優先し、会話を先に表示しない。
+ if(hwOrderedNames().some(n=>state.aff[swordByName(n)]<=(state.mode==='saniwa'?0:1)))return false;
+ state.hundredQueue ||= [];
+ const n=state.hundredQueue.shift();if(!n)return false;
+ const c=hwCostume(n),[title,desc,answers]=HW_HUNDRED[c];
+ const substitute=t=>t.replaceAll('○○（この周で悪魔仮装の刀名）',hwOrderedNames().find(x=>hwCostume(x)==='悪魔')||'悪魔の刀剣男士').replaceAll('○○',n);
+ hwAsk(title,substitute(desc),answers.map(([label,body])=>({text:substitute(label),run:()=>{
+  // 100イベントの選択を本文ログだけでなく機械判定可能な形で保存。
+  state.hundredAnswers ||= {};state.hundredAnswers[n]={costume:c,answer:label};
+  hwRecord(title,substitute(body));
+ }})));
+ return true;
+}
+
+function hwRunNext(){
+ if(!state||pending||state.ended)return;
+ if(hwCheckImmediateEnding())return;
+ if(hwDanger())return;
+ if(hwRunHundredPending())return;
+ state.specialQueue ||= [];
+ const kind=state.specialQueue.shift();if(!kind){if(state.turn>=29)hwFinalDay();return;}
+ if(kind==='three')hwRunThree();
+ if(kind==='weekly')hwRunWeekly();
+ if(kind==='report')hwRunReport();
+ if(kind==='costume')hwRunCostumeChoice();
+ if(!pending)hwRunNext();
+}
+// END01–10：仮装別「悪戯追い出され」。その他の結末は引き続き仮本文。
+const HW_END_COSTUMES=['狼男','吸血鬼','フランケンシュタインの怪物','死神','白衣','悪魔／堕天使','ゾンビ','殺人鬼','魔女／魔法使い／黒猫','ジャック・オ・ランタン'];
+const HW_PRANK_TITLES=['満月の悪夢','鮮やかなる悪夢','誓いの悪夢','収穫の悪夢','光の悪夢','無垢なる悪夢','蕩ける悪夢','喜劇の悪夢','焦がれる悪夢','祝祭の悪夢'];
+const HW_PRANK_BODIES=['○○は狼のようにひとつ吠えると、仮装のそれとは思えない、獰猛な犬歯をその口から覗かせた。職員をいとも容易く押し倒し、齧り付く。生きたまま喰われる痛みに意識が遠のく中、○○が舌なめずりをするのが見えた','花のような甘い香りに、意識が揺れる。そのほんの一瞬で、○○は職員を捕まえてしまった。優雅な所作に反し○○の瞳はぎらりと凶暴に輝き、首筋に鋭い牙が沈められる。痛みと、全身の血が失われていく恐怖に、死を覚悟した','ふっと意識が遠のく。いつのまにか、職員は薄汚れた衣装を纏って、廃墟となった教会にいた。隣で怪物……いや、○○が笑う。これでやっと、自分のものになると。その言葉に、自分が着せられているのがぼろぼろの花嫁衣装だと気づいた','○○は、鮮やかな手さばきで鎌を構えた。それは迷いなく振るわれ、あっさりと職員の首を落とす。呆然と、職員は足元の自分の死体を見下ろした。そして○○が職員の魂へと手を伸ばしてくるのが見えた','突然、眩しい光に照らされる。気が付くと、血染めの白衣／ナース服を着た○○が、手術台に縛られた職員を見下ろし笑っていた。容赦なく注射針を刺され、注ぎ込まれる得体の知れないものに全てを侵食されていく感覚に襲われた','ふっと意識が遠のく。いつのまにか、職員は自分の背に白い羽があることに気づいた。傍らの○○は黒い羽を広げて職員を見下ろし、容赦なくその背の羽に手を伸ばした。一枚、また一枚と毟られ、激痛と共に大切な何かが失われるのを感じた','○○は職員に掴みかかり、飢えたゾンビのように喉元に喰らいついた。傷口から感染した何かによって、体も意識も作り替えられていくような、おぞましい感覚。体温のない○○にまとわりつかれ、もがくことさえもう叶わず諦めかけた','突然、周囲が暗くなった。気が付くと、暗い森で座り込んでいた職員の肩を、殺人鬼の姿をした○○が、笑顔で叩いた。悲鳴を上げる職員にも構わず彼の隠れ家まで引きずられ、ホラー映画の世界のように体を解体され、死ぬのだと思った','突然、視界が薄暗くなる。気が付くと、魔女／魔法使い／黒猫／魔王の格好をした○○が、牢に繋がれた職員を意地悪な表情で見ていた。足元の怪しげな魔法陣が光り、職員を包む。焼かれるような熱い痛みに襲われ、○○のことしか考えられなくなっていった','ふっと意識が遠のく。いつのまにか、職員はランタンを手に、暗い森で佇んでいた。少し先を、見知らぬ人間が歩いていく。ああ、そっちに行ってはいけないと、声をかけそうになったのを○○に止められる。自分たちはもう化け物なのだから、と。……納得しかけた '];
+const HW_PRANK_ENDING='、次の瞬間。気づけば審神者／職員は、傷ひとつない体で政府施設に立っていた。遠くで、悪戯が成功した○○の笑い声が聞こえた気がした。';
+const HW_RETURN_TITLES=['狼男の帰還','吸血鬼の帰還','怪物の帰還','死神の帰還','白衣の帰還','悪魔の帰還','ゾンビの帰還','殺人鬼の帰還','魔法の帰還','ランタンの帰還']; // 仮題
+const HW_RETURN_INTRO='そうして審神者／職員は、政府施設に降り立った。終わってみれば、あの本丸での出来事はどれも、夢だったようにすら思える。無事に手続や後処理を終え、久々に自室へ帰り、眠りにつく。';
+const HW_RETURN_BODIES=[
+ 'そうして見た夢には、一匹の狼男……○○が現れ、大きな牙で甘噛みされた。目を覚ますと、傷も何も残ってはいなかったが、首輪のようなデザインの首飾りがいつのまにか審神者／職員の首についていた。',
+ 'そうして見た夢には、一匹の吸血鬼……○○が現れ、優しく血を吸われた。目を覚ますと、傷も何も残ってはいなかったが、芳しい薔薇が一輪、審神者／職員の枕元に置かれていた。',
+ 'そうして見た夢には、一匹の怪物……○○が現れ、手の甲に口づけをされた。目を覚ますと、何の痕跡も残ってはいなかったが、美しく輝く指輪がいつのまにか審神者／職員の指にはまっていた。',
+ 'そうして見た夢には、一人の死神……○○が現れ、首をそっと撫でられた。目を覚ますと、傷も何も残ってはいなかったが、血のように赤い石のついた首飾りがいつのまにか審神者／職員の首についていた。',
+ 'そうして見た夢には、一人の白衣の男／ナース……○○が現れ、労わるように撫でてくれた。目を覚ますと、何の痕跡も残ってはいなかったが、薬の形を模したお菓子がひとつ、審神者／職員の枕元に置かれていた。',
+ 'そうして見た夢には、一人の堕天使／一匹の悪魔……○○が現れ、誘惑するように囁かれた。目を覚ますと、何の痕跡も残ってはいなかったが、白い羽が一枚、審神者／職員の枕元に落ちており、触れると真っ黒に染まっていった。',
+ 'そうして見た夢には、一匹のゾンビ……○○が現れ、そっと肌に歯を立てられた。目を覚ますと、傷も何も残ってはいなかったが、つぎはぎで縫われたブランケットが、審神者／職員にかけられていた。',
+ 'そうして見た夢には、一人の殺人鬼……○○が現れ、所有を示すかのように腕を掴まれた。目を覚ますと、何の痕跡も残ってはいなかったが、鎖を思わせる腕輪がいつのまにか審神者／職員の腕についていた。',
+ 'そうして見た夢には、一人の魔女／魔法使い／魔王／一匹の黒猫……○○が現れ、呪文のような言葉を囁かれた。目を覚ますと、何の痕跡も残ってはいなかったが、一枚のメッセージカードを枕元に見つけてしまった。……読んでしまえば戻れない、呪文の書かれたそれを。',
+ 'そうして見た夢には、一匹のジャック・オ・ランタン……○○が現れ、そのランタンの暖かな炎に包まれた。目を覚ますと、当然傷も何も残ってはいなかったが、小さなかぼちゃのランタンが、審神者／職員の枕元に置かれていた。'
+];
+function hwReturnBody(n){
+ const i=hwCostumeIndex(n),c=hwCostume(n);let body=HW_RETURN_INTRO+HW_RETURN_BODIES[i];
+ if(i===4)body=body.replace('白衣の男／ナース',c==='ナース'?'ナース':'白衣の男');
+ if(i===5)body=body.replace('一人の堕天使／一匹の悪魔',c==='堕天使'?'一人の堕天使':'一匹の悪魔');
+ if(i===8)body=body.replace('一人の魔女／魔法使い／魔王／一匹の黒猫',c==='黒猫'?'一匹の黒猫':`一人の${c}`);
+ return body.replaceAll('○○',n).replaceAll('審神者／職員','職員');
+}
+function hwRescueCostume(n){const c=hwCostume(n);return `${['殺人鬼','白衣','ナース','魔女','魔法使い','魔王','堕天使','死神'].includes(c)?'一人':'一匹'}の${c==='白衣'?'白衣の男':c==='フランケンシュタインの怪物'?'怪物':c==='ジャック・オ・ランタン'?'ジャック・オ・ランタン':c}`;}
+function hwRescueStart(last){
+ const top=hwTopName(),lastScore=state.aff[swordByName(last)],isTop=last===top;
+ const intro=isTop
+  ?`${last}は自分が受け取ったのが最後の一つだったことに気が付くと、少し考えるようにしてから、どうか他のみんなに気を付けるように、でも自分が守るから心配はいらないと囁いた。`
+  :lastScore>=80
+   ?`${last}は自分が受け取ったのが最後の一つだったことに気が付くと、少し考えるようにしてから、どうか他のみんなに気を付けるように、そして自分でも他の刀でもいいから、信頼できる誰かを頼ったほうがいいと告げた。`
+   :`${last}は自分が受け取ったのが最後の一つだったことに気が付くと、少し考えるようにしてから、他のみんなに気を付けたほうがいいかもしれない、誰か信頼できる刀を頼ったほうがいいと告げた。`;
+ const rescuePool=state.mode==='saniwa'?hwOrderedNames().filter(n=>n!=='歌仙兼定'&&n!=='一期一振'):hwOrderedNames();
+ const candidates=(isTop&&rescuePool.includes(last)&&(state.mode!=='saniwa'||lastScore>=80))?[last]:rescuePool.filter(n=>state.aff[swordByName(n)]>=80);
+ if(!candidates.length&&state.mode!=='saniwa')candidates.push(rescuePool.reduce((best,n)=>!best||state.aff[swordByName(n)]>state.aff[swordByName(best)]?n:best,null));
+ hwAsk('最後のお菓子',intro,[{text:'頷く',run:()=>hwRescueDanger(candidates)}]);
+}
+function hwRescueDanger(candidates){
+ const kasen=state.mode==='saniwa'?Math.random()<.5:candidates.includes('歌仙兼定');
+ state.hwRescueDanger=kasen?'一期一振':'歌仙兼定';
+ const body=kasen
+  ?'「なんでも、もうお菓子をお持ちではないと？」背後から、一期一振の声がした。「ですが、まだ祝祭は終わっていない。心苦しいですが、お菓子がないのでしたら、代わりのものをいただかなくては」周囲の刀も頷いて、審神者／職員に手を伸ばす。'
+  :'「もう、お菓子を持っていないそうだね」背後から、歌仙兼定の声がした。「けれど、まだ祝祭は終わっていないだろう。お菓子がないのなら、代わりを差し出してもらわなければ」周囲の刀も頷いて、審神者／職員に手を伸ばす。';
+ if(state.mode==='saniwa'&&!candidates.length){
+  hwAsk('不穏な気配',body.replaceAll('審神者／職員','審神者'),[{text:'振り返る',run:()=>hwSaniwaNoRescueEvent(kasen)}]);
+  return;
+ }
+ hwAsk('不穏な気配',body.replaceAll('審神者／職員',state.mode==='saniwa'?'審神者':'職員'),candidates.filter(n=>!(kasen&&n==='一期一振')).map(n=>({text:`${n}の名を呼ぶ`,run:()=>hwRescueRun(n,kasen)})));
+}
+// 審神者モード限定：お菓子0、好感度80以上の救援者がいない場合の専用結末。
+function hwSaniwaNoRescueEvent(ichigoAppears){
+ if(ichigoAppears){
+  const body='周囲の刀剣男士たちの手が、審神者を捕らえた。逃げる間もなく、一期一振の前へと突き飛ばされる。顔を上げた審神者は、息を呑んだ。そこにいたのは、もはや刀剣男士とは呼べない異形の化け物だった。「……それでは、いただきます」異形……一期一振の瞳は何かを言いたげだったが、告げられたのはいつも通りの食事を始めるかのような言葉だった。';
+  hwAsk('不穏な気配',body,[{text:'目を閉じる',run:()=>hwSaniwaNoRescueEnd(true)}]);
+ }else{
+  const body='歌仙兼定は、審神者を見据えたまま、穏やかに微笑んでいる。「きみには、まだ差し出せるものがあるはずだよ」歌仙兼定は一歩、審神者に近づいた。「よく考えてごらん。お菓子の代わりに、何を差し出せばいいのか」';
+  hwAsk('不穏な気配',body,[{text:'自分を差し出す',run:()=>hwSaniwaNoRescueEnd(false)},{text:'自分を差し出す',run:()=>hwSaniwaNoRescueEnd(false)}]);
+ }
+}
+function hwSaniwaNoRescueEnd(ichigoAppears){
+ const title=ichigoAppears?'END「腹の虫」（仮）':'END「お菓子がなければ」（仮）';
+ const body=ichigoAppears
+  ?'全身を噛み砕かれる激痛とともに、霊力が急速に奪われていく。意識が遠のく中、審神者は甘いお菓子の香りを感じた。そういえば、この本丸には、いつも甘い香りが漂っていた。自分以外にも、こうして喰われた者がいたのだろうか。いったい何人が、あの穏やかな笑顔に騙されてきたのだろう。そんなことを考えているうちに、痛みも、恐怖も、何も感じなくなった。審神者の意識は、そのまま二度と戻ることはなかった。'
+  :'こうして審神者は、お菓子の代わりに自らを差し出し、歌仙兼定は審神者を本丸の一室に閉じ込めた。食事も衣服も与えられ、不自由はなかったが、外へ出ることだけは許されなかった。幾度となく逃亡を試み、そのたびに連れ戻された審神者は、やがて抵抗することをやめた。今では歌仙が訪れるたび、自ら笑顔を浮かべ出迎えている。それが諦めによるものなのか、あるいは別の理由なのか。歌仙はただ、満足そうに審神者を見ている。';
+ state.ending={title,body,death:ichigoAppears};state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',`${title}\n${body}`);showEnding();
+}
+function hwRescueRun(helper,ichigoAppears=false){
+ const kasen=helper==='歌仙兼定',appearance=hwRescueCostume(helper);
+ const body=ichigoAppears
+  ?`それを遮ったのは、${appearance}だった。${helper}は、審神者／職員を安心させるように笑い、それから本物の魔物かのような……あるいは、それ以上の機敏な動きで審神者／職員の手をとり、一期一振のため息を背にして走り出した。`
+  :`それを遮ったのは、${appearance}だった。${helper}は、審神者／職員を安心させるように笑い、それから本物の魔物かのような……あるいは、それ以上の機敏な動きで審神者／職員の手をとり、周囲の刀を蹴散らして走り出した。`;
+ hwAsk(state.mode==='saniwa'?'闇から伸ばされた手':'救いの手は闇の中から',body.replaceAll('審神者／職員',state.mode==='saniwa'?'審神者':'職員'),[{text:'走る',run:()=>hwRescueFarewell(helper)}]);
+}
+function hwRescueFarewell(helper){
+ if(state.mode==='saniwa'){
+  const body='そして走って走って……もう歌仙兼定／一期一振たちの姿も見えなくなったところで、足を止める。本当はこんなことしたらいけないけど、審神者を放っておけなかった。このまま自分と逃げてくれないかと、○○はそう言って笑った。'.replace('歌仙兼定／一期一振',state.hwRescueDanger||'歌仙兼定').replaceAll('○○',helper);
+  hwAsk('闇から伸ばされた手',body,[{text:'頷く',run:()=>hwSaniwaRescueEnd(helper)}]);return;
+ }
+ const body=helper==='歌仙兼定'
+  ?'そして走って走って……あと一歩踏み出せば、政府施設へ戻れるというところで、足を止める。「さあ、帰る時間だよ。僕も、きみにならずっといてもらっても構わないと思っているけれどね。帰りたがるきみをよってたかって通せんぼ、なんて……雅じゃないだろう？」歌仙兼定は、そう言って優しく背を押してくれた。'
+  :`そして走って走って……あと一歩踏み出せば、政府施設へ戻れるというところで、足を止める。今年は審神者／職員のお陰で楽しいハロウィーンになった。きっとまた会える、${helper}はそう言って優しく背を押してくれた。`;
+ hwAsk('救いの手は闇の中から',body.replaceAll('審神者／職員','職員'),[{text:'一歩を踏み出す',run:()=>hwEnd('return',helper)}]);
+}
+const HW_PRANK_A=new Set(['岩融','今剣','骨喰藤四郎','前田藤四郎','秋田藤四郎','乱藤四郎','宗三左文字','大和守安定','山姥切国広','獅子王']);
+function hwOrderedNames(){return sortChoiceSwords(FIXED).map(id=>sword(id).name)}
+function hwTopName(){return hwOrderedNames().reduce((best,n)=>!best||state.aff[swordByName(n)]>state.aff[swordByName(best)]?n:best,null)}
+function hwCostumeIndex(n){const c=hwCostume(n);return c==='ナース'?4:['悪魔','堕天使'].includes(c)?5:['魔女','魔法使い','魔王','黒猫'].includes(c)?8:HW_END_COSTUMES.indexOf(c)}
+// エンディング番号用の統一順：狼男／吸血鬼／ゾンビ／死神／殺人鬼／悪魔／白衣／怪物／魔女／ランタン。本文配列の旧順は変更しない。
+const HW_END_NUMBER_BY_BODY_INDEX=[1,2,8,4,7,6,3,5,9,10];
+function hwPrankBody(n){
+ const index=hwCostumeIndex(n),c=hwCostume(n);
+ let body=HW_PRANK_BODIES[index]+' '+HW_PRANK_ENDING;
+ if(index===4)body=body.replace('白衣／ナース服',c==='ナース'?'ナース服':'白衣');
+ if(index===8)body=body.replace('魔女／魔法使い／黒猫／魔王',c);
+ return body.replaceAll('○○',n).replaceAll('審神者／職員','職員').replace(' 、次の瞬間。','、次の瞬間。');
+}
+const HW_FOREVER_BODIES=["こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は嬉しそうに職員に襲い掛かり、自慢の牙で血肉を貪ったが、喰い殺すことは決してしなかった。傷には手当てを施し、時には霊力を与え、喰っては治しての日々。決して尽きない食糧であるとともに、○○という獣のとっておきの宝物として、職員は生きていく。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は職員を優しく抱き寄せ、甘美なその血を味わう。しかし当然、吸い尽くして命を奪うようなことはしない。喉が渇けば牙を立て、弱れば霊力を与えてやる。そうやってこれからずっと永遠に、職員は○○のための食糧としてここで生きていくことになるのだ。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は職員こそ、自分がずっと探していた怪物の花嫁に違いないと言って、それを事実にするための術を職員に刻み、その通りの存在に変えてしまった。白の衣に輝く指輪、明けぬ夜の中にしかいられないのが勿体ないほど美しい装いで、今日も怪物の花嫁は彼に寄り添っている。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は迷わず職員の魂を抉り出し、そこに所有の証を刻んでから、美しい人形のように整えた体にそれを戻した。魂も体も○○が望めば思うままになる、けれど確かに心を宿した、生き人形。それを守るためならば、死神はどんな敵だろうと、罪なき民だろうと迷わず狩るのだろう。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は自分の技術があれば人間のままずっと一緒にいられると言い、頷いた職員に実験を繰り返した。きっと彼の言葉は真実だったのだろう。その果てに、己にも実験を施し、怪しい薬を打つことを躊躇わない職員が生まれた。二人は今日も幸せに、実験に励んでいることだろう。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は、まだ事態が飲み込めていなかった、あるいは自分に好意を向けていた職員を言葉巧みに操り、契約を交わさせた。そしてその契約を、自分を縛ると同時、職員のことも縛る絶対の楔としたのだ。職員は人の身のまま、人ならざるものの掌の上で愛され、縛られ、これからも生き続けていく。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は最初こそ躊躇いがちに噛み痕を残したが、抑えが効かず最後には職員を歯形だらけにしてしまった。それでも、王子の口づけが呪いを解くように、むしろ解けない呪いにかかった職員は、目を開け、意識を取り戻した。もう、彼と肌を触れ合わせても冷たくは感じない体で。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は自分と同じになってほしいと職員に言い、行方の分からない職員を探しに来た同僚を目の前で斬り、その肉を二人で分けた。そのおぞましい儀式を、職員は恐怖で諦めたのか、心から受け入れたのか。もう知るすべもない。分かることは、恐ろしい殺人鬼が一人、ここに生まれたということだけ。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は魔術を使って職員を自分の支配下に置き、最初は戸惑っていた職員も、じわじわとその巧みな言葉と魔術による幻惑で納得させられていった。あるいは、書き換えてしまったと言うべきか。とはいえ些末なことだろう。当の本人は、あんなに幸せそうにご主人様に甘えているのだから。", "こうして、正式に「この本丸のもの」になった職員を最初に祝ったのは、やはり○○だった。彼は魂の半分を職員に渡し、職員の魂の半分を預かる「約束」を交わした。これによって死ぬこともなくなり、人間であることを捨てたわけではない職員は、この明けない夜を照らす灯火としてみんなから愛され、○○からは言うまでもなく寵愛され、幸せに過ごしてゆくことだろう。"];
+const HW_SANIWA_FOREVER_BODIES=["こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は待ちきれないというように審神者にのしかかり、その大きな牙で審神者の人間としての部分を全て喰らい尽くし、同胞へと変えた。明けない夜、赤い満月の下で、狼たちが吠える。それは新たな仲間への歓迎と、これからずっと続くハロウィーンの日々を祝う声だった。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は審神者を優しく抱き寄せるとその首筋に牙を突き立て、流れる血全てを吸い尽くして、仕上げに血を与えて自らの眷属とした。気高く美しく、けれど○○から与えられる糧なしでは生きられない生き物。今日も暗い夜の中で、冷たい肌に牙を沈めたのはどちらの吸血鬼だろう。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は審神者こそ、自分がずっと探していた怪物の花嫁に違いないと言ったが、審神者は愛は押し付けるものではないと答えた。もし○○が審神者と接していて自然に愛情を抱くことがあれば、その時は花嫁になると、そう約束を交わし、怪物とその花嫁候補は日々を過ごしていく。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は審神者を生かしたまま魂に術を施し、人間を狩るための自らの右腕……魔物と変えた。人に似た姿を保ったまま、戦いのために振るわれるなんて刀剣男士みたいだと言う審神者と、なら死神でも刀剣男士でもある自分とお揃いだと笑う○○は、屍の山の上で幸福そうだった。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は薬物だけでは飽き足らず、刀剣男士としての力すらも審神者に与え、それを受け入れた審神者はもはや人間ではない何かに成り果てていた。それは同時に、○○と共に生きられるという証明でもあった。彼らはきっとこれからも、互いのために実験と証明を繰り返すのだろう。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は祝福と称し、審神者を白い羽を持った天使のような何かに変えてやり、自分と対の存在だと喜んだ。無論、それで終わるはずもない。○○によってじわじわと堕落に誘われ、やがて身も心も穢された審神者は、彼と同じ悪魔／堕天使に成り果てる。彼の描いた筋書き通りに。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は審神者に喰らいつきたい衝動を抑えて、審神者に一つだけ願った。それは、審神者の片目が欲しいという願い。こうして抉った瞳を一つずつ交換した審神者と○○は、互いの力も怪異としての在り方もぐちゃぐちゃに混ざった一対の存在として在り続ける未来を手に入れた。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は次は審神者の番だと言い、知る限りの本丸の真実とあらゆる殺しの技術を伝え、それを受け入れた審神者に自分の本体を凶器として振るわせた。怪異が巣食うこの本丸で、たったひとりの人間。けれど獲物でも庇護の対象でもなく、審神者もまた、人の身のまま鬼となったのだ。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼はすぐに審神者の記憶を焼き、認識を惑わす強力な術を施した。それが彼の精一杯の優しさで、同時に審神者を独占するための方法でもあった。何も知らず、この本丸の狭い世界が全てだと信じる無垢な審神者の瞳には、今日も優しい仲間たちだけが映っている。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、やはり○○だった。彼は審神者にもジャック・オ・ランタンとして、あるいはそれよりもっと強大な存在として、この本丸を支える一角になってほしいと願った。そうして○○から預かった力をその身に宿した審神者は、祝祭の夜を照らす存在として、この本丸とその秘密を守る存在の一人になった。"];
+// 審神者モード・最終日「食べない」：確定本文の保管用。
+// 2026-11-12時点で死神／殺人鬼／白衣・ナース／黒猫の4種のみ確定。
+// 分岐・エンド番号・到達条件は未接続。○○は実装時に男士名へ置換する。
+const HW_SANIWA_FINAL_REFUSAL_APPROVED = Object.freeze({
+  '死神': '○○は断りの言葉を聞くと、悲しそうに目を伏せた。しかし、それもほんの一瞬のことだった。次の瞬間には鎌を取り出すと、審神者の魂を迷わず刈り取って、愛おしそうに見つめた。そして、躊躇うことなくそれを口に運ぶと、飲み下す。これでもう、審神者が自分のもとから逃げ出すことはない。○○は満足そうに微笑むと、魂を奪われて倒れた審神者の亡骸の冷たい頬を、優しく撫でた。',
+  '殺人鬼': '○○は断られたことを理解すると、笑顔のままあっさりと頷いた。残念ではあるが、それなら仕方がない。そう言わんばかりに、慣れた手つきで審神者の命を奪った。そこからの○○は、とても楽しそうだった。審神者の亡骸を丁寧に解体し、気に入った部位を美しい装飾品に仕立てていく。完成した品を身につけ、残りを部屋に飾ると、○○は満足げに微笑んだ。これからは、いつでも一緒にいられる。',
+  '白衣': '○○は、驚いた様子を見せなかった。その返答も予想していたのだという。取り出された注射器を避ける間もなく、審神者の体に薬液が流し込まれる。意識は穏やかに薄れ、そのまま二度と目覚めることはなかった。○○は人形のように美しい審神者の亡骸を、うっとりと眺める。もう心も意思もないその体に、○○は愛情を込めて手を加え続けた。より美しく、より理想に近づけるための実験に、終わりはなかった。',
+  'ナース': '○○は、驚いた様子を見せなかった。その返答も予想していたのだという。取り出された注射器を避ける間もなく、審神者の体に薬液が流し込まれる。意識は穏やかに薄れ、そのまま二度と目覚めることはなかった。○○は人形のように美しい審神者の亡骸を、うっとりと眺める。もう心も意思もないその体に、○○は愛情を込めて手を加え続けた。より美しく、より理想に近づけるための実験に、終わりはなかった。',
+  '黒猫': '○○は、不満そうに審神者を見つめた。そして、甘えるように身を寄せ、一度だけ撫でてほしいと言った。審神者がその髪に触れた瞬間、○○は嬉しそうに目を細め、そっと術をかけた。たちまち審神者の体は小さな猫へと姿を変え、人間だった頃の記憶も言葉も失われていく。○○は戸惑う猫を優しく抱き上げると、愛おしそうに頬を寄せた。審神者が人の姿に戻れる日は、二度と来なかった。'
+});
+// 審神者モード：同じ仮装の二振りと迎える永久ハロウィーン（本文記録用・到達条件は未接続）。
+const HW_SANIWA_PAIR_FOREVER_BODIES=["こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは奪い合うように審神者に襲い掛かり、二人分の牙が審神者の人間としての部分を喰い散らかした。審神者が同胞に変わってからも、○○と××は審神者をめぐり競い合う。そんな三匹の狼も、この本丸を脅かす存在が現れたときだけは恐ろしい連携を見せるという。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは二人で審神者を分け合うようにその牙を立て、独占せずに分け合うための印を審神者に刻んだ。吸血鬼にはなり切らない眷属、二人の所有物として、人間より頑丈になった審神者は、今宵もまた、○○と××に求められるままに肌を晒し血を捧げる。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは喜びのあまり、一目散に審神者に喰らいつき、ぐちゃぐちゃに喰い散らかしてしまった。もちろんそれでは終わらず、彼らの肉体と霊力を与えて審神者を蘇らせたが、つぎはぎにされた体を嘆く審神者のため、彼らはあらゆるルートで美しい人間の死体を集めているという。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは審神者と自分たちの魂を結び付ける術を施し、三人で一組の怪異になった。だから三人は、皆と違い本丸の外にだって出られる。そこで人間を狩ることもできる。何故ならいつも、足元の影の中から○○と××が見守って――見張って――いるのだから。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは知る限りの本丸の秘密を共有し合い、この場所を守るため、そして自分たちが幸せになるため、これからも命を狩ることを誓い合った。○○と××は時には自らが凶器として。あるいは皆で、人間のかたちを真似て。血染めの道を、三人は笑顔で歩み続ける。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは審神者に悪魔の羽が似合う、いや堕天使の羽が似合うと言い合った末、先に堕落させたほうが審神者をもらうという約束まで勝手にしてしまった。二人がかりでの誘惑に打ち勝てるはずもなく、審神者が堕ちるのも時間の問題だが……果たしてその羽はどの答えを示すのだろう。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは競うように審神者に実験を施し、刀剣男士としての力すらも与え、薬物と二振り分の力に侵された審神者はもはや人でないことは明白だったが、審神者を含め、それを悲しむものはいなかった。これからも三人で実験を続けよう。愛や幸せだって見つかるかもしれないのだから。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは審神者が自分の花嫁に違いないと最初は争ったが、審神者が窘めたところ、花嫁は一匹だけのものじゃなくてもいいのでは、と彼らに気づかせてしまった。結果、審神者は二匹の怪物に刻印を施され、二匹分の重たい愛を注がれて今日も生きている。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らはすぐに審神者の記憶を焼き、代わりに都合の良い思い出を焼き付ける術を使った。それは彼らの優しさだったかもしれないし、審神者を思い通りにしたい欲もあったかもしれない。上書きされた心で○○と××を愛する審神者は、今日も純真な笑顔を二振りに向ける。", "こうして、正式に「この本丸の審神者」になった審神者を最初に祝ったのは、○○と××だった。彼らは審神者にジャック・オ・ランタンよりさらに強大な存在として、本丸を導いてほしいと願った。そうして二振りから預かった力をその身に宿した審神者は、夜を照らす灯火として、この本丸の秘密を守り、皆との日々を決して終わらせない怪異の一匹となった。"];
+function hwSaniwaPairForeverBody(first,second){
+ const index=hwCostumeIndex(first);
+ if(index<0||hwCostumeIndex(second)!==index)return null;
+ return HW_SANIWA_PAIR_FOREVER_BODIES[index].replaceAll('○○',first).replaceAll('××',second);
+}
+function hwEnd(kind,n,lead=''){
+ if(state.mode==='saniwa'){const idx=hwCostumeIndex(n);const label=kind==='forever'?'TREAT':'TRICK';const title=`END：${label}${String(HW_END_NUMBER_BY_BODY_INDEX[idx]).padStart(2,'0')}「${kind==='forever'?'永久にハロウィーン':kind==='return'?'帰還':'悪戯'}」（仮）`;const raw=kind==='forever'?HW_SANIWA_FOREVER_BODIES[idx]:kind==='return'?hwReturnBody(n):hwPrankBody(n);const body=raw.replaceAll('職員','審神者').replaceAll('○○',n).replaceAll('悪魔／堕天使',hwCostume(n));state.ending={title,body,death:false};state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',`${title}\n${body}`);showEnding();return;} 
+ const index=kind==='true'?-1:hwCostumeIndex(n);
+ const endingCostumeNumber=kind==='true'?null:HW_END_NUMBER_BY_BODY_INDEX[index];const num=kind==='true'?31:kind==='prank'?endingCostumeNumber:({return:10,forever:20}[kind]+endingCostumeNumber);
+ const label=kind==='true'?'職員モード・トゥルー':kind==='prank'?'悪戯追い出され':kind==='return'?'帰還':'永久にハロウィン';
+ const costumeName=hwCostume(n);
+ const displayCostume=costumeName==='白衣'?'白衣の男':costumeName==='ナース'?'ナース':costumeName==='フランケンシュタインの怪物'?'怪物':costumeName;
+ const titleName=kind==='prank'?HW_PRANK_TITLES[index]:kind==='return'?`${displayCostume}の足音`:kind==='forever'?`${displayCostume}と共に`:'Happy Halloween';
+ const title=`終幕${String(num).padStart(2,'0')}「${titleName}」`;
+ const body=kind==='prank'?hwPrankBody(n):kind==='return'?hwReturnBody(n):kind==='forever'?HW_FOREVER_BODIES[index].replaceAll('○○',n):'次に目を開けると、職員は、傷ひとつない体で政府施設に立っていた。両手にはいつの間にかハロウィーンを思わせる色合いの立派な花束を抱えており、そこには「最後の悪戯、楽しんでいただけましたかな。忘れられぬものになっていたら嬉しく思います。ぜひ、来年もお会いしましょう」と綴られたメッセージカードが添えてあった。';
+ state.ending={title,body,hwOutcome:kind};state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',state.ending.body);showEnding();
+}
+
+// 審神者モード・最終日「食べない」からの救援生還TREAT：仮本文10種類。
+// v58：一振り「食べない」からの救援分岐・好感度条件・エンディング到達処理に接続。
+// 配列順は hwCostumeIndex に合わせる（魔王は対象外）。
+const HW_SANIWA_FINAL_REFUSAL_RESCUE_TREAT_DRAFTS = ["こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に狼男の○○が現れた。嬉しそうに駆け寄ってきた彼は、審神者の首筋に甘く噛みつき、また会おうと囁いた。目を覚ますと、首には見覚えのない首飾りがついていた。首輪にも似たそれは、外そうとしても決して外れない。あれから幾度となく、夢の中で○○と会っている。次の満月には迎えに行くと、彼は笑っていた。審神者はその日を、少しだけ楽しみにしている。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に吸血鬼の○○が現れた。彼は審神者を優しく抱き寄せ、首筋に唇を寄せる。また会える日を楽しみにしていると囁かれ、審神者は頷いた。目を覚ますと、枕元には芳しい薔薇が一輪。あれから毎晩、夢の中で○○は審神者を訪ねてくる。薔薇はいつまでも枯れず、審神者の肌は少しずつ青白くなっていった。次に会うときは、夢の中ではなく。そう約束した彼の言葉が、今も耳に残っている。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に怪物の○○が現れた。彼は審神者の手を取り、恭しくその甲に口づけると、いつか迎えに行くから待っていてほしいと微笑んだ。目を覚ますと、指には美しく輝く指輪がはまっていた。あれから幾度となく、夢の中で○○と会っている。彼はいつも審神者を花嫁と呼び、二人で暮らす未来について楽しそうに語った。指輪は外そうと思えば外せるのに、不思議とその気にはなれない。昨夜、○○はもうすぐ迎えに行けると嬉しそうに告げた。審神者はその日が待ち遠しかった。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に死神の○○が現れた。彼は審神者の首筋をそっと撫で、いつか迎えに来ると微笑んだ。目を覚ますと、首には血のように赤い石のついた首飾りがかかっていた。あれから、審神者は不思議と死を恐れなくなった。いつか訪れる別れの先に、○○が待っているのだから。時折、首飾りの石が温かくなることがある。そんな日は決まって、夢の中で彼に会える。昨夜も○○は審神者の手を取り、まだこちらへ来てはいけないと、少し寂しそうに笑っていた。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に白衣の○○が現れた。彼は審神者の額に手を当て、疲れているのだからゆっくり休むようにと優しく微笑んだ。目を覚ますと、枕元には薬の形をしたお菓子がひとつ置かれていた。それを食べた夜、審神者は久しぶりに深く眠り、再び○○と夢の中で会うことができた。以来、疲れた日には決まって同じお菓子が枕元に現れる。夢の中で彼に診てもらう時間は、審神者にとって密かな楽しみになっていた。けれど最近、○○は診察のたびに、そろそろこちらで暮らしたほうがいいのではないかと、冗談めかして勧めてくる。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に○○が現れた。彼は審神者の耳元に甘く囁き、また会いたくなったら自分を呼ぶようにと微笑んだ。目を覚ますと、枕元には白い羽が一枚落ちていた。そっと触れると、それはたちまち真っ黒に染まった。以来、審神者が羽を手に○○の名を呼ぶと、決まってその夜の夢に彼が現れるようになった。二人きりの時間は甘く、審神者はいつしか夜が来るのを心待ちにするようになった。ある夜、○○は審神者の手を取り、今度は夢ではなく会いに行こうかと囁いた。その瞳は優しく、けれどどこか底知れぬ光を宿していた。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中にゾンビの○○が現れた。彼は審神者を抱きしめ、名残惜しそうに頬を寄せる。離れていても寂しくないようにと、何かを手渡されたところで目が覚めた。身体には、つぎはぎだらけのブランケットがかけられていた。奇妙なことに、それを使って眠る夜は必ず○○の夢を見る。彼は少しずつ近づいてくる。最初は遠くから手を振るだけだったのに、昨夜は審神者の手を握った。今夜はきっと、もっと近くで会えるだろう。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に殺人鬼の○○が現れた。彼は審神者の腕を取り、逃がしてあげたのだから忘れないでほしいと、悪戯っぽく笑った。目を覚ますと、腕には鎖を思わせる美しい腕輪がついていた。以来、審神者が危険な目に遭いそうになると、腕輪が小さく鳴るようになった。まるで誰かが守ってくれているようだった。ある夜、夢の中でそのことを話すと、○○は嬉しそうに笑った。今度会うときは、もう逃がさなくてもいいだろうか。そう囁いて、審神者の指先に口づけた。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中に○○が現れた。彼は審神者の耳元に呪文のような言葉を囁き、また会いたくなったら思い出してほしいと微笑んだ。目を覚ますと、枕元には一枚のメッセージカードが置かれていた。そこには見知らぬ文字で、短い呪文が記されている。不思議なことに、意味はわからないのに、どう読めばいいのかだけは知っていた。あれから幾度となく、審神者は夢の中で○○と会っている。彼はいつも優しく、帰り際には決まって、あの呪文を忘れないでと囁いた。ある夜、審神者が次はいつ会えるのかと尋ねると、○○は嬉しそうに笑った。もう夢の中だけで会う必要はないのだと。目覚めた審神者は、枕元のカードをそっと手に取った。今夜こそ、あの呪文を唱えてみようと思った。", "こうして審神者は、無事に政府施設へ帰還した。手続を終え、自室で眠りにつくと、夢の中にジャック・オ・ランタンの○○が現れた。彼は審神者を暖かな炎で包み、暗い夜道も自分が照らしてあげると笑った。目を覚ますと、枕元には小さなかぼちゃのランタンが置かれていた。以来、審神者が寂しい夜を過ごしていると、ランタンにはひとりでに灯がともるようになった。その炎を見つめていると、どこからか○○の楽しそうな声が聞こえる。ある夜、炎の向こうに彼の姿が見えた。次のハロウィーンには一緒に過ごそうと誘われ、審神者は笑顔で頷いた。それからというもの、ランタンの炎は以前よりもずっと明るく燃えている。"];
+
+// 審神者モード：救援後の仮帰還エンド10本（TRICK11～20）。
+const HW_SANIWA_RESCUE_BODIES=["こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、契約の首輪を審神者につけた。狼は○○なのに、飼われるのは審神者。しかし同時に、彼が全てから守ってくれるという印でもあった。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、その血を啜り、自らの血を与えて審神者を眷属にした。審神者はもう○○に施される糧なくしては生きられず、彼に逆らうこともできない。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、審神者に優しく噛みついた。審神者の意思はあえて聞かなかった。そうして傷口からじわじわと自分と同じ存在に変わっていく審神者を見守り、二人で身を隠し生きていく道を選んだ。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、審神者の魂の大半を預かり、残った一部に力を分け与え……言うなれば死神の卵にした。人として生きる道は閉ざされ、○○から離れることはできず、逆に言えば、共にいられる。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、殺人鬼としての在り方、技術を審神者に教え込み、常識と倫理観を打ち砕き、決して逃げられないよう、共犯者としてじっくりと染め上げた。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、契約を持ち掛ける。審神者はろくに内容を知らず契約を交わしてしまった。過ちに気づいたのは、魂すら彼の所有物として扱われ、彼の一部にされた後のことだった。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、誰にも見つからない場所にひっそりと研究室を構え、あらゆる実験を審神者に施した。頭も体も精神さえも侵され廃人となった審神者は、ただ○○に微笑みかける。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、審神者を自分と同じ怪物に作り替えた。不完全な術により審神者は物言わぬ抜け殻になったが、彼はそれを花嫁として愛し続けている。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、審神者の自我を焼き尽くす洗脳の術をかけた。彼の思うままの操り人形。そうやって踊り続ける審神者こそ、彼が欲したものだったのだ。それが果たして幸福なのかは、彼らだけが知ることだ。", "こうして審神者は、何もかもを捨てた。今でも、あの本丸での出来事はどれも、夢だったようにすら思える。しかし、現実なのだと証明する○○が隣にいる。彼は審神者と二人で本丸から逃げてすぐ、ジャック・オ・ランタンとしての力を使い審神者の魂をランタンの中に隠した。それは守るためでもあったが、同時に永遠に自分のものにするためでもあった。それが果たして幸福なのかは、彼らだけが知ることだ。"];
+function hwSaniwaRescueEnd(n){
+ const i=hwSaniwaZeroIndex(n);if(i<0)return;
+ const title=`END：TRICK${String(i+11).padStart(2,'0')}「${HW_SANIWA_ZERO_COSTUMES[i]}・帰還」（仮）`;
+ const body=HW_SANIWA_RESCUE_BODIES[i].replaceAll('○○',n);
+ state.ending={title,body,death:i>=5};state.ended=true;state.specialQueue=[];pending=null;stopAuto();
+ hwRecord('結末',`${title}\n${body}`);showEnding();
+}
+
+// 審神者モード：好感度0の仮エンディング（TRICK01～10）。
+const HW_SANIWA_ZERO_COSTUMES=['狼男','吸血鬼','ゾンビ','死神','殺人鬼','悪魔・堕天使','白衣・ナース','フランケンシュタインの怪物','魔女・魔法使い・黒猫・魔王','ジャック・オ・ランタン'];
+const HW_SANIWA_ZERO_BODIES=["○○は狼のようにひとつ吠えると、仮装のそれとは思えない、獰猛な犬歯をその口から覗かせた。審神者をいとも容易く押し倒し、齧り付く。生きたまま喰われる痛みに意識が遠のく中、○○が舌なめずりをするのが見え、体の内側を舐め上げられるおぞましい感覚が襲う。口元を真っ赤に染めた○○は嬉しそうに笑うと、審神者の胸で脈打つそれに容赦なく喰らいついた。", "花のような甘い香りに、意識が揺れる。そのほんの一瞬で、○○は職員を捕まえてしまった。優雅な所作に反し○○の瞳はぎらりと凶暴に輝き、首筋に鋭い牙が沈められる。痛みと、全身の血が失われていく恐怖に、死を覚悟する。弄ぶように牙を抜いた○○に、怖いかと問われ頷くと、そういう純粋な人間の血ほどおいしいと彼は笑い、次に牙が抜かれた時、審神者はもう動かなくなっていた。", "○○は審神者に掴みかかり、飢えたゾンビのように喉元に喰らいついた。傷口から感染した何かによって、体も意識も作り替えられていくような、おぞましい感覚。体温のない○○にまとわりつかれ、もがくことさえもう叶わない。やがて審神者は全てを侵され、意思も言葉も失った。虚ろな瞳には何も映らず、土にも灰にもなれない体を引きずる一匹の屍だけがそこに残った。", "○○は、鮮やかな手さばきで鎌を構えた。それは迷いなく振るわれ、あっさりと審神者の首を落とす。呆然と、審神者は足元の自分の死体を見下ろした。そして○○が審神者の魂へと手を伸ばしてくる。捕まった審神者の魂は、○○のものになった。小さな籠に入れて飾られ、天国にも地獄にも行けず、心が存在しているのかすらも定かではないそれを、○○は今日も眺めている。", "突然、周囲が暗くなった。気が付くと、暗い森で座り込んでいた職員の肩を、殺人鬼の姿をした○○が、笑顔で叩いた。悲鳴を上げる職員にも構わず彼の隠れ家まで引きずられ、ホラー映画の世界のように体を解体されていく。彼は殺人鬼らしく、殺さず長く楽しむ方法を熟知しており、料理をする際の手腕も、独自の美学を感じるものだった。皿の上の食材となった審神者には、知りようもないが。", "ふっと意識が遠のく。いつのまにか、審神者は自分の背に白い天使の羽があることに気づいた。傍らの○○は黒い悪魔／堕天使の羽を広げて審神者を見下ろし、審神者の白い羽に手を伸ばす。一枚、また一枚と容赦もなく毟られ、激痛と共に大切な何かが失われる感覚がする。そうして血の海に横たわる審神者の背中の皮膚を引き裂き、揃いの黒い羽が歪に生えてくるのを、○○は笑って見ていた。", "突然、眩しい光に照らされる。気が付くと、血染めの白衣 または ナース服を着た○○が、手術台に縛られた職員を見下ろし笑っていた。容赦なく注射針を刺され、注ぎ込まれる得体の知れないものが職員の全てを侵食していく。それでも意識を失うことは許されず、○○の気の向くまま、薬に漬けられ体を弄り回され続けた。ああ、今日も実験の時間がやってくる。", "ふっと意識が遠のく。いつのまにか、職員は薄汚れた衣装を纏って、廃墟となった教会にいた。隣で怪物……いや、○○が笑う。これでやっと、自分のものになると。その言葉に、自分が着せられているのがぼろぼろの花嫁衣装だと気づいて必死に抵抗しようとするが、怪物の力に敵うはずもない。そのまま引きずられ、審神者の意思など無視して誓いの儀式をさせられ、審神者は彼の花嫁にされた。", "突然、視界が薄暗くなる。気が付くと、該当する仮装の格好をした○○が、牢に繋がれた職員を意地悪な表情で見ていた。足元の怪しげな魔法陣が光り、職員を包む。焼かれるような熱い痛みに襲われ、○○のことしか考えられなくなっていく。それを見届けた○○が微笑んで命令をすると、審神者は恍惚とした表情でそれに従った。もうどこにも、審神者の主としての尊厳は残っていなかった。", "ふっと意識が遠のく。いつのまにか、職員はランタンを手に、暗い森で佇んでいた。少し先を、見知らぬ人間が歩いていく。ああ、そっちに行ってはいけないと、声をかけそうになったのを○○に止められる。自分たちはもう化け物なのだから、と。……そこで思い出す。あの日、○○によってジャック・オ・ランタンの仲間にされたこと。もう二度と、このハロウィーンの夜から出られないことを。"];
+function hwSaniwaZeroIndex(n){const c=hwCostume(n);if(c==='悪魔'||c==='堕天使')return 5;if(c==='白衣'||c==='ナース')return 6;if(['魔女','魔法使い','黒猫','魔王','魔女／魔法使い'].includes(c))return 8;return ['狼男','吸血鬼','ゾンビ','死神','殺人鬼',null,null,'フランケンシュタインの怪物',null,'ジャック・オ・ランタン'].indexOf(c);}
+function hwSaniwaZeroEnd(n){const i=hwSaniwaZeroIndex(n);if(i<0)return;const c=hwCostume(n);let body=HW_SANIWA_ZERO_BODIES[i].replaceAll('職員','審神者').replaceAll('○○',n);if(i===5)body=body.replace('悪魔／堕天使',c);if(i===6)body=body.replace('白衣 または ナース服',c==='ナース'?'ナース服':'白衣');if(i===8)body=body.replace('該当する仮装の格好',`${c}の格好`);const title=`END：TRICK${String(i+1).padStart(2,'0')}「${HW_SANIWA_ZERO_COSTUMES[i]}」（仮）`;state.ending={title,body,death:i<=4};state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',`${title}\n${body}`);showEnding();}
+
+function hwPrankOne(n){
+ const body=state.mode==='saniwa'
+  ?(HW_PRANK_A.has(n)
+   ?`${n}は、もしかしてその態度は悪戯なのか、と言い、それなら自分も悪戯がしたいと、審神者に近寄ってきた。`
+   :`${n}は、なるほど、こういう目に遭いたいからそんな態度をとるのかと、いつも見せないような嫌な笑みを浮かべ、審神者に歩み寄った。`)
+  :(HW_PRANK_A.has(n)
+   ?`そして${n}は、確か、お菓子をくれない相手には悪戯をしていいと聞いた、と思いついたように言い、職員に近寄ってきた。`
+   :`そして${n}は、なるほど、こういう目に遭いたいからわざとお菓子をくれなかったのだろうと意地悪な笑みを浮かべ、職員に歩み寄った。`);
+ hwAsk('深まる夜',body.replaceAll('職員',state.mode==='saniwa'?'審神者':'職員'),[{text:'拒絶する',run:()=>state.mode==='saniwa'?hwSaniwaZeroEnd(n):hwEnd('prank',n)}]);
+}
+function hwCheckImmediateEnding(){
+ if(!state||state.ended)return true;
+ const one=hwOrderedNames().find(n=>state.aff[swordByName(n)]<=(state.mode==='saniwa'?0:1));
+ if(one){hwPrankOne(one);return true}
+ if(state.candy===0){
+  const last=state.lastCandyRecipient||hwTopName();
+  hwRescueStart(last);return true;
+ }
+ return false;
+}
+// 最終日の挨拶：職員は単独のみ、審神者は仮装ペアの好感度に応じて分岐。
+function hwFinalPairPartner(n){
+ const pair=state.pairs.find(group=>group.includes(n));
+ if(!pair)return null;
+ const other=pair.find(name=>name!==n);
+ // 魔王一期は後日専用実装。通常の一期一振と混同せず、この分岐から除外する。
+ if(!other||hwCostume(other)==='魔王'||hwCostume(n)==='魔王')return null;
+ const a=state.aff[swordByName(n)]??0,b=state.aff[swordByName(other)]??0;
+ return a>=60&&b>=60&&(a>=80||b>=80)?other:null;
+}
+function hwFinalPairCostumeTitle(n,other){
+ const costumes=[hwCostume(n),hwCostume(other)];
+ if(costumes.includes('白衣')||costumes.includes('ナース'))return '白衣の男の誘い';
+ if(costumes.includes('悪魔')||costumes.includes('堕天使'))return '悪魔と堕天使の誘い';
+ if(costumes.includes('黒猫'))return `${costumes.includes('魔法使い')?'魔法使い':'魔女'}と黒猫の誘い`;
+ return `${costumes[0]}の誘い`;
+}
+function hwSaniwaPairForeverEnd(n,other){
+ const body=hwSaniwaPairForeverBody(n,other);
+ if(!body)return; // 仮装対応のない本文へ誤接続しない
+ const idx=hwCostumeIndex(n);
+ const num=HW_END_NUMBER_BY_BODY_INDEX[idx];
+ const title=`END：TREAT${String(num).padStart(2,'0')}「永久にハロウィーン・二振り」（仮）`;
+ state.ending={title,body,death:false};state.ended=true;state.specialQueue=[];pending=null;stopAuto();
+ hwRecord('結末',`${title}\n${body}`);showEnding();
+}
+// v56：会話で採用候補となった新草案5件と修正方針の保管専用。
+// ゲームの分岐には接続しない。既存の本文や分岐を上書きしない。
+const HW_SANIWA_REFUSAL_NEW_DRAFTS_V56 = Object.freeze({
+  "吸血鬼_一振り_食べない": "○○は審神者の拒絶を受け入れず、無理やりその血を吸い、己の血を与えて眷属へと変えてしまった。しかし、望んで眷属となる道を拒んだ罰として、与えられる血は生き永らえるためのほんのわずかな量だけ。決して満たされることのない飢えに苦しみ、血を求めて縋る審神者を、○○は愛おしそうに眺めている。死ぬこともできず、今日も審神者は主人の気まぐれな施しを待ち続ける。",
+  "吸血鬼_二振り_食べない": "○○と××はそれぞれの血を審神者に与え、眷属ではない正式な吸血鬼へと変えてしまった。新たな住まいとして用意されたのは、美しい調度品で整えられた豪華な部屋。しかし、その扉の鍵は二振りが管理しており、審神者が自由に外へ出ることは許されない。二振りは食事を運ぶ名目で幾度となく部屋を訪れ、審神者を愛で、弄び、まるでお気に入りの人形のように扱った。吸血鬼となったばかりに、死ぬことさえかなわない。審神者は今日も、美しい檻の中で二振りの訪れを待っている。",
+  "ゾンビ_一振り_食べない": "拒絶された○○は感情のままに審神者へ襲いかかり、喰い殺してしまった。無残に食い散らかされた肉体は、もはや霊力でも修復できない。それでも審神者を完全に失うことに耐えられなかった○○は、首から上だけを綺麗に整え、霊力で腐敗しないように保って飾ることにした。いつの日か、審神者にぴったりの身体が見つかるかもしれないのだから。",
+  "ゾンビ_二振り_食べない": "○○と××によってゾンビに変えられた審神者は、二振りとともに本丸で暮らすことになった。生前と変わらず話し、歩き回ることもできるが、困ったことが一つある。二振りが審神者をどちらのものにするかで喧嘩を始めると、決まって頭と身体を分けられてしまうのだ。頭を抱えて連れ去る一振りと、身体を引き連れていくもう一振り。仲直りするまでは元に戻してもらえず、今日も審神者の抗議の声が本丸に響いている。",
+  "ジャック・オ・ランタン_二振り_食べない": "こうして審神者は、○○と××の手によって、ハロウィーンの魔法をかけられた。たちまちその肉体は色とりどりのお菓子へと姿を変え、二振りはそれを本丸の刀剣男士たちに振る舞った。事情を知ってか知らずか、彼らは喜んでお菓子を頬張り、最後に残った二つは○○と××が仲良く分け合った。こうして肉体を本丸の皆に取り込まれた審神者は、二度と本丸の外へ出られない怪異となった。今もなお、終わらないハロウィーンの夜を、ランタンの灯りだけを頼りに彷徨い続けている。"
+});
+const HW_SANIWA_REFUSAL_REVISION_NOTES_V56 = Object.freeze({
+  "狼男_一振り_食べない": "死寄りにする。本文未作成。",
+  "死神_一振り_食べない": "生存寄りに変更する。既存本文は魂を刈り取る内容のため改稿待ち。",
+  "死神_二振り_食べない": "死寄りのまま。前回の生寄り変更指示は取り消し。",
+  "悪魔_一振り_食べない": "生存寄りで新規作成待ち。",
+  "堕天使_一振り_食べない": "死寄りで新規作成待ち。",
+  "フランケンシュタイン_一振り_食べない": "生存寄りで新規作成待ち。",
+  "フランケンシュタイン_二振り_食べない": "死寄り演出へ改稿待ち。",
+  "魔女・魔法使い_一振り_食べない": "生存寄りで新規作成待ち。",
+  "ジャック・オ・ランタン_一振り_食べない": "死寄りで新規作成待ち。",
+  "ゾンビ_二振り_永久": "つぎはぎの身体で蘇生済みと明確にし、美しくするために死体を集める演出へ修正候補。",
+  "吸血鬼_一振り_食べない": "二振りの旧案から飢え・強制眷属化を移植した新草案。生存寄り。",
+  "吸血鬼_二振り_食べない": "正式な吸血鬼化と監禁の新草案。生存。",
+  "ゾンビ_一振り_食べない": "頭部保存の新草案。死。",
+  "ゾンビ_二振り_食べない": "喧嘩時だけ頭と身体を分ける新草案。生存寄り。",
+  "ジャック・オ・ランタン_二振り_食べない": "お菓子化して本丸に取り込まれる新草案。生存寄り。"
+});
+
+// 審神者モード・最終日・二振りTRICK（食べない）：草案仮実装。
+// ジャック・オ・ランタンは未完成のため接続しない。職員モード／TREATには影響させない。
+const HW_SANIWA_PAIR_REFUSAL_DRAFTS = Object.freeze({
+  0: '審神者が断ると、狼男たちは顔を見合わせる。次の瞬間、審神者は床に押し倒され、左右から牙を突き立てられた。二振りが喧嘩を始めたのだ。どちらも譲らず、悲鳴を上げる審神者の身体は少しずつ引き裂かれていく。やがて審神者は動かなくなり、二振りはようやく争いをやめた。その残骸を分け合い、互いの口元についた血を舐め取る。これで二振りとも、審神者を自分の一部にできたのだった。',
+  1: '○○と××はそれぞれの血を審神者に与え、眷属ではない正式な吸血鬼へと変えてしまった。新たな住まいとして用意されたのは、美しい調度品で整えられた豪華な部屋。しかし、その扉の鍵は二振りが管理しており、審神者が自由に外へ出ることは許されない。二振りは食事を運ぶ名目で幾度となく部屋を訪れ、審神者を愛で、弄び、まるでお気に入りの人形のように扱った。吸血鬼となったばかりに、死ぬことさえかなわない。審神者は今日も、美しい檻の中で二振りの訪れを待っている。',
+  2: '審神者が断ると、○○が審神者に手を伸ばし、××はそれを睨みつける。そして奪い合いのさなか、審神者は命を落とした。再び目を覚ますと、目の前にもう一人の自分がいた。彼らは刀剣男士の肉体や、誰のものとも知れぬ死体を繋ぎ合わせ、審神者をもはや審神者と呼べるかも分からない、二匹の屍に変えた。二振りはそれぞれを大事そうに抱きしめる。もう争う必要はない。怪物たちは、愛しい花嫁を手に入れたのだから。',
+  3: '審神者が断ると、死神たちは寂しそうに目を伏せた。片方が審神者の身体を抱き寄せ、もう片方がその胸に手を差し入れる。引き抜かれた魂は、二振りの手によって二つに分けられた。審神者の身体はその場に崩れ落ち、二度と動かなかった。二振りはそれぞれ魂の欠片を持ち帰り、大切にしまい込んだ。審神者は今も、二つに引き裂かれた意識の中で、互いの存在を求め続けている。けれど、二振りがその欠片を手放すことはない。愛しい審神者を、永遠に自分だけのものにしておくために。',
+  4: '審神者が断ると、白衣の二振りは困ったように微笑んだ。次の瞬間、腕に針が刺さり、審神者は意識を失った。目を覚ますと、そこには無数の培養槽が並んでいた。その中に浮かんでいるのは、すべて自分自身。二振りは嬉しそうに説明する。自分たちを愛してくれる審神者が現れるまで、何度でも作り続けることにしたのだと。審神者は逃げ出そうとしたが、身体は動かなかった。二振りは優しく微笑み、次の審神者の培養を始めた。',
+  5: '審神者が断ると、悪魔と堕天使は互いを睨みつけた。最初こそ争いになりかけたが、やがて二振りは話し合い、審神者を分け合うことにした。悪魔は魂を、堕天使は肉体を。引き抜かれた魂には意識も心も残され、審神者は二度と自分の身体に戻れなくなった。堕天使は空っぽになった肉体を愛おしそうに抱きしめ、頬を撫で、まるで生きているかのように可愛がり続ける。審神者はそれを見つめることしかできない。そんな審神者の絶望を、悪魔は傍らで楽しそうに眺めていた。',
+  6: '○○と××によってゾンビに変えられた審神者は、二振りとともに本丸で暮らすことになった。生前と変わらず話し、歩き回ることもできるが、困ったことが一つある。二振りが審神者をどちらのものにするかで喧嘩を始めると、決まって頭と身体を分けられてしまうのだ。頭を抱えて連れ去る一振りと、身体を引き連れていくもう一振り。仲直りするまでは元に戻してもらえず、今日も審神者の抗議の声が本丸に響いている。',
+  7: '審神者が断ると、殺人鬼たちは顔を見合わせ、楽しそうに笑った。××が審神者を押さえつけ、○○が刃物を取り出す。二振りは相談を始めた。審神者の声など聞こえないかのように。髪は残したい、瞳も綺麗だ、傷をつけるなら見えないところがいい。やがて審神者の悲鳴は途絶える。完成した作品は、二振りの部屋の中央に飾られた。どちらも自分のものだと主張したため、二人で眺められる場所に。',
+  8: '審神者が断ると、魔女は小さな瓶を取り出す。お菓子のように甘い香りの液体が揺れている。無理やり飲まされた審神者は、たちまち○○のことしか考えられなくなった。声を聞くだけで胸が高鳴り、その姿を見つめるだけで幸せだった。黒猫が気まぐれに近寄り、審神者を弄んでも、蕩けたような笑顔は変わらない。○○は満足そうに微笑み、審神者の頬を撫でた。審神者はただ、その手が離れてしまわないことを願い続けた。'
+  ,9: 'こうして審神者は、○○と××の手によって、ハロウィーンの魔法をかけられた。たちまちその肉体は色とりどりのお菓子へと姿を変え、二振りはそれを本丸の刀剣男士たちに振る舞った。事情を知ってか知らずか、彼らは喜んでお菓子を頬張り、最後に残った二つは○○と××が仲良く分け合った。こうして肉体を本丸の皆に取り込まれた審神者は、二度と本丸の外へ出られない怪異となった。今もなお、終わらないハロウィーンの夜を、ランタンの灯りだけを頼りに彷徨い続けている。'
+});
+function hwSaniwaPairRefusalEnd(n,other){
+ const idx=hwCostumeIndex(n);
+ if(idx<0||idx!==hwCostumeIndex(other)||!Object.prototype.hasOwnProperty.call(HW_SANIWA_PAIR_REFUSAL_DRAFTS,idx))return;
+ const a=state.aff[swordByName(n)]??0,b=state.aff[swordByName(other)]??0;
+ const high=a>=b?n:other,low=a>=b?other:n;
+ let body=HW_SANIWA_PAIR_REFUSAL_DRAFTS[idx];
+ if(idx===8){
+  const witch=['魔女','魔法使い'].includes(hwCostume(n))?n:other;
+  body=body.replaceAll('○○',witch);
+ }else{
+  body=body.replaceAll('○○',high).replaceAll('××',low);
+ }
+ const num=HW_END_NUMBER_BY_BODY_INDEX[idx];
+ const title=`END：TRICK${String(num).padStart(2,'0')}「悪戯・二振り」（仮）`;
+ state.ending={title,body,death:false};state.ended=true;state.specialQueue=[];pending=null;stopAuto();
+ hwRecord('結末',`${title}\n${body}`);showEnding();
+}
+function hwFinalPairFarewell(n,other){
+ const title=hwFinalPairCostumeTitle(n,other);
+ const intro=`${n}に別れの挨拶をしに行くと、${other}もそこにいた。二振りは審神者の言葉に寂しそうな表情を見せたが、審神者の持っているお菓子を見つけ微笑む。最後の思い出として、一緒にそのお菓子を食べよう、と。ここで、審神者は思い出す。政府から支給されたお菓子は刀剣男士用のものであり、決して審神者は食べないようにと言われていたことを。`;
+ hwAsk(title,intro,[
+  {text:'食べる',run:()=>hwAsk(title,`${n}と${other}は、答えを聞くと、それぞれ見たことのない笑みを浮かべた。それは獲物を狙う魔物の目つきにも、審神者を愛おしむ、罪悪感の混じった彼ら自身の視線にも思えた。そうして、審神者は、彼らと共に残っていたお菓子を口に運んだ。今まで食べたことがないほどおいしく、そして、もう戻れないのだと感じさせる味だった。`,[{text:'この本丸に残る',run:()=>hwSaniwaPairForeverEnd(n,other)}])},
+  // 専用TRICK本文・番号は未確定。既存の単独TRICKへ流用しない。
+  {text:'食べない',run:()=>hwSaniwaPairRefusalEnd(n,other)}
+ ]);
+}
+// v57：審神者モード・一振り最終日「食べない」TRICK。堕天使／ランタンは未確定のため従来本文にフォールバックしない。
+const HW_SANIWA_SINGLE_REFUSAL_V57 = Object.freeze({
+  "狼男": "審神者の拒絶を聞いた○○は、そのまま審神者を捕らえ、逃げられない場所へ閉じ込めた。それから毎日、少しずつ審神者の肉を貪った。痛みに苦しんでいても、○○は優しく愛を囁き、自分の想いを受け入れてほしいと伝え続けた。しかし、審神者は最後まで頷かなかった。やがて、最後のひと口を平らげた○○は、寂しそうに微笑む。ご馳走様と、その呟きだけが残った。",
+  "吸血鬼": "○○は審神者の拒絶を受け入れず、無理やりその血を吸い、己の血を与えて眷属へと変えてしまった。しかし、〇〇と寄り添う道を拒んだ罰として、与えられる血は生き永らえるためのほんのわずかな量だけ。決して満たされることのない飢えに苦しみ、血を求めて縋る審神者を、○○は愛おしそうに眺めている。死ぬこともできず、今日も審神者は主人の気まぐれな施しを待っている。",
+  "フランケンシュタインの怪物": "返事を聞いた〇〇は、砕いた菓子を無理やり口移しで審神者に食べさせる。そうして本丸から出られなくなった審神者を部屋に閉じ込め、毎日うやうやしく世話を焼き、抱きしめて愛を囁き、必ず問いかける。自分の花嫁になる気になったか、と。最初は気丈だった審神者の答えは段々と虚ろになっていく。怪物のまっすぐな愛は、いつか審神者の心を砕いてしまうだろう。あの甘い菓子のように。",
+  "死神": "審神者の拒絶を聞いた○○は、迷わず鎌を振るい審神者の魂を刈り取った。そして、倒れたその肉体と刈り取った魂を使い、禁じられた術に手を染めた。やがて術が成されると、そこにはあどけない幼子の姿があった。幼子は何も知らぬ純粋な瞳で、じっと○○を見つめている。○○はその小さな身体を抱き上げ、優しく微笑みかけた。やがて実る甘い甘い果実の、収穫の時を待ちながら。",
+  "白衣": "○○は、驚いた様子を見せなかった。取り出された注射器を避ける間もなく、審神者の体に薬液が流し込まれる。意識は穏やかに薄れ、そのまま二度と目覚めることはなかった。○○は人形のように美しい審神者の亡骸を、うっとりと眺める。もう心も意思も何もないその体に、○○は愛情を込めて手を加え続けた。より美しく、より理想に近づけるための実験に、終わりはなかった。",
+  "悪魔": "答えを聞いた○○はにやりと笑ったかと思うと、突如、審神者に唇を重ねた。困惑、照れ、嫌悪……あるいはもっと別の感情が渦巻き、視界がぐらりと歪んだ。次に気が付くと、手足を縛られ、身動きが取れない。聞きなれた声がして、誰か馬乗りになってくる。自分自身……審神者だった。悪魔のような笑みを浮かべた審神者は、甘い声で○○の名を呼び、手を伸ばしてきた。",
+  "ゾンビ": "拒絶された○○は、感情のままに審神者へ襲いかかり、喰い殺してしまった。無残に食い散らかされた肉体は、もはや霊力でも修復できない。それでも審神者を完全に失うことに耐えられなかった○○は、首から上だけを綺麗に整え、腐敗しないように霊力で保って飾ることにした。それにいつの日か、審神者にぴったりの身体が見つかるかもしれないのだから。",
+  "殺人鬼": "○○は断られたことを理解すると、笑顔のままあっさりと頷いた。残念ではあるが、それなら仕方がない。そう言わんばかりに、慣れた手つきで審神者の命を奪う。そこからの○○は、とても楽しそうだった。審神者の亡骸を丁寧に解体し、気に入った部位を美しい装飾品に仕立てていく。完成した品を身につけ、残りを部屋に飾ると、○○は満足げに微笑んだ。これからは、いつでも一緒にいられる。",
+  "魔女": "拒絶された○○は、審神者に魔法をかけた。その日から、審神者の身体はどこもかしこも、甘いお菓子の味がするようになった。○○は気の向くままにその身体を味わった。指先を齧り、頬を舐め、ときには身体の一部を食べてしまう。しかし、どれほど食べられても、傷は魔術で元通りになる。○○にとって審神者は、食べても減らない、とびきり甘いお菓子になった。〇〇の部屋からは、今日も甘い香りが漂っている。",
+  "黒猫": "○○は、不満そうに審神者を見つめた。そして、甘えるように身を寄せ、一度だけ撫でてほしいと言った。審神者がその髪に触れた瞬間、○○は嬉しそうに目を細め、そっと術をかけた。たちまち審神者の体は小さな猫へと姿を変え、人間だった頃の記憶も言葉も失われていく。○○は戸惑う猫を優しく抱き上げると、愛おしそうに頬を寄せた。審神者が人の姿に戻れる日は、二度と来なかった。",
+  "ナース": "○○は、驚いた様子を見せなかった。取り出された注射器を避ける間もなく、審神者の体に薬液が流し込まれる。意識は穏やかに薄れ、そのまま二度と目覚めることはなかった。○○は人形のように美しい審神者の亡骸を、うっとりと眺める。もう心も意思も何もないその体に、○○は愛情を込めて手を加え続けた。より美しく、より理想に近づけるための実験に、終わりはなかった。",
+  "魔法使い": "拒絶された○○は、審神者に魔法をかけた。その日から、審神者の身体はどこもかしこも、甘いお菓子の味がするようになった。○○は気の向くままにその身体を味わった。指先を齧り、頬を舐め、ときには身体の一部を食べてしまう。しかし、どれほど食べられても、傷は魔術で元通りになる。○○にとって審神者は、食べても減らない、とびきり甘いお菓子になった。〇〇の部屋からは、今日も甘い香りが漂っている。"
+});
+function hwSaniwaSingleRefusalEnd(n){
+ const c=hwCostume(n);
+ const raw=HW_SANIWA_SINGLE_REFUSAL_V57[c] || HW_SANIWA_FINAL_REFUSAL_APPROVED[c];
+ if(!raw){hwAsk('最後の夜','この仮装の一振りTRICKは本文保留中です。',[{text:'選択に戻る',run:()=>hwFinalFarewell(n)}]);return;}
+ const idx=hwCostumeIndex(n),num=HW_END_NUMBER_BY_BODY_INDEX[idx];
+ const title=`END：TRICK${String(num).padStart(2,'0')}「悪戯・一振り」`;
+ const body=raw.replaceAll('○○',n).replaceAll('〇〇',n);
+ state.ending={title,body,death:false};state.ended=true;state.specialQueue=[];pending=null;stopAuto();
+ hwRecord('結末',`${title}\n${body}`);showEnding();
+}
+// v58：審神者モード・一振り「食べない」救援分岐。本文はすべて一行文字列。
+const HW_SANIWA_REFUSAL_RESCUE_THREATS = Object.freeze({
+ '狼男':'鋭い爪を振るい、○○の足元を深く抉った。',
+ '吸血鬼':'黒い蝙蝠の群れが○○を取り囲み、一斉に襲いかかった。',
+ 'ゾンビ':'地面から無数の青白い腕が伸び、○○の足を掴んだ。',
+ '死神':'大鎌が○○の喉元を掠め、背後の壁に深い傷を刻んだ。',
+ '殺人鬼':'鋭い刃物が○○の頬を掠め、背後に突き刺さった。',
+ '悪魔':'黒い炎が○○の周囲に燃え上がり、退路を塞いだ。',
+ '堕天使':'黒い炎が○○の周囲に燃え上がり、退路を塞いだ。',
+ '白衣':'注射器を構えた××の背後に、無数の手術器具が浮かび上がった。',
+ 'ナース':'注射器を構えた××の背後に、無数の手術器具が浮かび上がった。',
+ '魔女':'○○の足元に魔法陣が浮かび、無数の茨が絡みついた。',
+ '魔法使い':'○○の足元に魔法陣が浮かび、無数の茨が絡みついた。',
+ '黒猫':'○○の足元に魔法陣が浮かび、無数の茨が絡みついた。',
+ 'ジャック・オ・ランタン':'笑うランタンがいくつも宙に浮かび、青い炎を吐き出した。',
+ 'フランケンシュタインの怪物':'××が床を強く踏み鳴らすと、激しい電撃が○○の足元を走った。'
+});
+function hwSaniwaRefusalRescueEnd(helper){
+ const idx=hwCostumeIndex(helper),num=HW_END_NUMBER_BY_BODY_INDEX[idx];
+ if(idx<0||!HW_SANIWA_FINAL_REFUSAL_RESCUE_TREAT_DRAFTS[idx])return;
+ const title=`END：TREAT${String(num).padStart(2,'0')}「救援生還」（草案）`;
+ const body=HW_SANIWA_FINAL_REFUSAL_RESCUE_TREAT_DRAFTS[idx].replaceAll('○○',helper);
+ state.ending={title,body,death:false};state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',`${title}\n${body}`);showEnding();
+}
+function hwSaniwaRefusalRescue(attacker,helper){
+ const threat=(HW_SANIWA_REFUSAL_RESCUE_THREATS[hwCostume(helper)]||'××が○○の前に立ち塞がった。').replaceAll('○○',attacker).replaceAll('××',helper);
+ const body=`審神者が${helper}の名を叫ぶと、${attacker}は驚いたように振り返った。その隙に駆けつけた${helper}が、審神者と${attacker}の間に割って入る。${threat}${attacker}はしばらく${helper}を見つめていたが、やがて呆れたように肩をすくめ、その場を立ち去った。${helper}は審神者を振り返り、そっと手を差し伸べた。`;
+ hwAsk('最後の夜',body,[{text:'頷く',run:()=>hwSaniwaRefusalRescueEnd(helper)}]);
+}
+function hwSaniwaSingleRefusalChoice(n){
+ const score=state.aff[swordByName(n)]??0;
+ const eligible=hwOrderedNames().filter(other=>other!==n&&(state.aff[swordByName(other)]??0)>score);
+ const opts=[{text:'声をかける',run:()=>hwSaniwaSingleRefusalEnd(n)},...eligible.map(helper=>({text:`${helper}の名を呼ぶ`,run:()=>hwSaniwaRefusalRescue(n,helper)}))];
+ hwAsk('最後の夜',`それを聞いた${n}は、無言になって審神者を見た。その瞳は、今まで見たことのないような不穏な色を宿していた。`,opts);
+}
+// 職員モード専用：魔王一期一振の隠し終幕「魔王の宴」。仮の終幕名は後日決定。
+function hwMaouReady(n){
+ return state.mode==='staff'&&n==='一期一振'&&state.costumeChoice==='魔王'&&hwCostume('一期一振')==='魔王'&&state.aff[swordByName('一期一振')]===100&&state.hundredSeen?.includes('一期一振')&&
+ ['かっこ良い','少し怖い','別の仮装のほうが似合う','そんな一期一振も好き'].includes(state.hundredAnswers?.['一期一振']?.answer);
+}
+function hwMaouScene(desc,buttons){hwAsk('魔王の宴',desc,buttons.map(([text,run])=>({text,run})));}
+function hwMaouEnd(route){
+ const hair=route<=3?'水色':'紫';
+ const costume=hwCostume('歌仙兼定');
+ const endingPart={
+  1:'囚われの姫君が口に運び、虚ろな瞳に終わらない祝祭の灯りを宝石のごとく映した。',
+  2:'魔王の寵愛する側近が毒見をし、水面に揺れる終わらない祝祭の灯りを虚ろに見つめた。',
+  3:'囚われの姫君が口に運び、潤んだ瞳に終わらない祝祭の灯りを宝石のごとく映した。',
+  4:'魔王の忠実な側近が毒見をし、水面に揺れる終わらない祝祭の灯りを虚ろに見つめた。',
+  5:'彼らの姫君が口に運び、凪いだ瞳に終わらない祝祭の灯りを宝石のごとく映した。',
+  6:'彼らの姫君が口に運び、澄んだ瞳に終わらない祝祭の灯りを宝石のごとく映した。'
+ }[route];
+ const body=`決して夜が明けない城があるという。恐ろしい魔王が支配し、不用意に踏み入れば二度と出ることはできない。それでも踏み入るものが後を絶たないのは、そこに楽しげな祝祭の景色が広がって見えるからだろうか。夜風に魔王の${hair}の髪がなびく。傍らの${costume}が淹れた茶を、${endingPart}`;
+ state.ending={title:'終幕「魔王の宴」（仮）',body,hwOutcome:'forever',hwMaouRoute:route};
+ state.ended=true;state.specialQueue=[];pending=null;stopAuto();hwRecord('結末',body);showEnding();
+}
+function hwMaouBanquet(){
+ const answer=state.hundredAnswers['一期一振'].answer;
+ hwMaouScene('一期一振と共に菓子を食べていると、歌仙兼定が姿を現す。「ずいぶんと魔王が板についてきたものだね」穏やかな声だったが、眼差しはどこか探るようだった。「きみがそんなに熱心に誰かを引き留めようとするとは、少し意外だったよ」一期一振は菓子を置き、歌仙兼定へと向き直った。',[
+  ['そちらを見る',()=>['かっこ良い','少し怖い'].includes(answer)?hwMaouFirstA(answer):hwMaouFirstB(answer)]
+ ]);
+}
+function hwMaouFirstA(answer){
+ const body='一期一振は答える。「ふふ……。魔王が気に入ったものを、そう易々と手放すとお思いか」芝居がかった仕草で微笑み、職員の肩にそっと手を添えた。「この者は、すでに我が城の客人。帰すも帰さぬも、すべては私の胸三寸ですな」それを聞いた歌仙兼定は、呆れたように「……まったく。君にそんな趣味があったとはね」そう言いながらも、口元には笑みが浮かんでいる。「せっかくの祝祭ですからね。らしく振る舞うのも一興でしょう」そう言って一期一振は、悪戯っぽく目配せをした。';
+ hwMaouScene(body,answer==='かっこ良い'?[['思わず微笑む',()=>hwMaouA1()]]:[['似合っていると言う',()=>hwMaouA2()],['怖かったと言う',()=>hwMaouA3()]]);
+}
+function hwMaouA1(){hwMaouScene('「どうやら、この者も私の言葉に異存はないようです」一期一振はそう言って歌仙兼定に向き直る。「さて、忠実なる我が側近よ。美味しい茶でも淹れてよこせば、先ほどの無礼も許してやろう」歌仙兼定は一瞬呆気に取られ、それから小さく笑った。「まったく、調子に乗って……。仕方がないね、今日だけだよ」しばらくして運ばれてきた茶を前に、一期一振は満足げに微笑んだ。魔王とその側近、それから客人。三人で過ごす、穏やかな祝祭のひとときだった。',[['お茶を飲む',()=>hwMaouEnd(1)]]);}
+function hwMaouA2(){hwMaouScene('一期一振は少しだけ複雑そうな表情をした。しかし、すぐに悪そうな笑顔を浮かべる。「……それほどまでに魔王らしく見えるのであれば、仕方ありませんな。貴方を特別に、我が側近として召し抱えて差し上げましょう」芝居がかった仕草で腕を組み、こちらを見下ろす。「さて、どのように使って差し上げようか」歌仙兼定が口を挟む。「悪ふざけが過ぎるのも考えものだよ」「おや。歌仙殿はこの者より下の位です。発言権などないと心得ていただきたい」一期一振が笑うと、歌仙兼定もとうとう吹き出した。恐ろしい魔王の城にしては、随分と和やかな空気が流れている。',[['思わず笑う',()=>hwMaouEnd(2)]]);}
+function hwMaouA3(){hwMaouScene('一期一振は考えるような素振りを見せた。しかし、やがてにっこりと微笑む。「……なるほど。ですが、怖がられたところで、逃がしてやるつもりはありません」そう言うと、わざとらしく声を低くした。「せっかく攫ってきた姫君ですからな。そう易々と手放しては、魔王の名折れというものでしょう？」困って歌仙兼定に目を向けると、彼もまた面白がっているようだった。「ふふ、厄介な魔王に捕まってしまったものだね。同情はするよ」まるで助ける気のなさそうな口ぶりだ。一期一振は頷くと、「さて、姫君。これからも、この城にいてくださいますか」',[
+ ['この城にいる',()=>hwMaouA3End()],['この城にいる',()=>hwMaouA3End()]]);}
+function hwMaouA3End(){hwMaouScene('職員の言った……言わされた答えに、「おや、何か？」一期一振は楽しそうに笑った。歌仙兼定がとうとう堪えきれずに吹き出す。「……一期一振、君は本当に魔王に向いているんじゃないか」一期一振は得意げに微笑んだ。「お褒めにあずかり、光栄ですな」どうやら、この城の魔王には逆らえそうもない。',[['魔王に従う',()=>hwMaouEnd(3)]]);}
+function hwMaouFirstB(answer){
+ hwMaouScene('「いえ。私には、少々荷が重い役目です」一期一振は困ったように微笑んだ。「魔王などというものは、私にはどうにも……。むしろ、歌仙殿のほうがよほどお似合いになるのでは？」歌仙兼定は苦笑いを浮かべ「……それは、どういう意味かな」と問うが、一期一振は涼しい顔で「さて。威厳もあり、気品もある。なにより、随分と恐ろしいお顔をなさることもありますからな」冗談なのか、それとも本気なのか……。「よろしければ、仮装を交換いたしましょう。私よりも、きっと立派な魔王になられることでしょう」歌仙兼定は呆れた表情をしたが、一期一振はとても楽しそうだった。',
+ answer==='別の仮装のほうが似合う'?[[`一期一振は${hwCostume('歌仙兼定')}も似合う`,()=>hwMaouB4()],['一期一振は側近役も似合う',()=>hwMaouB5()]]:[['歌仙兼定も魔王が似合う',()=>hwMaouB6()]]);
+}
+function hwMaouB4(){hwMaouScene('一期一振は嬉しそうに微笑んだ。「光栄です。では、歌仙殿に魔王をお任せして、私はこの者と共に側近としてお仕えいたしましょう」そう言って、恭しく歌仙兼定に頭を下げる。「魔王様、何なりとお申し付けください」歌仙兼定は困ったように眉を寄せた。「……きみにそんな態度を取られると、どうにも落ち着かないね」一期一振は涼しい顔で微笑んでいる。どうやら、歌仙兼定を困らせるのが楽しくなってきたらしい。',[['魔王に仕える',()=>hwMaouEnd(4)]]);}
+function hwMaouB5(){hwMaouScene('一期一振は楽しそうに頷いた。「では、忠実なる側近として、魔王様に献上する姫君を捕らえるといたしましょう」そう言うなり、職員の手をそっと取る。「さあ、姫君。魔王様がお待ちです」歌仙兼定は呆れたようにため息をついた。「……一期一振、僕をだしにして遊ぶのはやめてくれないかい」「おや。魔王様のために働いているだけですが？」一期一振は悪びれもせずに微笑んだ。どうやら、今夜は二人とも悪戯好きらしい。',[['捕まってあげる',()=>hwMaouEnd(5)]]);}
+function hwMaouB6(){hwMaouScene('歌仙兼定は少し考え、それから小さく咳払いをした。「……そこまで言うのなら、仕方がないね」すっと背筋を伸ばし、威厳たっぷりに微笑む。「では、僕が魔王だ。きみは僕の忠実な側近ということになるね」すると一期一振は、申し訳なさそうに頭を下げた。「いえ、私は姫君をお救いするため、魔王を討ちに参った勇者ですので」「……裏切るのが早すぎないかい？」歌仙兼定が呆れると、一期一振は微笑んだ。「姫君、どうぞ私の後ろへ。恐ろしい魔王からお守りいたしましょう」どうやら、魔王の座を譲っても、悪戯は終わらないらしい。',[['勇者の後ろに隠れる',()=>hwMaouEnd(6)]]);}
+
+function hwFinalFarewell(n){
+ if(state.mode==='saniwa'){
+  const partner=hwFinalPairPartner(n);
+  if(partner){hwFinalPairFarewell(n,partner);return;}
+ }
+ const who=state.mode==='saniwa'?'審神者':'職員';
+ const intro=`${n}は、${who}の別れの挨拶を聞いて寂しそうにしていたが、${who}の持っているお菓子を見つけると笑顔になった。最後の思い出として、一緒にそのお菓子を食べよう、と。ここで、${who}は思い出す。政府から支給されたお菓子は刀剣男士用のものであり、決して${who}は食べないようにと言われていたことを。`;
+ hwAsk('祝祭の終わり',intro,[
+  {text:'食べる',run:()=>hwAsk('祝祭の終わり',`${n}は、答えを聞くと、目を細めて笑った。それは獲物を狙う魔物の目つきにも、${who}を慈しむ、罪悪感の混じった彼自身の視線にも思えた。そうして、${who}は、${n}とふたりで残っていたお菓子を口に運んだ。今まで食べたことがないほどおいしく、そして、もう戻れないのだと感じさせる味だった。`,[{text:'この本丸に残る',run:()=>hwMaouReady(n)?hwMaouBanquet():hwEnd('forever',n)}])},
+  {text:'食べない',run:()=>state.mode==='saniwa'?hwSaniwaSingleRefusalChoice(n):hwAsk('最後の夜',`それならせめて、自分のことをこれからもずっと忘れないでいてほしい。だから、自分なりの見送りをさせてくれ、と${n}は笑顔で言った。`,[{text:'頷く',run:()=>hwEnd('prank',n)}])}
+ ]);
+}
+function hwTrueFarewell(){
+ hwAsk('祝祭の終わり','全員が集まる部屋に行くと、なんだか重苦しい空気だ。その中心にいた一期一振が手招きをしている。素直にそちらへ向かうと、「貴方はよく務めてくれました。ですから、それに報いたいと話しておりましてな」穏やかな声色に反して、周囲の刀も一期一振も、まるで獲物を見るような視線を職員に向けている。',[{text:'頷く',run:()=>hwAsk('祝祭の終わり','「そこで……こういうものはいかがか、と」一期一振のシルエットが、ぶれて、揺れて、……職員のことなど一口で飲み込んでしまいそうな、化け物に変じた。「永遠の平穏を贈りましょう。ただし、俺の腹の中で、な」そう嗤った化け物から逃げる術などあるはずもなく、職員は一飲みにされた。',[{text:'目を閉じる',run:()=>hwEnd('true',null)}])}]);
+}
+function hwFinalDay(){
+ if(!state||state.ended||pending)return;
+ if(hwCheckImmediateEnding())return;
+ const all=hwOrderedNames();
+ const trueReady=state.candy>=1&&all.every(n=>state.given[n]&&state.aff[swordByName(n)]>=31);
+ const candidates=all.filter(n=>state.aff[swordByName(n)]>=60&&(state.mode==='staff'||hwCostume(n)!=='魔王'));
+ const names=candidates.length?candidates:[hwTopName()];
+ const options=names.map(n=>({text:n,run:()=>hwFinalFarewell(n)}));
+ if(trueReady)options.push({text:'みんなに挨拶をする',run:()=>hwTrueFarewell()});
+ hwAsk('祝祭の終わり','不思議なこの本丸での日々も、これで終わりだ。誰かに挨拶をしていこうか？',options);
+
+}
+function hwQueueDay(day){const q=[];if(day%3===0&&day<=27)q.push('three');if([7,14,21,28].includes(day))q.push('weekly');if(day===10)q.push('report');if(day===20)q.push('costume');return q}
+function updateHwModeDescription(){
+ const mode=$('hwMode').value;
+ $('hwModeDescription').textContent=mode==='saniwa'
+ ? '「露と消えにし」相当の難易度です。あの緊張感をまた味わいたいかた、理不尽に弄ばれたいかたに向いています。'
+ : '刀剣男士たちからの対応が比較的優しく、生還がそこまで難しくないモードです。気軽に遊びたいかたに向いています。';
+}
+function updateHwNameLabel(){
+ const mode=$('hwMode').value;
+ const label=$('hwNameLabel');
+ const input=$('name');
+ label.firstChild.textContent=mode==='saniwa'?'審神者名':'職員名';
+ if(input.value==='職員'||input.value==='審神者')input.value=mode==='saniwa'?'審神者':'職員';
+}
+$('hwMode').addEventListener('change',()=>{
+ updateHwNameLabel();
+ updateHwModeDescription();
+});
+updateHwNameLabel();
+updateHwModeDescription();
+function start(){const mode=$('hwMode').value;if(mode!=='staff'){alert('臨時審神者モードは準備中です');return;}const name=$('name').value.trim()||(mode==='saniwa'?'審神者':'職員');stopAuto();pending=null;const curtain=$('transitionCurtain');curtain.classList.add('active');const owned=[...FIXED],setup=hwPairs();state={version:5,halloween:true,mode,name,country:'山城国',year:2205,month:11,day:1,starter:'kasen',owned,aff:Object.fromEntries(owned.map(id=>[id,mode==='saniwa'?20:31])),turn:0,log:[],pairs:setup.pairs,costumes:setup.dressed,given:{},warned:{},saniwaCostumeQuestionUsed:false,weekPairsUsed:[],weekPraised:[],hundredSeen:[],hundredCostumesSeen:[],hundredQueue:[],hundredAnswers:{},specialQueue:[],candy:mode==='saniwa'?20:31,ended:false,ending:null};$('endOverlay').classList.add('hidden');setTimeout(()=>{$('setupOverlay').classList.add('hidden');setTimeout(()=>curtain.classList.remove('active'),420)},470);hwRecord('着任',`${name}は山城国の本丸に${mode==='saniwa'?'審神者':'職員'}として着任した。2205年11月1日。`);hwAsk('着任時の光景','足を踏み入れると、そこには仮装に身を包んだ刀剣男士たちがいた。二十振り分の瞳が審神者を見る。期待のこもったもの、様子を窺うようなもの、そして明らかに獲物を眺めるような視線。',[{text:'挨拶をする',run:()=>hwRecord('歓迎',`${hwCostume('歌仙兼定')==='白衣'?'血糊のついた白衣を着た':`${hwCostume('歌仙兼定')}の格好をした`}刀剣男士——この本丸の初期刀だという歌仙兼定と、その隣にいた${hwCostume('一期一振')==='白衣'?'血染めの白衣の男':hwCostume('一期一振')}……ではなく一期一振が、それぞれ一歩前に出て歓迎してくれた。こうして、11月だというのにハロウィーンの飾りに彩られた本丸での日々が幕を開けた。`)}]);render()}
+function advance(){if(!state||state.ended||pending)return;if(state.turn>=29){hwFinalDay();render();return}state.turn++;state.day=1+state.turn;state.specialQueue=hwQueueDay(state.day);hwVisit();render()}
+function render(){controls();if(!state)return;const date=hwDate();$('clock').textContent=hwTextDate();const left=Math.max(0,29-state.turn);const preview=document.querySelector('.preview');
+ const staffEnded=state.mode==='staff'&&state.ended;
+ const endTitle=state.ending?.title||'';
+ const outcome=staffEnded?(state.ending?.hwOutcome||(endTitle.includes('永久にハロウィン')?'forever':endTitle.includes('悪戯追い出され')||/^END0[1-9]「/.test(endTitle)?'prank':endTitle.includes('職員モード・トゥルー')?'true':endTitle.includes('帰還')?'return':'return')):null;
+ preview.classList.toggle('hw-deadline-muted',outcome==='prank'||outcome==='return');
+ preview.classList.toggle('hw-deadline-forever',outcome==='forever');
+ if(staffEnded){
+  $('remain').textContent=outcome==='forever'?'あと××日':outcome==='prank'?'任務失敗':outcome==='return'?'任務終了':'任務完了';
+  $('deadlineDesc').textContent=outcome==='prank'?'対象本丸からの退去により、任務を中止しました。':outcome==='return'?'任務の継続が困難と判断され、帰還しました。':outcome==='forever'?'2205年11月1日着任。■■日経過。':'三十日間の任務が完了しました。';
+ }else{
+  $('remain').textContent=`あと${left}日`;
+  $('deadlineDesc').textContent=`着任から${state.turn}日が経過。残り${left}日。`;
+ }$('profile').replaceChildren();$('hwProfileHeading').textContent=state.mode==='saniwa'?'審神者と本丸':'政府職員と本丸';const name=document.createElement('div');name.className='profile-name';name.textContent=state.name;$('profile').append(name);for(const [k,v] of [['所属','山城国'],['初期刀','歌仙兼定'],['任務期間','30日間'],['お菓子',`${state.candy}個`]]){const d=document.createElement('div');d.className='profile-meta';d.textContent=`${k}：${v}`;$('profile').append(d)}$('ownedCount').textContent=state.owned.length+'振り';$('romance').replaceChildren();sortChoiceSwords(state.owned).forEach(id=>{const card=document.createElement('div');card.className='romance-card';const strong=document.createElement('strong');strong.textContent=sword(id).name;const sub=document.createElement('div');sub.className='muted';sub.textContent=`好感度 ${state.aff[id]}`;const meter=document.createElement('div');meter.className='meter';const bar=document.createElement('span');bar.style.width=state.aff[id]+'%';meter.append(bar);card.append(strong,sub,meter);$('romance').append(card)});$('count').textContent=state.log.length+'件';$('log').replaceChildren();[...state.log].reverse().forEach(e=>{const article=document.createElement('article');article.className='entry '+(e.type==='choice'?'choice':'');const d=document.createElement('div');d.className='date';d.textContent=`2205年11月${1+e.turn}日`;const strong=document.createElement('strong');strong.textContent=e.title;const body=document.createElement('div');body.textContent=e.body;article.append(d,strong,body);$('log').append(article)})}
+
 setup();
 
 /* Ending image export: 960x540, inspired by Kuruizaki's canvas and mobile workflow. */
@@ -1221,52 +2394,30 @@ function tsuyuMakeImageCanvas(){
  const c=document.createElement('canvas');c.width=960;c.height=540;
  const x=c.getContext('2d');
  const title=String(state.ending.title||'');
+ const hwMatch=title.match(/^終幕(\d+)「([^」]+)」/);
  const match=title.match(/^(死因その[^「]+|死因|任務完了記録\s*\d+)「(.+)」$/);
- const category=match?match[1]:(title.startsWith('死因')?'死因':'任務完了記録');
- const name=match?match[2]:title;
- const special=title.startsWith('死因')?tsuyuSpecialCardColors[name]:null;
- const survivalSpecial=title.startsWith('任務完了記録')?tsuyuSurvivalCardColors[Number((category.match(/\d+/)||[])[0])]:null;
- if(survivalSpecial){
-  const p=survivalSpecial;
-  const grad=x.createLinearGradient(0,0,960,540);
-  grad.addColorStop(0,p.stops[0]);grad.addColorStop(.55,p.stops[1]);grad.addColorStop(1,p.stops[2]);
-  x.fillStyle=grad;x.fillRect(0,0,960,540);
-  const shine=x.createLinearGradient(0,0,960,540);
-  shine.addColorStop(0,'rgba(255,255,255,.15)');shine.addColorStop(1,'rgba(0,0,0,.08)');
-  x.fillStyle=shine;x.fillRect(0,0,960,540);
-  x.strokeStyle=p.line;x.globalAlpha=.75;x.lineWidth=2;x.strokeRect(30,28,900,484);
-  x.globalAlpha=.45;x.lineWidth=1;x.strokeRect(41,39,878,462);
-  x.globalAlpha=.9;x.fillStyle=p.edge;x.fillRect(0,0,960,8);x.globalAlpha=1;
- }else if(special){
-  x.fillStyle=special.bg;x.fillRect(0,0,960,540);
-  const grad=x.createLinearGradient(0,0,960,540);
-  grad.addColorStop(0,'rgba(255,255,255,.18)');grad.addColorStop(1,'rgba(0,0,0,.035)');
-  x.fillStyle=grad;x.fillRect(0,0,960,540);
-  x.strokeStyle=special.ink;x.globalAlpha=.72;x.lineWidth=2;x.strokeRect(30,28,900,484);
-  x.globalAlpha=.3;x.lineWidth=1;x.strokeRect(41,39,878,462);
-  x.globalAlpha=.55;x.fillStyle=special.ink;x.fillRect(0,0,960,8);x.globalAlpha=1;
-  // Blood always drawn last among background decorations, covering the frame.
-  if(special.blood&&tsuyuSpecialBlood.complete&&tsuyuSpecialBlood.naturalWidth){
-   x.drawImage(tsuyuSpecialBlood,0,0,960,540);
-  }
- }else if(title.startsWith('死因')){
-  x.drawImage(tsuyuDeathBackground,0,0,960,540);
- }else{
-  x.fillStyle='#160b0d';x.fillRect(0,0,960,540);
-  const grad=x.createLinearGradient(0,0,960,540);grad.addColorStop(0,'#301419');grad.addColorStop(.55,'#190b0e');grad.addColorStop(1,'#0c0709');x.fillStyle=grad;x.fillRect(0,0,960,540);
-  x.strokeStyle='#7a3e46';x.lineWidth=2;x.strokeRect(30,28,900,484);
-  x.strokeStyle='#4b282f';x.lineWidth=1;x.strokeRect(41,39,878,462);
-  x.fillStyle='#8d454c';x.fillRect(0,0,960,8);
- }
- const ink=survivalSpecial?.ink||special?.ink;
- x.textAlign='center';x.fillStyle=ink||'#d1aaa7';x.font='400 22px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText('露と消えにし',480,113);
- x.strokeStyle=ink||'#76434a';if(special||survivalSpecial)x.globalAlpha=.6;x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();x.globalAlpha=1;
- x.fillStyle=ink||'#c8a29e';x.font='500 25px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText(category,480,216);
+ const category=hwMatch?'終幕 '+hwMatch[1]:(match?match[1]:(title.startsWith('死因')?'死因':'任務完了記録'));
+ const name=hwMatch?hwMatch[2]:(match?match[2]:title);
+ // 甘露と消えにし：職員モードv29に合わせた共通カード配色。
+ // 旧作の血飛沫・特殊色は画像生成には使用しない。
+ const ink='#f4e6dc';
+ const grad=x.createLinearGradient(0,0,960,540);
+ grad.addColorStop(0,'#32142b');grad.addColorStop(.52,'#1a0c1c');grad.addColorStop(1,'#0d0913');
+ x.fillStyle=grad;x.fillRect(0,0,960,540);
+ const glow=x.createRadialGradient(760,80,0,760,80,640);
+ glow.addColorStop(0,'#70204a66');glow.addColorStop(1,'#70204a00');
+ x.fillStyle=glow;x.fillRect(0,0,960,540);
+ x.strokeStyle='#94345f';x.lineWidth=2;x.strokeRect(30,28,900,484);
+ x.strokeStyle='#653052';x.lineWidth=1;x.strokeRect(41,39,878,462);
+ x.fillStyle='#ff8528';x.fillRect(0,0,960,8);
+ x.textAlign='center';x.fillStyle='#e8cdbd';x.font='400 22px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText('甘露と消えにし',480,113);
+ x.strokeStyle='#ff8528';x.globalAlpha=.85;x.beginPath();x.moveTo(270,142);x.lineTo(690,142);x.stroke();x.globalAlpha=1;
+ x.fillStyle='#e7b6cf';x.font='500 25px "Yu Mincho","Hiragino Mincho ProN",serif';x.fillText(category,480,216);
  let fontSize=52;const font=(size)=>'500 '+size+'px "Yu Mincho","Hiragino Mincho ProN",serif';
  x.font=font(fontSize);while(x.measureText(name).width>785&&fontSize>25){fontSize-=2;x.font=font(fontSize)}
- x.fillStyle=ink||'#f4e6df';x.fillText(name,480,325);
- x.strokeStyle=ink||'#76434a';if(special||survivalSpecial)x.globalAlpha=.6;x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();x.globalAlpha=1;
- x.fillStyle=ink||'#9c7776';if(special||survivalSpecial)x.globalAlpha=.8;x.font='500 14px "Asap Sharp",sans-serif';
+ x.fillStyle=ink;x.fillText(name,480,325);
+ x.strokeStyle='#ff8528';x.globalAlpha=.85;x.beginPath();x.moveTo(270,370);x.lineTo(690,370);x.stroke();x.globalAlpha=1;
+ x.fillStyle='#b99eae';x.globalAlpha=.9;x.font='500 14px "Asap Sharp",sans-serif';
  const footer='UNOFFICIAL FAN-MADE';const letterSpacing=1.55;
  const widths=[...footer].map(ch=>x.measureText(ch).width);
  let tx=480-(widths.reduce((a,b)=>a+b,0)+letterSpacing*(widths.length-1))/2;
@@ -1274,15 +2425,37 @@ function tsuyuMakeImageCanvas(){
  x.globalAlpha=1;
  return c;
 }
+async function shareEndingImage(){
+ if(!state?.ending)return;
+ try{await document.fonts.load('500 14px "Asap Sharp"');}catch(e){}
+ const canvas=tsuyuMakeImageCanvas();
+ if(!canvas){alert('画像を生成できませんでした。');return}
+ const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+ if(!blob){alert('画像の生成に失敗しました。');return}
+ const filename='甘露と消えにし_'+String(state.ending.title||'結末').replace(/[\\/:*?"<>|]/g,'_')+'.png';
+ const file=new File([blob],filename,{type:'image/png'});
+ const message=state?.mode==='staff'?HW_STAFF_SHARE_TEXT:'露と消えにし';
+ if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+  try{await navigator.share({files:[file],text:message});return}
+  catch(e){if(e.name==='AbortError')return;console.warn('画像共有に失敗',e)}
+ }
+ // File sharing unsupported: show the existing image preview/download UI.
+ if(tsuyuImageUrl)URL.revokeObjectURL(tsuyuImageUrl);
+ tsuyuImageUrl=URL.createObjectURL(blob);
+ document.getElementById('tsuyuImagePreview').src=tsuyuImageUrl;
+ const link=document.getElementById('tsuyuImageDownload');link.href=tsuyuImageUrl;link.download=filename;
+ document.getElementById('tsuyuImageShare').style.display='none';
+ document.getElementById('tsuyuImageModal').classList.remove('hidden');
+}
 async function saveEndingImage(){
  try{await document.fonts.load('500 14px "Asap Sharp"');}catch(e){console.warn('Asap Sharp font load failed',e)}
- if(state?.ending?.title?.startsWith('死因')){try{await tsuyuDeathBackground.decode();}catch(e){alert('背景画像の読み込みに失敗しました。');return}}
- if(state?.ending?.title?.startsWith('死因')&&tsuyuSpecialCardColors[String(state.ending.title).match(/「(.+)」$/)?.[1]]?.blood){try{await tsuyuSpecialBlood.decode();}catch(e){alert('血飛沫画像の読み込みに失敗しました。');return}}
+
+
  const c=tsuyuMakeImageCanvas();if(!c)return;
  c.toBlob(blob=>{
   if(!blob){alert('画像の生成に失敗しました。');return}
   const title=String(state.ending.title||'結末').replace(/[\\/:*?"<>|]/g,'_');
-  const filename='露と消えにし_'+title+'.png';
+  const filename='甘露と消えにし_'+title+'.png';
   const touch=(navigator.maxTouchPoints||0)>0||(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches);
   if(!touch){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);return}
   if(tsuyuImageUrl)URL.revokeObjectURL(tsuyuImageUrl);tsuyuImageUrl=URL.createObjectURL(blob);
@@ -1292,9 +2465,22 @@ async function saveEndingImage(){
   try{file=new File([blob],filename,{type:'image/png'});}catch(e){}
   const canShare=!!(file&&navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}));
   share.style.display=canShare?'inline-block':'none';
-  share.onclick=async()=>{try{await navigator.share({files:[file],title:'露と消えにし'});}catch(e){if(e.name!=='AbortError')console.warn(e)}};
+  share.onclick=async()=>{try{await navigator.share({files:[file],title:'甘露と消えにし'});}catch(e){if(e.name!=='AbortError')console.warn(e)}};
   document.getElementById('tsuyuImageModal').classList.remove('hidden');
  },'image/png');
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')tsuyuCloseImage()});
-</script><div aria-hidden="true" id="transitionCurtain"></div><div class="tsuyu-image-modal hidden" id="tsuyuImageModal" onclick="if(event.target===this)tsuyuCloseImage()"><div class="tsuyu-image-dialog" role="dialog" aria-modal="true" aria-label="結果画像を保存"><h3>結果画像を保存・共有</h3><img id="tsuyuImagePreview" alt="生成したエンディング画像"><div class="tsuyu-image-actions"><button id="tsuyuImageShare" type="button">画像を共有</button><a id="tsuyuImageDownload" href="#" download>画像をダウンロード</a><button type="button" onclick="tsuyuCloseImage()">閉じる</button></div><p class="tsuyu-image-help">スマートフォンで直接保存できない場合は、画像を長押しして保存してください。</p></div></div></body></html>
+</script><div aria-hidden="true" id="transitionCurtain"></div><div class="tsuyu-image-modal hidden" id="tsuyuImageModal" onclick="if(event.target===this)tsuyuCloseImage()"><div class="tsuyu-image-dialog" role="dialog" aria-modal="true" aria-label="結果画像を保存"><h3>結果画像を保存・共有</h3><img id="tsuyuImagePreview" alt="生成したエンディング画像"><div class="tsuyu-image-actions"><button id="tsuyuImageShare" type="button">画像を共有</button><a id="tsuyuImageDownload" href="#" download>画像をダウンロード</a><button type="button" onclick="tsuyuCloseImage()">閉じる</button></div><p class="tsuyu-image-help">スマートフォンで直接保存できない場合は、画像を長押しして保存してください。</p></div></div>
+<script id="saniwa-fixed-palette-controller">
+/* 審神者モードに03配色を固定。配色比較UI・切替処理は削除。 */
+(function(){
+ const oldRender=render;
+ function applySaniwaPalette(){
+  const enabled=typeof state!=='undefined'&&!!state&&state.mode==='saniwa';
+  document.body.classList.toggle('saniwa-color-preview',enabled);
+ }
+ render=function(){const result=oldRender.apply(this,arguments);applySaniwaPalette();return result};
+ applySaniwaPalette();
+})();
+</script>
+</body></html>
