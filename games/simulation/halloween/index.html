@@ -853,7 +853,7 @@ body .preview.hw-deadline-forever #remain{background:#c52d6b!important;border-co
 <div><h2>政府特別派遣通知</h2><p>本丸管理番号 H-44S-0015136への臨時着任を命ずる。任期中は所属刀剣男士との関係に留意し、必要に応じて菓子類の配布を行うこと。</p></div>
 <div class="flex between"><button id="loadBtn">保存データを読み込む</button><button class="primary" id="startBtn">本丸に向かう</button></div><input accept=".json,application/json" class="hidden" id="loadFile" type="file"/>
 </section></div>
-<div class="overlay hidden" id="endOverlay"><section class="setup stack"><h2>任務の結末</h2><div id="ending"></div><div class="flex"><button id="endExport">年代記を書き出す</button><button id="endSave">結果画像を保存する</button><button id="endShareX" type="button">Xでシェア</button><button id="endShareImage" type="button">画像付きでシェア</button><button id="endClose">画面を閉じる</button></div></section></div>
+<div class="overlay hidden" id="endOverlay"><section class="setup stack"><h2>任務の結末</h2><div id="ending"></div><div class="flex"><button id="endExport">年代記を書き出す</button><button id="endSave">結果画像を保存する</button><button id="endShareX" type="button">Xでシェア</button><button id="endShareImage" type="button">画像付きでシェア</button><button id="endClose">画面を閉じる</button></div><p style="font-size:.85em;opacity:.85;margin-top:.5em">画像付きシェアがうまくいかない場合は、「結果画像を保存する」から画像を保存し、投稿時に手動で添付してください。</p></section></div>
 <main class="wrap layout">
 <aside><section class="panel"><h2 id="hwProfileHeading">審神者と本丸</h2><div class="stack muted" id="profile">着任前</div></section><section class="panel roster-panel"><details class="owned-details"><summary><span class="owned-title">所属刀剣男士</span><span class="owned-summary-right"><span class="pill" id="ownedCount">0振り</span><span class="owned-toggle">一覧を開く</span></span></summary><div class="romance-grid compact-romance" id="romance"></div></details></section></aside>
 <div><div class="hero"><h2>甘露と消えにし</h2></div>
@@ -2095,7 +2095,7 @@ function hwPrankOne(n){
   :(HW_PRANK_A.has(n)
    ?`そして${n}は、確か、お菓子をくれない相手には悪戯をしていいと聞いた、と思いついたように言い、職員に近寄ってきた。`
    :`そして${n}は、なるほど、こういう目に遭いたいからわざとお菓子をくれなかったのだろうと意地悪な笑みを浮かべ、職員に歩み寄った。`);
- hwAsk('深まる夜',body.replaceAll('職員',state.mode==='saniwa'?'審神者':'職員'),[{text:'拒絶する',run:()=>state.mode==='saniwa'?hwSaniwaZeroEnd(n):hwEnd('prank',n)}]);
+ hwAsk('深まる夜',body.replaceAll('職員',state.mode==='saniwa'?'審神者':'職員'),[{text:'拒否する',run:()=>state.mode==='saniwa'?hwSaniwaZeroEnd(n):hwEnd('prank',n)}]);
 }
 function hwCheckImmediateEnding(){
  if(!state||state.ended)return true;
@@ -2470,7 +2470,7 @@ async function saveEndingImage(){
  },'image/png');
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')tsuyuCloseImage()});
-</script><div aria-hidden="true" id="transitionCurtain"></div><div class="tsuyu-image-modal hidden" id="tsuyuImageModal" onclick="if(event.target===this)tsuyuCloseImage()"><div class="tsuyu-image-dialog" role="dialog" aria-modal="true" aria-label="結果画像を保存"><h3>結果画像を保存・共有</h3><img id="tsuyuImagePreview" alt="生成したエンディング画像"><div class="tsuyu-image-actions"><button id="tsuyuImageShare" type="button">画像を共有</button><a id="tsuyuImageDownload" href="#" download>画像をダウンロード</a><button type="button" onclick="tsuyuCloseImage()">閉じる</button></div><p class="tsuyu-image-help">スマートフォンで直接保存できない場合は、画像を長押しして保存してください。</p></div></div>
+</script><div aria-hidden="true" id="transitionCurtain"></div><div class="tsuyu-image-modal hidden" id="tsuyuImageModal" onclick="if(event.target===this)tsuyuCloseImage()"><div class="tsuyu-image-dialog" role="dialog" aria-modal="true" aria-label="結果画像を保存"><h3>結果画像を保存・共有</h3><img id="tsuyuImagePreview" alt="生成したエンディング画像"><div class="tsuyu-image-actions"><button id="tsuyuImageShare" type="button">画像を共有</button><a id="tsuyuImageDownload" href="#" download>画像をダウンロード</a><button type="button" onclick="tsuyuCloseImage()">閉じる</button></div><p class="tsuyu-image-help">スマートフォンで直接保存できない場合は、画像を長押しして保存してください。 画像付きシェアがうまくいかない場合は、保存した画像を投稿時に手動で添付してください。</p></div></div>
 <script id="saniwa-fixed-palette-controller">
 /* 審神者モードに03配色を固定。配色比較UI・切替処理は削除。 */
 (function(){
