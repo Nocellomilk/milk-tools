@@ -1716,7 +1716,7 @@ function hwPairs(){
 }
 function hwDate(){return new Date(2205,10,1+state.turn)}
 function hwTextDate(){const d=hwDate();return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`}
-function hwRecord(title,body,type='normal'){if(title==='結末')type='choice';if(title!=='好感度の変化')state.hwAffBatch=false;state.log.push({turn:state.turn,year:2205,month:11,day:1+state.turn,title,body,type})}
+function hwRecord(title,body,type='normal'){if(title==='結末')type='choice';if(title!=='好感度の変化')state.hwAffBatch=false;const last=state.log[state.log.length-1];if(last&&last.turn===state.turn&&last.title===title&&last.body===body&&last.type===type)return;state.log.push({turn:state.turn,year:2205,month:11,day:1+state.turn,title,body,type})}
 function hwAff(n,delta){const id=swordByName(n);if(!id)return;const old=state.aff[id];state.aff[id]=Math.max(state.mode==='saniwa'?0:1,Math.min(100,old+delta));const line=`${n}：${delta>=0?'+':''}${delta}（${old} → ${state.aff[id]}）`;const last=state.log[state.log.length-1];if(state.hwAffBatch&&last?.title==='好感度の変化'&&last.turn===state.turn)last.body+='\n'+line;else hwRecord('好感度の変化',line);state.hwAffBatch=true;hwHundredReached(n,old)}
 function swordByName(n){return FIXED.find(id=>sword(id).name===n)}
 function hwCostume(n){return state.costumes[n]}
