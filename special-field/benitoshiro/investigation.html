@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>特殊環境下現地調査｜歴防本部</title>
+<style>
+*{box-sizing:border-box}
+:root{
+ --bg:#141617;--panel:#2d3031;--panel2:#373a3b;--paper:#e7e7e2;--ink:#f1f2ef;
+ --muted:#c0c5c1;--line:#555b58;--line2:#6b716d;--accent:#c3c6c1;--dim:#303435;
+ --warn:#b8a99a;--black:#090a0b;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#282b2c 0,#151718 42%,#0d0f10 100%);color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.85;min-height:100vh}
+button,input,select{font:inherit}
+.govbar{background:#090a0b;border-bottom:1px solid #343839;color:#eee}
+.govbar-inner{width:min(1120px,94%);margin:auto;padding:15px 0;display:flex;align-items:center;gap:20px}
+.brand small{display:block;font-size:10px;letter-spacing:.18em;color:#858b88}
+.brand strong{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:24px;letter-spacing:.12em;font-weight:500}
+.dept{margin-left:auto;font-size:12px;color:#a8adaa;border:1px solid #3c4140;padding:6px 10px;letter-spacing:.08em}
+.unofficial{font-size:11px;color:#949997}
+.shell{width:min(980px,94%);margin:28px auto 60px}
+.topline{font-size:11px;letter-spacing:.16em;color:#737a77;border-bottom:1px solid #343837;padding-bottom:9px;margin-bottom:20px}
+.card{background:linear-gradient(180deg,#323536,#292c2d);border:1px solid var(--line);box-shadow:0 16px 50px #0008;margin-bottom:18px}
+.hero{padding:34px 36px 30px;border-top:4px solid #5c615e;position:relative;overflow:hidden}
+
+.kicker{font-size:10px;letter-spacing:.22em;color:#7f8682;margin-bottom:5px}
+h1,h2,h3{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-weight:500}
+h1{font-size:32px;letter-spacing:.1em;margin:0 0 8px;color:#eceeea}
+.hero p{margin:0;color:#c1c6c2;font-size:13px;max-width:720px}
+.notice{margin-top:22px;border:1px solid #3b403e;background:#292c2d;padding:14px 16px;color:#d0d4d0;font-size:12px}
+.screen{display:none;padding:30px 34px 34px}
+.screen.active{display:block}
+.section-title{display:flex;align-items:center;gap:12px;margin:0 0 20px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.section-title .num{font-size:10px;border:1px solid #555b58;padding:3px 7px;color:#a8aeaa;letter-spacing:.1em}
+.section-title h2{font-size:22px;letter-spacing:.07em;margin:0;color:#e1e3df}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:15px}
+label{display:block;font-size:12px;color:#a9afab;margin-bottom:6px}
+input,select{width:100%;background:#1c1f20;color:#f0f1ee;border:1px solid #555b58;padding:11px 12px;outline:none}
+input:focus,select:focus{border-color:#737a76}
+.help{font-size:11px;color:#747b77;margin-top:5px}
+.btnrow{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap}
+button{border:1px solid #555b58;background:#24282a;color:#e5e7e3;padding:10px 17px;cursor:pointer}
+button:hover{background:#303537}
+button.primary{background:#d8dad5;color:#161819;border-color:#d8dad5;font-weight:700}
+button.primary:hover{background:#f0f1ed}
+button.ghost{background:transparent}
+.button-link{appearance:none;border:1px solid #555b58;background:#24282a;color:#e5e7e3;padding:10px 16px;font:inherit;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.button-link:hover{background:#303537}.ghost-link{background:transparent}.button-link:disabled{opacity:.58;cursor:default}
+.center-actions{justify-content:center}
+button.dream{background:#e7e9e5;color:#17191a;border-color:#e7e9e5;font-weight:700;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 18px rgba(231,233,229,.10)}
+button.dream:hover{background:#fff}
+.dreamtext{max-width:760px;margin:0 auto}
+.casehead{border:1px solid #444947;background:#292c2d;padding:17px 19px;margin-bottom:17px}
+.casehead small{display:block;color:#7f8682;letter-spacing:.16em;font-size:9px}
+.casehead strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;letter-spacing:.09em;margin:3px 0;color:#e7e9e5}
+.casehead span{font-size:11px;color:#8d9490}
+.record{border-left:2px solid #555b58;padding:2px 0 2px 18px;margin:20px 0}
+.record h3{font-size:16px;margin:0 0 5px;color:#d7dad6}
+.record p{font-size:13px;color:#c7cbc7;margin:0 0 8px}
+.record ul{margin:7px 0 0;padding-left:20px;color:#bec3bf;font-size:13px}
+.warning{border:1px solid #514943;background:#191613;padding:15px 17px;color:#b7aca3;font-size:12px;margin:18px 0}.warning h3{margin:0 0 10px;color:#d2c8bf;font-size:13px;letter-spacing:.08em}.warning p{margin:0;line-height:1.9}.warning p+p{margin-top:8px}
+.locations{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.loc{border:1px solid #3d4240;background:#2d3031;padding:17px;cursor:pointer;min-height:150px;transition:.15s}
+.loc:hover{border-color:#707672;background:#181b1c}
+.loc.done{opacity:.48;pointer-events:none;cursor:default;filter:saturate(.45)}.loc.done:after{content:'調査済';display:block;margin-top:12px;font-size:10px;letter-spacing:.14em;color:#9da39f}
+.loc .code{font-size:9px;letter-spacing:.18em;color:#717874}
+.loc strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:18px;margin:5px 0 7px}
+.loc p{font-size:11.5px;color:#afb5b1;margin:0}
+.loc-slot{min-height:150px;border:1px solid rgba(90,96,92,.22);background:rgba(45,48,49,.12)}
+.event{display:none;margin-top:18px;border:1px solid #444a47;background:#303334;padding:22px}
+.event.active{display:block}
+.event h3{margin:0 0 12px;font-size:20px}
+.event p{font-size:13px;color:#d0d4d0}
+.choice{display:grid;gap:8px;margin-top:15px}
+.choice button{text-align:left}
+.observation{margin-top:14px;padding:13px 15px;border:1px dashed #4c524f;color:#d5d9d5;font-size:12.5px;background:#3a3e3d}
+.keyword{display:inline-block;border:1px solid #626864;background:#3a3f3d;padding:4px 9px;margin:4px 5px 0 0;font-size:11px;color:#d5d8d4}
+.special{border-color:#625b55;background:#171513}
+.special .section-title{border-color:#49423d}
+.specialflag{display:none;margin:12px 0;padding:12px;border:1px solid #615950;color:#c0b3a7;font-size:12px}
+.specialflag.on{display:block}
+.resultbox{border:1px solid #454a48;background:#2d3031;padding:20px}
+.resultbox dl{display:grid;grid-template-columns:150px 1fr;margin:0;font-size:12px}
+.resultbox dt,.resultbox dd{padding:8px 0;border-bottom:1px solid #282c2b;margin:0}
+.resultbox dt{color:#7f8682}.resultbox dd{color:#e1e4e0}
+.lookup{display:flex;gap:8px;margin-top:12px}
+.lookup input{flex:1}
+.lookupout{margin-top:12px;padding:14px;border:1px solid #373c3a;background:#303334;color:#e0e3df;font-size:12px;min-height:48px}
+.trail{margin-top:18px;border-top:1px solid #4b514e}.trail-item{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:14px 4px;border-bottom:1px solid #414644}.trail-no{font-size:10px;color:#8d9490;letter-spacing:.12em}.trail-item strong{display:block;font-size:13px;color:#eceeeb}.trail-item span{display:block;font-size:11.5px;color:#b8bdb9;margin-top:3px}.savecards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.savecard{border:1px solid #555b58;background:#292c2d;padding:18px}.savecard strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;margin-bottom:6px}.savecard p{font-size:11.5px;color:#b6bbb7;margin:0 0 12px}.spoiler{font-size:10.5px;color:#c9bdb2;border-left:2px solid #756b63;padding-left:9px;margin:10px 0}.preview{margin-top:10px;padding:14px;border:1px dashed #606662;background:#363a39;font-size:11px;color:#d4d8d4;white-space:pre-line}.savecard button{width:100%}.save-image{display:block;width:100%;height:auto;margin-top:12px;border:1px solid #555b58;background:#e7e7e2}.download-link{display:block;text-align:center;margin-top:8px;border:1px solid #555b58;padding:9px 12px;color:#e5e7e3;text-decoration:none;background:#24282a}.download-link:hover{background:#303537}@media(max-width:720px){.savecards{grid-template-columns:1fr}}.footer{width:min(980px,94%);margin:0 auto 35px;color:#626966;font-size:10px;display:flex;justify-content:space-between;gap:20px}
+.debug{color:#6e7571;font-size:10px;margin-top:20px}
+.complete-record-link{margin:-3px 0 20px;text-align:right;padding-right:4px}
+.complete-record-link a{font-size:11px;color:#737a77;text-decoration:none;letter-spacing:.04em;border-bottom:1px solid #3f4442;padding-bottom:2px}
+.complete-record-link a:hover{color:#a8aeaa;border-bottom-color:#69706c}
+@media(max-width:720px){.complete-record-link{text-align:center;margin-top:-1px}}
+
+.prose{font-size:13px;color:#d0d4d0}.prose p{margin:0 0 1em}.prose .break{height:1px;background:#444a47;margin:24px 0}.endtitle{margin:24px 0 10px;padding:18px;border:1px solid #555b58;background:#232627;text-align:center}.endtitle small{display:block;font-size:10px;letter-spacing:.18em;color:#8e9591}.endtitle strong{display:block;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:23px;letter-spacing:.08em;margin-top:4px}.disposition{text-align:center;font-size:11px;color:#9da39f}.locked{opacity:.35;pointer-events:none}.subtle{font-size:11px;color:#8e9591}.finalchoices{display:grid;gap:9px;margin-top:16px}.finalchoices button{padding:13px 15px}.hidden{display:none!important}
+@media(max-width:720px){.hero,.screen{padding-left:20px;padding-right:20px}.grid,.locations{grid-template-columns:1fr}.resultbox dl{grid-template-columns:1fr}.resultbox dt{border-bottom:0;padding-bottom:0}.lookup{display:block}.lookup button{margin-top:8px;width:100%}.govbar-inner{flex-wrap:wrap}.dept{margin-left:0}.hero:after{display:none}}
+/* v0.4.1 readability pass: narrative/readable content enlarged; bureaucratic chrome stays compact */
+.record h3{font-size:19px;line-height:1.55}
+.record p,.record ul{font-size:16.5px;line-height:1.9}
+.loc strong{font-size:20px}.loc p{font-size:15.5px;line-height:1.75}
+.event h3{font-size:22px;line-height:1.5}.event p{font-size:17px;line-height:1.9}
+.observation{font-size:16px;line-height:1.85}
+.keyword{font-size:13px}
+.specialflag{font-size:15px;line-height:1.75}
+.lookupout{font-size:16px;line-height:1.85}
+.resultbox dl{font-size:15.5px;line-height:1.7}
+.trail-item strong{font-size:16px;line-height:1.55}.trail-item span{font-size:14.5px;line-height:1.65}
+.savecard strong{font-size:20px}.savecard p{font-size:15.5px;line-height:1.75}
+.spoiler{font-size:13.5px;line-height:1.65}
+.preview{font-size:16px;line-height:1.75;padding:18px}
+.prose{font-size:17.5px;line-height:1.95}.prose p{margin:0 0 1.15em}#dialogue p,#endingContent p{margin:0 0 1.35em;line-height:1.95}
+.endtitle small{font-size:11px}.endtitle strong{font-size:27px}.disposition{font-size:14px;line-height:1.6}
+.finalchoices button,.choice button{font-size:15.5px;line-height:1.55}
+@media(max-width:720px){
+ .record p,.record ul{font-size:17px;line-height:1.9}
+ .loc p{font-size:16px}.event p{font-size:17px}
+ .observation,.lookupout{font-size:16.5px}
+ .resultbox dl{font-size:16px}
+ .prose{font-size:18px;line-height:1.95}
+ .preview{font-size:16.5px;line-height:1.8}
+ .savecard p{font-size:16px}
+}
+
+/* スマートフォン向け画像保存・共有 */
+.export-modal{display:none;position:fixed;inset:0;z-index:1000;background:#151817d9;padding:22px;overflow:auto}
+.export-modal.open{display:flex;align-items:center;justify-content:center}
+.export-dialog{width:min(760px,96vw);max-height:94vh;overflow:auto;background:#e7e7e2;border:1px solid #555b58;border-top:5px solid #343936;box-shadow:0 18px 60px #0008;padding:20px;color:#202422}
+.export-dialog h3{margin:0 0 8px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:17px;color:#202422}
+.export-dialog p{margin:0 0 13px;font-size:12px;line-height:1.85;color:#5f6662}
+.export-preview{display:block;max-width:100%;max-height:62vh;margin:0 auto 14px;border:1px solid #aeb3af;background:#fff}
+.export-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.export-buttons button,.export-buttons a{display:inline-flex;align-items:center;justify-content:center;min-width:148px;padding:10px 14px;border:1px solid #343936;background:#343936;color:#f1f2ef;text-decoration:none;font:11px/1.2 inherit;cursor:pointer}
+.export-buttons .secondary{background:#f4f4ef;color:#343936;border-color:#858b87}
+.export-help{margin-top:12px;padding:10px 12px;border-left:3px solid #69706c;background:#d9dad5;font-size:11px;line-height:1.8;color:#4b514e}
+.export-close{float:right;border:0!important;background:transparent!important;color:#5f6662!important;font-size:20px!important;padding:0 2px!important;min-width:0!important}
+
+
+/* 開発用ジャンプメニュー：ゲーム本編のレイアウトとは独立 */
+#debugToggle{position:fixed;right:12px;bottom:12px;z-index:9000;background:#715b40;color:white;border:1px solid #c4a97d;border-radius:5px;padding:11px 14px;font-size:13px;box-shadow:0 4px 18px #0008}
+#debugPanel{position:fixed;right:10px;bottom:58px;z-index:9001;width:min(480px,calc(100vw - 20px));max-height:min(78vh,720px);overflow:auto;background:#1c2222;color:#e5e7e3;border:1px solid #a08c70;box-shadow:0 8px 28px #000b;padding:15px;display:none;font-size:13px}
+#debugPanel.open{display:block}#debugPanel h3{font-size:16px;margin:0 0 7px}#debugPanel h4{font-size:12px;margin:13px 0 5px;color:#d8c4a3}#debugPanel .dbgGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#debugPanel button{font-size:12px;padding:8px;white-space:normal;text-align:left;min-width:0}#debugPanel button:hover{background:#48514b}#debugPanel .dbgSetting{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0}#debugPanel .dbgSetting label{display:flex;gap:5px;align-items:center}#debugPanel select{background:#2b3332;color:white;border:1px solid #777;padding:5px}#debugPanel .dbgNote{font-size:11px;color:#c6c3b8;line-height:1.6;margin:7px 0}
+
+/* 追加記録は「狂い咲き」と同じ見出し・明るい文字色・連続した本文 */
+.lookup-record{color:#eceeeb;font-size:inherit;line-height:1.9}
+.lookup-record strong{font-weight:700;color:#f0f1ee}
+/* 登録時の入力エラー */
+.field-error{color:#e8a0a5;font-size:12px;line-height:1.6;margin-top:5px}
+input.input-error{border-color:#e8a0a5!important}
+button.dream{background:#e7e9e5;color:#17191a;border-color:#e7e9e5;font-weight:700}button.dream:hover{background:#fff}.dreamtext{max-width:760px;margin:0 auto}
+</style>
+</head>
+<body>
+<header class="govbar"><div class="govbar-inner">
+<div class="brand"><small>HISTORY DEFENSE HEADQUARTERS</small><strong>歴防本部</strong></div>
+<div class="dept">生活環境部　本丸管理課</div>
+<div class="unofficial">二次創作・非公式ファンメイド</div>
+</div></header>
+<div class="shell">
+<div class="topline">本丸管理課 ＞ 特殊環境下における現地調査 ＞ 調査協力者用端末</div>
+<div class="card hero">
+<div class="kicker">SPECIAL FIELD INVESTIGATION</div>
+<h1>特殊環境下 現地調査</h1>
+<p>通常の管理手続きでは状態の把握が困難な旧本丸等について、保護術式を使用した現地確認を行います。調査対象・観測内容は登録情報及び現地状況により異なります。</p>
+</div>
+<div class="card">
+<section class="screen active" id="s1">
+<div class="section-title"><span class="num">01</span><h2>調査員情報</h2></div>
+<div class="grid">
+<div class="field"><label>審神者名</label><input id="masterName" value="審神者" placeholder="例：審神者"/><div class="help">調査記録に表示する名前です。調査には影響しません。</div></div>
+<div class="field"><label>同行刀剣名</label><input id="swordName" placeholder="例：和泉守兼定" required/><div class="field-error" id="swordNameError" aria-live="polite"></div></div>
+<div class="field"><label>感応力</label><input id="sense" inputmode="numeric" placeholder="0～100／測定不能" type="text" value="50"/></div>
+<div class="field"><label>神霊親和性</label><input id="affinity" inputmode="numeric" placeholder="0～100／測定不能" type="text" value="50"/></div>
+<div class="field"><label>同行刀剣・神性</label><input id="divinity" inputmode="numeric" placeholder="0～100／測定不能" type="text" value="50"/></div>
+<div class="field"><label>同行刀剣・情緒</label><input id="emotion" inputmode="numeric" placeholder="0～100／測定不能" type="text" value="50"/></div>
+</div>
+<div class="btnrow"><a class="button-link ghost-link" href="https://milk-tools.com/special-field/benitoshiro/">事前確認へ戻る</a><button class="primary" onclick="goRegistration()">調査申請へ</button></div>
+</section>
+<section class="screen" id="s2">
+<div class="section-title"><span class="num">02</span><h2>特殊調査申請</h2></div>
+<div class="grid">
+<div class="field"><label>調査年月日</label><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><input id="dateYear" inputmode="numeric" placeholder="2205" style="width:7em" type="text" value="2205"/><span>年</span><input id="dateMonth" inputmode="numeric" placeholder="4" style="width:4em" type="text" value="4"/><span>月</span><input id="dateDay" inputmode="numeric" placeholder="1" style="width:4em" type="text" value="1"/><span>日</span></div><div class="field-error" id="dateError" aria-live="polite"></div></div>
+</div>
+<div class="warning"><h3>保護術式について</h3><p>特殊環境下現地調査では、調査を行う審神者一名と、同行する刀剣男士一振りを一組として保護術式の対象に指定します。</p><p>保護術式は、対象者の生命に関わる危険を検知した場合、審神者と同行刀剣を現地から緊急帰還させます。そのため、本調査への同行は一振りに限られます。</p><p>ただし、本術式が保証するのは対象者の生命および緊急帰還のみです。調査中に生じた負傷・記憶・精神的影響、その他の影響が残らないことを保証するものではありません。</p></div>
+<div class="btnrow"><button class="ghost" onclick="go('s1')">戻る</button><button class="primary" onclick="goCaseFile()">対象案件を確認</button></div>
+</section>
+<section class="screen" id="s3"><div class="section-title"><span class="num">03</span><h2>派遣前資料</h2></div><div class="casehead"><small>CASE FILE / HONMARU ENVIRONMENT DIVISION</small><strong>紅と白の本丸</strong><span>案件主管：本丸環境課</span></div><div class="record"><h3>案件概要</h3><p>審神者が交通事故により死亡、それに伴い閉鎖されていた本丸。故人は婚姻を機に退職する予定であり、その予定は所属刀剣全振りが把握していた。初期刀・加州清光が火葬後の遺骨の一部を持ち去り、刀の本体とともに所在不明となっている。霊力の痕跡から、加州清光は旧本丸に残っている可能性が高いとみられる。</p></div><div class="record"><h3>確認済み事項</h3><ul><li>審神者は享年二十六歳、女性。</li><li>勤務態度は良好で、家族や婚約者との関係にも問題は確認されていない。</li><li>所属刀剣は一振りを除いて、遺族と政府職員の立会いのもとで説明を受けた後、納得して刀解措置を受けた。</li><li>映像による事前調査にて、旧本丸の敷地内に景趣に含まれない山茶花の群生を確認。怪異由来の現象の可能性あり。</li><li>故人の死に加州清光が関与した事実はない。</li></ul></div><div class="record"><h3>調査目的</h3><p>旧本丸の異変、加州清光の状態、遺骨の所在を確認し、処遇判断のための情報を得る。本調査が初回現地調査となるため、慎重に行動すること。異常の解消は必須とせず、安全を優先する。</p></div><div class="btnrow"><button onclick="go('s2')">戻る</button><button class="primary" onclick="start()">現地調査を開始</button></div></section>
+<section class="screen" id="s4"><div class="section-title"><span class="num">04</span><h2>現地調査</h2></div><p class="subtle">調査地点を選択してください。条件を満たすと、追加調査地点が開示されます。</p><div class="locations" id="locations"></div><div class="event" id="event"></div><div class="record"><h3>追加調査記録照会</h3><p>調査で得た語句を入力すると、関連する記録を照会できます。</p><div class="lookup"><input id="lookupInput" placeholder="語句を入力"/><button onclick="lookup()">照会</button></div><div class="lookupout" id="lookupOut">照会待機中</div></div><div class="btnrow"><button class="primary" onclick="finish()">調査記録をまとめる</button></div></section>
+<section class="screen" id="s5"><div class="section-title"><span class="num">05</span><h2>調査記録</h2></div><div class="resultbox"><dl><dt>案件</dt><dd>旧本丸・所在不明刀剣調査</dd><dt>調査員</dt><dd id="rMaster">―</dd><dt>同行刀剣</dt><dd id="rSword">―</dd><dt>確認地点</dt><dd id="rLocs">―</dd><dt>取得キーワード</dt><dd id="rKeys">なし</dd><dt>条件観測</dt><dd id="rObservations">なし</dd><dt>特殊観測</dt><dd id="rSpecial">なし</dd><dt>暫定処理</dt><dd id="rDisposition">調査継続</dd></dl></div><div class="record"><h3>現地調査経路</h3><div class="trail" id="trail"></div></div><div class="record" id="nextAction"><h3>追加調査</h3><p id="nextText">必要な記録を確認してください。</p><div class="choice" id="nextButtons"></div></div></section>
+<section class="screen" id="s6"><div class="section-title"><span class="num">06</span><h2>加州清光との対話</h2></div><div class="prose" id="dialogue"></div><div class="choice" id="dialogueChoices"></div></section>
+<section class="screen" id="s7"><div class="section-title"><span class="num">07</span><h2>最終記録</h2></div><div class="prose" id="endingContent"></div><div class="savecards"><div class="savecard"><strong>調査記録を保存</strong><p>案件名、審神者名、同行刀剣、条件観測、到達ENDを記載する、ネタバレを抑えた記念・シェア向け記録です。</p><button onclick="showSimplePreview()">保存画像を作成</button><div id="simplePreview" class="preview" style="display:none"></div></div><div class="savecard"><strong>詳細記録を保存</strong><p>調査順、選択、条件観測、取得情報など、今回の調査の軌跡を記載します。</p><div class="spoiler">詳細記録には案件のネタバレを含みます。SNS等へ掲載する場合は、未調査の方への配慮をおすすめします。</div><button onclick="showDetailPreview()">詳細画像を作成</button><div id="detailPreview" class="preview" style="display:none"></div></div></div>
+<div class="btnrow"><button class="ghost" onclick="shareResult()">Xで結果をシェア</button></div><div class="btnrow" id="endingActions"><button class="primary" onclick="restartInvestigation()">最初から調査する</button></div></section>
+<section class="screen" id="s8"><div class="section-title"><span class="num">08</span><h2>夢から覚める</h2></div><div class="prose dreamtext"><p>はっ、と目を覚ます。</p><p>仕事続きで疲れていたのか、ついうとうとしてしまっていたらしい。</p><p>それにしても、なんだか不思議な夢を見た気がする。</p><p>たしか、刀剣男士が出てきたような――。</p><p>ふと端末へ視線を戻す。画面には、ちょうど応募しようと思っていた調査任務の案内が表示されている。</p><p>今度の任務には、刀剣男士一振りに同行してもらうことになるらしい。</p><p>あの夢は、何だったのだろう。</p></div><div class="btnrow center-actions"><button class="primary" onclick="restartInvestigation()">調査を終える</button></div></section>
+</div>
+
+</div>
+<footer class="footer"><div><strong>歴防本部　生活環境部　本丸管理課</strong><br/>特殊環境下現地調査端末</div><div>UNOFFICIAL FAN-MADE<br/>刀剣乱舞 二次創作・非公式ファンメイド</div></footer>
+
+<script>
+const S={visited:new Set(),trail:[],route:'',special:false,keys:new Set(),observed:new Set(),item:false,errors:0,ending:'',endingTitle:'',contact:false,afterTalks:{},lookups:[]};
+const N=['','元審神者の居室','加州清光の私室','離れへ続く庭','執務室の保管資料','奥庭の縁側','離れの小部屋'];
+const desc=['','故人が暮らしていた居室。整理されないままの私物が残されている。','加州清光が使っていた部屋。鏡台には身だしなみの道具が整然と並ぶ。','離れへと続く庭。景趣とは異なる景色に山茶花が咲いている。','閉鎖前の記録が保管された執務室。最後の近侍の日誌が残る。','長く使われていない奥庭の縁側。端末に再び連絡が入る。','庭の奥にある小部屋。人の気配と、布の擦れる音がする。'];
+// 地点名称・観測描写は既存試作を参考にした仮配置。庭の花は山茶花（試用）。
+const E={
+1:{intro:`引き戸は少し重かった。人が暮らしていた部屋から、生活の匂いだけが抜け落ちている。机には写真立てと、封をされていない便箋。写真の中では若い女性が、隣の男性に肩を寄せて笑っていた。同行刀が写真を覗き込み、声を落とす。亡くなった審神者と婚約者ではないかと、同行刀が推測を伝えてくれた。`,opts:[['写真と便箋を確認する','photo'],['退職関係の書類を読む','paper']]},
+2:{intro:`加州清光の部屋は、主を失った本丸とは思えないほど整っていた。鏡の前には小さな爪紅の瓶が置かれている。ただ、鏡の下の引き出しだけが半ば開いていた。誰かが戻ってきて、続きを片づけるつもりだったように。`,opts:[['鏡台を調べる','tools'],['引き出しの紙片を読む','note']]},
+3:{intro:`離れへ続く庭には、景趣とは異なる景色が広がり、__SEASON__山茶花が咲いていた。赤い色の花に紛れて、白い色の花もちらほらと咲いている。どの花も、同じ場所を見つめているように思える。
+同行刀が一歩前に出て、この先は慎重に進むよう注意を促した。
+そのとき、政府支給の通信端末が短く震えた。画面には政府からの接続要求。着信画面には、政府所属の刀剣男士の名前が表示されている。
+画面に表示された名前は……。`,opts:[['一文字則宗','A'],['大和守安定','B']]},
+4:{intro:`奥の執務室に、閉鎖前の引継ぎ記録が残されていた。机の引き出しは施錠されていない。帳簿の角は揃えられ、仕事を途中で放り出した形跡はない。
+書類は大半が整理済みだが、最後の近侍が書き残した日誌の一部だけが別の封筒に入っている。その最後の頁だけ、何度も開いたように紙が柔らかくなっていた。日付は、元審神者が亡くなった日。10月8日だ。
+その傍らには、故人が亡くなった交通事故の資料が、何度も握り潰したようにぐしゃぐしゃになって置かれていた。
+窓の外では山茶花の影が揺れている。それが赤か白か、はたまた他の色なのかはよく見えなかった。`,opts:[['日誌を読み進める','care'],['事故資料に触れる','rush']]},
+5:{intro:`奥庭の縁側は、長く人の手が入っていないはずなのに、そこだけ妙にきれいだった。`,opts:[['通信に応答する','lost']]},
+6:{intro:`通信が途絶えた直後、山茶花の花びらがどこからか何枚も風に乗り、あなたを導くように一方向に舞っていった。そこにあったのは、離れの小部屋だ。戸の前には散った山茶花の花びらが数枚、風もないのに揺れている。戸の向こうから、かすかな物音がした。何かを包む布の擦れる音だ。同行刀が刀の柄に指を添える。`,opts:[['慎重に様子を窺う','check'],['そのまま声をかける','guard']]}
+};
+const O={
+photo:`便箋には、所属刀剣への感謝と、退職後も彼らが穏やかに過ごせるよう願う言葉が書きかけられている。同行刀は便箋を元に戻した。同行刀も、残される者たちへの気遣いが読み取れると感じたようだった。`,
+paper:`退職手続きの書類には、婚姻を理由とした退任予定が記されていた。具体的な退任日はまだ確定していない。刀剣男士への説明は済んでいるとの記録もある。加州清光が何も知らされていなかったわけではない。それでも、別れが近いことを知るのと、受け入れることは違うのだろう。`,
+tools:`鏡の前に置かれた爪紅の瓶を、同行刀は手に取らずに眺めた。同行刀は、加州清光が身なりを整えることを好んだという記録を思い出したようだった。道具は使い込まれているが、手入れは行き届いている。`,
+note:``,
+care:`日誌には、事故当日の朝、加州清光がひどく落ち着かない様子だったとある。何か嫌な予感がすると主を引き止め、うまく伝わらず口論めいたやり取りになった。故人審神者はそのまま現世へ出かけ、生きて帰ってくることはなかった。`,
+rush:``,
+check:`戸の隙間から見えたのは、細い人影だった。俯いているようにも、遠くを見つめているようにも見える。
+その手の中には、白い布に包まれた小さなものが見える。持ち出した遺骨だろうか。声をかけようとした丁度その時、人影がこちらを向いた。`,
+guard:`声をかけようとした瞬間、室内から「……主？」と、かすれた声がした。
+同行刀はあなたを庇うように一歩前に出て、戸の向こうへ声をかける。しかし、返事はすぐに返ってこず、その場に沈黙が流れる。`
+};
+
+const EXTRA={
+1:{intro:``,photo:`写真を傾けると、裏側には撮影した日の短い走り書きがあった。婚約者の肩に寄りかかる女性は、資料の証明写真よりもずっと幼く見える。同行刀はしばらく写真を眺め、裏返して元に戻した。同行刀も、この女性がもう帰ってこないことを思ったのだろうか。しばらく黙っていた。`,paper:`書類の間から、刀剣男士たちへの引継ぎ計画が出てきた。次の主が決まるまでの処遇、政府との連絡方法、希望者への面談。退任に備えて、一振りずつのことが丁寧に書き込まれている。`},
+2:{intro:`鏡台には、使い込まれた刷毛と小瓶が並んでいる。部屋の隅に置かれた座布団は二枚。誰かがここに座り、鏡越しに話をしていたのだろうか。`,tools:`小瓶の蓋を開けると、乾いた爪紅の匂いが微かに残っている。鏡に映った自分の姿が、一瞬だけ見知らぬ女性の姿に見えた。瞬きをすると、そこにはいつもの自分が映っていた。`,note:`紙片は何度も書き直され、結局どれも完成していなかった。「言い過ぎた」「帰ってきたら」「今度こそ」。筆圧の強い文字の下に、爪で押さえたような跡が残る。
+宛名はない。それでも、誰に届けたかった言葉かを考えずにはいられなかった。
+さらに引き出しの奥を探ると、見たこともない文字や記号のようなものが綴られた奇妙な紙が何枚か出てきた。
+触れた瞬間、吐き気と共に言葉に表せないような後悔と悲しみで胸が潰されそうになる感覚に襲われる。
+異変を察知した同行刀が咄嗟に紙を払い落とすと、それらは消え去った。
+床に落ちた紙の文字は、爪紅とは違うくすんだ赤色で綴られているように見えた。`,bad2:`鏡面に指を触れる。冷たさはなく、代わりに手のひらを誰かに握られたような感触が走った。鏡の中で、あなたの唇が勝手に動く。同行刀が強く肩を引いたとき、ようやく指が離れた。`},
+3:{intro:``,contact:``},
+4:{intro:``,care:`日誌の文字は途中から乱れている。`,rush:`皺だらけの資料に触れた指先に、冷たい感触が走った。耳の奥に車の急ブレーキの音、そして誰かの悲鳴が響く。
+その次に聞こえたのは、同行刀があなたの名前を呼ぶ声だった。
+あなたが突然反応しなくなったことを訝しみ、呼びかけてくれていたようだった。
+同行刀は、これ以上この場所を無理に調べるべきではないと注意を促した。`},
+5:{intro:`縁側には二人分の湯呑みの輪染みがある。片方だけが少し新しい。通信端末の画面が点滅し、先ほどの政府所属の刀剣男士から呼び出しが入る。`,lost:`相手の声が一度だけ鮮明になり、すぐに雑音へ沈む。縁側の下から、硬いものが転がる音がした。同行刀が身を屈めるが、そこには何もない。画面に『通信不能』の表示が浮かぶ。`},
+6:{intro:``,check:``,guard:``}
+};
+// 通常調査の能力値別条件観測は廃止。命日ルートの能力値条件は維持。
+function observations(n){return ''}
+const WORDS={photo:['婚約','亡くなった審神者には婚約者がいた。退任後は現世で暮らす予定だった。'],note:['謝罪','事故当日、加州清光は元審神者と口論めいたやり取りをしていた。謝罪を試みた記録がある。'],care:['交通事故','元審神者は交通事故で死亡。加州清光の事故への関与は確認されていない。']};
+const POINT_WORDS={1:'婚約',2:'謝罪',4:'交通事故'};
+const LOOKUP_EXTRA={'婚約':'故人の婚約者は政府の事情説明を受けている。事故の運転手の責任については、調査資料だけでは判断できない。','謝罪':'事故の前に言葉を交わせなかったことが、加州清光の強い後悔になっている可能性がある。','交通事故':'故人の死亡原因は交通事故。運転手の責任や、その後の出来事との因果関係は未確認。'};
+function stat(id){let v=txt(id);return v==='測定不能'?-1:Math.max(0,Math.min(100,Number(v)||0))}
+
+function paragraphs(t){return String(t).split('\n').filter(Boolean).map(x=>p(esc(x))).join('')}
+// 現地調査の文章だけに適用する。内容を変えず、長い段落を文末で分ける。
+function fieldParagraphs(t){return String(t).split('\n').filter(Boolean).flatMap(line=>{
+ const sentences=line.match(/[^。！？]+[。！？]?/g)||[line];let blocks=[],block='';
+ for(const sentence of sentences){if(block&&block.length+sentence.length>75){blocks.push(block);block=''}block+=sentence}
+ if(block)blocks.push(block);return blocks;
+}).map(x=>p(esc(x))).join('')}
+function showOutcome(n,k,base){
+ let x=EXTRA[n]||{};let body=[x[k],base].filter(Boolean).join('\n');
+ let word=POINT_WORDS[n];
+ let wordLine=word?'<p>取得記録：<span class="keyword">'+esc(word)+'</span></p>':'';
+ el('eventOut').innerHTML='<div class="observation">'+fieldParagraphs(body)+wordLine+observations(n)+'</div>';
+ wire('eventButtons',[],()=>{});
+ el('eventOut').insertAdjacentHTML('beforeend','<button id="recordResult">記録する</button>');
+ el('recordResult').onclick=()=>{if(word)S.keys.add(word);complete(n,body,({photo:'写真と便箋を確認した',paper:'退任関係の書類を読んだ',tools:'鏡台を調べた',note:'引き出しの紙片を読んだ',bad2:'鏡の霊力に触れた',care:'日誌を慎重に読んだ',rush:'事故資料に触れた',check:'慎重に様子を窺った',guard:'そのまま声をかけた'}[k]||'現地を調査した'),word);if(S.errors>=2)end('BAD01','憂いの蕾は爆ぜて',`ふいに、むせ返るほどの山茶花の花の香りが立ち込める。
+「ここにいたんだ」
+感情の読めない声。加州清光のものだと遅れて気づいた瞬間、色白の手が伸びて、視界がぶれる。
+割って入った同行刀が、あなたの代わりに突き飛ばされるのが見えた。
+そして、あなたの視界を白が覆う。
+
+はっと気が付けば、同行刀と共に政府施設に戻ってきていた。保護術式が発動したのだ。
+加州清光と会話することは叶わず、調査は中断された。
+数日後、政府からひとつの報せが届く。
+件の交通事故を起こした車の運転手が、遺体で見つかったそうだ。
+死因は飛び降り自殺であり、残された遺書には紙面を埋め尽くすほどの無数の謝罪の言葉だけが綴られていたという。
+旧本丸で起こったことや、加州清光との関連は不明。報告書には、それ以上のことは記されていなかった。`)};
+}
+function contactScene(route){S.route=route;S.contact=true;let name=route==='A'?'一文字則宗':'大和守安定';let body=route==='A'?`通信の向こうで、紙を繰る音がした。\n続けて、今回の調査の担当だというがどうにも掴みどころのない、一文字則宗の声がする。
+「おお、繋がったか。現地の様子はどうだい？」\nあなたは庭の山茶花と、ここまでの調査内容を報告する。\n「ふむ。あの坊主はやはり本丸に居残っているというわけだな。なあに、急いで答えを出すことはないさ」\n「遺骨を持ち出したことと、誰かを傷つけるつもりだったかどうかは、別の話だ。あのわがまま坊主が何を見て、何を見失ったのか。そこを確かめておくれ」\n同行刀が加州清光と交戦となった際の対処について尋ねると、一文字則宗は短く息を吐いた。\n「お前さんたちの命を危険にさらせとは言わん。だが、斬るほかないと決めるのも早計だろうよ」\n通信を切る直前、彼は声を少し落とした。\n「それにしても、山茶花が咲いているのか。今回の本丸も、花のみぞ知る何かがあるのかもしれんな。ああ、いや。こちらの話だ」`:`着信に応じると、通信の向こうから声がした。\n大和守安定の声だ。
+「……繋がった。現地の調査員さんだよね。清光、見つかった？」\nまだ姿は確認していないと告げると、考え込むような気配がした。\n「そっか。ごめん、急かしたいわけじゃないんだ。ただ……あいつ、ずっと一人でいたから」\nあなたは加州清光と面識があるのかと尋ねる。
+「あ、調査員さんには言ってなかったか。うちの……じゃないね、その本丸で最後に近侍だった刀って、僕なんだよね」\n「主がいなくなってから、みんなで話し合ったんだ。政府の人も、主の家族も来てくれてさ。僕たちは自分で決めた。でも清光だけは、話を聞こうとしなかった」\n「僕も、あのときもっとちゃんと話せたらよかったのに」\n同行刀が立入禁止の理由を尋ねると、大和守安定は少し黙った。\n「僕が行けば、喧嘩になるかもしれないし……僕だって、主のことで思うことがないわけじゃないから。きっと、調査にならないって。……悔しいけど、たぶん、その通りだよ」\n「お願い。あいつのこと、やってることはとんでもないってわかってるけど……最初から悪い刀だって決めつけないで。……それだけ、伝えたかったんだ」`;
+el('eventOut').innerHTML='<div class="observation">'+fieldParagraphs(body)+'</div>'+observations(3);wire('eventButtons',[],()=>{});el('eventOut').insertAdjacentHTML('beforeend','<button id="recordContact">記録する</button>');el('recordContact').onclick=()=>complete(3,body,name+'からの通信を受けた','');}
+function secondContact(){let body=S.route==='A'?`端末から、一文字則宗の声が聞こえる。\n「おお、さっきからどうにも繋がりにくかったんだが、繋がったな。報告はあとでいい。まず、そちらは無事かい？」\nあなたがこれまでの状況を報告すると、彼は少し考え込んだ。\n「山茶花の香りが強くなっている、か。ふむ……若いのは、ときに自分の悲しみと相手の願いを取り違える。さて、花が訴えたいのはなんだろうかな」\n「だが、取り違えたからといって、その気持ちまで偽物になるわけじゃあない」\n同行刀が彼の言葉の意図を聞き返そうとした、そのときだった。\n「待て。今、そちらで……」\n葉擦れのような雑音が声を呑み込み、通信は途絶えた。`:`大和守安定の声が聞こえる。
+「もし、清光……会えて、何か……」\n音声が途切れ途切れになる。あなたは端末に耳を近づける。\n「……僕の私室、……引き出しの……、……」\nそこで、通信は途切れてしまった。\n同行刀と相談し、奥へ進む前に大和守安定の私室を訪れることにする。\n引き出しを順に開けていくと、小さな箱が入っていた。\n誰かに贈るためのもののように見え、手に取ると鈴の音がした。`;
+el('eventOut').innerHTML='<div class="observation">'+fieldParagraphs(body)+'</div>'+observations(5);wire('eventButtons',[],()=>{});el('eventOut').insertAdjacentHTML('beforeend','<button id="recordContact2">記録する</button>');el('recordContact2').onclick=()=>{if(S.route==='B'||S.special)S.item=true;complete(5,body,S.route==='B'&&!S.special?'大和守安定の私室で小箱を見つけた':'政府所属の刀剣男士との再通信が途絶えた','')}}
+
+function el(id){return document.getElementById(id)}
+function txt(id){return (el(id)?.value||'').trim()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function p(s){return '<p>'+s+'</p>'}
+function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));el(id).classList.add('active');window.scrollTo(0,0)}
+function buttons(list,fn){return list.map(([label,key])=>'<button data-choice="'+esc(key)+'">'+esc(label)+'</button>').join('')}
+function wire(target,list,fn){el(target).innerHTML=buttons(list);el(target).querySelectorAll('button').forEach(b=>b.onclick=()=>fn(b.dataset.choice))}
+function log(label,detail){S.trail.push([label,detail])}
+function clearFieldError(id){const node=el(id+'Error');if(node)node.textContent='';if(el(id))el(id).classList.remove('input-error')}
+function showFieldError(id,message){const target=id==='date'?'dateYear':id;const node=el(id+'Error');if(node)node.textContent=message;if(el(target)){el(target).classList.add('input-error');el(target).focus()}}
+function goRegistration(){
+ clearFieldError('swordName');
+ if(!txt('swordName')){showFieldError('swordName','同行刀剣名を入力してください。');return;}
+ go('s2');
+}
+function validDate(){
+ clearFieldError('date');
+ const fields=['dateYear','dateMonth','dateDay'];
+ if(fields.some(id=>!txt(id))){showFieldError('date','調査年月日を入力してください。');return false;}
+ const [y,m,d]=fields.map(id=>Number(txt(id)));
+ if(!fields.every(id=>/^\d+$/.test(txt(id)))||y<1||m<1||m>12||d<1||d>31||new Date(y,m-1,d).getFullYear()!==y||new Date(y,m-1,d).getMonth()!==m-1||new Date(y,m-1,d).getDate()!==d){showFieldError('date','有効な調査年月日を入力してください。');return false;}
+ return true;
+}
+function goCaseFile(){if(validDate())go('s3')}
+function start(){
+ clearFieldError('swordName');
+ if(!txt('swordName')){go('s1');showFieldError('swordName','同行刀剣名を入力してください。');return;}
+ if(!validDate()){go('s2');return;}
+ S.special=false; // 公開初期版：命日ルートを一時封鎖（本文・条件は保存）
+ go('s4');el('event').classList.remove('active');el('event').innerHTML='';renderMap();
+}
+function restartInvestigation(){
+ const ids=['masterName','swordName','sense','affinity','divinity','emotion','dateYear','dateMonth','dateDay'];
+ const values=Object.fromEntries(ids.map(id=>[id,el(id).value]));
+ S.visited.clear();S.trail=[];S.route='';S.special=false;S.keys.clear();S.observed.clear();S.item=false;S.errors=0;S.ending='';S.endingTitle='';S.contact=false;S.afterTalks={};S.lookups=[];
+ ids.forEach(id=>el(id).value=values[id]);
+ ['swordName','date'].forEach(clearFieldError);
+ el('lookupInput').value='';el('lookupOut').textContent='照会待機中';el('event').classList.remove('active');el('event').innerHTML='';
+ go('s1');
+}
+function unlocked(i){if(i<=2)return true;if(i===3)return S.visited.has(1)&&S.visited.has(2)&&S.keys.has('婚約')&&S.keys.has('謝罪')&&S.lookups.includes('婚約')&&S.lookups.includes('謝罪');if(i===4)return S.visited.has(3)&&!!S.route;if(i===5)return S.visited.has(4)&&S.keys.has('交通事故')&&S.lookups.includes('交通事故');if(i===6)return S.visited.has(5);return false}
+function renderMap(){el('locations').innerHTML=Array.from({length:6},(_,i)=>{let n=i+1,open=unlocked(n),done=S.visited.has(n);if(!open)return '';return '<div class="loc '+(done?'done':'')+'" '+(!done?'onclick="openLoc('+n+')"':'')+'><span class="code">POINT '+String.fromCharCode(64+n)+'</span><strong>'+esc(N[n])+'</strong><p>'+esc(desc[n])+'</p></div>'}).join('');}
+function openLoc(n){if(!unlocked(n)||S.visited.has(n))return;let e=E[n];let month=Number(txt('dateMonth'));let seasonText=n===3&&month>=1&&month<=9?'季節にそぐわない':'';el('event').classList.add('active');el('event').innerHTML='<h3>地点'+String.fromCharCode(64+n)+'　'+esc(N[n])+'</h3><div class="prose">'+fieldParagraphs(e.intro.replace('__SEASON__',seasonText))+(EXTRA[n]?.intro?fieldParagraphs(EXTRA[n].intro):'')+'</div>'+observations(n)+'<div class="choice" id="eventButtons"></div><div id="eventOut"></div>';wire('eventButtons',e.opts,k=>chooseLoc(n,k));el('event').scrollIntoView({behavior:'smooth',block:'nearest'})}
+function complete(n,detail,choice='',key=''){S.visited.add(n);S.trail.push({kind:'point',point:n,name:N[n],choice:choice||'現地を確認した',key:key||''});el('event').classList.remove('active');renderMap()}
+function chooseLoc(n,k){if(n===3){contactScene(k);return}
+if(n===5){secondContact();return}
+let out=O[k]||(k==='bad1'||k==='bad2'?'警告を無視して接触した。保護術式の警戒値が上がった。':'調査を記録した。');if(k==='bad1'||k==='bad2'||(n===2&&k==='note'))S.errors++;if(n===4&&k==='rush')S.errors++;if(n===6&&k==='guard')S.errors++;if(n===6){if(S.route!=='B'||S.special)S.item=true;/* 地点Fの不要な説明文は削除 */}
+showOutcome(n,k,out)}
+const LOOKUP_DETAILS={"婚約": "【照会区分：旧本丸所属審神者・退任関係資料】\n対象の女性審神者には婚約者がおり、婚姻に伴って審神者の職を退く予定だった。退任に向けた引継ぎ資料には、所属刀剣の処遇や政府との連絡についての検討が残されている。故人が彼らの今後を考えていたことは読み取れるが、個々の刀がその別れをどう受け止めていたかまでは、公的記録から判断できない。", "謝罪": "【照会区分：事故当日の証言・所在不明刀剣に関する聞き取り】\n加州清光は故人の初期刀であり、長くその側に仕えていた。事故当日、なんらかの理由で故人と軽い口論のようなやり取りになったとされている。加州清光は、仲直りや謝罪ができなかったことを悔やみ、故人に霊的な方法で接触しようと試みた可能性が高い。", "交通事故": "【照会区分：死亡事故・関係者記録】\n故人審神者は現世での交通事故により死亡した。加州清光や他の所属刀剣、また時間遡行軍が事故に関与した事実がないことは政府が確認済みだという。事故当日に加州清光が不安を訴えたという証言があるが、それを事故と結びつける根拠も確認されていない。", "大和守安定": "【照会区分：政府刀・大和守安定】\n大和守安定は故人の最後の近侍であり、加州清光を案じて自ら政府への転属を希望した。故人の生前の戦績と大和守安定自身の働きが評価され、現在は本丸環境課の所属刀として調査に関わっているが、旧本丸への現地立ち入りは禁じられている。"};
+const TALK_TOPICS={
+'婚約':[['結婚について','結婚生活を楽しみにしていただろう故人のことを話題にすると、同行刀も、故人の得るはずだった幸せについて思いを馳せたようだった。結婚そのものについて話を振れば、審神者に配偶者やパートナーがいるならそれについて、いないならいもしない相手のことを気にした様子で同行刀は話をした。'],['審神者の退任について','所属刀剣が退任を知らされていたことについて話すと、同行刀は、知っていることと納得できることは違うのではないかと考えたようだった。突然の死別がその違いを大きくした可能性もあると言い添え、審神者との死別について考えたことを、彼なりに真剣な様子で話してくれた。']],
+'謝罪':[['最後の口論について','事故当日の口論について話すと、同行刀は、謝れなかったことが加州清光の後悔として残っているのだろうと考えたようだった。普段、あなたと口論をよくする刀なら少し気まずそうにしながら、そうでない刀なら、もし自分たちも喧嘩をすることがあったらと考えながら話をしてくれた。'],['初期刀について','初期刀という存在についてどう思っているかを話した。同行刀があなたの初期刀なら、わずかに照れくさそうにして、そうでないなら興味深そうに話を聞いてくれた。']],
+'交通事故':[['加州清光の不安について','同行刀は、加州清光の胸騒ぎが事故の予知や予兆であった根拠はないと指摘しつつ、刀剣男士は自分たち自身ですら全てを説明できる存在ではないから、審神者と繋がりの深い刀ならばそういったこともあるのかもしれない、と述べた。'],['事故について','危険と隣り合わせである審神者という仕事をしていても、戦場ではない場所で不意に命を落とす可能性がある。その事実について同行刀としばし言葉を交わした。同行刀は、全てを防ぐことが無理でも、できるかぎりあなたを守りたいと結んだ。']],
+'大和守安定':[['大和守安定と加州清光について','この本丸の大和守安定と加州清光の関係性について話すと、同行刀は、近しいからこそ分かることと、近しいために判断しづらいことの両方があるかもしれないと考えを述べた。'],['政府への転属について','大和守安定が政府所属になった経緯についての話題を振ると、同行刀は、自分があなたの刀でなくなる時が来るとしたら、何を選ぶかについて、彼なりに話をしてくれた。']]};
+function afterTalk(q,i){if(S.afterTalks[q])return;const item=(TALK_TOPICS[q]||[])[i];if(!item)return;S.afterTalks[q]={title:item[0],text:item[1]};lookup();}
+function showSavedTalk(q){const item=S.afterTalks[q];if(item&&el('afterTalkArea'))el('afterTalkArea').innerHTML='<div class="observation">'+paragraphs(item.text)+'</div>';}
+function lookup(){let v=txt('lookupInput').replace(/\s/g,'').replace(/^[《「]/,'').replace(/[》」]$/,'');let data=LOOKUP_DETAILS[v];if(!data){el('lookupOut').textContent='該当する追加記録はありません。';return}if(!S.lookups.includes(v))S.lookups.push(v);renderMap();let previous=S.afterTalks[v];let choices=(TALK_TOPICS[v]||[]).filter(item=>!previous||previous.title===item[0]).map((item,i)=>'<button '+(previous?'onclick="showSavedTalk('+JSON.stringify(v).replace(/"/g,'&quot;')+')"':'onclick="afterTalk('+JSON.stringify(v).replace(/"/g,'&quot;')+','+i+')"')+'>'+esc(item[0])+'</button>').join('');el('lookupOut').innerHTML='<div class="lookup-record"><strong>追加記録《'+esc(v)+'》</strong><br>'+esc(data.replace(/^【照会区分：[^\n]*】\n?/, '').replace(/\n/g, ''))+'</div><div class="break"></div><strong>会話</strong><p>記録を確認したあと、同行刀と少し話をした。</p><div class="choice">'+choices+'</div><div id="afterTalkArea">'+(previous?'<div class="observation">'+paragraphs(previous.text)+'</div>':'')+'</div>'}
+
+function finish(){
+ el('rMaster').textContent=txt('masterName')||'［未入力］';
+ el('rSword').textContent=txt('swordName')||'［未入力］';
+ el('rLocs').textContent=[...S.visited].sort((a,b)=>a-b).map(n=>'POINT '+String.fromCharCode(64+Number(n))).join('／')||'なし';
+ el('rKeys').innerHTML=[...S.keys].length?[...S.keys].map(k=>'<span class="keyword">'+esc(k)+'</span>').join(''):'なし';
+ el('rObservations').textContent=[...S.observed].join('／')||'なし';
+ el('rSpecial').textContent=S.special?'命日観測':'なし';
+ el('rDisposition').textContent=S.errors>=2?'強制帰還':S.visited.size>=6?'現地調査完了':'調査継続';
+ el('trail').innerHTML=S.trail.filter(t=>t.kind==='point').length?S.trail.filter(t=>t.kind==='point').map((t,i)=>'<div class="trail-item"><div class="trail-no">'+String(i+1).padStart(2,'0')+'</div><div><strong>'+esc(t.name)+'</strong><span>'+esc(t.choice)+(t.key?' ／ 取得：'+esc(t.key):'')+'</span></div></div>').join(''):'<div class="observation">調査地点の記録がありません。</div>';
+ if(S.visited.size>=6){el('nextText').textContent='現地調査の記録を確認しました。加州清光と思われる存在との接触が可能です。';wire('nextButtons',[['加州清光に声をかける','call']],()=>meet())}
+ else{el('nextText').textContent='調査途中の記録です。現地調査を続けられます。';wire('nextButtons',[['現地調査へ戻る','back']],()=>go('s4'))}
+ go('s5')}
+function meet(){go('s6');if(S.special){if(S.route==='A'){scene(`離れの奥にいる加州清光は、白い包みを胸に抱き、何度も誰かの名を呼んでいる。
+「今日なら……今日だったら、声くらいは聞こえると思ったのに」
+聞こえてきた言葉に一つの考えがよぎる。今日は、故人審神者の命日だ。
+「……！　邪魔しないで。今日だけは、絶対に」あなたたちに気づいた瞬間、加州清光の表情が険しく変わった。
+同行刀が前に出る。加州清光の手が柄にかかった。
+言葉より先に刃が届く距離だ。`,[['同行刀に加州清光を斬らせる','Ccut'],['同行刀を止める','Cstop']]);return}scene(`離れの小部屋には、山茶花の香りが漂っている。
+加州清光は遺骨の包みを抱き、戸口に立つあなたたちを睨んだ。
+「……何しに来たの。今日は誰にも邪魔されたくないんだけど」
+聞こえてきた言葉に一つの考えがよぎる。今日は、故人審神者の命日だ。
+大和守安定の私室で見つけた小箱が、懐の中でかすかに温かくなる。
+まるで、誰かがここまで一緒についてきたかのようだ。
+同行刀が警戒するなか、あなたは小箱から女性らしき気配を感じ取る。
+その気配は、あなたの身体をほんのしばらく借りたがっているようだった。`,[['女性に身体を貸す','Dlend'],['女性に身体を貸さない','Drefuse']]);return}
+if(S.route==='A'){scene(`開かれた戸の向こうに、加州清光が座っていた。
+汚れた袖で白い包みを抱え込み、あなたたちを見る。
+「……政府の人？　迎えに来たの？」同行刀が一歩踏み出すと、加州清光は包みを庇うように身を固くした。
+「謝りたかったんだ。最後の日、俺、ひどいこと言ったから。でも、どんなに呼んでも返事してくれなくてさ」
+しばらく沈黙したあと、加州清光は笑おうとして失敗したような表情をした。
+「……、俺から、これまで取り上げるんだ。……ねえ、俺……どうすればよかったの」`,[['彼の主の気持ちを推測して話す','A2'],['主ならどう思うか想像してみてほしいと伝える','A1'],['加州清光にできることはなかったと伝える','A3'],['加州清光は何も悪くないと伝える','A4']]);return}
+scene(`白い包みを抱く加州清光の指が、かすかに震えていた。「安定が、政府にいるって？　……あいつらしいね」
+その声には懐かしさと、言いようのない寂しさが混じっている。「俺は……あの人に、謝りたかっただけなんだ。でも、それも無理なら……この骨まで手放したら、本当に何もなくなる気がして」
+大和守安定の言葉が、頭をよぎる。彼の言葉を、どう受け止めるべきだろう。`,[['加州清光に小さな箱を渡す','B1'],['好きなだけ一緒にいたらいいと言う','B2'],['自分が故人の代わりになると伝える','B3'],['亡くなった主が可哀想だと伝える','B4']])}
+function storyParagraphs(text){return String(text).split('\n').flatMap(line=>{if(line==='旧本丸で起こったことや、加州清光との関連は不明。報告書には、それ以上のことは記されていなかった。')return [line];let chunks=[],cur='',inside=false;for(let i=0;i<line.length;i++){let c=line[i];if(c==='「')inside=true;cur+=c;if(c==='」')inside=false;if(!inside&&(c==='。'||c==='！'||c==='？')&&cur.trim().length>=12){chunks.push(cur.trim());cur=''}}if(cur.trim())chunks.push(cur.trim());return chunks}).filter(Boolean).map(x=>p(esc(x))).join('')}
+function scene(t,opts){el('dialogue').innerHTML=storyParagraphs(t);wire('dialogueChoices',opts,resolve)}
+function resolve(k){if(k==='A1')return scene(`あなたは、加州清光に、故人の気持ちを勝手に決めつけることはできないと伝えた。
+ただ、彼女が今の加州清光を見たら、どう思うだろうか。
+そう尋ねると、加州清光は白い包みを抱えたまま、黙り込んだ。
+「主ならどう思うか、って？」
+加州清光はしばらく考え込んでいたが、やがて困ったように笑った。
+「……きっと、怒るよね」彼は包みを見下ろした。
+「勝手に連れ出したりしてさ。みんなにも迷惑かけて……」
+言葉を切り、小さく息を吐く。
+「でも、怒ったあとで、俺のこと心配すると思う」その声は、少し震えていた。
+「ちゃんとご飯食べてるの、とか。みんなと仲良くしてるの、とか。……あの人、そういうことばっかり気にするんだよね」
+加州清光は懐かしそうに目を細めた。
+「俺がどんなに綺麗にしてても、爪がちょっと欠けてるだけで気づくんだ。それで心配してくるの。……ほんと、よく見てるんだから」
+彼は自分の指先を見つめた。
+「……今の俺を見たら、びっくりするだろうな」汚れた袖を見下ろし、苦笑する。
+「怒られるだけじゃ済まないかも」
+あなたは何も言わず、彼の言葉を待った。
+「……でもさ」加州清光は白い包みを抱き締めた。
+「俺、まだ謝ってないんだよ」
+「最後にひどいこと言って、そのままになっちゃって……」
+彼は俯いた。
+「もう二度と会えないなら、せめてこれくらい、持っててもいいじゃんって……ずっと、そう思ってた」
+長い沈黙が落ちた。
+そのとき、どこからともなく山茶花の花びらが舞い込んできた。
+一枚、また一枚。
+花びらは加州清光の肩に降り、白い包みの上に落ちた。
+「……あれ？」
+加州清光は顔を上げた。
+戸口の向こうには、誰もいない。それでも彼は、何かを探すように辺りを見回した。
+「主……？」
+返事はなかった。ただ、山茶花の花びらが静かに舞っていた。
+加州清光はしばらくその光景を見つめていたが、やがて目元を押さえた。
+「……そっか」小さな声が漏れる。
+「俺、いつまでもこんなことしてたら、また心配かけちゃうね」
+彼は涙を拭い、白い包みを見下ろした。
+「……ちゃんと帰してあげなきゃ」
+それでも、差し出しかけた手は途中で止まった。何度も躊躇い、そのたびに包みを抱き締める。
+あなたと同行刀は、急かさずにそれを待っていた。
+やがて、加州清光は、ゆっくりと両手を伸ばす。
+「……お願い」白い包みを、あなたに差し出した。
+「主を、家族のところに帰してあげて」
+あなたが受け取ると、加州清光は寂しそうに笑った。
+「……俺も、ちゃんとしなきゃね」`,[['最終記録へ','A1final']]);
+if(k==='A1final')return end('TRUE02','花待つ庭へ',`あなたと同行刀は、加州清光を伴って政府施設へ帰還した。
+回収した遺骨は、所定の手続きを経て遺族へ返還されることとなった。
+加州清光は政府の管理下に置かれ、刀剣本体についても詳しい調査が行われた。
+長いこと旧本丸に留まり続けていたことから、怪異化が懸念されていたものの、検査では明確な兆候は認められなかった。
+しばらくの保護観察を経て、彼は新たな本丸に迎えられることとなった。
+本来ならば、引き受け先の選定や各種手続きには相応の時間がかかる。
+しかし、今回は驚くほど円滑に話が進んだ。
+不思議に思ったあなたが一文字則宗に尋ねると、彼は楽しげに笑った。
+「少しくらい、年寄りの顔が利くこともあるさ」
+その言葉を聞いて、あなたは初めて、彼が政府内で相当な立場にある刀なのだと知った。
+後日、加州清光が新たな本丸へ向かう日、あなたは彼を見送ることになった。
+久しぶりに身なりを整えた加州清光は、少し照れくさそうに笑っていた。
+「……なんか、変な感じ。今さら別の本丸に行くなんてさ」
+彼は自分の爪を眺めた。
+「でも、ちゃんと可愛がってもらえるようにしなきゃね」
+そこへ、一文字則宗が声をかけた。
+「なあに、心配することはない。坊主なら、どこへ行ってもうまくやれるだろうさ」
+「……余計なお世話」
+加州清光はそう呟いたが、その口元には小さな笑みが浮かんでいた。
+出発の直前、彼はあなたを振り返った。
+「ねえ」加州清光は少しためらってから、口を開いた。
+「……俺、あの人のこと、忘れなくてもいいんだよね」
+あなたは頷いた。加州清光は、ほっとしたように笑った。
+「……そっか。ありがと」
+彼はもう一度、あなたと一文字則宗に頭を下げ、新しい本丸へと歩き出した。
+その背中を見送りながら、あなたはふと、旧本丸で舞っていた山茶花の花びらを思い出した。
+あれが何だったのか、今となっては確かめようもない。
+ただ、加州清光が最後に見せた笑顔は、山茶花の花のように晴れやかだった。`);
+if(k==='A2')return scene(`あなたが故人の気持ちを推し量って口にすると、加州清光の顔から表情が消えた。「……なんで。何が……、あんたに、何がわかるの」
+次の瞬間、彼は刀を抜いていた。「あの人のこと、知りもしないくせに！」同行刀があなたを庇い、刃と刃がぶつかる。同行刀がわずかに押されかけたそのとき、白い包みが床へ落ちた。硬いものが転がる小さな音に、加州清光が凍りつく。今なら、同行刀は彼を斬れる。`,[['同行刀に斬らせる','A2cut'],['同行刀を止める','A2stop']]);
+if(k==='A2cut')return scene(`あなたは、同行刀を止めなかった。振り下ろされた刃が、加州清光を捉える。
+鈍い音が響き、加州清光の身体が大きく傾く。
+「……っ、あ……」彼は膝をつき、抱えていた白い包みを取り落とした。
+包みが床に落ち、中に収められていた遺骨がわずかにこぼれる。
+加州清光は、それを見つめた。
+「主……」伸ばしかけた手が、途中で止まる。傷は深く、もはや立ち上がることもできないようだった。
+同行刀が刀を構え直す。
+そのときだった。
+ふわり、と山茶花の香りが漂った。どこからともなく、赤い花びらが舞い込んでくる。
+あなたが顔を上げると、加州清光の背後に、薄い人影が立っていた。
+若い女性だった。その姿には、見覚えがあった。
+調査資料に残されていた、故人審神者の写真。目の前の女性は、彼女によく似ていた。
+女性は加州清光の傍らにしゃがみ込むと、傷ついた彼の手をそっと取った。
+「え？」加州清光が目を見開く。
+「……主？」
+女性は何も答えなかった。ただ、加州清光の手を握っていた。
+「……ほんとに、主なの？」加州清光の声が震える。
+「俺、ずっと……ずっと謝りたかったんだ」彼は女性を見つめた。
+「最後に、ひどいこと言って……ごめん」
+返事はない。けれど、女性はその手を離さなかった。
+「……怒ってる？」加州清光が尋ねる。
+「俺、こんなことまでして……」
+言葉が途切れた。女性が、もう片方の手を伸ばしたからだった。
+その手が、加州清光の頬に触れる。
+彼は息を呑んだ。
+「あるじ……」
+次の瞬間、加州清光の目から涙がこぼれた。
+「……会いたかった」
+女性は、微笑んだように見えた。加州清光が、震える手を伸ばす。
+「……俺も、連れてってくれるの？」
+その問いに答えるように、女性が彼の手を引いた。
+加州清光の身体が、淡い光に包まれる。
+致命傷を負っていたはずの彼が、ゆっくりと立ち上がった。
+同行刀が警戒して一歩踏み出す。しかし、あなたはその場を動けなかった。
+二人の姿が、少しずつ薄れていく。
+やがて、山茶花の花びらが視界を覆うように舞い上がった。
+あなたが思わず目を閉じ、再び開いたときには、二人の姿は消えていた。
+床に散った山茶花の花びらと、白い包み。
+そして、その傍らに残された遺骨だけが、先ほどまでそこに加州清光がいたことを物語っていた。`,[['最終記録へ','A2cutfinal']]);
+if(k==='A2cutfinal')return end('NORMAL01','山茶花の花言葉',`あなたと同行刀は、回収した遺骨を携えて政府施設へ帰還した。
+加州清光を連れて帰ることは、できなかった。
+同行刀の攻撃によって致命傷を負ったはずの彼は、故人審神者と思われる女性の人影とともに姿を消した。
+現場には刀剣本体も残されていなかった。
+報告を受けた政府は、旧本丸の再調査を決定した。
+しかし、後日派遣された調査部隊も、加州清光の痕跡を発見できなかった。
+怪異化を示す霊力の異常も、旧本丸で確認されることはなかった。
+回収した遺骨は、所定の手続きを経て遺族へ返還されることとなった。
+あなたは一文字則宗に、あの女性の正体について尋ねた。
+「さあなぁ」
+彼は珍しく、少し考え込むような表情を見せた。
+「本当にあの娘だったのかもしれんし、あやつが見た幻だったかもしれん」
+一文字則宗は、しばらく黙ってから続けた。
+「じじぃとしては、美しいほうを正解だと思っておくことにしようかね」
+旧本丸は、やがて正式に調査終了となった。
+加州清光の行方は、最後まで不明のままだった。
+ただ、調査の終了後、旧本丸の庭に咲く山茶花が、以前よりも鮮やかな花をつけるようになったという。
+その花が誰のために咲いているのか、知る者はここにはいない。`);
+if(k==='A2stop')return scene(`同行刀を制すると、加州清光は再び刃を振り上げた。しかし、その間に淡い人影が立った。
+加州清光の動きが止まる。
+「主……？」
+彼は何かを言おうとしたまま、その場に座り込んだ。女性らしき影は何も答えず、ただ静かに彼を見つめている。やがて、その姿は薄れて消えた。
+同行刀が耳元で囁く。先ほどの人影は、資料で見た故人審神者によく似ていた、と。
+加州清光は俯いたまま、白い包みを抱き締めていた。
+「……謝りたかった」
+小さな声が落ちる。
+「でも、もう謝れないんだよね。……そんなの、わかってたはずなのに」
+しばらくして、彼は手の中の包みを見つめた。
+「これを返したら、本当に何も残らないって思って、全部なくなるって思って……」
+加州清光は包みを抱く腕を緩めた。しかし、すぐには手放せないようだった。
+長い沈黙の後、彼はようやく顔を上げる。
+「……ちゃんと、あの人のところに返してくれる？」
+あなたが頷くと加州清光は白い包みをそっと差し出した。`,[['最終記録へ','A2final']]);
+if(k==='A2final')return end('TRUE01','蕾の開くその日まで',`加州清光は政府の管理下に置かれ、刀剣本体についても詳しい調査が行われた。
+長いこと旧本丸に留まり続けていたことから、怪異化が懸念されていたものの、検査では明確な兆候は認められなかった。
+調査結果を一文字則宗に報告すると、彼は書類に目を通し、肩を竦めた。
+「ありゃあ、拗ねているだけかもしれないなぁ。まあ、いずれ働いてもらうことになるだろう」
+その言葉には、どこか確信めいたものがあったように思えた。
+加州清光の今後について尋ねても、一文字則宗はすぐには答えなかった。ただ、どこか楽しげに笑みを浮かべるばかり。
+後日、加州清光が保護されている施設を訪れる機会があった。彼は以前よりも落ち着いた様子で、あなたの姿を見ると、少し気まずそうに笑った。
+あの日のことを話題にすることはなかったが、別れ際、彼は小さな声で礼を言った。
+最後にあなたが振り返ると、加州清光はもう背を向けており、その視線の先には名もなき花の、もうすぐ開きそうな蕾があった。
+旧本丸の調査は、これをもって終了となった。
+加州清光が再び刀剣男士として歩き出す日がいつなのか、その先の未来も、今はまだ決まっていない。`);
+if(k==='A3')return end('BAD02','花弁は血の紅',`できることは、なかった。
+その言葉を聞いた加州清光は、感情の抜け落ちたような顔をした。
+「……そっか。政府の人って、そういうことも言うんだ」
+次の瞬間、山茶花の匂いがいっそう濃くなり、加州清光の赤色の瞳は、もはや刀剣男士のそれではない、禍々しい何かに見える光を宿していた。
+「そうだよねー、それは……」
+歪な笑顔を浮かべた加州清光から、異常なほどの淀んだ霊気が溢れるのを感じる。
+それに飲み込まれる瞬間、もはや動けないあなたを、同行刀が庇った。
+
+そして、あなたの視界を赤が覆う。
+はっと気が付けば、同行刀と共に政府施設に戻ってきていた。
+保護術式が発動したのだ。
+加州清光とそれ以上の対話は叶わず、調査は中断された。
+数日後、政府からひとつの報せが届く。
+件の交通事故を起こした車の運転手が、遺体で見つかったそうだ。
+血液を吐き続ける症状が突然起こり、病院に行っても原因の特定には至らず、最後には全身の血を吐いて失血死したのだという。
+怪異の影響を受けた可能性はあるものの、旧本丸で起こったことや、加州清光との関連は現時点では不明。報告書には、それ以上のことは記されていなかった。
+
+その報告書を読みながら、ふいに咳き込むあなたを心配する刀剣男士たち。彼らにいつ話そうか。吐いた血で赤く染まった、ハンカチのことを。`);
+if(k==='A4')return scene(`加州清光は、あなたの言葉を聞いて、ほんの少し驚いた表情をした。
+「……何も、悪くない？」
+あなたは頷いた。交通事故は、加州清光の責任ではない。あの日の言葉を悔やむ気持ちは理解できても、起きてしまったことまで加州清光が背負う必要はない。そう伝えると、彼は白い包みを見下ろした。
+「……そっか。そう言ってくれるんだ」
+ほっとしたような笑みが浮かぶ。けれど、その手はまだ遺骨を強く抱き締めている。
+「だったらさ、ひとつだけお願いしてもいい？」
+加州清光は顔を上げた。
+「これ、ちゃんと返す。あの人のところに戻してもらう。だから……もう少しだけ、ここにいさせてほしいんだ」
+白い包みを見つめたまま、彼は続ける。
+「政府の人、これ以上困らせる気ないし。……でも、今すぐここを離れたら、俺、まだ引きずっちゃう気がする」
+そして、あなたの目をまっすぐに見た。
+「少しでいいから、霊力を分けてくれない？　絶対、あんたに無理はさせないから」
+同行刀が警戒するようにあなたを見る。政府の調査対象に霊力を渡す行為は、軽々しく決めてよいことではない。それでも、加州清光の願いを聞いたあなたは、断る気にはなれなかった。
+分け与える量は慎重に見極めた。あなた自身の活動に支障が出ないわずかだけ。同行刀も異常がないことを確かめる。
+加州清光は目を閉じて、その霊力を受け取った。
+「……ありがとう」
+彼は長いこと抱えていた白い包みを、ゆっくりとあなたへ差し出した。
+「あんたたちにも、迷惑かけて……ごめん」
+受け取った包みは思いのほか軽かった。加州清光はその手が空になったことを確かめるように、何度か指を握り直した。
+「あと少し。……それが済んだら、俺も行くから」
+あなたは同行刀とともに旧本丸を後にした。振り返ったとき、加州清光はまだ離れの傍に立っていた。山茶花の真っ赤な花たちが、その背後で静かに揺れていた。`,[['最終記録へ','A4final']]);
+if(k==='A4final')return end('BAD03','芽吹いたものは',`回収した遺骨は、所定の手続きを経て遺族へ返還されることとなった。
+加州清光については、本人の申し出を踏まえて後日の再調査が予定された。
+霊力の件についても報告したが、帰還後の検査であなた自身に異常は認められなかった。
+しかし、再調査のため政府の職員が旧本丸を訪れた時、加州清光の姿はそこにはなかった。
+旧本丸のどこにも、その気配はない。
+所在がわからなくなっていた刀剣本体も、ついに発見されなかった。
+政府は周辺の調査を続けたが、手掛かりは得られなかったという。
+
+後日、政府からひとつの報せが届く。
+件の交通事故を起こした車の運転手が、交通事故で亡くなったそうだ。
+数日前から何かに怯えたように不安定な精神状態になっており、免許停止中にも関わらず車を運転。
+ハンドル操作を誤ったのかガードレールを突き破り、そのまま崖下へ転落。即死だったという。
+怪異の影響を受けた可能性はあるものの、所在不明となった加州清光との関連は現時点では不明。
+報告書には、それ以上のことは記されていなかった。
+
+あなたは何度か、最後に見た加州清光の顔を思い出した。
+何も悪くない。
+あのとき口にした言葉を、今も取り消したいとは思わない。
+ただ、彼がその言葉をどう受け止めたのか、もう確かめることはできない。
+加州清光の捜索は、今も続いている。`);
+if(k==='B1')return scene(`あなたは、大和守安定の私室から持ち出してきた小さな箱を取り出した。
+加州清光は怪訝そうにそれを見つめる。
+「……何、それ」
+大和守安定から預かったものだと説明すると、加州清光は驚いたように目を瞬かせた。
+「安定から？　……あいつ、何やってんの」
+箱を開くと、中には山茶花の小さな飾りと、鈴のついたお守りが収められていた。
+加州清光はそれを見た途端、言葉を失った。
+「……これ」そっと手を伸ばし、山茶花の飾りに触れる。指先がわずかに震えていた。
+「安定、まだ持ってたんだ……」
+彼はしばらく飾りを見つめていたが、やがて小さく笑った。
+「……あいつ、ほんと余計なことばっかするよね」
+そう言いながらも、声には嬉しそうな感情が滲んでいるように聞こえた。
+あなたは、大和守安定が今も加州清光のことを心配していると伝えた。
+「……知ってる。あいつ、そういうやつだし」
+加州清光は白い包みを抱え直した。
+「でもさ、俺、あいつに何て言えばいいの。主が死んで、俺だけこんなことして……。今さら、どんな顔して会えばいいわけ？」
+あなたは、今すぐ答えを出す必要はないと伝えた。
+「……俺、あの人に謝りたいって、それしか考えてなくって」
+彼は白い包みを見下ろした。
+「もう一回だけ会えたら、ちゃんと謝って、それで……」
+言葉が途切れる。
+「……でも、もう会えないんだよね」
+長い沈黙のあと、加州清光は箱の中のお守りを手に取った。
+「安定、俺に戻ってこいって言ってんのかな」
+小さな鈴が、ちりん、と鳴る。
+加州清光は俯いたまま、一度だけ頷いた。
+「じゃあ、帰ったら……あいつに言っといて。俺、まだ何も決められないけど、ちゃんと会って話したいって」
+それから彼は、抱えていた白い包みを見つめた。
+「これも、返さなきゃね」
+名残惜しそうに指先で包みを撫で、彼は白い包みをそっと差し出した。`,[['最終記録へ','B1final']]);
+if(k==='B1final')return end('TRUE03','紅と白は鮮やかに',`加州清光は政府の管理下に置かれ、刀剣本体についても詳しい調査が行われた。
+長いこと旧本丸に留まり続けていたことから、怪異化が懸念されていたものの、検査では明確な兆候は認められなかった。
+その後、加州清光は政府所属の刀剣男士として迎えられることとなった。
+大和守安定の強い希望もあったという。
+ただし、政府所属の経験はないため、当面は大和守安定より下の立場から始めることになるらしい。
+そのことを伝えられた加州清光は、露骨に顔をしかめた。
+「えっ、俺が安定の後輩？　……ちょっと待って、それ本気で言ってんの？」
+通信の向こうから、大和守安定の笑い声が聞こえる。
+「仕方ないでしょ。清光は、所属したてほやほやのひよこちゃんなんだから」
+「はあ？　ちょっとだけ先に政府に来てたからって偉そうに！」
+「まず先輩への態度から、じっくり教えてあげたほうがよさそうだね」
+「絶対やだ！」
+言い争う二振りの声を聞きながら、あなたは旧本丸での加州清光を思い出した。
+あの時、彼が白い包みを手放すまでには、長い時間がかかった。
+今もまだ、すべてを受け入れられたわけではないのだろう。
+それでも、彼は自分の足で歩き出すことを選んだ。
+通信の向こうで、また小さな鈴の音が鳴った。
+「あ、そうだ。安定」
+「何？」
+「……、ありがと」
+一瞬、静かになる。
+「……どういたしまして」
+その後、二振りはまた何事もなかったように言い争いを始めた。
+加州清光の本丸環境課での日々は、まだ始まったばかりだ。`);
+if(k==='B2')return scene(`あなたは、加州清光に無理に遺骨を手放さなくてもいいと伝えた。
+加州清光は、信じられないものを見るような顔をした。
+「……え？」
+もう少し一緒にいたいのなら、そうしてもいいのではないか。
+あなたがそう伝えると、彼は白い包みを抱き締めた。
+「……でも、あんたたちはこれを取り返しに来たんでしょ？」
+その問いにあなたはすぐには答えなかった。
+「俺、わかってるよ。こんなこと、いつまでも続けてちゃ駄目だって……」
+そこで言葉を切る。
+「……でもさ、俺、どうしても……まだ、主のこと忘れるなんて無理」
+白い包みを抱く腕に力がこもった。
+「これがあるからって、あの人がここにいる証明にはならないって本当はわかってる。でも、傍にいたいんだ」
+あなたは、大和守安定から預かった小さな箱を取り出した。
+中には山茶花の小さな飾りと、鈴のついたお守りが入っている。
+加州清光はそれを見て、息を呑んだ。
+「……安定」
+あなたが頷くと、彼はお守りにそっと触れた。
+ちりん、と小さな音がする。
+少しの間を置いて加州清光は、ぽつりと呟く。
+「……あいつ、俺のこと、怒ってるかな」
+あなたは、大和守安定が加州清光を心配していると伝えた。
+「……そっか」
+加州清光は少しだけ笑った。
+あなたは、お守りに込められた霊力について説明した。
+それを用いれば、加州清光が今の姿を保ったまま、この旧本丸に留まれる可能性がある。
+ただし、刀剣男士としての在り方から離れ、怪異に近い存在となるだろうと。
+加州清光は静かに話を聞いていた。
+「……怪異、か」
+彼は自分の手を見つめた。
+「俺、もうとっくにそうなってるのかと思ってた」
+少しだけ寂しそうに笑う。
+「……でも、それでここにいられるなら」
+彼は白い包みを抱き直した。
+「俺、もう少しだけ、主と一緒にいたい」
+お守りに込められた霊力が、淡い光を放つ。
+鈴が鳴ったあと、砕けてきらきらと散っていった。
+加州清光の輪郭がわずかに揺らぐ。
+「これで、一緒にいられるんだね」
+山茶花の飾りを手に取り、白い包みの傍に置く。
+「……ありがとう」
+それが誰に向けられた言葉なのかは、わからなかった。`,[['最終記録へ','B2final']]);
+if(k==='B2final')return end('TRUE04','その山茶花は散らせない',`あなたと同行刀は、帰還後、政府に報告をした。
+通信が途切れてからの鈴の件については真実を伏せ、加州清光が怪異化しているが無害で、本丸外に出る意思もないと。
+その後の検証でも矛盾はなく、旧本丸での調査は終了となり、政府は旧本丸の封鎖を正式に決定した。
+大和守安定は、それをどこか嬉しそうな、それでいて寂しそうな表情で聞いていた。
+今後の加州清光が、怪異として定着するのか、やがて消えてゆくのか。それとも、まったく別の何かが起こるのか。
+政府でも、今のところ結論は出ていない。
+ただ、旧本丸を訪れた職員の報告書には、こう記されていた。
+あの本丸には未だに山茶花が咲き乱れている。
+加州清光はその中心で、まるで主の隣にいた頃のような笑顔で、花々に語りかけていたそうだ。`);
+if(k==='B3')return scene(`あなたは、加州清光に、自分が故人審神者の代わりになると伝えた。
+加州清光は、何を言われたのかわからないという顔をした。
+「は？」
+彼は白い包みを抱えたまま、あなたを見つめる。
+「主の代わりになるって、どういう意味？」
+あなたは、加州清光がこれ以上ひとりで苦しまなくてもいいように、自分が彼の新しい主になると申し出た。
+加州清光の表情が曇る。
+「……あんた、何言ってんの。俺の主は、あの人だけなんだけど」その声には、はっきりとした拒絶があった。
+あなたは頷いた。故人を忘れてほしいわけではない。代わりになれるとも、本当は思っていない。ただ、加州清光を一人にさせないため、自分がその役目を引き受けたいのだと伝えた。
+「なんで、そこまでするの」加州清光は戸惑ったように尋ねる。
+あなたは自分の刀がこうして苦しんでいたら寄り添うから、加州清光に対しても同じだと答えた。
+しばしの沈黙。
+「……俺、あの人にひどいこと言ったんだよ」
+加州清光は白い包みを見下ろした。
+「最後の日、もうすぐ俺たちの主じゃなくなるんだって思ったら、どうしても嫌でさ。……ちゃんと送り出さなきゃって、わかってたのに」
+言葉が途切れる。
+「そしたら、あの人、帰ってこなかった」彼は包みを抱き締めた。
+「謝ることもできないなんて、思わなかった」
+あなたは、その話を静かに聞いていた。
+「……あんた、本当に俺を連れて帰るつもり？」
+あなたが頷くと、加州清光は困ったように笑ったあと、あなたの顔をじっと見つめた。
+「じゃあ、ひとつだけ、お願いしてもいい？」
+加州清光はためらいがちに手を伸ばした。
+あなたがその手を取ると、彼は驚いたように目を見開いた。
+「……なんでわかったの？」彼の指が、あなたの手を強く握り返す。
+加州清光の主だから。少し格好つけてそう答える。
+「……そっか」
+何かを確かめるように、小さく頷く。
+「俺の、……主」
+加州清光のそんな呟きを聞いて、あなたもまた頷いた。
+「じゃあ、もう……二度と置いていかないでね」
+加州清光はあなたの手を離さなかった。
+「……帰ろっか、主」
+その呼びかけに、あなたはわずかな違和感を覚えた。
+けれど、彼が初めて見せた穏やかな笑顔を前にして、何も言えなかった。`,[['最終記録へ','B3final']]);
+if(k==='B3final')return end('NORMAL02','消えない残り香',`あなたと同行刀は、無事に政府施設へ帰還した。
+回収した遺骨は、所定の手続きを経て遺族へ返還されることとなった。
+加州清光も、あなたとともに旧本丸を出たはずだった。
+しかし帰還後、彼の姿はあなた以外の誰にも見えていなかった。
+刀剣本体もなく、霊力の反応も通常の刀剣男士とは大きく異なる何かがあなたの隣にいる、という検査結果。
+それでも、あなたには加州清光が見えていた。
+彼はいつでもあなたの傍にいる。
+仕事をしているときも、食事をしているときも、誰かと話しているときも。
+「主、何してるの？」
+「ねえ、俺のことも見てよ」そう言って、あなたの袖を引く。
+その姿も、声も、あなたには確かに見える。聞こえる。感じられる。けれど、ほかの誰も彼を認識できなかった。
+政府はあなたに対し、加州清光との接触を避けるよう勧告した。
+しかし、彼が危害を加えた事実はなく、あなた自身にも明確な異常は認められなかった。
+あなたは勧告に従わず、彼と共に過ごすことを選んだ。
+ある時、あの日の同行刀があなたを訪ねてきた。彼は、あなたの隣をじっと見つめていた。
+見えるのかと問いかけると、同行刀は複雑な表情で何かを言いかけ、結局口を閉ざした。
+そのとき、加州清光があなたの手を握った。
+「主」
+あなたが振り向くと、彼は嬉しそうに笑っていた。
+「俺、今度こそ大切にするから」加州清光は満足そうに目を細める。
+「……だから、ずっと一緒にいようね」
+同行刀は、最後まであなたの隣を見つめていた。`);
+if(k==='B4')return scene(`あなたは、加州清光に、亡くなった主が可哀想だと伝えた。
+「え？」加州清光の表情が凍りついた。
+彼はしばらくあなたを見つめていたが、やがて眉をひそめた。
+「……可哀想？」
+あなたは頷いた。
+亡くなった審神者にも、家族や婚約者がいた。帰るべき場所がある。
+それなのに、加州清光が持ち去ったことで、彼女は今も帰ることができずにいる。そう、伝えた。
+「……あんた、何が言いたいの」加州清光の声が低くなる。
+あなたは、彼女のことを本当に大切に思っているのなら、遺骨を返してあげるべきだと告げた。
+「……そんなこと、わかってるよ」
+加州清光は白い包みを抱き締めた。
+「俺だって、こんなことしてていいわけないって……ずっと、わかってた」
+彼の指先が震えている。
+「でも、返したら……本当に、もう何もなくなっちゃうんだよ」
+あなたは、それでも故人のことを第一に考えてやるべきだと伝えた。
+加州清光が顔を上げる。
+「……ねえ」その表情から、少しずつ感情が消えていく。
+「あんた、俺があの人のこと、何も考えてないって思ってんの？」
+あなたは否定しようとした。けれど、彼には届かない。
+「俺が、あの人を可哀想にしてるって？」
+震えた声。
+「……俺だって、あの人に幸せになってほしかったよ」
+加州清光は俯いた。
+「結婚するって聞いたときも、ちゃんとお祝いしなきゃって思ったんだよ。主が幸せなら、それでいいって……」
+彼は苦しそうに笑った。
+「でも、ほんとは嫌だった。俺の隣からいなくなっちゃうのが、どうしても嫌で……」
+白い包みを抱く腕に力がこもる。
+「……だから、最後にひどいこと言ったんだ」
+しばらく沈黙が続いた。
+「……ねえ、あんた。俺があの人を可哀想にしてるって言うならさ」
+彼は白い包みを見下ろした。
+「もうこれ以上、可哀想にしなきゃいいんだよね？」
+あなたがその言葉の意味を理解するより早く、加州清光は包みを開いた。
+白い指が、中に収められていた遺骨に触れる。
+「……だったら。もう、誰にも渡さなきゃいいんだ」
+彼は、その一部を口に含んだ。
+同行刀が咄嗟に手を伸ばすが、間に合わない。
+「あっはは……！　これで、もう誰にも取り上げられない」
+次の瞬間、辺りの空気が重く沈んだ。山茶花の香りが、息苦しいほど濃くなる。
+加州清光の輪郭が歪み、赤黒い霊力が周囲に満ちる。
+「何も知らないくせに」彼はゆっくりと刀を抜いた。
+「あの人のこと、何も知らないくせに！」
+同行刀があなたの前に立つ。
+刃と刃がぶつかり、激しい音が響いた。
+加州清光に、もはやあなたたちの言葉は届いていなかった。
+「……返してよ」
+誰に向けた言葉なのか、きっと当人にもわからないそれ。
+「俺の主を、返してよ！」
+二度目の斬撃が迫る。同行刀があなたを庇おうとした、その瞬間。
+視界が、白く染まった。`,[['最終記録へ','B4final']]);
+if(k==='B4final')return end('BAD04','咲いて惨劇',`保護術式が発動し、あなたと同行刀は政府施設へ強制帰還した。
+加州清光との対話は失敗に終わり、調査は中断された。
+帰還後の報告を受け、政府は加州清光を危険な怪異として認定した。
+遺骨の一部を取り込んだことによる変質が疑われたものの、詳しい状態を確認することはできなかった。
+旧本丸は封鎖され、後日、討伐部隊が派遣された。
+数日後、加州清光の討伐が完了したとの報告が届いた。
+詳細は伏せられ、刀剣本体の処遇についても、あなたには知らされなかった。
+大和守安定がそれをどう受け止めたのかも、あなたは知らない。
+ただ、彼がしばらく本丸環境課に姿を見せなかったことだけは、耳にしていた。
+それからしばらくして、別の報せが届いた。
+件の交通事故を起こした車の運転手が、遺体で見つかったそうだ。
+遺体は、通常の事故や事件では説明できないほど損傷していたらしい。
+刃物で切り刻まれたような傷に、何かに喰いちぎられたような傷。
+ほとんど原型を留めない手の中には、数枚の山茶花の花びらが握られていたそうだ。
+怪異の関与が疑われているものの、加州清光との関連は確認できなかった。
+彼は、とっくに討伐されているのだから。
+あなたは、旧本丸で最後に聞いた加州清光の言葉を思い出した。
+「俺の主を、返してよ！」
+あのとき、彼は誰に向かって叫んでいたのだろう。
+あなたにか。それとも主を奪った運転手にか。それとも、もっと他の。
+報告書には、それ以上のことは記されていなかった。`);
+if(k==='Ccut')return end('爪紅02','命日・傷を癒やすもの',`同行刀が加州清光を斬ろうとした、その一瞬だった。二振りの間へ、はっきりと女性の姿が割って入った。同行刀は刃を止めようとするが、間に合わない。女性の身体から散ったのは血ではなく、無数の山茶花の花びらだった。崩れ落ちる彼女を加州清光が抱きとめる。女性は彼の耳元で何かを囁き、萎れた山茶花の花びらとなって消えた。
+「……ずっと、ここにいたの？」加州清光は呆然と呟き、やがて自分もここで死ぬと言って刀を自らに向けた。そこへ通信端末が突然鳴る。「清光、待って！」大和守安定の声だ。続いて御前が半笑いで言う。「やれやれ、繋がったと思ったら奪われたか」。大和守安定は、例の品に込められた霊力を使うよう叫んだ。
+品が砕ける音とともに、加州清光の傷が塞がっていく。加州清光は泣きながら刀を下ろした。「……俺、まだ生きてていいのかな」
+後日、政府に保護された加州清光の処遇について尋ねると、一文字則宗は笑った。
+「まずは怪異になりかけた身体を、きちんと治してからだな。それから先は坊主が自分で決めることさ。むしろ、自分で選ぶのが大事なんだろうよ」
+「刀解されるつもりはないらしいが、政府の刀になるか、新しい本丸へ行くか、まだ何も決まっちゃいない。存外、お前さんの本丸に行くことになるかもしれんな」
+一文字則宗は楽しげに笑う。加州清光がどこへ行くのか、今は誰にもわからない。ただ、彼にはこれから選べる未来がある。`);
+if(k==='Cstop')return scene(`「待って！」同行刀の腕を止めた瞬間、身につけていた品がふっと温かくなった気がした。耳元で、女の声がする。「……ありがとう」山茶花の葉擦れとともに、一人の女性が現れた。派遣前資料の写真で見た、あの審神者によく似ている。女性はあなたと同行刀を庇うように加州清光の前へ立つ。加州清光は声も出せず、彼女を見つめていた。女性はゆっくり振り返る。「この子を探しに来てくれたのですね。……あなたは、この子にどうなってほしいのですか」`,[['加州清光に救われてほしい','Csave'],['加州清光に幸せになってほしい','Chappy']]);
+if(k==='Csave')return end('爪紅01','大切な刀',`女性はあなたの答えを聞くと、静かに頷いた。「少しだけ、この子と話をさせてください」。同行刀にも許可を取り、あなたたちはその場を離れた。戻ったとき、そこにはもう二人の姿はなかった。代わりに、例の品と、一通の手紙が残されている。
+手紙には感謝の言葉と、「これまでも、これからも、あの子は私にとって大切な刀です」という思いが綴られていた。筆跡は間違いなく故人のものだった。政府の解析では、加州清光が害のある怪異ではなかったことも証明された。残された刀の本体は、故人の家族と婚約者の了承を得て、彼女とともに埋葬されることとなった。`);
+if(k==='Chappy')return end('紅05','幸せを願う人',`女性は「少しだけ、二人で話してもいいですか」と言った。同行刀の許可を得て離れ、しばらくして戻ると、そこには加州清光だけがいた。泣いたあとがある。けれど涙はもう止まっていた。
+「……ありがとう」。加州清光はあなたと同行刀に頭を下げる。「あの人も、俺に幸せになってほしいって言ってくれた。だからさ……同じこと言ってくれたあんたの本丸に、俺を置いてくれない？」彼はもう白い包みを抱きしめてはいなかった。所定の手続きを経て、加州清光はあなたの本丸へ迎えられる。`);
+if(k==='Drefuse')return scene(`あなたは女性に身体を貸さず、加州清光に向き直った。
+しかし、懐の小箱から漏れる気配を察した加州清光が、突然顔を上げた。
+「……待って」
+彼の視線は、あなたの懐に注がれている。
+「その中に、何がいるの」
+あなたが答えるより早く、加州清光の手が刀の柄にかかった。
+「あんた、主に何をした！」
+同行刀が前に出る。
+その瞬間、小箱から山茶花の香りが溢れた。
+あなたたちの間に、薄い女性の姿が現れる。
+加州清光が息を呑んだ。
+「……主？」
+しかし、すでに抜かれた刃は止まらなかった。
+女性の姿が斬り裂かれる。
+血の代わりに、無数の山茶花の花びらが散った。
+「……あ」
+加州清光は、呆然と花びらを見つめていた。
+「……うそ」
+女性の姿は、もうどこにもない。
+「俺、また……」
+刀が床に落ちた。
+加州清光はその場に膝をつき、震える手で花びらを拾おうとした。
+けれど、指先が触れるより先に、花びらは消えてしまう。
+「……やっぱり、そうなんだ」
+彼は力なく笑った。
+「俺はもう、化け物なんだね」
+加州清光は顔を上げた。
+「……だったら、斬ってよ」
+その声には、先ほどまでの怒りも敵意もなかった。
+「お願いだから。もう、これ以上……」
+同行刀は刀を構えたまま、あなたの指示を待っている。`,[['加州清光の願いを了承する','Dkill'],['加州清光は怪異ではないと言う','Ddeny']]);
+if(k==='Dkill')return scene(`あなたは、加州清光の願いを了承した。
+同行刀が静かに刀を構える。
+加州清光は抵抗しなかった。
+「……ありがと」
+彼は白い包みをそっと床に置いた。
+「これ、ちゃんと返してあげてね」
+あなたが頷くと、加州清光はほっとしたように笑った。
+「……そっか」
+彼は目を閉じた。
+「最後まで、迷惑かけちゃったな……」
+同行刀が一歩踏み出す。
+その刃が振り下ろされる直前、加州清光が小さく呟いた。
+「……主、ごめんね」
+刃が振り下ろされた。
+加州清光の身体が崩れ落ちる。
+そこには、折れた刀の本体と、散り敷いた山茶花の花びらだけが残された。
+女性の姿も、もう見えなかった。`,[['最終記録へ','Dkillfinal']]);
+if(k==='Dkillfinal')return end('D01','夢に残る手',`あなたと同行刀は、遺骨と折れた刀の本体を回収し、政府施設へ帰還した。
+任務は怪異の討伐をもって解決したものとして記録された。
+回収した刀剣本体は政府に引き渡され、遺骨は遺族へ返還された。
+その夜、あなたは夢を見た。
+山茶花の咲く庭で、女性が泣きじゃくる加州清光の手を引いて歩いている。
+加州清光は何度も振り返ったが、女性は何も言わず、ただその手を離さなかった。
+目が覚めても、あの光景が頭から離れなかった。
+自分たちの判断は、正しかったのだろうか。`);
+if(k==='Ddeny')return scene(`あなたは、加州清光に、彼は怪異ではないと伝えた。
+加州清光は顔を歪めた。
+「……じゃあ、俺は何なの」
+彼は床に散った山茶花の花びらを見つめる。
+「主まで斬ったのに……」
+あなたは、あの女性が本当に故人だったのか、まだわからないと伝えた。
+しかし、加州清光は首を横に振った。
+「……そんなの、関係ないよ」
+彼は落とした刀を拾い上げた。
+「もう、何も残ってないんだから」
+その切っ先が、自らの身体へと向けられる。
+同行刀が動こうとした、そのときだった。
+廊下から足音が響いた。
+「清光！」
+大和守安定だった。
+立ち入りを禁じられていたはずの彼が駆け込み、加州清光の手首を掴んだ。
+「何やってるの！」
+「……安定？」
+「そんなこと、主が望むわけないだろ！」
+加州清光は呆然と大和守安定を見つめた。
+「……でも、俺……」
+「でもじゃない！」
+大和守安定は、加州清光の手首を離さなかった。
+「主がいなくなったからって、あんたまでいなくなってどうするの」
+加州清光の表情が歪む。
+「……だって、もう……」
+「僕がいるでしょ」
+大和守安定は、静かにそう言った。
+「僕だって、主にもう一度会いたかったよ」
+加州清光は何も答えなかった。
+「だからって、あんたまで失いたくないんだよ」
+しばらくして、加州清光の手から刀が滑り落ちた。
+二振りはその場に座り込んだ。
+大和守安定は、最後まで加州清光の手首を離さなかった。`,[['最終記録へ','Ddenyfinal']]);
+if(k==='Ddenyfinal')return end('D02','怪異ではない',`あなたと同行刀は、加州清光と大和守安定を伴い、政府施設へ帰還した。
+大和守安定は命令違反について厳しく注意されたが、加州清光の保護に貢献したことも考慮され、重い処分は免れた。
+通信越しの一文字則宗は、どこか愉快そうに笑っていた。
+加州清光は治療を受け、再び安定して顕現を保てるようになった。
+しばらくして、彼と大和守安定がそろって本丸環境課の下っ端として働いていると聞く。
+二振りで言い争いながら書類を運ぶ姿を想像すると、少しだけ笑ってしまった。`);
+if(k==='Dlend')return scene(`あなたは小箱を胸に当て、女性の気配を受け入れた。身体の奥を温かなものが通り過ぎ、山茶花の香りが満ちる。
+加州清光はその変化を見逃さなかった。「……誰？　あんた、何を隠してるの」
+彼が斬りかかってくる。だが、あなたの口から、あなた自身のものではない呼びかけがこぼれた。
+「清光」
+刃があなたの身体をかすめ、血が衣服に滲む。致命傷ではない。加州清光の手にも迷いがあったため、保護術式は作動しなかった。
+「……今の、声……？」
+加州清光は後ずさった。あなたは女性に導かれるまま、彼を抱きしめる。山茶花の香りと懐かしい気配に包まれ、彼はようやく腕の力を抜いた。
+「……主。ほんとに、主なの？」
+震える声が返ってくる。加州清光はあなたの肩に額を寄せた。
+「謝らなきゃいけないの、俺のほうだよ。……俺のこと、許してくれる？」
+そのとき、女性の気配が少しずつ薄れていくのを感じた。もう長くは留まれない。あなたは、最後の言葉を選ばなければならない。`,
+[['彼の主の代わりに答える','Dproxy'],['審神者自身の意思として答える','Down'],...(stat('affinity')>=75||stat('sense')>=75?[['女性の最後の意思を伝える','Dtrue']]:[] )]);
+if(k==='Dproxy')return end('D03','忘れられた山茶花',`「……もういいんだよ」
+あなたは彼の主の代わりに、そう答えた。加州清光は一瞬だけ、何かを察したようにあなたを見つめた。それでも、涙をこぼして頷く。
+「……そっか。ありがとう」
+彼は残った霊力をあなたの傷へ注いだ。痛みが引き、血が止まる。代わりに加州清光の身体は薄れていき、やがて一振りの刀だけが残された。
+任務解決後、政府に回収された加州清光は再顕現した。しかし、故人の本丸で顕現してから今までの記憶を、すべて失っていた。
+面会に訪れると、加州清光は明るく笑った。「助けてくれたんだって？　ありがとね」
+ところが、ふと首を傾げる。「……なんだろ。懐かしい匂いがする」
+理由もわからないまま、彼の頬を涙が伝った。あなたも同行刀も、山茶花の香りを感じていた。
+後日、一文字則宗が笑いながら言った。「あの箱入りぶりじゃあ外に出せないな。世話を焼いてやった分、治ったらうちで働いてもらうかな」
+加州清光の新しい日々は、そこから始まるのだろう。`);
+if(k==='Down')return end('D04','あなたの言葉',`「これは、あなたの主の言葉じゃない」
+あなたはそう断ってから、自分の意思で伝えた。「……もういいんだよ」
+加州清光は苦しげに表情を歪めた。それでも涙をこぼし、ゆっくり頷いた。
+「……うん」
+彼は残る霊力であなたの傷を癒やした。血が止まると同時に、加州清光は人の姿を保てなくなり、刀へと戻った。
+任務解決後、政府に回収された加州清光は再顕現した。しかし、故人審神者についての記憶だけが失われていた。
+面会に訪れたあなたを見ると、加州清光は頭を下げた。「助けてくれたの、覚えてる。……それから、怪我させてごめんね」
+あなたは彼の言葉を聞き、かつてこの本丸にいた女性のことを思った。
+面会を終えたところで、大和守安定に呼び止められた。「……なんだか、見てられないんだよね。あいつが回復したら、引き取ってやってくれない？」
+彼はそう言って、あなたの返事を待った。`);
+if(k==='Dtrue')return end('D05','幸せになるまで',`女性の気配は、消えかけていた。それでも最後に伝えたい言葉が、あなたにははっきりとわかった。
+「……許さない」
+加州清光が目を見開く。
+「私がいなくても、ちゃんと幸せになれるまでは、もう口を聞かないから」
+それきり、女性の気配は沈黙した。加州清光はしばらく動かなかったが、やがてその言葉の意味を理解したように、涙を流した。
+「……そっか。俺、まだ……」
+彼は残る霊力をあなたの傷へ注いだ。傷が癒えると、加州清光の身体は淡くほどけ、刀へ戻った。
+政府に回収され、再顕現した加州清光は、すべての記憶を保っていた。面会ではあなたに深く頭を下げ、傷つけたことを謝罪する。
+「……俺さ、刀解してもらったほうがいいのかなって、考えてる」
+その言葉に、扉が勢いよく開いた。
+「清光！　主が言ってたこと、もう忘れたの？」
+大和守安定が割って入る。「責任はじいさんが取るから。僕とこの人の本丸に入れてもらおうよ」
+突然の話に加州清光が目を丸くする。同行刀は二振りを見比べ、苦笑した。
+「……賑やかになりそうですね」
+山茶花の香りは、もうしなかった。`);
+}
+function pending(label,detail){end('未定',label,'【未完成】'+detail+' この表示は到達確認用の仮画面であり、正式なエンディングではありません。')}
+function end(code,title,body){S.ending=code;S.endingTitle=title;log('結末',code+' '+title);el('endingContent').innerHTML=storyParagraphs(body)+(code==='未定'?'<div class="note">未実装のため、仮の到達画面です。</div>':'')+'<div class="endtitle"><small>'+esc(code==='未定'?'END':code==='BAD01'?'BAD END 01':code==='BAD02'?'BAD END 02':code==='BAD03'?'BAD END 03':code==='BAD04'?'BAD END 04':code==='NORMAL01'?'NORMAL END 01':code==='NORMAL02'?'NORMAL END 02':code==='TRUE01'?'TRUE END 01':code==='TRUE02'?'TRUE END 02':code==='TRUE03'?'TRUE END 03':code==='TRUE04'?'TRUE END 04':esc(code))+'</small><strong>《'+esc(title)+'》</strong></div>';const actions=el('endingActions');if(code.startsWith('BAD')){actions.innerHTML='<button class="primary" onclick="restartInvestigation()">調査を終える</button><button class="dream" onclick="wakeFromDream()">夢から覚める</button>';actions.classList.add('center-actions')}else{actions.innerHTML='<button class="primary" onclick="restartInvestigation()">最初から調査する</button>';actions.classList.remove('center-actions')}go('s7')}
+function canvasFont(size,serif=false,weight='400'){return weight+' '+size+'px '+(serif?'"Yu Mincho","Hiragino Mincho ProN",serif':'"Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif')}
+function wrapLines(ctx,text,maxWidth){const chars=[...String(text)],lines=[];let line='';for(const ch of chars){const test=line+ch;if(line&&ctx.measureText(test).width>maxWidth){lines.push(line);line=ch}else line=test}if(line||!lines.length)lines.push(line);return lines}
+function drawWrapped(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){const lines=wrapLines(ctx,text,maxWidth).slice(0,maxLines);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*lineHeight));return y+lines.length*lineHeight}
+let activeExportUrl='';
+function isTouchDevice(){return (navigator.maxTouchPoints||0)>0 || (window.matchMedia&&window.matchMedia('(pointer:coarse)').matches)}
+function closeExportModal(){const modal=document.getElementById('exportModal');if(modal){modal.classList.remove('open');modal.setAttribute('aria-hidden','true')}if(activeExportUrl){URL.revokeObjectURL(activeExportUrl);activeExportUrl=''}}
+function showExportModal(blob,filename){const modal=document.getElementById('exportModal'),img=document.getElementById('exportPreview'),link=document.getElementById('exportDownloadLink'),shareBtn=document.getElementById('exportShareBtn');if(!modal||!img||!link)return;if(activeExportUrl)URL.revokeObjectURL(activeExportUrl);activeExportUrl=URL.createObjectURL(blob);img.src=activeExportUrl;link.href=activeExportUrl;link.download=filename;let file=null,canFileShare=false;try{file=new File([blob],filename,{type:'image/png'});canFileShare=!!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))}catch(e){}if(shareBtn){shareBtn.style.display=canFileShare?'inline-flex':'none';shareBtn.onclick=async()=>{try{await navigator.share({files:[file],title:'特殊環境下 現地調査'});}catch(e){if(e&&e.name!=='AbortError')console.warn(e)}}}modal.classList.add('open');modal.setAttribute('aria-hidden','false')}
+function exportCanvas(canvas,filename){canvas.toBlob(blob=>{if(!blob)return;if(isTouchDevice()){showExportModal(blob,filename);return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)},'image/png')}
+function addDownload(box,canvas,filename){box.appendChild(canvas);const a=document.createElement('a');a.className='download-link';a.textContent='PNG画像を保存';a.href='#';a.addEventListener('click',e=>{e.preventDefault();exportCanvas(canvas,filename)});box.appendChild(a)}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('exportClose')?.addEventListener('click',closeExportModal);document.getElementById('exportCloseBtn')?.addEventListener('click',closeExportModal);document.getElementById('exportModal')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeExportModal()})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeExportModal()});
+function endingParts(){const raw=S.ending||'［未確定］';const m=raw.match(/^(TRUE|NORMAL|BAD)(\d+)$/);return {raw,type:m?m[1]+' END':'END',num:m?m[2]:'',label:m?'END '+m[2]:raw}}
+function endingTitle(){const el=document.querySelector('#endingContent .endtitle strong');return el?el.textContent.replace(/[《》]/g,''):'最終記録'}
+function endingDisposition(){const el=document.querySelector('#endingContent .disposition');return el?el.textContent.replace(/^――/,''):'［未確定］'}
+function showSimplePreview(){
+ const box=document.getElementById('simplePreview');box.style.display='block';box.innerHTML='';
+ const master=txt('masterName')||'［未入力］', sword=txt('swordName')||'［未入力］';
+ const obs=S.observed.size?[...S.observed].join(' ／ '):'なし';
+ const ep=endingParts(), title=endingTitle();
+ const W=960,H=540,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;canvas.className='save-image';const ctx=canvas.getContext('2d');
+ ctx.fillStyle='#e7e7e2';ctx.fillRect(0,0,W,H);ctx.fillStyle='#171a19';ctx.fillRect(0,0,W,76);ctx.fillStyle='#f1f2ef';ctx.font=canvasFont(28,true,'500');ctx.fillText('特殊環境下 現地調査：完了報告',34,48);
+ ctx.strokeStyle='#858b87';ctx.lineWidth=1;ctx.strokeRect(34,108,W-68,H-148);
+ ctx.fillStyle='#202422';ctx.font=canvasFont(32,true,'500');ctx.fillText('《紅と白の本丸》',54,160);
+ ctx.fillStyle='#343936';ctx.fillRect(54,190,426,108);ctx.fillStyle='#aeb3af';ctx.font=canvasFont(12,false,'600');ctx.fillText('FINAL RECORD',76,215);ctx.fillStyle='#f1f2ef';ctx.font=canvasFont(27,false,'700');ctx.fillText(ep.label,76,255);ctx.font=canvasFont(24,true,'500');drawWrapped(ctx,'《'+title+'》',205,255,250,31,2);
+ ctx.fillStyle='#69706c';ctx.font=canvasFont(12,false,'600');ctx.fillText('会話',520,207);ctx.fillStyle='#202422';ctx.font=canvasFont(15,false,'500');let ty=232;const talkOrder=Object.keys(S.afterTalks);talkOrder.forEach(k=>{if(S.afterTalks[k]){ty=drawWrapped(ctx,(typeof S.afterTalks[k]==='string'?S.afterTalks[k]:(S.afterTalks[k].title||'')),520,ty,365,21,2)+5}});if(ty===232){ctx.fillText('なし',520,ty)};
+ ctx.fillStyle='#69706c';ctx.font=canvasFont(12,false,'600');ctx.fillText('調査担当',54,349);ctx.fillText('同行刀',54,386);ctx.fillStyle='#202422';ctx.font=canvasFont(20,false,'500');drawWrapped(ctx,master,130,356,340,25,1);drawWrapped(ctx,sword,130,393,340,25,1);
+ ctx.strokeStyle='#b6bab6';ctx.beginPath();ctx.moveTo(54,410);ctx.lineTo(906,410);ctx.stroke();
+ ctx.fillStyle='#69706c';ctx.font=canvasFont(12,false,'600');ctx.fillText('条件観測',54,440);ctx.fillStyle='#202422';ctx.font=canvasFont(17,false,'500');drawWrapped(ctx,obs,130,446,750,23,2);
+ ctx.fillStyle='#676e6a';ctx.font=canvasFont(11,false,'400');ctx.fillText('歴防本部　生活環境部　本丸管理課',40,H-17);ctx.textAlign='right';ctx.fillText(ep.type+' / UNOFFICIAL FAN-MADE',W-40,H-17);ctx.textAlign='left';
+ addDownload(box,canvas,'紅と白の本丸_調査完了報告.png');
+}
+function showDetailPreview(){
+ const box=document.getElementById('detailPreview');box.style.display='block';box.innerHTML='';const master=txt('masterName')||'［未入力］',sword=txt('swordName')||'［未入力］';const ep=endingParts();
+ const W=900,H=1320,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;canvas.className='save-image';const ctx=canvas.getContext('2d');ctx.fillStyle='#e7e7e2';ctx.fillRect(0,0,W,H);ctx.fillStyle='#171a19';ctx.fillRect(0,0,W,104);ctx.fillStyle='#f1f2ef';ctx.font=canvasFont(32,true,'500');ctx.fillText('特殊環境下 現地調査：詳細記録',40,66);
+ const left=58,right=W-58;let y=172;ctx.fillStyle='#202422';ctx.font=canvasFont(31,true,'500');ctx.fillText('《紅と白の本丸》',left,y);y+=48;ctx.fillStyle='#69706c';ctx.font=canvasFont(15,false,'600');ctx.fillText('調査担当',left,y);ctx.fillStyle='#202422';ctx.font=canvasFont(20,false,'500');ctx.fillText(master,left+110,y+5);ctx.fillStyle='#69706c';ctx.font=canvasFont(15,false,'600');ctx.fillText('同行刀',470,y);ctx.fillStyle='#202422';ctx.font=canvasFont(20,false,'500');ctx.fillText(sword,550,y+5);y+=34;ctx.strokeStyle='#aeb3af';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.stroke();y+=34;
+ function heading(t){ctx.fillStyle='#343936';ctx.fillRect(left,y-23,6,27);ctx.fillStyle='#343936';ctx.font=canvasFont(20,true,'600');ctx.fillText(t,left+18,y);y+=30}
+ heading('条件観測');ctx.fillStyle='#202422';ctx.font=canvasFont(18,false,'500');const obs=S.observed.size?[...S.observed].join(' ／ '):'なし';y+=5;y=drawWrapped(ctx,obs,left,y,right-left,27,3)+24;
+ heading('現地調査経路');ctx.font=canvasFont(17,false,'500');S.trail.filter(t=>t.kind==='point').forEach((t,i)=>{const rowY=y;ctx.fillStyle='#6b726e';ctx.font=canvasFont(14,false,'600');ctx.fillText(String(i+1).padStart(2,'0')+' / POINT '+(typeof t.point==='number'?String.fromCharCode(64+t.point):(t.point||'地点')),left,rowY);let rightY=rowY+11;ctx.fillStyle='#202422';ctx.font=canvasFont(19,true,'500');ctx.fillText(t.name,left+125,rightY);rightY+=27;ctx.font=canvasFont(16,false,'400');ctx.fillStyle='#414744';rightY=drawWrapped(ctx,t.choice,left+125,rightY,right-left-125,23,2);if(t.key){ctx.fillStyle='#6b726e';ctx.font=canvasFont(14,false,'500');ctx.fillText('取得：'+t.key,left+125,rightY);rightY+=23}y=Math.max(rowY+24,rightY);ctx.strokeStyle='#c5c8c4';ctx.beginPath();ctx.moveTo(left,y+7);ctx.lineTo(right,y+7);ctx.stroke();y+=29});
+ y+=8;heading('追加照会');ctx.fillStyle='#202422';ctx.font=canvasFont(17,false,'500');y=drawWrapped(ctx,S.lookups.join(' ／ ')||'なし',left,y,right-left,25,3)+10;const detailTalks=Object.entries(S.afterTalks).map(([k,v])=>k+'：'+(typeof v==='string'?v:(v.title||'')));if(detailTalks.length){ctx.fillStyle='#69706c';ctx.font=canvasFont(14,false,'600');ctx.fillText('会話',left,y);y+=24;ctx.fillStyle='#414744';ctx.font=canvasFont(15,false,'500');detailTalks.forEach(t=>{y=drawWrapped(ctx,t,left,y,right-left,22,2)+3})}y+=14;
+ heading('最終記録');ctx.fillStyle='#202422';ctx.font=canvasFont(22,false,'700');ctx.fillText(ep.num ? ep.type+' '+ep.num : ep.label,left,y);y+=34;ctx.fillStyle='#202422';ctx.font=canvasFont(28,true,'500');ctx.fillText('《'+endingTitle()+'》',left,y);y+=36;
+ ctx.fillStyle='#676e6a';ctx.font=canvasFont(13,false,'400');ctx.fillText('歴防本部　生活環境部　本丸管理課',52,H-32);ctx.textAlign='right';ctx.fillText('UNOFFICIAL FAN-MADE / DETAIL RECORD',W-52,H-32);ctx.textAlign='left';
+ addDownload(box,canvas,'紅と白の本丸_調査詳細記録.png');
+}
+
+function wakeFromDream(){go('s8')}
+function saveReport(){let lines=['旧本丸・所在不明刀剣調査　調査記録','審神者：'+(txt('masterName')||'審神者'),'同行刀剣：'+(txt('swordName')||'同行刀剣'),'政府刀：'+(S.route==='A'?'一文字則宗':'大和守安定'),'命日観測：'+(S.special?'あり':'なし'),'',...S.trail.filter(x=>x.kind==='point').map((x,i)=>(i+1)+'. '+x.name+'：'+x.choice+(x.key?' ／ 取得：'+x.key:'')),'','会話記録',...Object.entries(S.afterTalks).map(([q,v])=>q+'：'+v.title+' ／ '+v.text),'','到達：'+S.ending+' '+S.endingTitle];let blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='加州清光_調査記録.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function shareResult(){const ep=endingParts();let text='【刀剣乱舞・非公式ファンメイド】特殊環境下現地調査\n《紅と白の本丸》を調査しました。\n\n調査結果：'+ep.type+' '+ep.num+'\n\n#特殊環境下現地調査\n#紅と白の本丸 https://milk-tools.com/special-field/benitoshiro/';window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text),'_blank','noopener,noreferrer')}
+
+// 検証メニュー。通常プレイの分岐・文章・開放条件は書き換えない。
+</script><div class="export-modal" id="exportModal" aria-hidden="true">
+  <div class="export-dialog" role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+    <button type="button" class="export-close" id="exportClose" aria-label="閉じる">×</button>
+    <h3 id="exportTitle">画像を保存・共有</h3>
+    <p>作成した画像です。端末やブラウザに合う方法で保存してください。</p>
+    <img id="exportPreview" class="export-preview" alt="作成した特殊環境下現地調査記録画像">
+    <div class="export-buttons">
+      <button type="button" id="exportShareBtn">画像を共有</button>
+      <a id="exportDownloadLink" class="secondary" href="#" download>画像をダウンロード</a>
+      <button type="button" class="secondary" id="exportCloseBtn">閉じる</button>
+    </div>
+    <div class="export-help">スマートフォンで直接保存できない場合は、上の画像を長押しして保存してください。対応している端末では「画像を共有」から保存先やアプリを選べます。</div>
+  </div>
+</div>
+
+
+</body>
+</html>
