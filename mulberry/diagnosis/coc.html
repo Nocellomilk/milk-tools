@@ -626,6 +626,13 @@ button.save-detail,button.save-detail *{
 @media(max-width:390px){.result-four-actions{gap:8px}.result-four-actions .primary{padding:12px 20px;font-size:.8rem}}
  .result-four-actions .action-label{position:relative;top:2px}
 </style>
+<style id="admission-student-name">
+.admission-name-entry{margin:22px auto 4px;max-width:400px;text-align:center}
+.admission-name-entry label{display:block;font-size:.88rem;margin-bottom:8px;color:var(--result-main,#526f70)}
+.admission-name-entry input{display:block;width:100%;padding:12px 14px;border:1px solid #a9bdb8;background:#fff;color:#263f45;border-radius:2px;font-size:1rem;text-align:center}
+.admission-name-entry .name-help{font-size:.76rem;color:#667a7d;margin:6px 0 0}
+.save-card .student-name{margin:10px auto 0;text-align:center;color:var(--result-main);font-size:17px;overflow-wrap:anywhere;max-width:600px}
+</style>
 </head>
 <body><main class="wrap"><section class="card" id="app"></section></main>
 <script>
@@ -882,6 +889,7 @@ function selectClass(i){
  <div class="certificate-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div><p class="center">所属クラス：<strong>${selected}</strong></p><p class="center small">${desc}</p>${typeof i==='number'&&i>=0?`<p class="center small class-explanation">${classes[i].theme}</p>`:blackExplanation}${selectedRoll}</div>
  <div class="result-box"><p class="center">試験免除分野</p>${top.map((k,j)=>`<div class="apt"><b>${j+1}. ${abilities[k][0]}</b><span>${abilities[k][1]}適性</span></div>`).join('')}</div>
  ${black?'<div class="result-box"><p class="center"><strong>特殊認定：黒い果実</strong></p><p>他の6クラスすべての判定が学院の定めた基準に届かなかったため、特別な保護を受けられるクラスの所属資格を得ました。</p></div>':''}
+ <div class="admission-name-entry"><label for="admissionStudentName">画像に記載する名前（任意）</label><input id="admissionStudentName" type="text" maxlength="60" placeholder="名前を入力"><p class="name-help">空欄でも画像は保存できます。</p></div>
  <div class="save-actions result-four-actions"><button class="primary" onclick="saveResultImage('normal')"><span class="action-label">結果画像を保存</span></button><button class="primary" onclick="saveResultImage('detail')"><span class="action-label">詳細記録を保存</span></button>${i!==-1?'<button class="primary share-color" onclick="shareAdmissionText()"><span class="action-label">Xでシェア</span></button><button class="primary share-color" onclick="shareAdmissionResult()"><span class="action-label">画像付きでシェア</span></button>':''}</div>
  ${i!==-1?'<p class="share-note">画像付きシェアがうまくいかない場合は、「結果画像を保存」から画像を保存し、投稿時に手動で添付してください。</p>':''}
  <button class="ghost" onclick="renderClassChoices()">所属先を選び直す</button>
@@ -964,6 +972,13 @@ function buildSaveCard(kind){
  ${kind==='normal'?`<div class="save-section"><div class="save-label">所属クラス</div><div class="selected-class"><div class="selected-name">${selectedName}</div><div>${selectedDesc}</div>${typeof enrolled==='number'&&enrolled>=0?`<div class="class-explanation">${classes[enrolled].theme}</div>`:blackSaveExplanation}${selectedRoll}</div></div>`:`<div class="save-section"><div class="save-label">クラス判定記録</div><div class="roll-grid">${rolls}</div><p class="center small">所属：<strong>${selectedName}</strong>${selectedFormalJa?`<span class="detail-formal-name">${selectedFormalJa}</span>`:""}</p></div>`}
  ${black?'<div class="black-note"><strong>黒い果実</strong><br><small>他の6クラスすべての判定が学院の定めた基準に届かなかったため、特別な保護を受けられるクラスの所属資格を得ました。</small></div>':''}
  <div class="save-foot">MULLBERRY MAGIC ACADEMY / ADMISSION APTITUDE EXAMINATION</div>`;
+ const studentName=(document.getElementById('admissionStudentName')?.value||'').trim();
+ if(studentName){
+   const nameLine=document.createElement('div');
+   nameLine.className='student-name';
+   nameLine.textContent='生徒名：'+studentName;
+   card.querySelector('.save-head h2')?.insertAdjacentElement('afterend',nameLine);
+ }
  expandSvgUsesForCapture(card);
  document.body.appendChild(card); return card;
 }
