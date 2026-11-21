@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>マルベリー魔法学院 入学適性検査</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kosugi+Maru&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap');
+:root{
+ --night:#07171d;--deep:#0d2932;--paper:#f5f7f3;--paper2:#e9efeb;
+ --ink:#173039;--muted:#667a7d;--line:#9db6b3;--teal:#356e73;--violet:#6d6688;
+}
+*{box-sizing:border-box}
+button,input,select,textarea{font-family:inherit}
+body{
+ margin:0;min-height:100vh;color:var(--ink);
+ font-family:"Hina Mincho","Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+ background:
+  radial-gradient(circle at 50% -10%,#29505c 0,transparent 38%),
+  linear-gradient(180deg,#0b242d 0,#07171d 72%);
+}
+body:before{
+ content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;
+ background-image:
+  linear-gradient(30deg,transparent 49.5%,#b9d3cf22 50%,transparent 50.5%),
+  linear-gradient(150deg,transparent 49.5%,#b9d3cf18 50%,transparent 50.5%);
+ background-size:80px 138px;
+}
+.wrap{width:min(790px,94vw);margin:auto;padding:42px 0 70px}
+.card{
+ background:
+  radial-gradient(circle at 50% 18%,#fff 0,transparent 28%),
+  linear-gradient(135deg,var(--paper),var(--paper2));
+ border:1px solid #adc2be;border-radius:3px;padding:clamp(30px,6vw,56px);
+ box-shadow:0 28px 75px #0009,0 0 0 7px #17343b,0 0 0 8px #6d8b89;
+ position:relative;overflow:hidden;
+}
+.card:before{content:"";position:absolute;pointer-events:none;inset:14px;border:1px solid #9eb5b1}
+.card:after{content:"";position:absolute;pointer-events:none;left:50%;top:18px;width:120px;height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#7e9996,transparent);opacity:.75}
+.eyebrow{text-align:center;letter-spacing:.24em;color:#527379;font-size:.72rem;text-transform:uppercase}
+h1{text-align:center;font-size:clamp(1.85rem,6vw,3rem);font-weight:500;margin:.45em 0 .18em;letter-spacing:.11em}
+h1:after{content:"◇";display:block;font-size:.72rem;color:#6f8584;margin:.55rem auto 0}
+.en{text-align:center;color:#75898b;letter-spacing:.18em;font-size:.68rem;margin-bottom:31px}
+p{line-height:1.95}.center{text-align:center}.small{font-size:.85rem;color:var(--muted)}
+.primary{
+ display:block;margin:29px auto 0;min-width:210px;border:1px solid #244e55;
+ background:linear-gradient(180deg,#416f75,#2b555c);color:white;
+ border-radius:2px;padding:13px 30px;cursor:pointer;letter-spacing:.11em;
+ box-shadow:inset 0 0 0 1px #86a7a5,0 5px 13px #17363b33;position:relative
+}
+.primary:before,.primary:after{content:"◇";position:absolute;top:50%;transform:translateY(-52%);font-size:.65rem;color:#b9ceca}
+.primary:before{left:15px}.primary:after{right:15px}.primary:hover{filter:brightness(1.07)}
+.ghost{background:none;border:0;color:#60777c;text-decoration:underline;cursor:pointer;margin-top:20px}
+.progress{height:2px;background:#cbd8d5;margin:0 0 30px;position:relative}
+.progress:before,.progress:after{content:"◇";position:absolute;top:-9px;color:#789391;font-size:.7rem}
+.progress:before{left:-3px}.progress:after{right:-3px}
+.progress>i{display:block;height:100%;background:#426f74;transition:.25s}
+.qnum{text-align:center;color:#698087;font-size:.75rem;letter-spacing:.2em}
+.question{text-align:center;font-size:1.3rem;margin:15px 0 29px}
+.question:after{content:"◇";display:block;width:96px;margin:14px auto 0;color:#93a8a5;font-size:.7rem;letter-spacing:0;text-align:center;background:linear-gradient(#a9bbb8,#a9bbb8) left center/34px 1px no-repeat,linear-gradient(#a9bbb8,#a9bbb8) right center/34px 1px no-repeat}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.option{
+ border:1px solid #aabfbb;background:#fbfcfa;color:#253d43;border-radius:2px;
+ padding:14px 13px;cursor:pointer;line-height:1.5;box-shadow:inset 0 0 0 3px #f0f4f1;
+ position:relative
+}
+.option:before{content:none}
+.option:hover{background:#edf4f1;border-color:#658b89;transform:translateY(-1px)}
+.result-title{text-align:center;font-size:1.55rem;font-weight:500;margin:8px 0}
+.seal{
+ width:82px;height:82px;border:1px solid #557a79;border-radius:50%;display:grid;place-items:center;
+ margin:21px auto;color:#426d6d;font-size:1.45rem;position:relative;box-shadow:inset 0 0 0 5px #edf2ef,inset 0 0 0 6px #9cb0ad
+}
+.seal:after{content:"MULLBERRY";position:absolute;font-size:.48rem;letter-spacing:.15em;bottom:13px}
+.result-box{border-top:1px solid #aebfbc;border-bottom:1px solid #aebfbc;padding:23px 7px;margin:24px 0;position:relative}
+.result-box:before{content:"◆";position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--paper);padding:0 9px;color:#78928f;font-size:.7rem}
+.apt{padding:13px 15px;border-left:2px solid #557e85;background:#eef3f0;margin:10px 0;box-shadow:inset 0 0 0 1px #d3dedb}
+.apt b{display:block;font-size:1.03rem;font-weight:600}.apt span{font-size:.8rem;color:#687b80;letter-spacing:.04em}
+.debug{margin-top:24px;padding:14px;background:#e5ece9;border:1px dashed #a7b8b5;border-radius:2px;font-family:ui-monospace,monospace;font-size:.74rem;color:#52676c}
+.black{filter:saturate(.62)}.black h2{color:#222}
+@media(max-width:580px){
+ .options{grid-template-columns:1fr}.wrap{padding:25px 0 55px}.card{padding:34px 23px}
+ .card{box-shadow:0 20px 55px #0008,0 0 0 4px #17343b,0 0 0 5px #6d8b89}
+}
+
+.academy-mark{width:88px;height:88px;margin:8px auto 16px;position:relative;border:1px solid #5e807e;border-radius:50%;box-shadow:inset 0 0 0 5px #edf2ef,inset 0 0 0 6px #b1c1bd}
+.academy-mark:before{content:"";position:absolute;left:50%;top:19px;width:1px;height:45px;background:#567c78;transform:rotate(-8deg)}
+.academy-mark .leaf{position:absolute;width:19px;height:10px;border:1px solid #567c78;border-radius:100% 0 100% 0;background:#f4f7f3}
+.academy-mark .l1{left:25px;top:27px;transform:rotate(18deg)}.academy-mark .l2{right:24px;top:37px;transform:rotate(198deg)}
+.academy-mark .berry{position:absolute;width:8px;height:8px;border:1px solid #6b6684;border-radius:50%}
+.academy-mark .b1{left:42px;top:31px}.academy-mark .b2{left:48px;top:37px}.academy-mark .b3{left:39px;top:40px}
+.academy-mark .water{position:absolute;left:23px;right:23px;bottom:18px;height:8px;border-top:1px solid #73918f;border-radius:50%}
+.title-ornament{display:flex;align-items:center;justify-content:center;gap:12px;color:#78928f;margin:12px auto 20px;font-size:.68rem;letter-spacing:.16em}
+.title-ornament:before,.title-ornament:after{content:"";width:62px;height:1px;background:linear-gradient(90deg,transparent,#91aaa6)}
+.title-ornament:after{transform:scaleX(-1)}
+.result-certificate{position:relative;padding-top:4px}
+.result-certificate:before,.result-certificate:after{content:"";position:absolute;width:34px;height:34px;opacity:.58}
+.result-certificate:before{left:-4px;top:-3px;border-left:1px solid #78928f;border-top:1px solid #78928f}
+.result-certificate:after{right:-4px;top:-3px;border-right:1px solid #78928f;border-top:1px solid #78928f}
+.certificate-label{text-align:center;color:#637d80;font-size:.72rem;letter-spacing:.24em;margin-bottom:8px}
+.certificate-rule{text-align:center;color:#819895;font-size:.7rem;letter-spacing:.28em;margin:15px 0}
+
+
+.academy-mark{display:none}
+.academy-crest{width:150px;height:168px;margin:2px auto 10px;color:#496f70}
+.academy-crest svg{width:100%;height:100%;overflow:visible}
+.crest-ring,.shield,.waterline,.branch,.leaf,.laurel,.ribbon{fill:none;stroke:currentColor;stroke-width:1.45;vector-effect:non-scaling-stroke}
+.crest-ring.thin{stroke-width:.7;opacity:.75}
+.shield{fill:#f2f5f1;stroke-width:1.7}
+.waterline{stroke:#64898a;stroke-width:1}
+.branch{stroke-width:1.7}
+.leaf{fill:#eef3ef}
+.berry{fill:#f2f3f0;stroke:#6d6688;stroke-width:1.3}
+.star{fill:#eef3ef;stroke:#6d6688;stroke-width:1}
+.laurel{stroke-width:1.05}
+.ribbon{fill:#eef2ef;stroke-width:1.2}
+.crest-text{font-family:Georgia,"Times New Roman",serif;font-size:9px;letter-spacing:4px;fill:#526f70}
+
+.class-panel{border:1px solid #a9bdb8;background:#f9fbf8;padding:24px clamp(16px,4vw,31px);box-shadow:inset 0 0 0 5px #edf2ee;margin:24px 0}
+.class-kicker{text-align:center;letter-spacing:.2em;font-size:.72rem;color:#668083}
+.class-name{text-align:center;font:500 1.5rem Georgia,serif;letter-spacing:.16em;margin:12px 0 7px;color:var(--class-color,#356e73)}
+.class-name:after{content:none}
+.class-desc{text-align:center;font-size:.88rem;color:#52686d}
+.class-value{text-align:center;border-block:1px solid #d5e0db;margin:19px auto;padding:12px 0;font-size:.9rem}
+.class-roll{text-align:center;font-size:1.05rem;margin:20px 0 5px}
+.class-roll strong{font:500 2rem Georgia,serif;color:var(--class-color,#356e73)}
+.class-log{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:20px 0}
+.class-log div{border-bottom:1px solid #c4d3ce;padding:8px 4px;font-size:.75rem;color:#597074;text-align:center}
+.class-log .active{border-color:#447a7c;color:#214f55}
+.class-option{width:100%;text-align:left;margin:7px 0;padding:12px;border:1px solid #b3c8c1;background:#fcfdfa;color:#26434a;font-family:inherit;cursor:pointer}
+.class-option:hover,.class-option.selected{border-color:#45757a;background:#e6f0ed}
+.class-option small{display:block;color:#718389;margin-top:3px}
+.class-option.no-choice{text-align:center}
+@media(max-width:580px){.class-log{grid-template-columns:repeat(2,1fr)}}
+
+
+/* v0.15.2 screen ornament fixes: no pale band; class divider uses real CSS lines. */
+.class-divider{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px auto;color:#8ba39f;width:min(260px,78%);font:500 .62rem Georgia,serif;line-height:1}
+.class-divider i{display:block;flex:1;height:1px;background:currentColor;opacity:.9}
+.card.result-themed .class-divider{color:var(--result-main)}
+
+/* v0.12 trial: selected-class color theme (final result screen + saved images only) */
+.card.result-themed{
+ --result-main:#356e73;--result-line:#9db6b3;--result-soft:#eef3f0;--result-faint:#f7faf7;
+ border-color:var(--result-line);
+ box-shadow:0 28px 75px #0009,0 0 0 7px #17343b,0 0 0 8px var(--result-main);
+}
+.card.result-themed:before{border-color:var(--result-line)}
+.card.result-themed:after{background:linear-gradient(90deg,transparent,var(--result-main),transparent)}
+.card.result-themed .eyebrow,.card.result-themed .certificate-label,.card.result-themed .certificate-rule,
+.card.result-themed .result-title,.card.result-themed .result-certificate strong{color:var(--result-main)}
+.card.result-themed .academy-crest{color:var(--result-main)}
+.card.result-themed .result-certificate:before,.card.result-themed .result-certificate:after{border-color:var(--result-main)}
+.card.result-themed .result-box{border-color:var(--result-line)}
+.card.result-themed .result-box:before{color:var(--result-main)}
+.card.result-themed .apt{border-left-color:var(--result-main);background:var(--result-soft);box-shadow:inset 0 0 0 1px var(--result-line)}
+.card.result-themed .primary{border-color:var(--result-main);background:var(--result-main);box-shadow:inset 0 0 0 1px var(--result-line),0 5px 13px #17363b33}
+.card.result-themed .ghost{color:var(--result-main)}
+
+.save-card.result-themed{
+ --result-main:#356e73;--result-line:#9db6b3;--result-soft:#eef3f0;--result-faint:#f7faf7;
+ background:linear-gradient(180deg,#fbfcf8 0%,var(--result-faint) 100%);
+ border:1px solid var(--result-line);
+ box-shadow:inset 0 0 0 8px #fbfcf8,inset 0 0 0 9px var(--result-line);
+}
+.save-card.result-themed .save-head{border-color:var(--result-line)}
+.save-card.result-themed .save-head h2,.save-card.result-themed .save-label,
+.save-card.result-themed .selected-name,.save-card.result-themed .save-foot{color:var(--result-main)}
+.save-card.result-themed .save-eyebrow{color:var(--result-main)}
+.save-card.result-themed .exempt-grid div,.save-card.result-themed .selected-class{border-color:var(--result-line);background:var(--result-soft)}
+.save-card.result-themed .roll-grid{border-color:var(--result-line)}
+.save-card.result-themed .roll-cell{border-color:var(--result-line)}
+.save-card.result-themed .roll-name,.save-card.result-themed .roll-num{color:var(--result-main)}
+.save-card.result-themed .roll-target{color:var(--result-main)}
+.save-card.result-themed .black-note{border-color:var(--result-line);background:var(--result-soft)}
+
+
+/* v0.13 trial: single-ink class color + academy ornaments */
+.card.result-themed{color:var(--result-main)}
+.card.result-themed .result-certificate,
+.card.result-themed .result-certificate p,
+.card.result-themed .result-box,
+.card.result-themed .result-box p,
+.card.result-themed .apt,
+.card.result-themed .apt b,
+.card.result-themed .apt span,
+.card.result-themed .small,
+.card.result-themed details,
+.card.result-themed summary{color:var(--result-main)}
+.card.result-themed .primary{color:#fff}
+.card.result-themed .result-certificate{position:relative;padding-top:8px}
+.card.result-themed .result-certificate:after{
+ content:"✦  ◇  ✦";display:block;position:static;border:0;margin:13px auto 0;
+ width:auto;height:auto;text-align:center;font:500 .72rem Georgia,serif;
+ letter-spacing:.34em;color:var(--result-main);background:none;
+}
+.card.result-themed .result-box{position:relative}
+.card.result-themed .result-box:first-of-type:after{
+ content:"◇";position:absolute;right:9px;top:7px;font:500 .65rem Georgia,serif;
+ color:var(--result-line)
+}
+
+.save-card.result-themed{color:var(--result-main);position:fixed}
+.save-card.result-themed h2,.save-card.result-themed h3,
+.save-card.result-themed .save-section,.save-card.result-themed .save-section div,
+.save-card.result-themed .save-section small,.save-card.result-themed .roll-status,
+.save-card.result-themed .center,.save-card.result-themed strong{color:var(--result-main)}
+.save-card.result-themed .save-head{position:relative;padding-bottom:27px}
+.save-card.result-themed .save-head:after{
+ content:"✦  ───  ◇  ───  ✦";position:absolute;left:0;right:0;bottom:7px;
+ text-align:center;font:500 10px Georgia,serif;letter-spacing:.18em;color:var(--result-main)
+}
+.save-card.result-themed .save-foot{position:relative;padding-top:20px}
+.save-card.result-themed .save-foot:before{
+ content:"◇  ✦  ◇";position:absolute;left:0;right:0;top:0;
+ text-align:center;font:500 9px Georgia,serif;letter-spacing:.24em;color:var(--result-main)
+}
+.save-card.result-themed .exempt-grid div,
+.save-card.result-themed .selected-class{box-shadow:inset 0 0 0 1px var(--result-faint)}
+.save-card.result-themed .selected-class{position:relative}
+.save-card.result-themed .selected-class:before,
+.save-card.result-themed .selected-class:after{
+ content:"✦";position:absolute;top:10px;font:500 9px Georgia,serif;color:var(--result-line)
+}
+.save-card.result-themed .selected-class:before{left:12px}
+.save-card.result-themed .selected-class:after{right:12px}
+.save-card.result-themed .roll-grid{position:relative}
+
+/* v0.10 trial: saveable result cards */
+.save-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.save-card{position:fixed;left:-10000px;top:0;width:760px;background:#fbfcf8;color:#263f45;padding:38px 42px;box-sizing:border-box;font-family:"Hina Mincho","Yu Mincho","Hiragino Mincho ProN",serif}
+.save-card h2,.save-card h3{text-align:center;font-weight:500;letter-spacing:.08em}
+.save-card .save-head{text-align:center;border-bottom:1px solid #9db3ad;padding-bottom:16px;margin-bottom:22px}
+.save-card .save-eyebrow{font:12px Georgia,serif;letter-spacing:.18em;color:#668083}
+.save-card .save-section{margin:20px 0}
+.save-card .save-label{text-align:center;font-size:13px;letter-spacing:.12em;color:#60777b;margin-bottom:10px}
+.save-card .exempt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.save-card .exempt-grid div{border:1px solid #c7d5d0;padding:11px 8px;text-align:center;font-size:13px}
+.save-card .selected-class{border:1px solid #b8cbc5;padding:18px 20px;text-align:center}
+.save-card .selected-name{font:500 25px Georgia,serif;letter-spacing:.12em;margin:5px 0 8px}
+.save-card .selected-roll{font:500 34px Georgia,serif;margin:8px 0}
+.save-card .roll-grid{display:grid;grid-template-columns:repeat(6,1fr);border-block:1px solid #aebfba}
+.save-card .roll-cell{text-align:center;padding:13px 4px 11px;border-right:1px solid #d3ddd9;min-width:0}
+.save-card .roll-cell:last-child{border-right:0}
+.save-card .roll-name{font:11px Georgia,serif;letter-spacing:.04em;white-space:nowrap}
+.save-card .roll-num{font:500 29px Georgia,serif;line-height:1.2;margin:5px 0 2px}
+.save-card .roll-target{font-size:10px;color:#718389}
+.save-card .roll-status{font-size:10px;margin-top:5px;min-height:2.4em}
+.save-card .black-note{border:1px solid #555;background:#f3f3ef;padding:14px 18px;margin:18px 0;text-align:center}
+.save-card .save-foot{text-align:center;font-size:10px;color:#7a8b8d;margin-top:22px;letter-spacing:.08em}
+@media(max-width:580px){.save-actions{grid-template-columns:1fr}}
+
+
+/* Hina Mincho readability trial
+   - Keep headings/questions in Hina Mincho
+   - Make answer choices slightly larger/darker
+   - Remove faux-bold from exemption field names while retaining Hina
+   - Restore operational buttons to the former readable Mincho stack
+   - Keep English labels/class English names in Georgia
+*/
+.option{
+  font-size:1.02rem;
+  color:#20383e;
+  letter-spacing:.01em;
+}
+.apt b{
+  font-family:"Hina Mincho","Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+  font-weight:400;
+  font-size:1.08rem;
+  letter-spacing:.01em;
+}
+.primary,.ghost,.class-option,
+button.save-result,button.save-detail,
+.result-actions button{
+  font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+}
+.certificate-label,.eyebrow,.class-name,.class-kicker{
+  font-family:Georgia,"Times New Roman",serif;
+}
+
+.class-explanation{line-height:1.8;margin-top:5px;margin-bottom:12px}
+/* Full-size outline action, independent from text-link .ghost */
+.share-button{display:block;width:100%;min-height:49px;margin:12px auto 0;padding:13px 24px;border:1px solid var(--result-main,#77918e);border-radius:2px;background:#fff;color:var(--result-main,#527379);font:inherit;letter-spacing:.06em;line-height:1.55;cursor:pointer;box-sizing:border-box}
+.share-button:hover{background:var(--result-soft,#edf3ef)}
+.share-note{font-size:.75rem;line-height:1.75;color:var(--muted);margin:8px auto 18px;text-align:left}
+.export-modal{display:none;position:fixed;inset:0;z-index:1000;background:#101c20c9;padding:18px;overflow:auto;align-items:center;justify-content:center}
+.export-modal.open{display:flex}
+.export-dialog{width:min(680px,100%);max-height:92vh;overflow:auto;background:#fbfcf8;border:1px solid #a9c0b9;padding:20px;color:#283c40;box-shadow:0 12px 50px #0005}
+.export-dialog h3{margin:0 0 8px;font-size:1.1rem;text-align:center}
+.export-dialog p{font-size:.85rem;line-height:1.8}
+.export-preview{display:block;max-width:100%;max-height:55vh;margin:12px auto;border:1px solid #bdc9c5}
+.export-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+.export-actions a,.export-actions button{padding:10px 14px;border:1px solid #6e8d87;background:#f6faf7;color:#315a5d;text-decoration:none;font:inherit;font-size:.85rem;cursor:pointer}
+.export-help{margin:12px 0 0;color:#54686a;font-size:.8rem;line-height:1.8}
+.save-card .class-explanation{font-size:13px;line-height:1.75;margin:8px auto 4px;max-width:570px}
+
+/* CoC v8: visual parity with Shinobigami v3. */
+.diagnosis-normal-link{color:#356e73;text-decoration:underline;text-underline-offset:2px}
+.progress{background:linear-gradient(to right,transparent 0 13px,#cbd8d5 13px calc(100% - 13px),transparent calc(100% - 13px))}
+.progress>i{position:relative;left:13px;max-width:calc(100% - 26px)}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+/* v0.14 ornament-max trial — intentionally over-dressed so we can subtract later */
+
+/* On-screen result: strengthen the same geometric vocabulary without touching crest/botanical motifs. */
+.card.result-themed{
+  position:relative;
+  outline:1px solid var(--result-line);
+  outline-offset:-7px;
+}
+/* Keep the base card pseudo-elements as frame/heading line.
+   Do not repurpose them as corner glyphs: the base ::before uses inset:14px,
+   so giving it a background would cover the whole result card. */
+.card.result-themed:before{
+  content:"";position:absolute;pointer-events:none;inset:14px;
+  border:1px solid var(--result-line);background:transparent;padding:0;z-index:0;
+}
+.card.result-themed:after{
+  content:"";position:absolute;pointer-events:none;left:50%;right:auto;top:18px;bottom:auto;
+  width:120px;height:1px;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,var(--result-main),transparent);
+  padding:0;z-index:0;
+}
+.card.result-themed > *{position:relative;z-index:1}
+.card.result-themed .result-certificate:after{
+  content:"";display:block;position:static;width:250px;height:13px;margin:14px auto 1px;
+  background:
+    linear-gradient(var(--result-main),var(--result-main)) left center/104px 1px no-repeat,
+    linear-gradient(var(--result-main),var(--result-main)) right center/104px 1px no-repeat;
+  border:0;
+}
+.card.result-themed .result-certificate{position:relative}
+.card.result-themed .result-certificate:before{
+  content:"✦  ◇  ✦";position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);
+  width:82px;text-align:center;background:var(--result-faint);color:var(--result-main);
+  font:500 .66rem Georgia,serif;letter-spacing:.16em;border:0;height:auto;
+}
+.card.result-themed .result-box{
+  box-shadow:inset 0 0 0 1px var(--result-faint);
+}
+.card.result-themed .result-box:before,.card.result-themed .result-box:after{
+  content:"◇";position:absolute;color:var(--result-line);font:500 .58rem Georgia,serif;
+}
+.card.result-themed .result-box:before{left:8px;top:7px}
+.card.result-themed .result-box:after{right:8px;bottom:7px}
+
+/* Screen only: remove the ✦ ◇ ✦ pseudo-element that creates the pale horizontal band.
+   The saved result sheets keep their own independent ornaments below. */
+.card.result-themed .result-certificate:before{content:none;background:none;width:0;height:0;border:0;padding:0}
+
+/* Saved sheets: a richer double-rule frame with independent corner ornaments. */
+.save-card.result-themed{
+  padding:42px 46px;
+  box-shadow:
+    inset 0 0 0 7px #fbfcf8,
+    inset 0 0 0 8px var(--result-line),
+    inset 0 0 0 14px #fbfcf8,
+    inset 0 0 0 15px var(--result-line);
+  overflow:hidden;
+}
+.save-card.result-themed:before,.save-card.result-themed:after{content:none}
+.save-card.result-themed .outer-diamond{
+  position:absolute;color:var(--result-main);background:#fbfcf8;
+  font:500 12px Georgia,serif;line-height:1;padding:2px 5px;z-index:3;
+}
+.save-card.result-themed .outer-diamond.tl{left:11px;top:10px}
+.save-card.result-themed .outer-diamond.tr{right:11px;top:10px}
+.save-card.result-themed .outer-diamond.bl{left:11px;bottom:10px}
+.save-card.result-themed .outer-diamond.br{right:11px;bottom:10px}
+
+/* Header ornament: real CSS lines, no broken dash glyphs. */
+.save-card.result-themed .save-head{padding-bottom:35px;margin-bottom:24px}
+.save-card.result-themed .save-head:after{
+  content:"◇";position:absolute;left:50%;right:auto;bottom:8px;transform:translateX(-50%);
+  width:18px;height:18px;line-height:18px;text-align:center;background:#fbfcf8;
+  color:var(--result-main);font:500 10px Georgia,serif;letter-spacing:0;z-index:2;
+}
+.save-card.result-themed .save-head:before{
+  content:"";position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  width:260px;height:1px;background:var(--result-main);z-index:1;
+  box-shadow:-139px 0 0 -0.25px var(--result-line),139px 0 0 -0.25px var(--result-line);
+}
+.save-card.result-themed .save-eyebrow{position:relative;display:inline-block;padding:0 24px}
+.save-card.result-themed .save-eyebrow:before,.save-card.result-themed .save-eyebrow:after{
+  content:"✦";position:absolute;top:50%;transform:translateY(-50%);color:var(--result-line);
+  font:500 8px Georgia,serif;
+}
+.save-card.result-themed .save-eyebrow:before{left:4px}
+.save-card.result-themed .save-eyebrow:after{right:4px}
+
+/* Section labels become small formal dividers. */
+.save-card.result-themed .save-label{display:flex;align-items:center;justify-content:center;gap:10px}
+.save-card.result-themed .save-label:before,.save-card.result-themed .save-label:after{
+  content:"";height:1px;width:52px;background:var(--result-line);
+}
+
+/* Exemption boxes: ornamental corners and tiny center diamonds. */
+.save-card.result-themed .exempt-grid div{position:relative;padding:13px 8px}
+.save-card.result-themed .exempt-grid div:before,.save-card.result-themed .exempt-grid div:after{
+  content:"◇";position:absolute;color:var(--result-line);font:500 6px Georgia,serif;line-height:1;
+}
+.save-card.result-themed .exempt-grid div:before{left:5px;top:5px}
+.save-card.result-themed .exempt-grid div:after{right:5px;bottom:5px}
+
+/* Main class panel: intentionally ornate corner brackets + side stars. */
+.save-card.result-themed .selected-class{
+  padding:24px 24px 22px;
+  outline:1px solid var(--result-faint);outline-offset:-7px;
+  background:
+    linear-gradient(var(--result-line),var(--result-line)) left top/18px 1px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) left top/1px 18px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) right top/18px 1px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) right top/1px 18px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) left bottom/18px 1px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) left bottom/1px 18px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) right bottom/18px 1px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) right bottom/1px 18px no-repeat,
+    var(--result-faint);
+}
+.save-card.result-themed .selected-class:before,
+.save-card.result-themed .selected-class:after{
+  content:"✦";top:50%;transform:translateY(-50%);font:500 9px Georgia,serif;color:var(--result-line)
+}
+.save-card.result-themed .selected-class:before{left:12px}
+.save-card.result-themed .selected-class:after{right:12px}
+.save-card.result-themed .selected-name{position:relative;display:inline-block;padding:0 28px}
+.save-card.result-themed .selected-name:before,.save-card.result-themed .selected-name:after{
+  content:"◇";position:absolute;top:50%;transform:translateY(-50%);color:var(--result-line);
+  font:500 9px Georgia,serif;
+}
+.save-card.result-themed .selected-name:before{left:4px}
+.save-card.result-themed .selected-name:after{right:4px}
+
+/* Detailed score grid: one formal frame, with small ornamental anchors. */
+.save-card.result-themed .roll-grid{
+  outline:1px solid var(--result-faint);outline-offset:-6px;
+}
+.save-card.result-themed .roll-cell{position:relative;padding-top:17px;padding-bottom:15px}
+.save-card.result-themed .roll-cell:before{
+  content:"◇";position:absolute;left:50%;top:5px;transform:translateX(-50%);
+  color:var(--result-line);font:500 5px Georgia,serif;
+}
+.save-card.result-themed .roll-num{position:relative}
+
+/* Footer ornament: continuous lines around a three-symbol center. */
+.save-card.result-themed .save-foot{padding-top:27px;margin-top:25px}
+.save-card.result-themed .save-foot:before{
+  content:"✦";position:absolute;left:50%;right:auto;top:0;transform:translateX(-50%);
+  width:18px;height:18px;line-height:18px;text-align:center;background:var(--result-faint);
+  color:var(--result-main);font:500 8px Georgia,serif;letter-spacing:0;z-index:2;
+}
+.save-card.result-themed .save-foot:after{
+  content:"";position:absolute;left:50%;top:8px;transform:translateX(-50%);
+  width:190px;height:1px;background:var(--result-line);z-index:1;
+}
+
+/* Small corner brackets made from borders; generic enough to survive future crest redesign. */
+.save-card.result-themed .save-section{position:relative}
+.save-card.result-themed .save-section:before,.save-card.result-themed .save-section:after{content:none}
+</style>
+
+
+<style id="v0161-final-overrides">
+/* Final overrides: explicit and last in the head. */
+button,.primary,.ghost,.class-option,.save-actions button{
+  font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif !important;
+}
+.certificate-label,.eyebrow,.class-name,.class-kicker,.save-eyebrow,.selected-name,.roll-name{
+  font-family:Georgia,"Times New Roman",serif;
+}
+.certificate-divider{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:min(280px,76%);margin:15px auto;color:#819895;
+  font:500 .68rem Georgia,"Times New Roman",serif;letter-spacing:0;
+}
+.certificate-divider i{display:block;flex:1;height:1px;background:currentColor;opacity:.78}
+.certificate-divider span{flex:0 0 auto;line-height:1}
+.section-divider{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:min(390px,88%);margin:15px auto;color:#819895;
+}
+.section-divider i{display:block;flex:1;height:1px;background:currentColor;opacity:.72}
+.section-divider span{font:500 .66rem Georgia,"Times New Roman",serif;line-height:1}
+.section-divider b{font-family:"Hina Mincho","Yu Mincho","Hiragino Mincho ProN",serif;font-weight:400;font-size:.86rem;white-space:nowrap}
+.card.result-themed .result-box{
+  border-top:0 !important;border-bottom:1px solid var(--result-line) !important;
+  box-shadow:inset 0 0 0 1px var(--result-faint);
+  background:
+    linear-gradient(var(--result-line),var(--result-line)) left top/calc(50% - 15px) 1px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) right top/calc(50% - 15px) 1px no-repeat;
+}
+.card.result-themed .result-box:before{
+  content:"◆" !important;position:absolute !important;left:50% !important;right:auto !important;
+  top:-6px !important;bottom:auto !important;transform:translateX(-50%) !important;
+  color:var(--result-main) !important;background:transparent !important;padding:0 !important;
+  font:500 .62rem Georgia,"Times New Roman",serif !important;line-height:1 !important;
+}
+.card.result-themed .result-box:after{content:none !important}
+.card.result-themed .result-certificate:before,
+.card.result-themed .result-certificate:after{
+  content:none !important;background:none !important;border:0 !important;
+  width:0 !important;height:0 !important;margin:0 !important;padding:0 !important;
+}
+.save-card.result-themed .save-head .academy-crest,
+.save-card .academy-crest{
+  display:block;width:92px;height:auto;margin:8px auto 9px;color:var(--result-main);
+}
+.save-card.result-themed .save-head .academy-crest svg,.save-card .academy-crest svg{
+  width:100%;height:auto;display:block;overflow:visible;
+}
+.option{font-size:1.02rem;color:#20383e;letter-spacing:.01em}
+.apt b{
+  font-family:"Hina Mincho","Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;
+  font-weight:400;font-size:1.08rem;letter-spacing:.01em;
+}
+</style>
+
+
+<style id="v0166-saved-image-border-rectangle-fix">
+/* v0.16.6: saved-image frame only. Draw a literal 1px class-color rectangle 8px inside the image edge. Existing inner frame and all font rules remain untouched. */
+.save-card.result-themed{
+  border:1px solid var(--result-line) !important;
+  box-shadow:
+    inset 0 0 0 7px #fbfcf8,
+    inset 0 0 0 8px var(--result-line),
+    inset 0 0 0 14px #fbfcf8,
+    inset 0 0 0 15px var(--result-line) !important;
+}
+.save-card.result-themed::before{
+  content:"" !important;
+  display:block !important;
+  position:absolute !important;
+  inset:8px !important;
+  border:1px solid var(--result-main) !important;
+  box-sizing:border-box !important;
+  pointer-events:none !important;
+  z-index:2 !important;
+  background:transparent !important;
+}
+.save-card.result-themed > *{position:relative;z-index:3}
+</style>
+
+<style id="v0162-final-fixes">
+/* v0.16.2: final fixes from the UI review */
+/* Operational buttons: keep Hina out of controls, including nested labels. */
+button,button *,input,select,textarea,.primary,.primary *,.ghost,.ghost *,.class-option,.class-option *,.save-actions button,.save-actions button *{
+  font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Hiragino Mincho Pro","MS PMincho",serif !important;
+}
+/* Result certificate divider follows the selected class ink. */
+.card.result-themed .certificate-divider{color:var(--result-main) !important}
+.card.result-themed .certificate-divider i{background:var(--result-line) !important}
+/* No screen-only diamonds/lozenges on result boxes. */
+.card.result-themed .result-box{
+  border-top:1px solid var(--result-line) !important;
+  border-bottom:1px solid var(--result-line) !important;
+  background:transparent !important;
+}
+.card.result-themed .result-box:before,.card.result-themed .result-box:after{content:none !important;display:none !important}
+/* Saved footer: split the line around the star instead of masking it with a square. */
+.save-card.result-themed .save-foot:before{background:transparent !important}
+.save-card.result-themed .save-foot:after{
+  width:190px !important;height:1px !important;
+  background:
+    linear-gradient(var(--result-line),var(--result-line)) left center/calc(50% - 14px) 1px no-repeat,
+    linear-gradient(var(--result-line),var(--result-line)) right center/calc(50% - 14px) 1px no-repeat !important;
+}
+</style>
+
+
+<style id="v0167-font-restore-and-frame-polish">
+/* v0.16.8 — adopt Kosugi Maru / 400 for operational UI controls; preserve all other typography roles. */
+
+/* Operational controls were not inheriting the Mincho body in v0.15.2; pin that old UI/sans look explicitly now. */
+.primary,.primary *,
+.ghost,.ghost *,
+.save-actions button,.save-actions button *,
+.result-actions button,.result-actions button *,
+button.save-result,button.save-result *,
+button.save-detail,button.save-detail *{
+  font-family:"Kosugi Maru","Yu Gothic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif !important;
+  font-weight:400;
+}
+
+/* Answer choices and class-choice cards are content, not UI chrome: keep the intentional Hina treatment. */
+.option,.option *,
+.class-option,.class-option *{
+  font-family:"Hina Mincho","Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif !important;
+  font-weight:400;
+}
+
+/* In v0.15.2 these screen English labels inherited the old Mincho body; they were not Georgia. */
+.eyebrow,.en,.qnum,.title-ornament,.certificate-label,.class-kicker{
+  font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif !important;
+}
+
+/* These were genuinely Georgia in v0.15.2 and remain so. Saved-image typography is intentionally unchanged. */
+.class-name,.class-roll strong,.class-divider,
+.save-card .save-eyebrow,.save-card .selected-name,.save-card .selected-roll,
+.save-card .roll-name,.save-card .roll-num{
+  font-family:Georgia,"Times New Roman",serif !important;
+}
+
+/* Saved certificate: keep the new 8px / 1px outer rectangle; give the corner diamonds breathing room. */
+.save-card.result-themed .outer-diamond.tl{left:16px !important;top:15px !important}
+.save-card.result-themed .outer-diamond.tr{right:16px !important;top:15px !important}
+.save-card.result-themed .outer-diamond.bl{left:16px !important;bottom:15px !important}
+.save-card.result-themed .outer-diamond.br{right:16px !important;bottom:15px !important}
+.save-card .detail-formal-name{display:block;margin-top:5px;font-size:13px;letter-spacing:.05em;font-family:"Hina Mincho","Yu Mincho",serif}
+</style>
+
+<style id="coc-explorer-trial">
+.coc-inputs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0}
+.coc-inputs label{font-size:.9rem;text-align:center;color:#52686d}
+.coc-inputs input{display:block;width:100%;padding:10px 5px;margin-top:5px;border:1px solid #9db6b3;background:#fbfcfa;text-align:center;font-size:1rem;color:#173039}
+@media(max-width:580px){.coc-inputs{grid-template-columns:repeat(2,1fr)}}
+</style>
+<style id="v6-four-equal-actions">
+/* v6: four equal-sized result actions; preserve the existing primary button design. */
+.result-four-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0 0}
+.result-four-actions .primary{width:100%;min-width:0;min-height:49px;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:13px 29px;line-height:1.5;box-sizing:border-box}
+.card.result-themed .result-four-actions .share-color{background:#fff;color:var(--result-main);border-color:var(--result-main);box-shadow:inset 0 0 0 1px var(--result-line),0 5px 13px #17363b20}
+.card.result-themed .result-four-actions .share-color:before,.card.result-themed .result-four-actions .share-color:after{color:var(--result-main)}
+.result-four-actions + .share-note{margin-top:10px}
+@media(max-width:390px){.result-four-actions{gap:8px}.result-four-actions .primary{padding:12px 20px;font-size:.8rem}}
+ .result-four-actions .action-label{position:relative;top:2px}
+</style>
+</head>
+<body><main class="wrap"><section class="card" id="app"></section></main>
+<script>
+const abilities={
+ STR:["魔法生物との模擬戦闘試験","魔法戦闘能力"],
+ CON:["魔法の詠唱能力の試験","詠唱能力"],
+ POW:["保持する魔力量の試験","魔力量"],
+ DEX:["魔法の制御能力の試験","制御能力"],
+ APP:["魔法生物の使役能力の試験","使役能力"],
+ SIZ:["魔法の出力調整の試験","出力調整"],
+ INT:["魔法陣の作成の試験","魔法陣作成"],
+ EDU:["魔法の知識の試験","魔術知識"]
+};
+const qs=[
+ {q:"この中で、いちばん好きな景色は？", pair:["CON","APP"], special:["POW","SIZ"], a:[
+ ["朝焼けの海","special"],["雨上がりの街","MH"],["花の咲く丘","ML"],["霧のかかった湖","MM"],["月明かりの庭","HL"],["木漏れ日の森","LL"],["苔むした古い遺跡","LH"],["夕暮れの砂浜","HM"],["真っ白な雪景色","LM"],["星空を映す池","HH"]]},
+ {q:"パンを食べるなら、どれを選ぶ？",pair:["POW","SIZ"],special:["DEX","EDU"],a:[
+ ["焼きたての食パン","ML"],["クロワッサン","LM"],["デニッシュ","HL"],["サンドイッチ","LL"],["あんパン","MH"],["カレーパン","special"],["ベーグル","HM"],["シナモンロール","HH"],["チョココロネ","MM"],["ごはん派","LH"]]},
+ {q:"知らない町を訪れたら、まず行ってみるのは？",pair:["DEX","EDU"],special:["STR","INT"],a:[
+ ["大きな市場","HH"],["賑やかな広場","HL"],["古びた図書館","MM"],["のどかな公園","special"],["高くそびえる風車","LL"],["町を見渡せる高台","HM"],["小舟の浮かぶ運河","ML"],["歴史ある博物館","LM"],["入り組んだ裏路地","LH"],["町外れに広がる麦畑","MH"]]},
+ {q:"この中で、好きな灯りは？",pair:["STR","INT"],special:["CON","APP"],a:[
+ ["差し込む朝日","LM"],["揺れる暖炉の火","LH"],["色とりどりのガラスランプ","MH"],["青い炎をともす蝋燭","HH"],["輝くシャンデリア","MM"],["ほのかな月明かり","HL"],["ステンドグラス越しの光","ML"],["燃えるような夕陽","special"],["星の瞬くランタン","LL"],["淡く光る花のつぼみ","HM"]]},
+ {q:"あなたは、どんな魔法使いになりたい？",a:[
+ ["強い魔法使い","STR"],["仲間を助けられる魔法使い","CON"],["たくさんの魔法を使える魔法使い","POW"],["賢い魔法使い","INT"],["魔法を自在に操れる魔法使い","DEX"],["どんな状況にも対応できる魔法使い","SIZ"],["魔法生物と心を通わせられる魔法使い","APP"],["知識豊富な魔法使い","EDU"]]}
+];
+const cycle=["STR","CON","POW","INT","DEX","SIZ","APP","EDU"];
+const classes=[
+ {name:"RED",formalJa:"グルナディエ・ルージュ",label:"赤",key:"STR",theme:"美しく鮮やかな魔法を愛し、威力や華やかさを追求する者のクラス。",color:"#9c555a"},
+ {name:"GREEN",formalJa:"ポワリエ・ヴェール",label:"緑",key:"CON",theme:"癒しの魔法を学び、縁の下の力持ちだが時には場の状況をも支配する者のクラス。",color:"#4b795e"},
+ {name:"BLUE",formalJa:"ヴィーニュ・アジュール",label:"青",key:"POW",theme:"多彩な魔法の才能に恵まれ、その可能性をさらに伸ばそうとする者のクラス。",color:"#456e9b"},
+ {name:"CYAN",formalJa:"ミルティリエ・セレスト",label:"水色",key:"DEX",theme:"緻密さと繊細さを求められる、高度で難解な魔法に挑む者のクラス。",color:"#43878d"},
+ {name:"MAGENTA",formalJa:"ペシェ・ボルドー",label:"赤紫",key:"INT",theme:"魔法や魔力を巧みに操り、魔法生物をも惹きつける魅力を持つ者のクラス。",color:"#816385"},
+ {name:"YELLOW",formalJa:"シトロニエ・オール",label:"黄",key:"EDU",theme:"豊かな魔法の知識と柔軟な発想を持ち、魔法道具の扱いにも長けた者のクラス。",color:"#8d7939"}
+];
+const resultThemes={
+ RED:{main:"#98565b",line:"#c9a6a6",soft:"#f4e9e7",faint:"#fbf6f4"},
+ GREEN:{main:"#4f765d",line:"#a9c0ad",soft:"#e9f1e9",faint:"#f6faf5"},
+ BLUE:{main:"#496f98",line:"#a9bcd0",soft:"#e9eff5",faint:"#f5f8fb"},
+ CYAN:{main:"#4d858b",line:"#a9c8c8",soft:"#e8f2f1",faint:"#f4faf9"},
+ MAGENTA:{main:"#866184",line:"#c5aac2",soft:"#f2e9f0",faint:"#faf5f9"},
+ YELLOW:{main:"#8a763d",line:"#cbbf96",soft:"#f4f0df",faint:"#fbf9f1"},
+ BLACK:{main:"#3f4a4d",line:"#aeb7b6",soft:"#ecefed",faint:"#f7f8f6"},
+ NEUTRAL:{main:"#527379",line:"#b8c9c5",soft:"#eef3f0",faint:"#f8faf7"}
+};
+function currentResultTheme(){
+ if(enrolled==='BLACK')return resultThemes.BLACK;
+ if(typeof enrolled==='number'&&enrolled>=0)return resultThemes[classes[enrolled].name]||resultThemes.NEUTRAL;
+ return resultThemes.NEUTRAL;
+}
+function applyResultTheme(el){
+ const t=currentResultTheme();
+ el.classList.add('result-themed');
+ el.style.setProperty('--result-main',t.main);
+ el.style.setProperty('--result-line',t.line);
+ el.style.setProperty('--result-soft',t.soft);
+ el.style.setProperty('--result-faint',t.faint);
+}
+function clearResultTheme(){
+ app.classList.remove('result-themed');
+ ['--result-main','--result-line','--result-soft','--result-faint'].forEach(v=>app.style.removeProperty(v));
+}
+let step=-1, scores={}, chosen=[], q5=null, classRolls=[], enrolled=null, crestMarkup="";
+let examMode='coc', cocEdition='6', cocBase={};
+const cocBounds={STR:[1,1000],CON:[1,1000],POW:[1,1000],DEX:[1,1000],APP:[1,1000],SIZ:[1,1000],INT:[1,1000],EDU:[1,1000]};
+function clamp(x,lo,hi){return Math.max(lo,Math.min(hi,x));}
+function cocAdjustment(key){return clamp(scores[key]-2,0,4);}
+function effectiveStat(key){
+ if(examMode!=='coc')return classStatNormal(key);
+ return clamp(cocBase[key]+cocAdjustment(key),1,25);
+}
+function classStatNormal(key){return Math.min(15,7+4*scores[key]);}
+function showCocEntry(){
+ clearResultTheme();
+ app.innerHTML=`<div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><h2 class="result-title">探索者の能力値を登録</h2>
+
+ <div class="center" style="margin:15px 0"><label for="coc-edition">クトゥルフ神話TRPGの版：</label>
+ <select id="coc-edition" onchange="updateCocEntryBounds()"><option value="6">6版</option><option value="7">7版</option></select></div>
+ <div id="coc-inputs" class="coc-inputs">${cycle.map(k=>`<label>${k}<input type="number" id="coc-${k}" required min="1" max="1000" step="1" inputmode="numeric" aria-label="${k}"></label>`).join('')}</div>
+ <p class="center small" id="coc-range-help">能力値を入力してください。</p>
+ <p class="center small" id="coc-error" role="alert" style="color:#9c555a"></p>
+ <button class="primary" onclick="startCoc()">検査を開始する</button>
+ <button class="ghost" onclick="renderHome()">戻る</button>`;
+}
+function updateCocEntryBounds(){
+ const edition=document.querySelector('#coc-edition').value;
+ document.querySelector('#coc-range-help').textContent='能力値を入力してください。';
+ cycle.forEach(k=>{
+  const el=document.getElementById('coc-'+k);
+  el.min=1;
+  el.max=1000;
+ });
+}
+function startCoc(){
+ const edition=document.querySelector('#coc-edition').value, base={};
+ for(const k of cycle){
+  const el=document.getElementById('coc-'+k), raw=Number(el.value);
+  const factor=edition==='7'?5:1;
+  if(el.value.trim()===''||!Number.isInteger(raw)||raw<1||raw>1000){
+   document.querySelector('#coc-error').textContent=`${k}は1～1000の整数で入力してください。`;
+   el.focus();return;
+  }
+  base[k]=Math.round(raw/factor);
+ }
+ cocEdition=edition;cocBase=base;examMode='coc';start();
+}
+
+function reset(){scores=Object.fromEntries(cycle.map(x=>[x,0]));chosen=[];q5=null;classRolls=[];enrolled=null}
+reset();
+const app=document.querySelector("#app");
+function start(){
+ step=0;reset();renderQ();
+}
+function renderHome(){
+ app.innerHTML=`<div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><div class="academy-crest" aria-hidden="true">
+<svg viewBox="0 -3 200 223" role="img" aria-label="桑と湖を描いたマルベリー魔法学院の章"><defs><path id="s2leaf" d="M0 0 C-17 -4 -32 -17 -35 -38 L-29 -34 L-27 -46 L-19 -42 L-16 -54 L-8 -48 L0 -62 L8 -48 L16 -54 L19 -42 L27 -46 L29 -34 L35 -38 C32 -17 17 -4 0 0Z"/><path id="s2fl" d="M49 178 C21 177 10 156 21 139 C29 126 41 132 37 141 C34 147 27 142 30 138 M44 169 C21 150 19 124 28 100 C33 85 25 77 16 83 C9 89 17 98 22 92 M24 104 Q9 91 11 75 M29 111 Q43 91 40 76 M40 159 Q19 157 13 169 C9 180 20 186 26 179"/></defs><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M100 20 C120 32 146 36 176 34 C168 51 168 69 169 104 C169 150 144 176 100 195 C56 176 31 150 31 104 C32 69 32 51 24 34 C54 36 80 32 100 20Z" stroke-width="3.6"/><path d="M100 26 C122 39 147 41 169 40 C163 58 164 77 164 104 C164 144 141 171 100 188 C59 171 36 144 36 104 C36 77 37 58 31 40 C53 41 78 39 100 26Z" stroke-width="1.2"/><g class="toporn" fill="currentColor" stroke="currentColor" stroke-linejoin="round"><path d="M100 1 L103 9 L109 5 L106 12 L111 14 L104 16 L100 21 L96 16 L89 14 L94 12 L91 5 L97 9Z" stroke-width=".8"/><path d="M100 10 L103 14 L100 18 L97 14Z" fill="#fbfaf3" stroke-width="1"/></g><use href="#s2fl" stroke-width="2.5"/><use href="#s2fl" transform="translate(200 0) scale(-1 1)" stroke-width="2.5"/><path d="M12 76 l-5-9 9 4 5 10 M40 77 l8-12-1 13-8 8 M188 76 l5-9-9 4-5 10 M160 77 l-8-12 1 13 8 8" fill="currentColor" stroke-width=".5"/><g transform="translate(100 95) scale(1.130) translate(-100 -95)"><path d="M100 117 Q100 80 98 63 M99 81 Q77 71 70 56 M99 78 Q122 70 131 59 M99 95 Q80 85 73 80 M100 98 Q120 87 125 77" stroke-width="2.5"/><g fill="currentColor" stroke-width=".8"><use href="#s2leaf" transform="translate(99 71) scale(0.420)"/><use href="#s2leaf" transform="translate(75 69) rotate(-48) scale(0.380)"/><use href="#s2leaf" transform="translate(123 69) rotate(48) scale(0.380)"/><g id="leafAdjust" transform="translate(0 7)"><use href="#s2leaf" transform="translate(73 80) rotate(-58) scale(0.340)"/><path d="M73 80 L59 70" stroke="#eef4f1" stroke-width="1.15"/></g></g><path d="M98 71 L99 48 M75 70 L62 54 M123 70 L137 54" stroke="#eef4f1" stroke-width="1.15"/><g id="leftDecor" transform="translate(0 -10) translate(58 123) scale(1.08) translate(-58 -123)"><g fill="none" stroke="currentColor" stroke-width="2.0"><path d="M67 108 C57 112 53 121 55 131 C56 136 60 139 65 138"/><path d="M57 127 Q52 132 53 137"/></g><g fill="currentColor"><path d="M55 117 C50 114 49 110 51 107 C56 108 59 111 60 115Z"/><path d="M53 137 C50 134 49 131 50 129 C54 130 56 132 56 135Z"/></g></g><g id="rightDecor" transform="translate(-10 -8) translate(152 122) scale(1.08) translate(-152 -122)"><g fill="none" stroke="currentColor" stroke-width="2.0"><path d="M143 106 C153 110 157 119 155 129 C154 134 150 137 145 136"/><path d="M153 126 Q158 131 157 136"/></g><g fill="currentColor"><path d="M155 116 C160 113 161 109 159 106 C154 107 151 110 150 114Z"/><path d="M157 136 C160 133 161 130 160 128 C156 129 154 131 154 134Z"/></g></g><g id="fruitGroup" transform="translate(0 -3)"><path d="M95 103 Q85 100 82 108 M111 99 Q119 96 124 103" stroke-width="1.5"/><g fill="currentColor" stroke="none"><circle cx="85" cy="109" r="4.52"/><circle cx="92" cy="110" r="4.52"/><circle cx="99" cy="111" r="4.52"/><circle cx="84" cy="116" r="4.52"/><circle cx="91" cy="117" r="4.52"/><circle cx="98" cy="118" r="4.52"/><circle cx="88" cy="124" r="4.52"/><circle cx="95" cy="125" r="4.52"/><circle cx="92" cy="131" r="3.94"/><circle cx="114" cy="105" r="4.52"/><circle cx="121" cy="106" r="4.52"/><circle cx="128" cy="107" r="4.52"/><circle cx="113" cy="112" r="4.52"/><circle cx="120" cy="113" r="4.52"/><circle cx="127" cy="114" r="4.52"/><circle cx="117" cy="120" r="4.52"/><circle cx="124" cy="121" r="4.52"/><circle cx="121" cy="127" r="3.94"/></g></g></g><path d="M 42 145 C 62 138 78.5 139 100.5 145 C 122.5 151 139 150 159 143 L 158 151 C 153 163 141 174 128.5 181 C 117.5 186 107.5 190 100.5 193 C 93.5 190 83.5 186 72.5 181 C 60 174 48 163 43 151 Z" fill="currentColor" opacity=".92"/><g stroke="#f2f5f1" fill="none" stroke-linecap="round"><path d="M 54 152 C 71 147 88 148 101 152 C 116 157 134 155 149 150" stroke-width="3.7"/><path d="M 65 162 C 79 158 92 159 102 163 C 113 166 126 165 137 161" stroke-width="3.5"/><path d="M 77 172 C 87 169 96 170 103 173 C 111 176 119 175 126 172" stroke-width="3.3"/></g><g stroke-width="3.3"><path d="M37 162 C41 185 55 201 75 205 C85 207 93 201 99 193"/><path d="M163 162 C159 185 145 201 125 205 C115 207 107 201 101 193"/></g><g stroke-width="2.5"><path d="M43 174 C51 179 59 187 65 199"/><path d="M157 174 C149 179 141 187 135 199"/><path d="M49 187 C58 189 68 195 76 204"/><path d="M151 187 C142 189 132 195 124 204"/><path d="M57 199 C48 210 39 214 31 210"/><path d="M143 199 C152 210 161 214 169 210"/></g><g fill="currentColor" stroke="none"><path d="M46 179 C39 174 38 167 41 162 C49 164 54 170 54 178Z"/><path d="M154 179 C161 174 162 167 159 162 C151 164 146 170 146 178Z"/><path d="M59 197 C51 193 47 196 45 202 C51 207 58 208 65 204Z"/><path d="M141 197 C149 193 153 196 155 202 C149 207 142 208 135 204Z"/><path d="M100 196 l7 10-7 10-7-10z"/></g></g></svg></div><h1>入学適性検査</h1><div class="en">ADMISSION APTITUDE EXAMINATION</div><div class="title-ornament">MAGIA ・ SCIENTIA ・ VIA</div>
+ <p class="center">あなたの魔術適性を確認します。<br>いくつかの質問に、もっとも近いと思うものを選んでください。</p>
+ <p class="center small">検査結果により、学院が才能を認めた三分野の入学試験が免除されます。</p>
+ <button class="primary" onclick="showCocEntry()">検査を開始する</button><p class="center small" style="margin-top:19px">これは「クトゥルフ神話TRPG 6版／7版」のキャラクターデータを使用して遊ぶバージョンです。TRPGシステムのデータを持たないキャラクターやご自身の検査は<a class="diagnosis-normal-link" href="https://milk-tools.com/mulberry/diagnosis/">こちら</a>。</p>`;
+ crestMarkup=app.querySelector(".academy-crest").outerHTML;
+}
+function renderQ(){
+ const x=qs[step], pct=(step/5)*100;
+ app.innerHTML=`<div class="progress"><i style="width:calc((100% - 26px) * ${pct/100})"></i></div><div class="qnum">QUESTION ${step+1} / 5</div><div class="question">${x.q}</div>
+ <div class="options">${x.a.map((v,i)=>`<button class="option" onclick="answer(${i})">${v[0]}</button>`).join("")}</div>
+ ${step?`<div class="center"><button class="ghost" onclick="back()">ひとつ前に戻る</button></div>`:""}`;
+}
+function apply(q,opt,sign=1){
+ if(q===4){q5=opt[1];return}
+ const {pair,special}=qs[q]; const code=opt[1];
+ if(code==="special"){special.forEach(k=>scores[k]+=1*sign);return}
+ const val={H:2,M:1,L:0}; scores[pair[0]]+=val[code[0]]*sign;scores[pair[1]]+=val[code[1]]*sign;
+}
+function answer(i){
+ chosen[step]=i;apply(step,qs[step].a[i]);step++;
+ if(step<5)renderQ();else renderResult();
+}
+function back(){
+ step--; // rebuild from scratch to avoid bookkeeping mistakes
+ const keep=chosen.slice(0,step); reset();
+ keep.forEach((idx,j)=>{chosen[j]=idx;apply(j,qs[j].a[idx])});
+ renderQ();
+}
+function priority(){
+ const s=cycle.indexOf(q5);return [...cycle.slice(s),...cycle.slice(0,s)];
+}
+function classStat(key){ return effectiveStat(key); }
+function classTarget(key){ return Math.min(99,classStat(key)*4); }
+function isBlack(){
+ if(classRolls.length!==classes.length)return false;
+ return classes.every((c,i)=>classRolls[i]>classTarget(c.key));
+}
+function top3(){
+ const p=priority(), rank=Object.fromEntries(p.map((x,i)=>[x,i]));
+ return [...cycle].sort((a,b)=>(examMode==='coc'?effectiveStat(b)-effectiveStat(a):scores[b]-scores[a]) || rank[a]-rank[b]).slice(0,3);
+}
+function renderResult(){
+ const black=isBlack(), top=top3();
+ app.classList.toggle("black",black);
+ if(black){
+   app.innerHTML=`<div class="result-certificate"><div class="certificate-label">SPECIAL ADMISSION RECORD</div><div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><div class="academy-crest" aria-hidden="true">
+<svg viewBox="0 -3 200 223" role="img" aria-label="桑と湖を描いたマルベリー魔法学院の章"><defs><path id="s2leaf" d="M0 0 C-17 -4 -32 -17 -35 -38 L-29 -34 L-27 -46 L-19 -42 L-16 -54 L-8 -48 L0 -62 L8 -48 L16 -54 L19 -42 L27 -46 L29 -34 L35 -38 C32 -17 17 -4 0 0Z"/><path id="s2fl" d="M49 178 C21 177 10 156 21 139 C29 126 41 132 37 141 C34 147 27 142 30 138 M44 169 C21 150 19 124 28 100 C33 85 25 77 16 83 C9 89 17 98 22 92 M24 104 Q9 91 11 75 M29 111 Q43 91 40 76 M40 159 Q19 157 13 169 C9 180 20 186 26 179"/></defs><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M100 20 C120 32 146 36 176 34 C168 51 168 69 169 104 C169 150 144 176 100 195 C56 176 31 150 31 104 C32 69 32 51 24 34 C54 36 80 32 100 20Z" stroke-width="3.6"/><path d="M100 26 C122 39 147 41 169 40 C163 58 164 77 164 104 C164 144 141 171 100 188 C59 171 36 144 36 104 C36 77 37 58 31 40 C53 41 78 39 100 26Z" stroke-width="1.2"/><g class="toporn" fill="currentColor" stroke="currentColor" stroke-linejoin="round"><path d="M100 1 L103 9 L109 5 L106 12 L111 14 L104 16 L100 21 L96 16 L89 14 L94 12 L91 5 L97 9Z" stroke-width=".8"/><path d="M100 10 L103 14 L100 18 L97 14Z" fill="#fbfaf3" stroke-width="1"/></g><use href="#s2fl" stroke-width="2.5"/><use href="#s2fl" transform="translate(200 0) scale(-1 1)" stroke-width="2.5"/><path d="M12 76 l-5-9 9 4 5 10 M40 77 l8-12-1 13-8 8 M188 76 l5-9-9 4-5 10 M160 77 l-8-12 1 13 8 8" fill="currentColor" stroke-width=".5"/><g transform="translate(100 95) scale(1.130) translate(-100 -95)"><path d="M100 117 Q100 80 98 63 M99 81 Q77 71 70 56 M99 78 Q122 70 131 59 M99 95 Q80 85 73 80 M100 98 Q120 87 125 77" stroke-width="2.5"/><g fill="currentColor" stroke-width=".8"><use href="#s2leaf" transform="translate(99 71) scale(0.420)"/><use href="#s2leaf" transform="translate(75 69) rotate(-48) scale(0.380)"/><use href="#s2leaf" transform="translate(123 69) rotate(48) scale(0.380)"/><g id="leafAdjust" transform="translate(0 7)"><use href="#s2leaf" transform="translate(73 80) rotate(-58) scale(0.340)"/><path d="M73 80 L59 70" stroke="#eef4f1" stroke-width="1.15"/></g></g><path d="M98 71 L99 48 M75 70 L62 54 M123 70 L137 54" stroke="#eef4f1" stroke-width="1.15"/><g id="leftDecor" transform="translate(0 -10) translate(58 123) scale(1.08) translate(-58 -123)"><g fill="none" stroke="currentColor" stroke-width="2.0"><path d="M67 108 C57 112 53 121 55 131 C56 136 60 139 65 138"/><path d="M57 127 Q52 132 53 137"/></g><g fill="currentColor"><path d="M55 117 C50 114 49 110 51 107 C56 108 59 111 60 115Z"/><path d="M53 137 C50 134 49 131 50 129 C54 130 56 132 56 135Z"/></g></g><g id="rightDecor" transform="translate(-10 -8) translate(152 122) scale(1.08) translate(-152 -122)"><g fill="none" stroke="currentColor" stroke-width="2.0"><path d="M143 106 C153 110 157 119 155 129 C154 134 150 137 145 136"/><path d="M153 126 Q158 131 157 136"/></g><g fill="currentColor"><path d="M155 116 C160 113 161 109 159 106 C154 107 151 110 150 114Z"/><path d="M157 136 C160 133 161 130 160 128 C156 129 154 131 154 134Z"/></g></g><g id="fruitGroup" transform="translate(0 -3)"><path d="M95 103 Q85 100 82 108 M111 99 Q119 96 124 103" stroke-width="1.5"/><g fill="currentColor" stroke="none"><circle cx="85" cy="109" r="4.52"/><circle cx="92" cy="110" r="4.52"/><circle cx="99" cy="111" r="4.52"/><circle cx="84" cy="116" r="4.52"/><circle cx="91" cy="117" r="4.52"/><circle cx="98" cy="118" r="4.52"/><circle cx="88" cy="124" r="4.52"/><circle cx="95" cy="125" r="4.52"/><circle cx="92" cy="131" r="3.94"/><circle cx="114" cy="105" r="4.52"/><circle cx="121" cy="106" r="4.52"/><circle cx="128" cy="107" r="4.52"/><circle cx="113" cy="112" r="4.52"/><circle cx="120" cy="113" r="4.52"/><circle cx="127" cy="114" r="4.52"/><circle cx="117" cy="120" r="4.52"/><circle cx="124" cy="121" r="4.52"/><circle cx="121" cy="127" r="3.94"/></g></g></g><path d="M 42 145 C 62 138 78.5 139 100.5 145 C 122.5 151 139 150 159 143 L 158 151 C 153 163 141 174 128.5 181 C 117.5 186 107.5 190 100.5 193 C 93.5 190 83.5 186 72.5 181 C 60 174 48 163 43 151 Z" fill="currentColor" opacity=".92"/><g stroke="#f2f5f1" fill="none" stroke-linecap="round"><path d="M 54 152 C 71 147 88 148 101 152 C 116 157 134 155 149 150" stroke-width="3.7"/><path d="M 65 162 C 79 158 92 159 102 163 C 113 166 126 165 137 161" stroke-width="3.5"/><path d="M 77 172 C 87 169 96 170 103 173 C 111 176 119 175 126 172" stroke-width="3.3"/></g><g stroke-width="3.3"><path d="M37 162 C41 185 55 201 75 205 C85 207 93 201 99 193"/><path d="M163 162 C159 185 145 201 125 205 C115 207 107 201 101 193"/></g><g stroke-width="2.5"><path d="M43 174 C51 179 59 187 65 199"/><path d="M157 174 C149 179 141 187 135 199"/><path d="M49 187 C58 189 68 195 76 204"/><path d="M151 187 C142 189 132 195 124 204"/><path d="M57 199 C48 210 39 214 31 210"/><path d="M143 199 C152 210 161 214 169 210"/></g><g fill="currentColor" stroke="none"><path d="M46 179 C39 174 38 167 41 162 C49 164 54 170 54 178Z"/><path d="M154 179 C161 174 162 167 159 162 C151 164 146 170 146 178Z"/><path d="M59 197 C51 193 47 196 45 202 C51 207 58 208 65 204Z"/><path d="M141 197 C149 193 153 196 155 202 C149 207 142 208 135 204Z"/><path d="M100 196 l7 10-7 10-7-10z"/></g></g></svg></div><h2 class="result-title">特殊判定記録</h2><div class="certificate-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div><p class="center"><strong>黒い果実</strong></p></div>
+   <p class="center">通常の適性分類とは異なる反応が確認されました。</p>
+   <div class="result-box"><p>あなたには、通常の魔術適性だけでは説明できない性質が認められます。学院では、この判定を受けた者にも入学資格を認めています。</p></div>
+   <p class="small center">※黒い果実の最終的な結果文・クラス処理は今後実装予定です。</p>
+   <button class="primary" onclick="restart()">もう一度検査する</button>`;
+ }else{
+   app.innerHTML=`<div class="result-certificate"><div class="certificate-label">OFFICIAL ADMISSION RECORD</div><div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><div class="academy-crest" aria-hidden="true">
+<svg viewBox="0 -3 200 223" role="img" aria-label="桑と湖を描いたマルベリー魔法学院の章"><defs><path id="s2leaf" d="M0 0 C-17 -4 -32 -17 -35 -38 L-29 -34 L-27 -46 L-19 -42 L-16 -54 L-8 -48 L0 -62 L8 -48 L16 -54 L19 -42 L27 -46 L29 -34 L35 -38 C32 -17 17 -4 0 0Z"/><path id="s2fl" d="M49 178 C21 177 10 156 21 139 C29 126 41 132 37 141 C34 147 27 142 30 138 M44 169 C21 150 19 124 28 100 C33 85 25 77 16 83 C9 89 17 98 22 92 M24 104 Q9 91 11 75 M29 111 Q43 91 40 76 M40 159 Q19 157 13 169 C9 180 20 186 26 179"/></defs><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M100 20 C120 32 146 36 176 34 C168 51 168 69 169 104 C169 150 144 176 100 195 C56 176 31 150 31 104 C32 69 32 51 24 34 C54 36 80 32 100 20Z" stroke-width="3.6"/><path d="M100 26 C122 39 147 41 169 40 C163 58 164 77 164 104 C164 144 141 171 100 188 C59 171 36 144 36 104 C36 77 37 58 31 40 C53 41 78 39 100 26Z" stroke-width="1.2"/><g class="toporn" fill="currentColor" stroke="currentColor" stroke-linejoin="round"><path d="M100 1 L103 9 L109 5 L106 12 L111 14 L104 16 L100 21 L96 16 L89 14 L94 12 L91 5 L97 9Z" stroke-width=".8"/><path d="M100 10 L103 14 L100 18 L97 14Z" fill="#fbfaf3" stroke-width="1"/></g><use href="#s2fl" stroke-width="2.5"/><use href="#s2fl" transform="translate(200 0) scale(-1 1)" stroke-width="2.5"/><path d="M12 76 l-5-9 9 4 5 10 M40 77 l8-12-1 13-8 8 M188 76 l5-9-9 4-5 10 M160 77 l-8-12 1 13 8 8" fill="currentColor" stroke-width=".5"/><g transform="translate(100 95) scale(1.130) translate(-100 -95)"><path d="M100 117 Q100 80 98 63 M99 81 Q77 71 70 56 M99 78 Q122 70 131 59 M99 95 Q80 85 73 80 M100 98 Q120 87 125 77" stroke-width="2.5"/><g fill="currentColor" stroke-width=".8"><use href="#s2leaf" transform="translate(99 71) scale(0.420)"/><use href="#s2leaf" transform="translate(75 69) rotate(-48) scale(0.380)"/><use href="#s2leaf" transform="translate(123 69) rotate(48) scale(0.380)"/><g id="leafAdjust" transform="translate(0 7)"><use href="#s2leaf" transform="translate(73 80) rotate(-58) scale(0.340)"/><path d="M73 80 L59 70" stroke="#eef4f1" stroke-width="1.15"/></g></g><path d="M98 71 L99 48 M75 70 L62 54 M123 70 L137 54" stroke="#eef4f1" stroke-width="1.15"/><g id="leftDecor" transform="translate(0 -10) translate(58 123) scale(1.08) translate(-58 -123)"><g fill="none" stroke="currentColor" stroke-width="2.0"><path d="M67 108 C57 112 53 121 55 131 C56 136 60 139 65 138"/><path d="M57 127 Q52 132 53 137"/></g><g fill="currentColor"><path d="M55 117 C50 114 49 110 51 107 C56 108 59 111 60 115Z"/><path d="M53 137 C50 134 49 131 50 129 C54 130 56 132 56 135Z"/></g></g><g id="rightDecor" transform="translate(-10 -8) translate(152 122) scale(1.08) translate(-152 -122)"><g fill="none" stroke="currentColor" stroke-width="2.0"><path d="M143 106 C153 110 157 119 155 129 C154 134 150 137 145 136"/><path d="M153 126 Q158 131 157 136"/></g><g fill="currentColor"><path d="M155 116 C160 113 161 109 159 106 C154 107 151 110 150 114Z"/><path d="M157 136 C160 133 161 130 160 128 C156 129 154 131 154 134Z"/></g></g><g id="fruitGroup" transform="translate(0 -3)"><path d="M95 103 Q85 100 82 108 M111 99 Q119 96 124 103" stroke-width="1.5"/><g fill="currentColor" stroke="none"><circle cx="85" cy="109" r="4.52"/><circle cx="92" cy="110" r="4.52"/><circle cx="99" cy="111" r="4.52"/><circle cx="84" cy="116" r="4.52"/><circle cx="91" cy="117" r="4.52"/><circle cx="98" cy="118" r="4.52"/><circle cx="88" cy="124" r="4.52"/><circle cx="95" cy="125" r="4.52"/><circle cx="92" cy="131" r="3.94"/><circle cx="114" cy="105" r="4.52"/><circle cx="121" cy="106" r="4.52"/><circle cx="128" cy="107" r="4.52"/><circle cx="113" cy="112" r="4.52"/><circle cx="120" cy="113" r="4.52"/><circle cx="127" cy="114" r="4.52"/><circle cx="117" cy="120" r="4.52"/><circle cx="124" cy="121" r="4.52"/><circle cx="121" cy="127" r="3.94"/></g></g></g><path d="M 42 145 C 62 138 78.5 139 100.5 145 C 122.5 151 139 150 159 143 L 158 151 C 153 163 141 174 128.5 181 C 117.5 186 107.5 190 100.5 193 C 93.5 190 83.5 186 72.5 181 C 60 174 48 163 43 151 Z" fill="currentColor" opacity=".92"/><g stroke="#f2f5f1" fill="none" stroke-linecap="round"><path d="M 54 152 C 71 147 88 148 101 152 C 116 157 134 155 149 150" stroke-width="3.7"/><path d="M 65 162 C 79 158 92 159 102 163 C 113 166 126 165 137 161" stroke-width="3.5"/><path d="M 77 172 C 87 169 96 170 103 173 C 111 176 119 175 126 172" stroke-width="3.3"/></g><g stroke-width="3.3"><path d="M37 162 C41 185 55 201 75 205 C85 207 93 201 99 193"/><path d="M163 162 C159 185 145 201 125 205 C115 207 107 201 101 193"/></g><g stroke-width="2.5"><path d="M43 174 C51 179 59 187 65 199"/><path d="M157 174 C149 179 141 187 135 199"/><path d="M49 187 C58 189 68 195 76 204"/><path d="M151 187 C142 189 132 195 124 204"/><path d="M57 199 C48 210 39 214 31 210"/><path d="M143 199 C152 210 161 214 169 210"/></g><g fill="currentColor" stroke="none"><path d="M46 179 C39 174 38 167 41 162 C49 164 54 170 54 178Z"/><path d="M154 179 C161 174 162 167 159 162 C151 164 146 170 146 178Z"/><path d="M59 197 C51 193 47 196 45 202 C51 207 58 208 65 204Z"/><path d="M141 197 C149 193 153 196 155 202 C149 207 142 208 135 204Z"/><path d="M100 196 l7 10-7 10-7-10z"/></g></g></svg></div><h2 class="result-title">入学資格認定書</h2><div class="certificate-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div><p class="center">入学資格を確認しました</p></div>
+   <p class="center small">以下の三分野について、学院基準を満たす適性が確認されています。</p>
+   <div class="result-box">${top.map((k,i)=>`<div class="apt"><b>${i+1}. ${abilities[k][0]}</b><span>${abilities[k][1]}適性 ／ 試験免除</span></div>`).join("")}</div>
+   <p class="center">続いて、クラス所属資格を判定します。</p><p class="small center">6クラスの判定を一つずつ行い、出目を記録します。</p>
+   <button class="primary" onclick="startClasses()">クラス判定へ進む</button>`;
+ }
+}
+function startClasses(){
+ classRolls=[];enrolled=null;renderClass();
+}
+function roll100(){
+ // Rejection sampling prevents the modulo bias of reducing a 32-bit integer to 100 outcomes.
+ if(!globalThis.crypto?.getRandomValues)return Math.floor(Math.random()*100)+1;
+ const values=new Uint32Array(1), limit=Math.floor(4294967296/100)*100;
+ do{crypto.getRandomValues(values)}while(values[0]>=limit);
+ return values[0]%100+1;
+}
+function classLog(){
+ return `<div class="class-log">${classes.map((c,i)=>`<div class="${i===classRolls.length?'active':''}">${c.name}　${classRolls[i]===undefined?'—':classRolls[i]}</div>`).join("")}</div>`;
+}
+function renderClass(){
+ const i=classRolls.length;
+ if(i>=classes.length){renderClassChoices();return}
+ const c=classes[i], stat=classStat(c.key), target=classTarget(c.key);
+ app.innerHTML=`<div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><div class="section-divider"><span>◇</span><i></i><b>所属資格審査</b><i></i><span>◇</span></div>
+ <div class="class-panel" style="--class-color:${c.color}"><div class="class-kicker">CLASS ASSESSMENT ${i+1} / 6</div>
+ <h2 class="class-name">${c.name} CLASS</h2><div class="class-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div><p class="class-desc">${c.formalJa}</p><p class="center small class-explanation">${c.theme}</p>
+ <div class="class-value">適性値 ${stat} × 4　／　成功範囲 <strong>1～${target}</strong></div>
+ <p class="center small">このクラスの所属資格を判定します。</p>
+ <button class="primary" onclick="recordClassRoll()">判定する</button></div>${classLog()}
+ <p class="center small">出目は一度だけ確定し、下に記録されます。</p>`;
+}
+function recordClassRoll(){
+ const i=classRolls.length;
+ if(i>=classes.length)return;
+ const roll=roll100();classRolls.push(roll);
+ const c=classes[i], target=classTarget(c.key), success=roll<=target;
+ app.innerHTML=`<div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><div class="class-panel" style="--class-color:${c.color}">
+ <div class="class-kicker">CLASS ASSESSMENT ${i+1} / 6</div><h2 class="class-name">${c.name} CLASS</h2><div class="class-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div>
+ <div class="class-value">成功範囲 1～${target}</div><div class="class-roll"><strong>${roll}</strong></div>
+ <p class="center">${success?'判定成功・所属資格：得意':'判定記録を保存しました'}</p></div>${classLog()}
+ <button class="primary" onclick="renderClass()">${i+1===classes.length?'資格一覧へ進む':'次のクラスへ進む'}</button>`;
+}
+function qualifications(){
+ const successes=classes.map((c,i)=>classRolls[i]<=classTarget(c.key)?i:-1).filter(i=>i>=0);
+ const failures=classes.map((c,i)=>!successes.includes(i)?i:-1).filter(i=>i>=0);
+ const maxFail=failures.length?Math.max(...failures.map(i=>classRolls[i])):null;
+ const weak=failures.filter(i=>classRolls[i]===maxFail);
+ const black=successes.length===0 && classRolls.length===classes.length;
+ const minRoll=black?Math.min(...classRolls):null;
+ const assisted=black?classes.map((c,i)=>classRolls[i]===minRoll?i:-1).filter(i=>i>=0):[];
+ return {successes,weak,black,assisted};
+}
+function renderClassChoices(){
+ clearResultTheme();
+ if(classRolls.length!==classes.length)return;
+ const {successes,weak,black,assisted}=qualifications();
+ const eligible=new Set([...successes,...weak,...assisted]);
+ const statusFor=i=>successes.includes(i)?'所属資格：得意':assisted.includes(i)?'所属資格：得意（補助インク）':weak.includes(i)?'所属資格：弱点克服':'所属資格：－';
+ app.classList.toggle("black",black);
+ app.innerHTML=`<div class="eyebrow">MULLBERRY MAGIC ACADEMY</div><h2 class="result-title">所属資格の提示</h2>
+ <div class="certificate-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div>
+ <p class="center small">学院が認めたクラスから、所属先を選んでください。</p>
+ ${successes.length===6?'<p class="center">すべてのクラスで所属資格が認められました。見事な結果です。</p>':''}
+ ${black?`<div class="result-box"><p><strong>6クラスすべての判定が学院基準には届きませんでした。</strong></p><p>基準では失敗ですが、最も惜しかったクラスは補助インクの使用によって合格扱いにできます。</p></div><div class="result-box"><p class="center"><strong>黒い果実</strong></p><p>すべてのクラスの適性が低かったあなたは、学院では特別な「黒い果実」として扱われます。BLACK CLASSへの所属資格が認められます。</p></div>`:''}
+ <div class="result-box">${classes.map((c,i)=>`<div class="apt" style="border-color:${c.color}"><b>${c.name} CLASS　${classRolls[i]} / ${classTarget(c.key)}</b><span>${statusFor(i)}</span></div>`).join('')}</div>
+ <p class="center">所属したいクラスを選択</p>
+ ${classes.map((c,i)=>eligible.has(i)?`<button class="class-option" style="border-left:3px solid ${c.color}" onclick="selectClass(${i})">${c.name} CLASS<small>${statusFor(i)}　／　${c.theme}</small></button>`:'').join('')}
+ ${black?`<button class="class-option" style="border-left:3px solid #34383b" onclick="selectClass('BLACK')">BLACK CLASS<small>黒い果実として認められた者を保護するための特別なクラス。</small></button>`:''}
+ <button class="ghost" onclick="restart()">最初からやり直す</button>`;
+}
+function selectClass(i){
+ if(classRolls.length!==classes.length)return;
+ const {successes,weak,black,assisted}=qualifications();
+ const eligible=[...new Set([...successes,...weak,...assisted])];
+ if(i==='BLACK'&&!black)return;
+ if(i!==-1&&i!=='BLACK'&&!eligible.includes(i))return;
+ enrolled=i;
+ applyResultTheme(app);
+ const top=top3();
+ const selected=i<0?'未定':i==='BLACK'?'BLACK CLASS':`${classes[i].name} CLASS`;
+ const desc=i==='BLACK'?'ミュール・ノワール':i<0?'所属先はまだ選択されていません':`${classes[i].formalJa}`;
+ const blackExplanation=i==='BLACK'?`<p class="center small class-explanation">黒い果実として認められた者を保護するための特別なクラス。</p>`:'';
+ const selectedRoll=(typeof i==='number'&&i>=0)?`<p class="center small">クラス判定：<strong>${classRolls[i]}</strong> ／ 成功範囲 1～${classTarget(classes[i].key)}</p>`:'';
+ app.innerHTML=`<div class="result-certificate"><div class="certificate-label">OFFICIAL ADMISSION RECORD</div>
+ <div class="eyebrow">MULLBERRY MAGIC ACADEMY</div>${crestMarkup}<h2 class="result-title">入学資格認定書</h2>
+ <div class="certificate-divider" aria-hidden="true"><span>◇</span><i></i><span>◇</span><i></i><span>◇</span></div><p class="center">所属クラス：<strong>${selected}</strong></p><p class="center small">${desc}</p>${typeof i==='number'&&i>=0?`<p class="center small class-explanation">${classes[i].theme}</p>`:blackExplanation}${selectedRoll}</div>
+ <div class="result-box"><p class="center">試験免除分野</p>${top.map((k,j)=>`<div class="apt"><b>${j+1}. ${abilities[k][0]}</b><span>${abilities[k][1]}適性</span></div>`).join('')}</div>
+ ${black?'<div class="result-box"><p class="center"><strong>特殊認定：黒い果実</strong></p><p>他の6クラスすべての判定が学院の定めた基準に届かなかったため、特別な保護を受けられるクラスの所属資格を得ました。</p></div>':''}
+ <div class="save-actions result-four-actions"><button class="primary" onclick="saveResultImage('normal')"><span class="action-label">結果画像を保存</span></button><button class="primary" onclick="saveResultImage('detail')"><span class="action-label">詳細記録を保存</span></button>${i!==-1?'<button class="primary share-color" onclick="shareAdmissionText()"><span class="action-label">Xでシェア</span></button><button class="primary share-color" onclick="shareAdmissionResult()"><span class="action-label">画像付きでシェア</span></button>':''}</div>
+ ${i!==-1?'<p class="share-note">画像付きシェアがうまくいかない場合は、「結果画像を保存」から画像を保存し、投稿時に手動で添付してください。</p>':''}
+ <button class="ghost" onclick="renderClassChoices()">所属先を選び直す</button>
+ <button class="ghost" onclick="restart()">最初からやり直す</button>`;
+}
+function admissionShareText(){
+ const className=enrolled==='BLACK'?'BLACK CLASS':`${classes[enrolled].name} CLASS`;
+ const formal=enrolled==='BLACK'?'ミュール・ノワール':classes[enrolled].formalJa;
+ const explanation=enrolled==='BLACK'?'黒い果実として認められた者を保護するための特別なクラス。':classes[enrolled].theme;
+ const roll=(typeof enrolled==='number'&&enrolled>=0)?classRolls[enrolled]:'該当なし';
+ return `【マルベリー魔法学院】入学資格の認定を受けました。\n\n所属クラス：${className}　${formal}\n${explanation}\nクラス判定出目：${roll}\n#マルベリー魔法学院 https://milk-tools.com/mulberry/diagnosis/coc.html`;
+}
+function openAdmissionX(text){
+ const url=`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+ const popup=window.open(url,'_blank','noopener,noreferrer');
+ // No persistent fallback link is inserted below the action buttons.
+}
+function shareAdmissionText(){
+ if(enrolled===-1||enrolled===null)return;
+ openAdmissionX(admissionShareText());
+}
+async function shareAdmissionResult(){
+ if(enrolled===-1||enrolled===null)return;
+ if(!(navigator.share&&navigator.canShare)){
+  alert('この環境では画像付きシェアに対応していません。「Xでシェア」を使い、保存した結果画像を手動で添付してください。');
+  return;
+ }
+ try{
+  const blob=await renderAdmissionImage('normal');
+  const file=new File([blob],'mulberry_result.png',{type:'image/png'});
+  if(!navigator.canShare({files:[file]})){
+   alert('この環境では画像付きシェアに対応していません。「Xでシェア」を使い、保存した結果画像を手動で添付してください。');
+   return;
+  }
+  await navigator.share({files:[file],text:admissionShareText(),title:'マルベリー魔法学院 入学資格認定'});
+ }catch(e){
+  if(e?.name==='AbortError')return;
+  console.warn('File share unavailable:',e);
+  alert('画像付きシェアを開始できませんでした。「Xでシェア」と画像保存をご利用ください。');
+ }
+}
+function qualificationLabel(i){
+ const {successes,weak,assisted}=qualifications();
+ if(successes.includes(i))return '所属資格：得意';
+ if(assisted.includes(i))return '所属資格：得意（補助インク）';
+ if(weak.includes(i))return '所属資格：弱点克服';
+ return '所属資格：－';
+}
+function expandSvgUsesForCapture(root){
+ root.querySelectorAll('svg').forEach(svg=>{
+  [...svg.querySelectorAll('use')].forEach(use=>{
+   const href=use.getAttribute('href')||use.getAttribute('xlink:href');
+   if(!href||href[0]!=='#')return;
+   const ref=svg.querySelector(href);
+   if(!ref)return;
+   const clone=ref.cloneNode(true);
+   clone.removeAttribute('id');
+   const useTransform=use.getAttribute('transform');
+   const refTransform=clone.getAttribute('transform');
+   if(useTransform)clone.setAttribute('transform',refTransform?`${useTransform} ${refTransform}`:useTransform);
+   for(const attr of [...use.attributes]){
+    if(attr.name==='href'||attr.name==='xlink:href'||attr.name==='transform')continue;
+    clone.setAttribute(attr.name,attr.value);
+   }
+   use.replaceWith(clone);
+  });
+ });
+}
+function buildSaveCard(kind){
+ const top=top3(), {black}=qualifications();
+ const card=document.createElement('div'); card.className='save-card'; card.id='save-card'; applyResultTheme(card);
+ const selectedName=enrolled==='BLACK'?'BLACK CLASS':(typeof enrolled==='number'&&enrolled>=0?`${classes[enrolled].name} CLASS`:'所属未定');
+ const selectedDesc=enrolled==='BLACK'?'ミュール・ノワール':(typeof enrolled==='number'&&enrolled>=0?`${classes[enrolled].formalJa}`:'所属先はまだ選択されていません');
+ const selectedFormalJa=enrolled==='BLACK'?'ミュール・ノワール':(typeof enrolled==='number'&&enrolled>=0?classes[enrolled].formalJa:'');
+ const blackSaveExplanation=enrolled==='BLACK'?`<div class="class-explanation">黒い果実として認められた者を保護するための特別なクラス。</div>`:'';
+ const selectedRoll=(typeof enrolled==='number'&&enrolled>=0)?`<div class="selected-roll">${classRolls[enrolled]}</div><div class="roll-target">成功範囲 1～${classTarget(classes[enrolled].key)} ／ ${qualificationLabel(enrolled)}</div>`:'';
+ const rolls=classes.map((c,i)=>`<div class="roll-cell"><div class="roll-name">${c.name}</div><div class="roll-num">${classRolls[i]}</div><div class="roll-target">成功範囲 ～${classTarget(c.key)}</div><div class="roll-status">${qualificationLabel(i)}</div></div>`).join('');
+ card.innerHTML=`<span class="outer-diamond tl">◇</span><span class="outer-diamond tr">◇</span><span class="outer-diamond bl">◇</span><span class="outer-diamond br">◇</span><div class="save-head"><div class="save-eyebrow">MULLBERRY MAGIC ACADEMY</div>${crestMarkup}<h2>${kind==='normal'?'入学資格認定書':'入学適性検査・詳細記録'}</h2></div>
+ <div class="save-section"><div class="save-label">試験免除分野</div><div class="exempt-grid">${top.map(k=>`<div>${abilities[k][0]}<br><small>${abilities[k][1]}適性</small></div>`).join('')}</div></div>
+ ${kind==='normal'?`<div class="save-section"><div class="save-label">所属クラス</div><div class="selected-class"><div class="selected-name">${selectedName}</div><div>${selectedDesc}</div>${typeof enrolled==='number'&&enrolled>=0?`<div class="class-explanation">${classes[enrolled].theme}</div>`:blackSaveExplanation}${selectedRoll}</div></div>`:`<div class="save-section"><div class="save-label">クラス判定記録</div><div class="roll-grid">${rolls}</div><p class="center small">所属：<strong>${selectedName}</strong>${selectedFormalJa?`<span class="detail-formal-name">${selectedFormalJa}</span>`:""}</p></div>`}
+ ${black?'<div class="black-note"><strong>黒い果実</strong><br><small>他の6クラスすべての判定が学院の定めた基準に届かなかったため、特別な保護を受けられるクラスの所属資格を得ました。</small></div>':''}
+ <div class="save-foot">MULLBERRY MAGIC ACADEMY / ADMISSION APTITUDE EXAMINATION</div>`;
+ expandSvgUsesForCapture(card);
+ document.body.appendChild(card); return card;
+}
+async function renderAdmissionImage(kind){
+ if(typeof html2canvas!=='function')throw new Error('画像生成ライブラリを読み込めませんでした。');
+ let hinaReady=false;
+ try{
+  if(document.fonts&&document.fonts.load){
+   await Promise.race([document.fonts.load('16px "Hina Mincho"'),new Promise(resolve=>setTimeout(resolve,2500))]);
+   hinaReady=document.fonts.check?document.fonts.check('16px "Hina Mincho"'):true;
+  }
+ }catch(e){}
+ const card=buildSaveCard(kind);
+ if(!hinaReady)card.style.fontFamily='"Yu Mincho","Hiragino Mincho ProN",serif';
+ try{
+  const canvas=await html2canvas(card,{backgroundColor:'#fbfcf8',scale:2,useCORS:true});
+  return await new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('画像変換に失敗しました。')),'image/png'));
+ }finally{card.remove()}
+}
+let admissionExportUrl=null;
+function closeAdmissionExport(){
+ document.getElementById('admissionExportModal')?.classList.remove('open');
+}
+function showAdmissionExport(blob,filename){
+ const modal=document.getElementById('admissionExportModal');
+ const img=document.getElementById('admissionExportPreview');
+ const link=document.getElementById('admissionExportDownload');
+ const share=document.getElementById('admissionExportShare');
+ if(admissionExportUrl)URL.revokeObjectURL(admissionExportUrl);
+ admissionExportUrl=URL.createObjectURL(blob);
+ img.src=admissionExportUrl;link.href=admissionExportUrl;link.download=filename;
+ let file=null,canShare=false;
+ try{file=new File([blob],filename,{type:'image/png'});canShare=!!(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]}))}catch(e){}
+ share.style.display=canShare?'inline-block':'none';
+ share.onclick=async()=>{try{await navigator.share({files:[file],title:'マルベリー魔法学院 入学資格認定'})}catch(e){if(e?.name!=='AbortError')console.warn(e)}};
+ modal.classList.add('open');
+}
+async function saveResultImage(kind){
+ try{
+  const blob=await renderAdmissionImage(kind);
+  const filename=kind==='normal'?'mulberry_result.png':'mulberry_detail.png';
+  // Mobile browsers may not honor programmatic download; preview + long press is reliable fallback.
+  const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||('ontouchstart' in window&&innerWidth<=820);
+  if(mobile){showAdmissionExport(blob,filename);return}
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);
+ }catch(e){console.error('result image save failed:',e);alert('画像の生成中にエラーが発生しました。通信環境を確認して、もう一度お試しください。')}
+}
+
+function restart(){step=-1;app.classList.remove("black");clearResultTheme();reset();examMode='coc';cocBase={};renderHome()}
+document.body.insertAdjacentHTML('beforeend',`<div id="admissionExportModal" class="export-modal" role="dialog" aria-modal="true" aria-label="画像を保存" onclick="if(event.target===this)closeAdmissionExport()"><div class="export-dialog"><h3>結果画像を保存</h3><p>画像を長押しして保存するか、下のボタンから保存・共有してください。</p><img id="admissionExportPreview" class="export-preview" alt="保存する結果画像"><div class="export-actions"><a id="admissionExportDownload" download="mulberry_result.png">画像をダウンロード</a><button id="admissionExportShare" type="button">画像を共有</button><button type="button" onclick="closeAdmissionExport()">閉じる</button></div><p class="export-help">スマートフォンでダウンロードできない場合は、画像を長押しして保存してください。</p></div></div>`);
+renderHome();
+// v0.13 class-color + academy ornament trial
+</script></body></html>
