@@ -633,6 +633,18 @@ button.save-detail,button.save-detail *{
 .admission-name-entry .name-help{font-size:.76rem;color:#667a7d;margin:6px 0 0}
 .save-card .student-name{margin:10px auto 0;text-align:center;color:var(--result-main);font-size:17px;overflow-wrap:anywhere;max-width:600px}
 </style>
+<style id="coc-sheet-import">
+.coc-import{margin:22px 0;padding:16px;border:1px solid #a9bdb8;background:#eef3f0;box-shadow:inset 0 0 0 3px #f8faf7}
+.coc-import label{display:block;text-align:center;margin-bottom:8px;color:#52686d}
+.coc-import input,.coc-import textarea{width:100%;padding:10px;border:1px solid #9db6b3;background:#fff;color:#173039;font-size:16px;border-radius:2px}
+.coc-import textarea{box-sizing:border-box;resize:vertical;min-height:100px;font-family:inherit}
+.coc-import-tabs{display:flex;gap:6px;margin:10px 0}
+.coc-import-tabs button{flex:1;padding:8px;border:1px solid #9db6b3;background:#fff;color:#315f65;font-family:inherit;cursor:pointer}
+.coc-import-tabs button[aria-pressed="true"]{background:#315f65;color:white}
+.coc-import .primary{margin:12px auto 0;min-width:0;max-width:100%;font-size:.85rem}
+.coc-import .primary:disabled{opacity:.55;cursor:wait}
+.coc-import p{margin:8px 0 0;overflow-wrap:anywhere}
+</style>
 </head>
 <body><main class="wrap"><section class="card" id="app"></section></main>
 <script>
@@ -708,13 +720,113 @@ function showCocEntry(){
  clearResultTheme();
  app.innerHTML=`<div class="eyebrow">MULBERRY MAGIC ACADEMY</div><h2 class="result-title">探索者の能力値を登録</h2>
 
+  <div class="coc-import">
+  <label>キャラクターシートから読み込む</label>
+  <div class="coc-import-tabs" role="group" aria-label="読み込み方法"><button type="button" id="coc-tab-url" aria-pressed="true" onclick="switchCocImport('url')">URLから</button><button type="button" id="coc-tab-paste" aria-pressed="false" onclick="switchCocImport('paste')">データ貼り付け</button></div>
+  <div id="coc-url-panel">
+  <p class="center small" style="margin:0 0 10px">キャラクター保管所（6版・7版）に対応しています。</p>
+  <input id="coc-sheet-url" type="url" placeholder="キャラクターシートのURL" autocomplete="off">
+  <button class="primary" id="coc-sheet-load" onclick="importCocSheet()">能力値を読み込む</button>
+  </div>
+  <div id="coc-paste-panel" hidden>
+  <p class="center small" style="margin:0 0 10px">いあきゃら：「ココフォリア駒出力」<br>キャラエノ：「テキスト出力」<br>（6版・7版対応）</p>
+  <textarea id="coc-sheet-paste" aria-label="出力データ" placeholder="出力したデータをここに貼り付け"></textarea>
+  <button class="primary" onclick="importCocPaste()">能力値を読み込む</button>
+  </div>
+  <p class="center small" id="coc-sheet-status" role="status" aria-live="polite"></p>
+  </div>
  <div class="center" style="margin:15px 0"><label for="coc-edition">クトゥルフ神話TRPGの版：</label>
  <select id="coc-edition" onchange="updateCocEntryBounds()"><option value="6">6版</option><option value="7">7版</option></select></div>
- <div id="coc-inputs" class="coc-inputs">${cycle.map(k=>`<label>${k}<input type="number" id="coc-${k}" required min="1" max="1000" step="1" inputmode="numeric" aria-label="${k}"></label>`).join('')}</div>
+ <div id="coc-inputs" class="coc-inputs">${["STR","CON","POW","DEX","APP","SIZ","INT","EDU"].map(k=>`<label>${k}<input type="number" id="coc-${k}" required min="1" max="1000" step="1" inputmode="numeric" aria-label="${k}"></label>`).join('')}</div>
  <p class="center small" id="coc-range-help">能力値を入力してください。</p>
  <p class="center small" id="coc-error" role="alert" style="color:#9c555a"></p>
  <button class="primary" onclick="startCoc()">検査を開始する</button>
  <button class="ghost" onclick="renderHome()">戻る</button>`;
+}
+// Character sheet import: isolated JSONP, raw totals, existing edition conversion unchanged.
+async function importCocSheet(){
+ const input=document.getElementById('coc-sheet-url'), button=document.getElementById('coc-sheet-load'), status=document.getElementById('coc-sheet-status');
+ let frame,timer,listener;
+ const report=(message,error=false)=>{status.textContent=message;status.style.color=error?'#9c555a':'';};
+ try{
+  let u;try{u=new URL(input.value.trim());}catch{throw Error('キャラクターシートのURLを入力してください。');}
+  if(u.protocol!=='https:'||u.hostname!=='charasheet.vampire-blood.net'||u.port||u.username||u.password)throw Error('キャラクター保管所のHTTPS URLを入力してください。');
+  const m=u.pathname.match(/^\/([a-zA-Z0-9]+)(?:\.(?:html|js))?\/?$/);
+  if(!m)throw Error('キャラクター個別ページのURLを入力してください。');
+  button.disabled=true;report('読み込み中…');
+  const data=await new Promise((resolve,reject)=>{
+   const token=crypto.randomUUID?crypto.randomUUID():String(Math.random());
+   frame=document.createElement('iframe');frame.hidden=true;frame.setAttribute('sandbox','allow-scripts');
+   listener=e=>{if(e.source!==frame.contentWindow||e.data?.token!==token)return;resolve(e.data.data);};
+   window.addEventListener('message',listener);
+   const source='https://charasheet.vampire-blood.net/'+m[1]+'.js?callback=mulberryReceive';
+   frame.srcdoc='<scr'+'ipt>function mulberryReceive(d){parent.postMessage({token:'+JSON.stringify(token)+',data:d},"*")}<\/script><scr'+'ipt src="'+source+'"><\/script>';
+   document.body.append(frame);
+   timer=setTimeout(()=>reject(Error('読み込みがタイムアウトしました。公開設定や通信状況を確認してください。')),12000);
+  });
+  if(!button.isConnected)return;
+  if(!data||typeof data!=='object')throw Error('キャラクター情報を取得できませんでした。');
+  const game=String(data.game??'');
+  const edition=game==='coc'?'6':/^(?:coc[_-]?7(?:th)?|coc[_-]?2019)$/i.test(game)?'7':null;
+  if(!edition)throw Error('対応していないキャラクターシートです。');
+  const order=edition==='7'?['STR','CON','DEX','APP','POW','SIZ','INT','EDU']:['STR','CON','POW','DEX','APP','SIZ','INT','EDU'];
+  const values={};
+  for(const k of cycle){
+   const v=data['NP'+(order.indexOf(k)+1)], n=Number(v);
+   if((typeof v!=='number'&&typeof v!=='string')||String(v).trim()===''||!Number.isInteger(n)||n<1||n>1000)throw Error(k+'の能力値を取得できませんでした。手入力で登録できます。');
+   values[k]=n;
+  }
+  document.getElementById('coc-edition').value=edition;updateCocEntryBounds();
+  for(const k of cycle)document.getElementById('coc-'+k).value=values[k];
+  document.getElementById('coc-error').textContent='';
+  report(edition+'版の能力値を読み込みました。必要に応じて修正してください。');
+ }catch(e){report(e.message||'読み込みに失敗しました。',true);}
+ finally{clearTimeout(timer);if(listener)window.removeEventListener('message',listener);frame?.remove();button.disabled=false;}
+}
+function switchCocImport(mode){
+ const load=document.getElementById('coc-sheet-load');
+ if(load.disabled)return;
+ for(const k of ['url','paste']){
+  document.getElementById('coc-'+k+'-panel').hidden=k!==mode;
+  document.getElementById('coc-tab-'+k).setAttribute('aria-pressed',String(k===mode));
+ }
+ document.getElementById('coc-sheet-status').textContent='';
+}
+function parseCocPaste(raw){
+ const text=raw.trim();
+ if(!text)throw Error('出力したデータを貼り付けてください。');
+ const values={}, entries=[];let six=false,seven=false;
+ if(text.startsWith('{')){
+  let obj;try{obj=JSON.parse(text);}catch{throw Error('JSONデータを正しく貼り付けてください。');}
+  if(obj?.kind!=='character'||!Array.isArray(obj.data?.params))throw Error('対応する駒データではありません。');
+  for(const p of obj.data.params){if(p&&typeof p.label==='string')entries.push([p.label.trim().toUpperCase(),p.value]);}
+  const commands=String(obj.data.commands??'');
+  six=/^\s*CCB\s*<=/im.test(commands);
+  seven=/^\s*CC\s*<=/im.test(commands)||entries.some(([k])=>k==='BLD'||k==='MOV');
+ }else{
+  const header=text.split(/^-{3,}/m)[0];
+  for(const m of header.matchAll(/(?:^|\s)(STR|CON|POW|DEX|APP|SIZ|INT|EDU)\s*[:：]\s*([^\s]+)/gi))entries.push([m[1].toUpperCase(),m[2]]);
+  six=/(?:学校・学位|精神的な障害)\s*[:：]/.test(header);
+  seven=/(?:移動率|ビルド)\s*[:：]/.test(header);
+ }
+ for(const k of cycle){
+  const matches=entries.filter(([label])=>label===k);
+  if(matches.length!==1)throw Error(k+'の能力値を一意に取得できませんでした。');
+  const v=matches[0][1],n=Number(v);
+  if((typeof v!=='number'&&typeof v!=='string')||String(v).trim()===''||!Number.isInteger(n)||n<1||n>1000)throw Error(k+'は1～1000の整数で入力してください。');
+  values[k]=n;
+ }
+ return {values,edition:six===seven?null:six?'6':'7'};
+}
+function importCocPaste(){
+ const status=document.getElementById('coc-sheet-status');
+ try{
+  const {values,edition}=parseCocPaste(document.getElementById('coc-sheet-paste').value);
+  if(edition){document.getElementById('coc-edition').value=edition;updateCocEntryBounds();}
+  for(const k of cycle)document.getElementById('coc-'+k).value=values[k];
+  document.getElementById('coc-error').textContent='';
+  status.style.color='';status.textContent=edition?edition+'版の能力値を読み込みました。必要に応じて修正してください。':'能力値を読み込みました。版を自動判別できなかったため、6版・7版の選択を確認してください。';
+ }catch(e){status.style.color='#9c555a';status.textContent=e.message||'読み込みに失敗しました。';}
 }
 function updateCocEntryBounds(){
  const edition=document.querySelector('#coc-edition').value;
